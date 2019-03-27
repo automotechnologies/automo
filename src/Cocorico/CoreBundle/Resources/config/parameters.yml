@@ -1,17 +1,17 @@
 parameters:
     #### Environment independent parameters. Same values in dev, staging, prod environments  ####
     #Site general info
-    cocorico.site_name: Cocorico
-    cocorico.phone: +33(0) 1 43 79 86 30
-    cocorico.address: 67 rue de Provence, 75009
-    cocorico.short_description: 'Cocorico is collaborative consumption platform'
-    cocorico.contact_mail: contact@cocorico.io
+    cocorico.site_name: Automo
+    cocorico.phone: +62-811-000-722
+    cocorico.address: Ariobimo Sentral Level 8, Jakarta, Indonesia, 12950
+    cocorico.short_description: 'Automo is an automotive rental marketplace in Indonesia'
+    cocorico.contact_mail: customer@automo.id
     #To obfuscate see http://wbwip.com/wbw/emailencoder.html
     cocorico.contact_mail_obfuscated: "&#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#099;&#111;&#099;&#111;&#114;&#105;&#099;&#111;&#046;&#105;&#111;"
-    cocorico.from_email: no-reply@cocorico.io
-    cocorico.webmaster_email: webmaster@cocorico.io
-    cocorico.vat_number: FR 12 123 456 789
-    cocorico.home_rss_feed: 'http://www.cocolabs.io/fr/feed/'
+    cocorico.from_email: customer@automo.id
+    cocorico.webmaster_email: customer@automo.id
+    cocorico.vat_number: ~
+    cocorico.home_rss_feed: 'https://blog.automo.id/feed/'
 
     #Languages
     #For knp translatable
@@ -23,7 +23,7 @@ parameters:
             - fr
     cocorico.locales_string: en|fr
     #Currencies
-    cocorico.currency: EUR
+    cocorico.currency: USD
     cocorico.currencies_for_lexik:
         - EUR
         - USD
@@ -63,10 +63,10 @@ parameters:
     cocorico.fee_as_offerer: 0.05
 
     #Time unit in minute (1440 or 60)
-    cocorico.time_unit: 60
+    cocorico.time_unit: 1440
 
     #Default users timezone
-    cocorico.time_zone: 'Europe/Paris'
+    cocorico.time_zone: 'Asia/Jakarta'
 
     #Max search and booking days number.
     #Min 1. If set to 1 and days_display_mode = duration then only start date is displayed
@@ -76,7 +76,7 @@ parameters:
     cocorico.days_max_edition: 360
 
     #Days display mode. (range or duration)
-    cocorico.days_display_mode: duration
+    cocorico.days_display_mode: range
 
     #Available hours for listing availabilities hours edition and booking hours request
     #Hours must be consecutive
