@@ -12,15 +12,6 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="area">
-                <div class="col">
-                    <strong class="title">
-                        {{ form_label(form.categories) }}
-                    </strong>
-
-                    <div class="multiselect">
-                        {{ form_widget(form.categories) }}
-                    </div>
-                </div>
 
                 <div class="col">
                     <strong class="title">
@@ -34,13 +25,25 @@
                         {{ form_widget(form.location.address, {
                             'id': 'location',
                             'attr': {
-                                'class': 'form-control',
+                                'class': 'form-control home',
                                 'placeholder': 'listing.search.form.address.placeholder'|trans
                             }
                         } ) }}
                         {{ form_rest(form.location) }}
                     </div>
                 </div>
+
+
+                <div class="col">
+                    <strong class="title">
+                        {{ form_label(form.categories) }}
+                    </strong>
+
+                    <div class="multiselect">
+                        {{ form_widget(form.categories) }}
+                    </div>
+                </div>
+
                 <input type="submit" value="{{ 'listing.search'|trans }}" class="btn btn-default">
             </div>
         </div>
