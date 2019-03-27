@@ -72,7 +72,7 @@
     })) }}
 
     <!-- footer of the page -->
-    <footer id="footer" class="container text-center">
+    <footer id="footer" class="container text-left">
         <div class="row">
             <div class="col-xs-12">
                 <a href="{{ path('cocorico_page_show', { 'slug': 'nav.legal_notices.slug'|trans }) }}"
@@ -80,15 +80,15 @@
                     {{ 'footer.legal_notices.link'|trans }}
                 </a>
 
-                <a href="http://www.cocolabs.io/fr/"
-                   class="by pull-right credit" target="_blank">
-                    <img src="{{ asset('images/marketplace-solutions.png') }}" width="45" height="15"
-                         alt="creation marketplace">
-                </a>
+                {#<a href="http://www.cocolabs.io/fr/"#}
+                   {#class="by pull-right credit" target="_blank">#}
+                    {#<img src="{{ asset('images/marketplace-solutions.png') }}" width="45" height="15"#}
+                         {#alt="creation marketplace">#}
+                {#</a>#}
 
                 <p>
                     &copy; {{ "now"|date("Y") }} {{ 'footer.all_right_reserved'|trans }}
-                    <a href="{{ path('cocorico_home') }}">{{ cocorico_site_name }}</a>
+                    <a href="{{ path('cocorico_home') }}">PT Automo Teknologi Indonesia</a>
                 </p>
             </div>
         </div>
