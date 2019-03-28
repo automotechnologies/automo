@@ -25,14 +25,12 @@ parameters:
     #Currencies
     cocorico.currency: USD
     cocorico.currencies_for_lexik:
-        - EUR
         - USD
         - IDR
     cocorico.currencies:
-        EUR: €
         USD: $
         IDR: Rp
-    cocorico.currencies_string: EUR|USD|IDR
+    cocorico.currencies_string: USD|IDR
     cocorico.currencies_json: "%kernel.root_dir%/../web/json/currencies.json"
 
     #Does VAT is included in prices fixing
