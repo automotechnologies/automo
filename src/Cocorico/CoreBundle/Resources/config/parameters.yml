@@ -23,14 +23,14 @@ parameters:
             - fr
     cocorico.locales_string: en|fr
     #Currencies
-    cocorico.currency: USD
+    cocorico.currency: IDR
     cocorico.currencies_for_lexik:
-        - USD
         - IDR
+        - USD
     cocorico.currencies:
-        USD: $
         IDR: Rp
-    cocorico.currencies_string: USD|IDR
+        USD: $
+    cocorico.currencies_string: IDR|USD
     cocorico.currencies_json: "%kernel.root_dir%/../web/json/currencies.json"
 
     #Does VAT is included in prices fixing
