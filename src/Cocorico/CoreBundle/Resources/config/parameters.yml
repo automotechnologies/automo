@@ -43,7 +43,7 @@ parameters:
         JPY: ¥
         RUB: руб
         AUD: $ AUD
-        IDR: IDR
+        IDR: Rp
     cocorico.currencies_string: EUR|USD|GBP|CHF|CAD|JPY|RUB|RUB|AUD|IDR
     cocorico.currencies_json: "%kernel.root_dir%/../web/json/currencies.json"
 
