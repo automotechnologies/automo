@@ -27,24 +27,12 @@ parameters:
     cocorico.currencies_for_lexik:
         - EUR
         - USD
-        - GBP
-        - CHF
-        - CAD
-        - JPY
-        - RUB
-        - AUD
         - IDR
     cocorico.currencies:
         EUR: €
         USD: $
-        GBP: £
-        CHF: CHF
-        CAD: $ CAD
-        JPY: ¥
-        RUB: руб
-        AUD: $ AUD
         IDR: Rp
-    cocorico.currencies_string: EUR|USD|GBP|CHF|CAD|JPY|RUB|RUB|AUD|IDR
+    cocorico.currencies_string: EUR|USD|IDR
     cocorico.currencies_json: "%kernel.root_dir%/../web/json/currencies.json"
 
     #Does VAT is included in prices fixing
