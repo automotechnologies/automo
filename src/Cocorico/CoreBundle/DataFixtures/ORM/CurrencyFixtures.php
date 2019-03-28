@@ -34,13 +34,8 @@ class CurrencyFixtures extends Fixture
         $manager->persist($currency);
 
         $currency = new Currency();
-        $currency->setCode('JPY');
-        $currency->setRate(145.8900);
-        $manager->persist($currency);
-
-        $currency = new Currency();
-        $currency->setCode('GBP');
-        $currency->setRate(0.7932);
+        $currency->setCode('IDR');
+        $currency->setRate(14271.50);
         $manager->persist($currency);
 
         $manager->flush();
