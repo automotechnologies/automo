@@ -6217,6 +6217,7 @@ span.btn:focus {
     margin: 0 0 -3px;
     font-size: 36px;
     line-height: 39px;
+    white-space: nowrap;
 }
 
 .listing-post .favourit {

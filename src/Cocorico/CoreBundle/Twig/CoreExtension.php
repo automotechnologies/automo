@@ -214,7 +214,10 @@ class CoreExtension extends \Twig_Extension implements \Twig_Extension_GlobalsIn
             $precision = $this->listingPricePrecision;
         }
 
+        $kilo = false;
+
         $targetCurrency = $this->currentCurrency;
+
         if (!$convert) {
             $targetCurrency = $this->defaultCurrency;
         }
@@ -226,7 +229,17 @@ class CoreExtension extends \Twig_Extension implements \Twig_Extension_GlobalsIn
             $price = 0;
         }
 
+        if ($price > 1000) {
+            $price = ceil($price / 1000);
+            $kilo = true;
+        }
+
         $price = $this->currencyExtension->format($price, $targetCurrency, $precision);
+
+        if ($targetCurrency === 'IDR')
+            $price = str_replace($targetCurrency, $targetCurrency . ' ', $price);
+
+        $price = $kilo ? $price . 'k' : $price;
 
 
         return $price;
