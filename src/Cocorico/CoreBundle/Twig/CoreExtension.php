@@ -237,9 +237,9 @@ class CoreExtension extends \Twig_Extension implements \Twig_Extension_GlobalsIn
         $price = $this->currencyExtension->format($price, $targetCurrency, $precision);
 
         if ($targetCurrency === 'IDR')
-            $price = str_replace($targetCurrency, $targetCurrency . ' ', $price);
+            $price = str_replace($targetCurrency, 'Rp ', $price);
 
-        $price = $kilo ? $price . 'k' : $price;
+        $price = $kilo ? $price . 'K' : $price;
 
 
         return $price;
