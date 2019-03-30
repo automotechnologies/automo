@@ -219,7 +219,7 @@ lexik_currency:
     decimal_part:
         precision:  0                           # number of digits for the decimal part
         round_mode: up                          # round mode to use (up|down|even|odd)
-    #currency_class: Cocorico\CurrencyBundle\Entity\Currency
+    currency_class: Cocorico\CoreBundle\Entity\Currency
     #default_adapter: doctrine_currency_adapter  # service id OR tag alias, this is adapter used by the conversion service
 
 bazinga_geocoder:
