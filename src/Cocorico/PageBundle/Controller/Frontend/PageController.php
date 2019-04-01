@@ -11,7 +11,6 @@
 
 namespace Cocorico\PageBundle\Controller\Frontend;
 
-use Cocorico\CoreBundle\Utils\PHP;
 use Cocorico\PageBundle\Repository\PageRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -53,8 +52,6 @@ class PageController extends Controller
         if (!$page) {
             throw new NotFoundHttpException(sprintf('%s page not found.', $slug));
         }
-
-        PHP::log($request->getHttpHost());
 
         return $this->render(
             '@CocoricoPage/Frontend/Page/show.html.twig',
