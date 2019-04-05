@@ -6,13 +6,9 @@
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
-      <trans-unit id="da39a3ee5e6b4b0d3255bfef95601890afd80709" resname="">
-        <source></source>
-        <target></target>
-      </trans-unit>
       <trans-unit id="85b9440b9a481e9ef8452c609753af0fb75c28de" resname="admin.listing.cancellation_policy.label">
         <source>admin.listing.cancellation_policy.label</source>
-        <target>Cancellation policy</target>
+        <target>Kebijakan pembatalan</target>
       </trans-unit>
       <trans-unit id="70f4bab980aaea77504b06db4a44795d111c90ba" resname="admin.listing.status.label">
         <source>admin.listing.status.label</source>
@@ -24,7 +20,7 @@
       </trans-unit>
       <trans-unit id="ccc43ccbdcfdca4d50fd5309c511321b500c4f44" resname="booking.simulator.amount.help">
         <source>booking.simulator.amount.help</source>
-        <target>Booking amount help while mouse hover 3</target>
+        <target>Jumlah pemesanan membantu saat mouse melayang 3</target>
       </trans-unit>
       <trans-unit id="d04312144cfa558660c1b402b1f2b022d40c8de4" resname="cocorico.en">
         <source>cocorico.en</source>
@@ -36,11 +32,11 @@
       </trans-unit>
       <trans-unit id="b5bc050f765ad972a0347e56957630ec45dec432" resname="entity.listing.cancellation_policy.flexible">
         <source>entity.listing.cancellation_policy.flexible</source>
-        <target>Flexible</target>
+        <target>Fleksibel</target>
       </trans-unit>
       <trans-unit id="4be62a158d72fda333ee9ad4e24aeaba6f2dcefc" resname="entity.listing.cancellation_policy.strict">
         <source>entity.listing.cancellation_policy.strict</source>
-        <target>Strict</target>
+        <target>Ketat</target>
       </trans-unit>
       <trans-unit id="da9160f098524d39a66a31d78d8f7e5e0b191d62" resname="entity.listing.cancellation_policy_desc.flexible">
         <source>entity.listing.cancellation_policy_desc.flexible</source>
