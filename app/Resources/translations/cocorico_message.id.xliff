@@ -8,79 +8,79 @@
     <body>
       <trans-unit id="43d16710d19ba5f0543ef6121766b77f69d4cfb8" resname="message.modal.action.return">
         <source>message.modal.action.return</source>
-        <target state="new">message.modal.action.return</target>
+        <target>Return</target>
       </trans-unit>
       <trans-unit id="c802370aae0b9f68401cfd7f2b123f70d651b378" resname="message.modal.action.send">
         <source>message.modal.action.send</source>
-        <target state="new">message.modal.action.send</target>
+        <target>Send</target>
       </trans-unit>
       <trans-unit id="34c79e0b98782fb25e18fb222d72543acd21f917" resname="message.modal.sub_title">
         <source>message.modal.sub_title</source>
-        <target state="new">message.modal.sub_title</target>
+        <target>Listing</target>
       </trans-unit>
       <trans-unit id="729ffd38433684305fc7982f6c0fff04e57ac203" resname="message.modal.title">
         <source>message.modal.title</source>
-        <target state="new">message.modal.title</target>
+        <target>Contact</target>
       </trans-unit>
       <trans-unit id="5cb4d07a0def722149d276c5fd2ed7986a8507a8" resname="message.new.error">
         <source>message.new.error</source>
-        <target state="new">message.new.error</target>
+        <target>An error occurred while message sending</target>
       </trans-unit>
       <trans-unit id="20e3dee4a40ba1ad79b295e719ea6e6e57896e6e" resname="message.new.success">
         <source>message.new.success</source>
-        <target state="new">message.new.success</target>
+        <target>Message send</target>
       </trans-unit>
       <trans-unit id="cdf7e925f5746741c316f5fbcf39ad0dfca90775" resname="results">
         <source>results</source>
-        <target state="new">results</target>
+        <target>{0} No result|{1} 1 result|]1,Inf] %count% results</target>
       </trans-unit>
       <trans-unit id="fb84bc4b4ce3a4d0a160fd7cdc5194556a046442" resname="thread.asker">
         <source>thread.asker</source>
-        <target state="new">thread.asker</target>
+        <target>Asker</target>
       </trans-unit>
       <trans-unit id="4999796530eb9a9549e982c3e8c2a9ec9868a6ec" resname="thread.book">
         <source>thread.book</source>
-        <target state="new">thread.book</target>
+        <target>Book</target>
       </trans-unit>
       <trans-unit id="72d4deda86dc0c430eb5eb3631b5e8897d8e5414" resname="thread.new.contact_me">
         <source>thread.new.contact_me</source>
-        <target state="new">thread.new.contact_me</target>
+        <target>Contact me</target>
       </trans-unit>
       <trans-unit id="d99962cf893ac8bee73a67004253045ee2968758" resname="thread.offerer">
         <source>thread.offerer</source>
-        <target state="new">thread.offerer</target>
+        <target>Offerer</target>
       </trans-unit>
       <trans-unit id="3fc03112eaf66ecb05369ea514c9ecc2ae80053c" resname="thread.send">
         <source>thread.send</source>
-        <target state="new">thread.send</target>
+        <target>Send</target>
       </trans-unit>
       <trans-unit id="a9951cbccdb7df6f118d17ceb300b04a70decf4a" resname="threads.list.date">
         <source>threads.list.date</source>
-        <target state="new">threads.list.date</target>
+        <target>Date:</target>
       </trans-unit>
       <trans-unit id="e8027446dc9c8a7cac6c836878a5450de437bf04" resname="threads.list.delete">
         <source>threads.list.delete</source>
-        <target state="new">threads.list.delete</target>
+        <target>Delete</target>
       </trans-unit>
       <trans-unit id="bc97b2ce86bedc6db244dcadaf7679ed2cfca010" resname="threads.list.more">
         <source>threads.list.more</source>
-        <target state="new">threads.list.more</target>
+        <target>More</target>
       </trans-unit>
       <trans-unit id="1c9df5547fa7ac366323969c7a55a40a8645fdd3" resname="threads.list.open">
         <source>threads.list.open</source>
-        <target state="new">threads.list.open</target>
+        <target>Open</target>
       </trans-unit>
       <trans-unit id="81d82993d14a61625157ccbfc27ea8d44233aed2" resname="threads.list.participants">
         <source>threads.list.participants</source>
-        <target state="new">threads.list.participants</target>
+        <target>Participant:</target>
       </trans-unit>
       <trans-unit id="3f5e300c2192edf6ac5451cd36de9199bcc3d7ea" resname="threads.list.reply">
         <source>threads.list.reply</source>
-        <target state="new">threads.list.reply</target>
+        <target>Reply</target>
       </trans-unit>
       <trans-unit id="255d7429bd3e1c6758a4f046a3f5cecd6ec4d03e" resname="threads.list.say">
         <source>threads.list.say</source>
-        <target state="new">threads.list.say</target>
+        <target>say:</target>
       </trans-unit>
     </body>
   </file>

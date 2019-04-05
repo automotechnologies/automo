@@ -8,15 +8,15 @@
     <body>
       <trans-unit id="11bd3d0134dc5fa761bd9779f76b8becc891713a" resname="geo.location.address_missing">
         <source>geo.location.address_missing</source>
-        <target state="new">geo.location.address_missing</target>
+        <target>Address missing</target>
       </trans-unit>
       <trans-unit id="5a62faf10f4751d5e7acfd43f12f9518157fe49f" resname="geo.location.no_result">
         <source>geo.location.no_result</source>
-        <target state="new">geo.location.no_result</target>
+        <target>Invalid address</target>
       </trans-unit>
       <trans-unit id="f3f8d099769aab6dec10e1722cfaffddeb149c4e" resname="geo.location.wrong_country">
         <source>geo.location.wrong_country</source>
-        <target state="new">geo.location.wrong_country</target>
+        <target>This country is not authorised</target>
       </trans-unit>
     </body>
   </file>

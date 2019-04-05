@@ -20,7 +20,7 @@
       </trans-unit>
       <trans-unit id="0d612c12d2ac33625bf3e0351b6f5e4f73829fa8" resname="auto">
         <source>auto</source>
-        <target state="new">auto</target>
+        <target>auto</target>
       </trans-unit>
       <trans-unit id="ccc43ccbdcfdca4d50fd5309c511321b500c4f44" resname="booking.simulator.amount.help">
         <source>booking.simulator.amount.help</source>
@@ -109,7 +109,7 @@
       </trans-unit>
       <trans-unit id="1cb7e62bfe757aa67c3da37cd0176741ab8e164d" resname="home.high.rank.section.header">
         <source>home.high.rank.section.header</source>
-        <target>OUR LAST OFFERS</target>
+        <target>Latest Listings</target>
       </trans-unit>
       <trans-unit id="7686201ef254f400070d9fb294e5743fede8e338" resname="listing.availability.edit.success">
         <source>listing.availability.edit.success</source>
@@ -197,11 +197,11 @@
       </trans-unit>
       <trans-unit id="162d093e09d2f1a013d89e6b396fdeda059eff19" resname="listing.edit.categories.sub_title">
         <source>listing.edit.categories.sub_title</source>
-        <target state="new">Select one or more categories</target>
+        <target>Select one or more categories</target>
       </trans-unit>
       <trans-unit id="de8101c74afaa94af7f71e138806d1ab50586d59" resname="listing.edit.categories.title">
         <source>listing.edit.categories.title</source>
-        <target state="new">Categories</target>
+        <target>Categories</target>
       </trans-unit>
       <trans-unit id="2794ffe7c731458884325179895cbea762a11636" resname="listing.edit.characteristic.sub_title">
         <source>listing.edit.characteristic.sub_title</source>
@@ -269,7 +269,7 @@
       </trans-unit>
       <trans-unit id="c75b4ce0fe7a516c4d8346a86942da24eeaee7ef" resname="listing.edit.location.title">
         <source>listing.edit.location.title</source>
-        <target state="new">Location</target>
+        <target>Location</target>
       </trans-unit>
       <trans-unit id="646b42ecb84e81022f999bf28eaa9369b44eaca1" resname="listing.edit.options.title">
         <source>listing.edit.options.title</source>
@@ -345,7 +345,7 @@
       </trans-unit>
       <trans-unit id="8a218b17dd024c613755aadcddf2bb1003ac6c35" resname="listing.filter">
         <source>listing.filter</source>
-        <target state="new">Filter</target>
+        <target>Filter</target>
       </trans-unit>
       <trans-unit id="a96c4feeeb9fa528c736f5ee149d0a1f24234ff1" resname="listing.form.characteristic.choose">
         <source>listing.form.characteristic.choose</source>
@@ -553,7 +553,7 @@
       </trans-unit>
       <trans-unit id="f95d3cebd6aa233ad275dbe4a8b453b5ef7ef1a8" resname="listing.search.result.no_results">
         <source>listing.search.result.no_results</source>
-        <target state="new">No results found. Please change your criterias</target>
+        <target>No results found. Please change your criterias</target>
       </trans-unit>
       <trans-unit id="e0c7225719f33b2cab0a2b344bd1f92c1963ad00" resname="listing.search.result.results">
         <source>listing.search.result.results</source>
@@ -585,7 +585,7 @@
       </trans-unit>
       <trans-unit id="f5c75b851ea7ef9715252505d5032f652fdaf38b" resname="listing.show.categories">
         <source>listing.show.categories</source>
-        <target state="new">Categories</target>
+        <target>Categories</target>
       </trans-unit>
       <trans-unit id="0ae4b06ef673f71c7347ad8689eca40f8a56dd79" resname="listing.show.categories:">
         <source>listing.show.categories:</source>
@@ -605,7 +605,7 @@
       </trans-unit>
       <trans-unit id="d15ba75f6a96d18ca4810e34bf66017e3dbd5784" resname="listing.show.discounts:">
         <source>listing.show.discounts:</source>
-        <target state="new">Discounts:</target>
+        <target>Discounts:</target>
       </trans-unit>
       <trans-unit id="5c526d69de94e2e558c93ddf197db754625c80c6" resname="listing.show.email_verified.help">
         <source>listing.show.email_verified.help</source>
@@ -629,15 +629,15 @@
       </trans-unit>
       <trans-unit id="1144951758a718382c5c55de1f294cea1cf9efc6" resname="listing.show.max_duration:">
         <source>listing.show.max_duration:</source>
-        <target state="new">Maximum duration:</target>
+        <target>Maximum duration:</target>
       </trans-unit>
       <trans-unit id="b28dc20af3a8d02e4a0818f6decb8b4aea3ad536" resname="listing.show.min_duration:">
         <source>listing.show.min_duration:</source>
-        <target state="new">Minimum duration:</target>
+        <target>Minimum duration:</target>
       </trans-unit>
       <trans-unit id="3c16a0f6ad566fe2fa301ccf12e36c317c4b297a" resname="listing.show.nb_bookings_asker.help">
         <source>listing.show.nb_bookings_asker.help</source>
-        <target state="new">listing.show.nb_bookings_asker.help</target>
+        <target>listing.show.nb_bookings_asker.help</target>
       </trans-unit>
       <trans-unit id="acffb69c919141c1a4fc0626c65ea7f32f7a23d4" resname="listing.show.nb_bookings_offerer.help">
         <source>listing.show.nb_bookings_offerer.help</source>
@@ -657,7 +657,7 @@
       </trans-unit>
       <trans-unit id="c6c355b248d9a40842f3ae0d3519be3eaa790bf8" resname="listing.show.policy.title">
         <source>listing.show.policy.title</source>
-        <target state="new">Booking policy</target>
+        <target>Booking policy</target>
       </trans-unit>
       <trans-unit id="edfb8ef84c3f95470bc8c1d320bbcbd712db8e77" resname="listing.show.rules">
         <source>listing.show.rules</source>
@@ -693,7 +693,7 @@
       </trans-unit>
       <trans-unit id="62510a72090b89ab73a05038f1f6a0acf58b2cad" resname="listing.type.title">
         <source>listing.type.title</source>
-        <target state="new">listing.type.title</target>
+        <target>listing.type.title</target>
       </trans-unit>
       <trans-unit id="5ecf4e31f55710533951a1068244c8b7e3dd4c86" resname="listing_categories.min {{ min_categories }}">
         <source>listing_categories.min {{ min_categories }}</source>
@@ -767,7 +767,7 @@
       </trans-unit>
       <trans-unit id="c5bf2dc43402f181405558d3cac52645041f475c" resname="listing_location_country.invalid">
         <source>listing_location_country.invalid</source>
-        <target state="new">Invalid country</target>
+        <target>Invalid country</target>
       </trans-unit>
       <trans-unit id="9afa0d417148b9d4c74a5657724593e4c5578d4f" resname="listing_price.min {{ min_price }}">
         <source>listing_price.min {{ min_price }}</source>
@@ -839,7 +839,7 @@
       </trans-unit>
       <trans-unit id="d529fbd59b804564c3cd52cdb93f8623857d58ac" resname="nav.listing.categories.link">
         <source>nav.listing.categories.link</source>
-        <target state="new">Categories</target>
+        <target>Categories</target>
       </trans-unit>
       <trans-unit id="5a53382996a5e6ba6163c57a5aa93b0513889803" resname="nav.listing.characteristic.link">
         <source>nav.listing.characteristic.link</source>
@@ -851,7 +851,7 @@
       </trans-unit>
       <trans-unit id="6b7e582b7d96545e4b34ce2efa309297b4661542" resname="nav.listing.location.link">
         <source>nav.listing.location.link</source>
-        <target state="new">Location</target>
+        <target>Location</target>
       </trans-unit>
       <trans-unit id="63936a5bbe1a225849dcd3622b8de5bdf9de6d31" resname="nav.listing.presentation.link">
         <source>nav.listing.presentation.link</source>
@@ -875,7 +875,7 @@
       </trans-unit>
       <trans-unit id="71f8e7976e4cbc4561c9d62fb283e7f788202acb" resname="none">
         <source>none</source>
-        <target state="new">None</target>
+        <target>None</target>
       </trans-unit>
       <trans-unit id="deaa330c72d94793c121327de0423c1dce952689" resname="search-on-map-drag">
         <source>search-on-map-drag</source>

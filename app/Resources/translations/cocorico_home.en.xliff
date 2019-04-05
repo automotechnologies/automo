@@ -16,34 +16,31 @@
       </trans-unit>
       <trans-unit id="ac829dba1f97945e59fd87f2618384bfe8516497" resname="home.header.title">
         <source>home.header.title</source>
-        <target><![CDATA[<span class="thin-text">Welcome to the demo of </span> <span class="text"> </span> Cocorico Enterprise Edition.
-]]></target>
+        <target><![CDATA[<span class="thin-text">Welcome to the marketplace demo of </span> <span class="text"> </span> Otomo.]]></target>
       </trans-unit>
       <trans-unit id="3af93b9b8cfe074ceff3fff27255261635f40424" resname="home.subinfo.desc1">
         <source>home.subinfo.desc1</source>
-        <target>You will find a link to several test payment card numbers in the payment page.</target>
+        <target>From popular sedans to luxurious cars or even private jets to soar the skies. We offer everything for everyone.</target>
       </trans-unit>
       <trans-unit id="908e5b384bbeb42623be6a1743cf010dc3b48483" resname="home.subinfo.desc2">
         <source>home.subinfo.desc2</source>
-        <target xml:space="preserve">On this demo you will find a large selection of extensions and features available in the Enterprise
-                Edition. Create your buyer and seller accounts to test away!
-            </target>
+        <target>Secure payment options with booking assurance by Otomo means you never have to worry about no-show.</target>
       </trans-unit>
       <trans-unit id="ebab0f46f60ef21c52a8bf36f8101816c5705927" resname="home.subinfo.desc3">
         <source>home.subinfo.desc3</source>
-        <target>Contact us through the cocolabs.io website to get your credentials to the Admin Panel.</target>
+        <target>Dedicated support for all bookings to ensure a smooth and hassle-free experience from pick up to return.</target>
       </trans-unit>
       <trans-unit id="4c15d8bf2bdf8150e45e9f30b559ea8565a47042" resname="home.subinfo.title1">
         <source>home.subinfo.title1</source>
-        <target>Freely test payments with test card numbers</target>
+        <target>Quality Providers</target>
       </trans-unit>
       <trans-unit id="28172413ec09c98bffa9f072e9bd873932e70145" resname="home.subinfo.title2">
         <source>home.subinfo.title2</source>
-        <target>A neutral design and colorful features</target>
+        <target>Booking Assurance</target>
       </trans-unit>
       <trans-unit id="34f93326a2cd533fae3b8bd53d9e3315059964da" resname="home.subinfo.title3">
         <source>home.subinfo.title3</source>
-        <target>Request your Admin Panel credentials</target>
+        <target>Customized Support</target>
       </trans-unit>
     </body>
   </file>

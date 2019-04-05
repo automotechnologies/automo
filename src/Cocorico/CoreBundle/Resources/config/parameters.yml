@@ -20,7 +20,8 @@ parameters:
     cocorico.locale: en
     cocorico.locales:
             - en
-    cocorico.locales_string: en
+            - id
+    cocorico.locales_string: en|id
     #Currencies
     cocorico.currency: IDR
     cocorico.currencies_for_lexik:

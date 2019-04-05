@@ -32,11 +32,11 @@
       </trans-unit>
       <trans-unit id="d81e8518ab4f4f477d67cc1d3b3a48a3bb4a2399" resname="home.meta_desc">
         <source>home.meta_desc</source>
-        <target>home.meta_desc</target>
+        <target>Automotive Rental Marketplace</target>
       </trans-unit>
       <trans-unit id="ee783c2c9945290c13eaf585fc77fdc76fdbf480" resname="home.meta_title">
         <source>home.meta_title</source>
-        <target>home.meta_title</target>
+        <target>Automotive Rental Marketplace</target>
       </trans-unit>
       <trans-unit id="f15455afcd64e0b4a8bf6355d15b3ecbfeb4db88" resname="listing.new.meta_desc">
         <source>listing.new.meta_desc</source>

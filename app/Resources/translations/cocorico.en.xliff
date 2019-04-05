@@ -130,15 +130,15 @@
       </trans-unit>
       <trans-unit id="a949baa3fcb4d3b0ab046dccd4e8b71bf5974dcb" resname="footer.about.title">
         <source>footer.about.title</source>
-        <target>About</target>
+        <target>Otomo</target>
       </trans-unit>
       <trans-unit id="5e1d2c2c71162e0c24eddb9cae78b0296d9f6425" resname="footer.all_right_reserved">
         <source>footer.all_right_reserved</source>
-        <target>all right reserved</target>
+        <target>All Rights Reserved</target>
       </trans-unit>
       <trans-unit id="eafbb9e9132e8fc3dfed33243e7fb8781ab79935" resname="footer.contact_us.link">
         <source>footer.contact_us.link</source>
-        <target>Contact us</target>
+        <target>Contact Us</target>
       </trans-unit>
       <trans-unit id="a650649eef07e27013b9ce411e4b9491b00f80b6" resname="footer.contact_us.title">
         <source>footer.contact_us.title</source>
@@ -162,7 +162,7 @@
       </trans-unit>
       <trans-unit id="e961dfa45f7be14560d14913711c071c88968d3c" resname="footer.the_team.link">
         <source>footer.the_team.link</source>
-        <target>The team</target>
+        <target>Our Partners</target>
       </trans-unit>
       <trans-unit id="69a1518dded704dee13c212c8fa93bfdbec43543" resname="footer.title.various">
         <source>footer.title.various</source>
@@ -170,7 +170,7 @@
       </trans-unit>
       <trans-unit id="5f64194a8d285094204c3ef94b8dc3b6bebfa2d0" resname="footer.who_we_are.link">
         <source>footer.who_we_are.link</source>
-        <target>Who we are?</target>
+        <target>About Us</target>
       </trans-unit>
       <trans-unit id="ccaeec1d1b1dbbc71e18f43031b34b69864d0ec0" resname="form.error">
         <source>form.error</source>
@@ -290,11 +290,11 @@
       </trans-unit>
       <trans-unit id="ae075cd0545e4ced4f09a93784ae2fc0dfc5e6cf" resname="nav.who_we_are.link">
         <source>nav.who_we_are.link</source>
-        <target>Who we are?</target>
+        <target>About Us</target>
       </trans-unit>
       <trans-unit id="25752f0500683a8055d9b148a43277a0977e61ce" resname="nav.who_we_are.slug">
         <source>nav.who_we_are.slug</source>
-        <target>who-we-are</target>
+        <target>about-us</target>
       </trans-unit>
       <trans-unit id="2a004ec467e55618ba224e27867bcb893ae731bc" resname="page.error">
         <source>page.error</source>
