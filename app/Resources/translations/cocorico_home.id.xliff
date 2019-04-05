@@ -8,15 +8,15 @@
     <body>
       <trans-unit id="f0a80756385483aa77f5ec396ec9992bb26d6ac2" resname="home.feeds.section.content.link">
         <source>home.feeds.section.content.link</source>
-        <target>Read more</target>
+        <target>Baca lebih lajut</target>
       </trans-unit>
       <trans-unit id="537c6d941057a83d467aadaf06db30b0a01da6b7" resname="home.feeds.section.header.title">
         <source>home.feeds.section.header.title</source>
-        <target>Last news</target>
+        <target>Berita terakhir</target>
       </trans-unit>
       <trans-unit id="ac829dba1f97945e59fd87f2618384bfe8516497" resname="home.header.title">
         <source>home.header.title</source>
-        <target><![CDATA[<span class="thin-text">Welcome to the car rental marketplace </span> <span class="text"> </span> Otomo.]]></target>
+        <target><![CDATA[<span class="thin-text">Selamat datang di pasar rental mobil </span> <span class="text"> </span> Otomo.]]></target>
       </trans-unit>
       <trans-unit id="3af93b9b8cfe074ceff3fff27255261635f40424" resname="home.subinfo.desc1">
         <source>home.subinfo.desc1</source>
