@@ -7,7 +7,7 @@ parameters:
     cocorico.short_description: 'Automo is an automotive rental marketplace in Indonesia'
     cocorico.contact_mail: customer@automo.id
     #To obfuscate see http://wbwip.com/wbw/emailencoder.html
-    cocorico.contact_mail_obfuscated: "&#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#099;&#111;&#099;&#111;&#114;&#105;&#099;&#111;&#046;&#105;&#111;"
+    cocorico.contact_mail_obfuscated: "&#099;&#117;&#115;&#116;&#111;&#109;&#101;&#114;&#064;&#111;&#116;&#111;&#109;&#111;&#046;&#099;&#111;"
     cocorico.from_email: customer@automo.id
     cocorico.webmaster_email: customer@automo.id
     cocorico.vat_number: ~
