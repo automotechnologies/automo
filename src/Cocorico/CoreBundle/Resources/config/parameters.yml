@@ -92,13 +92,14 @@ parameters:
     cocorico.listing_new_is_published: 0
 
     #Countries : for France and UK: - FR\n- GB. For all countries set it to []
-    cocorico.listing_countries: []
+    cocorico.listing_countries: ID
 
     cocorico.listing_favorite_countries:
         - ID
 
     #Categories
     cocorico.listing_category_min: 1
+    cocorico.listing_category_max: 1
 
     #Listing price precision. true or false for now
     cocorico.listing_price_precision: 2
