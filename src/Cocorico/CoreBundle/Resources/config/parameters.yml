@@ -5,13 +5,13 @@ parameters:
     cocorico.phone: +62-811-000-722
     cocorico.address: Ariobimo Sentral Level 8, Jakarta, Indonesia, 12950
     cocorico.short_description: 'Otomo is an automotive rental marketplace in Indonesia'
-    cocorico.contact_mail: customer@automo.id
+    cocorico.contact_mail: customer@otomo.id
     #To obfuscate see http://wbwip.com/wbw/emailencoder.html
     cocorico.contact_mail_obfuscated: "&#099;&#117;&#115;&#116;&#111;&#109;&#101;&#114;&#064;&#111;&#116;&#111;&#109;&#111;&#046;&#099;&#111;"
-    cocorico.from_email: customer@automo.id
-    cocorico.webmaster_email: customer@automo.id
+    cocorico.from_email: customer@otomo.id
+    cocorico.webmaster_email: customer@otomo.id
     cocorico.vat_number: ~
-    cocorico.home_rss_feed: 'https://blog.automo.id/feed/'
+    cocorico.home_rss_feed: 'https://blog.otomo.co/feed/'
 
     #Languages
     #For knp translatable
@@ -39,14 +39,14 @@ parameters:
     cocorico.display_vat: true
 
     #VAT in percent
-    cocorico.vat: 0.2
+    cocorico.vat: 0.1
 
     #Does registration require email confirmation
     cocorico.registration_confirmation: false
 
     #Fees in %
     cocorico.fee_as_asker: 0.1
-    cocorico.fee_as_offerer: 0.05
+    cocorico.fee_as_offerer: 0.03
 
     #Time unit in minute (1440 or 60)
     cocorico.time_unit: 1440
@@ -89,16 +89,17 @@ parameters:
     cocorico.review_max_per_page: 10
 
     #Is new listing published by default (0 or 1)
-    cocorico.listing_new_is_published: 1
+    cocorico.listing_new_is_published: 0
 
     #Countries : for France and UK: - FR\n- GB. For all countries set it to []
-    cocorico.listing_countries: []
+    cocorico.listing_countries: ID
 
     cocorico.listing_favorite_countries:
-        - FR
+        - ID
 
     #Categories
     cocorico.listing_category_min: 1
+    cocorico.listing_category_max: 1
 
     #Listing price precision. true or false for now
     cocorico.listing_price_precision: 2
@@ -144,7 +145,7 @@ parameters:
     #Or Number of days to add to the current date to consider start date as valid
     #Ex : 0 -> the booking can be requested and start the current day
     #     1 -> the booking can be requested at least one day before it start.
-    cocorico.booking.min_start_delay: 0
+    cocorico.booking.min_start_delay: 1
 
     #Minimum minutes between booking request and booking starting time
     #Or Number of minutes to add to the current time to consider start time as valid
