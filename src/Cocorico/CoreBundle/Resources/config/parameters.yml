@@ -11,7 +11,8 @@ parameters:
     cocorico.from_email: customer@otomo.id
     cocorico.webmaster_email: customer@otomo.id
     cocorico.vat_number: ~
-    cocorico.home_rss_feed: 'https://blog.otomo.co/feed/'
+#    cocorico.home_rss_feed: 'https://blog.otomo.co/feed/'
+    cocorico.home_rss_feed: 'http://www.cocolabs.io/fr/feed/'
 
     #Languages
     #For knp translatable
@@ -289,8 +290,6 @@ parameters:
 
 
     ################################### Environment dependant parameters. To override in parameters.yml ####
-    #Assets base url for email
-    cocorico.assets_base_urls: ~
 
     #Request Context url for email send from command
     router.request_context.host: ~
