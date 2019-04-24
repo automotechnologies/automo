@@ -243,14 +243,14 @@ abstract class BaseBooking
      *
      * @var string
      */
-    protected $timeZoneAsker = 'Europe/Paris';
+    protected $timeZoneAsker = 'Asia/Jakarta';
 
     /**
      * @ORM\Column(name="time_zone_offerer", type="string", length=100,  nullable=false)
      *
      * @var string
      */
-    protected $timeZoneOfferer = 'Europe/Paris';
+    protected $timeZoneOfferer = 'Asia/Jakarta';
 
     public function __construct()
     {
