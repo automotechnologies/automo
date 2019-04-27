@@ -84,7 +84,7 @@
     "sonata-project/intl-bundle": "^2.4",
     "sonata-project/user-bundle": "4.x@dev",
     "stof/doctrine-extensions-bundle": "^1.2",
-    "stripe/stripe-php": "^6.33",
+    "stripe/stripe-php": "^6.34",
     "symfony/assetic-bundle": "^2.8",
     "symfony/intl": "^4.2",
     "symfony/monolog-bundle": "^3.1",
