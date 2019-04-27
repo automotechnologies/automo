@@ -19,6 +19,7 @@ use Cocorico\UserBundle\Mailer\MailerInterface;
 use Cocorico\UserBundle\Mailer\TwigSwiftMailer;
 use Cocorico\UserBundle\Model\UserManager;
 use Cocorico\UserBundle\Security\LoginManager;
+use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Util\TokenGeneratorInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\Exception\RuntimeException;
@@ -106,6 +107,7 @@ class RegistrationFormHandler
         $event = new UserEvent($user);
         $this->dispatcher->dispatch(UserEvents::USER_REGISTER, $event);
         $user = $event->getUser();
+        $user->addRole(UserInterface::ROLE_DEFAULT);
 
         if ($confirmation) {
             $user->setEnabled(false);
