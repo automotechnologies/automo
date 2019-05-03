@@ -1,8 +1,28 @@
+@font-face {
+    font-family: 'Otomo';
+    src: url("../fonts/otomo-sans.woff") format("woff"), url("../fonts/otomo-sans.ttf")  format("truetype");
+}
+
+body {
+    font-family: 'Otomo', 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+.sembunyi {
+    display: none;
+}
+
 .visual {
     margin: 0 0 50px;
     background: url(../../images/wb1.jpg) no-repeat 20% 0 #d43b4d !important;
     background-size: contain !important;
     height: 440px !important;
+}
+
+.visual h1 {
+    color: #ffffff;
+    margin: 0 auto;
+    width: 40vw;
+    font: 700 40px/58px 'Otomo', "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
 .col-xs-12.col-lg-8.col-lg-push-2 {
@@ -21,9 +41,9 @@
     box-shadow: 0 1rem 3rem rgba(0, 0, 1, 0.18);
     border: 2px solid #d43b4d !important;
     width: 900px;
-    float: right;
+    float: none;
     background-color: #fefefe !important;
-    margin-right: 60px;
+    margin-right: 0;
     margin-top: 120px;
 }
 
@@ -53,10 +73,61 @@
     width: 75px !important;
 }
 
+.deskripsi {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.listing-post .price {
+    display: block;
+    margin: 0 0 -3px;
+    font-size: 25px !important;
+    line-height: 1em !important;
+    white-space: nowrap;
+    text-shadow: none !important;
+}
+
+.listing-post .time-price {
+    width: auto !important;
+    background-color: #fff;
+    border-radius: 0 0 10px !important;
+    padding: 10px !important;
+    margin: 0px !important;
+    background: #d4434c;
+    color: #fff !important;
+    background: -webkit-linear-gradient(to top, #ec535b, #d4434c);
+    background: linear-gradient(to top, #ec535b, #d4434c);
+}
+
+.listing-post .time-price p {
+    margin: 0;
+    padding-top: 10px !important;
+    text-align: right !important;
+}
+
 .btn-default {
     color: #ffffff;
     background-color: #d43b4d !important;
     border-color: transparent;
+}
+
+.listing-post .frame {
+    overflow: hidden;
+    border-radius: 10px !important;
+    background: #ffffff;
+    border: #eaebec solid 1px;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+    box-shadow: 0 1px 5px 0 rgba(0,0,0,.1);
+}
+
+.slider-secondary .listing-post {
+    width: 300px !important;
+}
+
+.listing-post .title {
+    font-size:15px !important;
 }
 
 .bottom-container {
@@ -70,6 +141,11 @@
     padding: 80px 0 !important;
 }
 
+.aside-footer .navarea {
+    overflow: inherit !important;
+    line-height: 17px;
+}
+
 .aside-footer .title {
     display: block;
     font-weight: 400;
@@ -81,4 +157,141 @@
 #footer p {
     margin: 0 !important;
     overflow: hidden;
+}
+
+
+@media screen and (max-width: 480px) {
+
+  .visual {
+    background: url(../../images/wb1.jpg) no-repeat 12% #d43b4d !important;
+    background-size: 103vh !important;
+    background-position-y: top !important;
+    height: 55vh !important;
+  }
+
+  .visual .title-holder {
+    height: 49vh !important;
+  }
+
+  .home-page .form-category {
+    width: auto !important;
+    float: left !important;
+    margin: 0 25px 50px !important;
+    padding: 20px !important;
+  }
+
+  .col-xs-12.col-lg-8.col-lg-push-2 {
+    text-align: center;
+   }
+
+   .form-category .col:first-child {
+    margin-bottom: 10px !important;
+    width: 100% !important;
+    float: left !important;
+   }
+
+  .form-category .col + .col {
+    width: 100% !important;
+    float: left !important;
+    margin-bottom: 10px !important;
+   }
+
+  .form-category .col-xs-12 {
+    padding: 0 !important;
+    text-align: left !important;
+   }
+
+  .home-page .form-category .field-holder {
+    width: 200px !important; 
+  }
+
+  .form-category .title {
+    /* margin: 10px 4px 0 0; */
+    width: 65px !important;
+  }
+
+  .form-category .col + .col .title {
+    width: 65px !important;
+  }
+
+  .form-category input.btn-default {
+    width: 150px!important;
+    margin-left: 75px !important;
+    background-color: #737373 !important;
+  }
+
+  .home-page .form-category .multiselect .btn-group, .home-page .form-category .multiselect .btn-default {
+    width: 200px !important;
+  }
+
+  input#location {
+    width: 200px !important;
+  }
+
+  .infoarea .info-box {
+    padding: 20px;
+    text-align: center;
+    padding-bottom: 20px;
+    width: 33% !important;
+    border-top: 0 !important;
+    border-left: solid 1px #e6e6e6;
+    }
+ 
+  .infoarea h2 {
+    margin: 0;
+    text-transform: uppercase;
+    font: 500 14px/22px 'Otomo', "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  }
+
+  .infoarea p {
+    display: none;
+  }
+
+  .infoarea .icon {
+    width: 60% !important;
+  }
+}
+
+
+@media screen and (max-width: 320px) {
+  input#location {
+    width: 100% !important;
+  }
+
+  .home-page .form-category .field-holder {
+    width: 100% !important;
+  }
+
+  .form-category .area .col .title {
+    text-align: left !important;
+    padding-bottom: 6px !important;
+    font-size: 16px !important;
+    margin: 0px !important;
+  }
+
+  .form-category .multiselect {
+    display: inline-block;
+    width: 100% !important;
+  }
+
+  .home-page .form-category .multiselect .btn-group, .home-page .form-category .multiselect .btn-default {
+    width: 100% !important;
+  }
+
+  .form-category input.btn-default {
+    width: 100% !important;
+    margin-top: 15px;
+    margin-left: 0px !important;
+    background-color: #737373 !important;
+  }
+
+  .visual h1 {
+    font-size: 19px !important;
+    line-height: 1.125;
+  }
+
+  .infoarea .info-box {
+    padding: 10px !important;
+  }
+
 }
