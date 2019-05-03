@@ -53,6 +53,8 @@ twig:
         listing_search_map_h: "%cocorico.listing_search_map_h%"
         upload_image_w: "%cocorico.upload_image_w%"
         upload_image_h: "%cocorico.upload_image_h%"
+        stripe_publishable_key: "%stripe_publishable_key%"
+        stripe_secret_key: "%stripe_secret_key%"
 
 
     #Forms customization
