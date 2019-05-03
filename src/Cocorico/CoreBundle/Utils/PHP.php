@@ -40,14 +40,10 @@ class PHP
     {
         //Preferred country for some locales if no country setted
         if (!$country_code) {
-            if ($locale == 'fr') {
-                $country_code = 'FR';
-            } elseif ($locale == 'en') {
+            if ($locale == 'en') {
                 $country_code = 'US';
-            } elseif ($locale == 'es') {
-                $country_code = 'ES';
-            } elseif ($locale == 'de') {
-                $country_code = 'DE';
+            } elseif ($locale == 'id') {
+                $country_code = 'ID';
             }
         }
 

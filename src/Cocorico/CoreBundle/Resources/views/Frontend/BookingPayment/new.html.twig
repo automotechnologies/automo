@@ -20,6 +20,7 @@
 
 {%- block stylesheets -%}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/stripe.css') }}" type="text/css" />
 {%- endblock -%}
 
 {% block layout %}
@@ -34,9 +35,9 @@
         {% endblock %}
 
         {% block main %}
-            <a href="{{ booking.urlDraft }}">
-                &lt; {{ 'card.new.back'|trans }}
-            </a>
+{#            <a href="{{ booking.urlDraft }}">#}
+{#                &lt; {{ 'card.new.back'|trans }}#}
+{#            </a>#}
 
             <!-- two-columns -->
             <div class="twocolumns row alt">
@@ -61,6 +62,23 @@
                                 'booking' : booking
                             } only %}
                         {% endif %}
+
+                        <form action="{{ path('cocorico_check_payment', {'booking': booking}) }}" method="post" id="payment-form">
+                            <div class="form-row">
+                                <label for="card-element">
+                                    Credit or debit card
+                                </label>
+                                <div id="card-element">
+                                    <!-- A Stripe Element will be inserted here. -->
+                                </div>
+
+                                <!-- Used to display form errors. -->
+                                <div id="card-errors" role="alert"></div>
+                            </div>
+
+                            <button>Submit Payment</button>
+                        </form>
+
                     </div>
                 </div>
 
@@ -80,4 +98,6 @@
     {% if mangopayBundleEnabled %}
         {% include 'CocoricoMangoPayBundle:Frontend:BookingPayment/js/_card_js.html.twig' only %}
     {% endif %}
+    <script src="http://js.stripe.com/v3/"></script>
+    <script src="{{ asset('js/stripe.js') }}" type="application/javascript"></script>
 {% endblock %}

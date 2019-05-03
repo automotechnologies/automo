@@ -42,7 +42,7 @@ class RegistrationController extends Controller
      */
     public function registerAction(Request $request)
     {
-        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if ($this->getUser() instanceof UserInterface) {
             return $this->redirectToRoute('cocorico_home');
         }
 
@@ -57,7 +57,7 @@ class RegistrationController extends Controller
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('user.register.success', array(), 'cocorico_user')
+                $this->get('translator')->trans('user.register.success', [], 'cocorico_user')
             );
 
             if ($confirmation) {
@@ -83,11 +83,11 @@ class RegistrationController extends Controller
     /**
      * Creates a Registration form
      *
-     * @param User $user The entity
+     * @param UserInterface $user The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(User $user)
+    private function createCreateForm(UserInterface $user)
     {
         $form = $this->get('form.factory')->createNamed(
             'user_registration',
@@ -137,15 +137,13 @@ class RegistrationController extends Controller
      *
      * @Route("/register-confirmation/{token}", name="cocorico_user_register_confirmation")
      * @Method("GET")
-     *
-     * @param Request $request
-     * @param string  $token
+     * @param string $token
      *
      * @return Response
      *
-     * @throws NotFoundHttpException
+     * @throws \Exception
      */
-    public function confirmAction(Request $request, $token)
+    public function confirmAction($token)
     {
         /** @var User $user */
         $user = $this->get('cocorico_user.user_manager')->findUserByConfirmationToken($token);
