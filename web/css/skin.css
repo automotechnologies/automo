@@ -253,7 +253,7 @@ body {
 }
 
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 414px) {
   input#location {
     width: 100% !important;
   }
