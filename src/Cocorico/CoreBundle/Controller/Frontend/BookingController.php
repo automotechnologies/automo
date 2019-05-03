@@ -86,10 +86,7 @@ class BookingController extends Controller
                         );
 
                         $response = new RedirectResponse(
-                            $this->generateUrl(
-                                'cocorico_dashboard_booking_show_asker',
-                                array('id' => $booking->getId())
-                            )
+                            $this->generateUrl('cocorico_booking_payment_new', ['booking_id' => $booking->getId()])
                         );
                     } else {
                         throw new \Exception('booking.new.form.error');
