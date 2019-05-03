@@ -99,5 +99,13 @@
         {% include 'CocoricoMangoPayBundle:Frontend:BookingPayment/js/_card_js.html.twig' only %}
     {% endif %}
     <script src="https://js.stripe.com/v3/"></script>
-    <script src="{{ asset('js/stripe.js') }}" type="application/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            var stripe = Stripe("{{ stripe_publishable_key }}");
+
+            var elements = stripe.elements();
+            var cardElement = elements.create('card');
+            cardElement.mount('#card-element');
+        });
+    </script>
 {% endblock %}
