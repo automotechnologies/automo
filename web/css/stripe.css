@@ -1,12 +1,12 @@
 .StripeElement {
     box-sizing: border-box;
-    height: 40px;
-    padding: 10px 12px;
+    height: 50px;
+    margin-top: 10px;
+    padding: 16px 12px;
     border: 1px solid transparent;
     border-radius: 4px;
     background-color: white;
-
-    box-shadow: 0 1px 3px 0 #e6ebf1;
+    box-shadow: 0 7px 14px 0 rgba(49,49,93,0.10), 0 3px 6px 0 rgba(0,0,0,0.08);
     -webkit-transition: box-shadow 150ms ease;
     transition: box-shadow 150ms ease;
 }
@@ -21,4 +21,21 @@
 
 .StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
+}
+
+.stripe-row {
+    border: 1px solid #eaebec;
+    border-radius: 5px;
+    padding: 20px 40px 80px;
+    background: #E6EBF1;
+}
+
+.stripe-btn {
+    margin-top: 20px;
+    width: auto;
+    float: right;
+}
+
+#payment-form > div.form-row > label {
+    font-size: 20px;
 }
