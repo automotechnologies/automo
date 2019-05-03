@@ -90,3 +90,7 @@ parameters:
     ##Set to true in dev env to avoid to ask to mangopay to manually validate a bank wire
     ##Set to false in prod env
     cocorico.bankwire_checking_simulation: false
+
+    ## Stripe
+    stripe_publishable_key:
+    stripe_secret_key:
