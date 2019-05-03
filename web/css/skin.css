@@ -253,7 +253,7 @@ body {
 }
 
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 414px) {
   input#location {
     width: 100% !important;
   }
@@ -286,8 +286,8 @@ body {
   }
 
   .visual h1 {
-    font-size: 19px !important;
-    line-height: 1.125;
+    width: 95vw !important;
+    font: 700 21px 'Otomo', "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   }
 
   .infoarea .info-box {
