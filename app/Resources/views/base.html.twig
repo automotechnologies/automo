@@ -1,6 +1,17 @@
 <!doctype html>
 <html lang="{{ app.request.locale }}">
 <head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114148924-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-114148924-3');
+    </script>
+
     <title>
         {%- block meta_title -%}
             {{ app.request.requestUri|slice(4)|replace({'/': " > ", '-': " ", '_': " "})|ucwords ~ " - " ~ cocorico_site_name }}
