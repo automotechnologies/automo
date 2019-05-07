@@ -5,14 +5,14 @@ parameters:
     cocorico.phone: +62-811-000-722
     cocorico.address: Ariobimo Sentral Level 8, Jakarta, Indonesia, 12950
     cocorico.short_description: 'Otomo is an automotive rental marketplace in Indonesia'
-    cocorico.contact_mail: customer@otomo.id
+    cocorico.contact_mail: customer@otomo.co
     #To obfuscate see http://wbwip.com/wbw/emailencoder.html
     cocorico.contact_mail_obfuscated: "&#099;&#117;&#115;&#116;&#111;&#109;&#101;&#114;&#064;&#111;&#116;&#111;&#109;&#111;&#046;&#099;&#111;"
-    cocorico.from_email: customer@otomo.id
-    cocorico.webmaster_email: customer@otomo.id
+    cocorico.from_email: customer@otomo.co
+    cocorico.webmaster_email: customer@otomo.co
     cocorico.vat_number: ~
-#    cocorico.home_rss_feed: 'https://blog.otomo.co/feed/'
-    cocorico.home_rss_feed: 'http://www.cocolabs.io/fr/feed/'
+    cocorico.home_rss_feed: 'https://blog.otomo.co/feed/'
+    # cocorico.home_rss_feed: 'http://www.cocolabs.io/fr/feed/'
 
     #Languages
     #For knp translatable
