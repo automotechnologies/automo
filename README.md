@@ -45,3 +45,7 @@ Cocorico is released under the [MIT license](LICENSE).
 ## About Us
 
 Cocorico is a creation of [Cocolabs](http://www.cocolabs.io) specialist of online services sales solutions.
+
+## JMSTranslation Problem
+
+[Unable to find template "@JMSTranslation/translate/index.html.twig"](https://github.com/schmittjoh/JMSTranslationBundle/issues/474)
