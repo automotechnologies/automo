@@ -45,8 +45,9 @@ class UserFixtures extends Fixture implements ContainerAwareInterface
         $user->setPlainPassword('12345678');
         $user->setLastName('OffererName');
         $user->setFirstName('OffererFirstName');
-        $user->setCountryOfResidence('FR');
+        $user->setCountryOfResidence('ID');
         $user->setBirthday(new \DateTime('1973-05-29'));
+        $user->addRole('ROLE_USER');
         $user->setEnabled(true);
         $user->setAnnualIncome(1000);
         $user->setEmailVerified(true);
@@ -67,8 +68,9 @@ class UserFixtures extends Fixture implements ContainerAwareInterface
         $user->setPlainPassword('12345678');
         $user->setLastName('AskerName');
         $user->setFirstName('AskerFirstName');
-        $user->setCountryOfResidence('FR');
+        $user->setCountryOfResidence('ID');
         $user->setBirthday(new \DateTime('1975-08-27'));
+        $user->addRole('ROLE_USER');
         $user->setEnabled(true);
         $user->setAnnualIncome(1000);
         $user->setMotherTongue($locale);
@@ -87,8 +89,9 @@ class UserFixtures extends Fixture implements ContainerAwareInterface
         $user->setPlainPassword('12345678');
         $user->setLastName('DisableUserLastName');
         $user->setFirstName('DisableUserFirstName');
-        $user->setCountryOfResidence('FR');
+        $user->setCountryOfResidence('ID');
         $user->setBirthday(new \DateTime('1978-08-27'));
+        $user->addRole('ROLE_USER');
         $user->setEnabled(false);
         $user->setAnnualIncome(1000);
         $user->setMotherTongue($locale);
@@ -107,8 +110,9 @@ class UserFixtures extends Fixture implements ContainerAwareInterface
         $user->setUsername('super-admin@cocorico.rocks');
         $user->setEmail('super-admin@cocorico.rocks');
         $user->setPlainPassword('super-admin');
-        $user->setCountryOfResidence('FR');
+        $user->setCountryOfResidence('ID');
         $user->setBirthday(new \DateTime('1978-07-01'));
+        $user->addRole('ROLE_USER');
         $user->setEnabled(true);
         $user->addRole('ROLE_SUPER_ADMIN');
 
