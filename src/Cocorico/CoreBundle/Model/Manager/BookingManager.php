@@ -959,7 +959,7 @@ class BookingManager extends BaseManager
     {
         if (in_array($booking->getStatus(), Booking::$newableStatus)) {
             //New Booking confirmation
-            $booking->setStatus(Booking::STATUS_NEW);
+            $booking->setStatus(Booking::STATUS_DRAFT);
             $booking->setNewBookingAt(new \DateTime());
 
             $booking->setTimeZoneAsker($booking->getUser()->getTimeZone());

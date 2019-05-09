@@ -114,10 +114,17 @@ class Booking extends BaseBooking
      **/
     private $depositRefund;
 
+    /**
+     * @var Charge
+     * @ORM\OneToOne(targetEntity="Cocorico\CoreBundle\Entity\Charge", inversedBy="booking")
+     */
+    private $charge;
+
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
         $this->options = new ArrayCollection();
+        parent::__construct();
     }
 
     /**
@@ -568,5 +575,21 @@ class Booking extends BaseBooking
     public function __toString()
     {
         return (string)$this->getId() . " (" . $this->getListing() . ":" . $this->getStart()->format('d-m-Y') . ")";
+    }
+
+    /**
+     * @param Charge $charge
+     */
+    public function setCharge(Charge $charge)
+    {
+        $this->charge = $charge;
+    }
+
+    /**
+     * @return Charge
+     */
+    public function getCharge()
+    {
+        return $this->charge;
     }
 }

@@ -12,6 +12,7 @@
 namespace Cocorico\CoreBundle\Controller\Frontend;
 
 use Cocorico\CoreBundle\Entity\Booking;
+use Cocorico\CoreBundle\Entity\Charge;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -37,7 +38,7 @@ class BookingPaymentController extends Controller
      *      },
      * )
      *
-     * @Security("not has_role('ROLE_ADMIN') and has_role('ROLE_USER')")
+     * @Security("is_granted('create', booking) and not has_role('ROLE_ADMIN') and has_role('ROLE_USER')")
      *
      * @ParamConverter("booking", class="CocoricoCoreBundle:Booking", options={"id" = "booking_id"})
      *
@@ -58,40 +59,61 @@ class BookingPaymentController extends Controller
     }
 
     /**
-     * @param Request $request
      * @param Booking $booking
      *
+     * @Security("not has_role('ROLE_ADMIN') and has_role('ROLE_USER')")
      * @Route("/{booking}/check-payment", name="cocorico_check_payment")
-     * @Method("POST")
+     * @Method({"POST"})
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function paymentCheck(Request $request, Booking $booking)
+    public function paymentCheck(Booking $booking)
     {
-        die;
+        if ($booking->getStatus() === Booking::STATUS_PAYED) {
+            $url = $this->generateUrl('cocorico_home');
+            $this->addFlash('message', 'Payed!!!');
+
+            return $this->redirect($url, 302);
+        }
+
         // secret key
-        //\Stripe\Stripe::setApiKey('sk_live_kaRVCycILWqAzQdm3SYhqoFu');
-        //\Stripe\Stripe::setApiKey('sk_test_0aHnYPXK1RWb6eKgi54d0hjo');
+        \Stripe\Stripe::setApiKey($this->getParameter('stripe_secret_key'));
 
-        //$charge = \Stripe\Charge::create([
-        //    'amount' => 20,
-        //    'currency' => 'usd'
-        //]);
+        dump($booking->getAmountTotal());
+        dump($booking->getAmount());
+        dump($booking->getAmountDecimal());
+        dump($booking->getAmountTotalDecimal());
 
-        //$charge = \Stripe\Charge::create([
-        //    'amount' => 999,
-        //    'currency' => 'usd',
-        //    'source' => 'tok_visa',
-        //    'receipt_email' => 'jenny.rosen@example.com',
-        //]);
+        $stripeCharge = \Stripe\Charge::create([
+            'amount' => $booking->getAmount(),
+            'currency' => $this->getParameter('cocorico.currency'),
+            'source' => 'tok_visa',
+            'receipt_email' => $this->getUser()->getEmail(),
+            'metadata' => [
+              'booking_id' => $booking->getId(),
+              'user' => $booking->getUser()->getId(),
+              'booking_status' => $booking->getStatusText(),
+            ],
+        ]);
 
-        //$product = \Stripe\Product::create([
-        //    'name' => 'My SaaS Platform',
-        //    'type' => 'service',
-        //]);
+        if ($stripeCharge->status === \Stripe\Charge::STATUS_SUCCEEDED && $stripeCharge->paid === true) {
+            $charge = new Charge($stripeCharge);
+            $charge->setBooking($booking);
 
-        //dump($product);
-        //dump($product->id);
-        //dump($booking);
-        dump($request->request->all());
+            $em = $this->getDoctrine()->getManager();
+            $booking->setCharge($charge);
+            $em->persist($charge);
+            $em->flush();
+
+            if ($em->contains($charge)) {
+                $booking->setStatus(Booking::STATUS_PAYED);
+                $em->persist($booking);
+                $em->flush();
+            }
+
+            dump($booking);
+            dump($stripeCharge);
+        }
+//        dump($request->request->all());
         die;
 
     }
