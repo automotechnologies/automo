@@ -2,8 +2,6 @@
 
 {% trans_default_domain 'cocorico_booking' %}
 
-{% set mangopayBundleEnabled = bundleExist('CocoricoMangoPayBundle') %}
-
 {% set listing = booking.listing %}
 {% set listing_translation = listing.translations[app.request.locale] %}
 {% set listing_location = listing.location %}
