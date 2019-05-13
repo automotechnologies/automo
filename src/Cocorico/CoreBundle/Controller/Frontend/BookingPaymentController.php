@@ -59,14 +59,15 @@ class BookingPaymentController extends Controller
     }
 
     /**
+     * @param Request $request
      * @param Booking $booking
      *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @Security("not has_role('ROLE_ADMIN') and has_role('ROLE_USER')")
      * @Route("/{booking}/check-payment", name="cocorico_check_payment")
      * @Method({"POST"})
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function paymentCheck(Booking $booking)
+    public function paymentCheck(Request $request, Booking $booking)
     {
         if ($booking->getStatus() === Booking::STATUS_PAYED) {
             $url = $this->generateUrl('cocorico_home');
@@ -78,20 +79,19 @@ class BookingPaymentController extends Controller
         // secret key
         \Stripe\Stripe::setApiKey($this->getParameter('stripe_secret_key'));
 
-        dump($booking->getAmountTotal());
-        dump($booking->getAmount());
-        dump($booking->getAmountDecimal());
-        dump($booking->getAmountTotalDecimal());
-
+        /**
+         * @var $stripeCharge \Stripe\ApiResource
+         */
         $stripeCharge = \Stripe\Charge::create([
             'amount' => $booking->getAmount(),
             'currency' => $this->getParameter('cocorico.currency'),
-            'source' => 'tok_visa',
+            'source' => $request->request->get('stripeToken', ''),
             'receipt_email' => $this->getUser()->getEmail(),
             'metadata' => [
               'booking_id' => $booking->getId(),
               'user' => $booking->getUser()->getId(),
-              'booking_status' => $booking->getStatusText(),
+              'booking_status' => $booking->getStatus(),
+              'booking_status_text' => $booking->getStatusText(),
             ],
         ]);
 
@@ -109,12 +109,14 @@ class BookingPaymentController extends Controller
                 $em->persist($booking);
                 $em->flush();
             }
-
-            dump($booking);
-            dump($stripeCharge);
         }
-//        dump($request->request->all());
-        die;
+
+        $this->get('session')->getFlashBag()->add(
+            'success',
+            'Thank you, your payment was successful.'
+        );
+
+        return $this->redirectToRoute('cocorico_home');
 
     }
 }
