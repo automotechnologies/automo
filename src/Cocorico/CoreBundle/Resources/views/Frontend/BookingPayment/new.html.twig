@@ -2,8 +2,6 @@
 
 {% trans_default_domain 'cocorico_booking' %}
 
-{% set mangopayBundleEnabled = bundleExist('CocoricoMangoPayBundle') %}
-
 {% set listing = booking.listing %}
 {% set listing_translation = listing.translations[app.request.locale] %}
 {% set listing_location = listing.location %}
@@ -57,12 +55,6 @@
                             'booking' : booking
                         } only %}
 
-                        {% if mangopayBundleEnabled %}
-                            {% include '@CocoricoMangoPay/Frontend/BookingPayment/_card.html.twig' with {
-                                'booking' : booking
-                            } only %}
-                        {% endif %}
-
                         <div class="stripe-row">
                             <form action="{{ path('cocorico_check_payment', {'booking': booking}) }}" method="post" id="payment-form">
                                 <div class="form-row">
@@ -97,17 +89,106 @@
 {% block javascripts %}
     {{ parent() }}
 
-    {% if mangopayBundleEnabled %}
-        {% include 'CocoricoMangoPayBundle:Frontend:BookingPayment/js/_card_js.html.twig' only %}
-    {% endif %}
     <script src="https://js.stripe.com/v3/"></script>
     <script type="text/javascript">
         $(function() {
             var stripe = Stripe("{{ stripe_publishable_key }}");
 
+            // Custom styling can be passed to options when creating an Element.
+            // (Note that this demo uses a wider set of styles than the guide below.)
+            var style = {
+                base: {
+                    color: '#32325d',
+                    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                    fontSmoothing: 'antialiased',
+                    fontSize: '16px',
+                    '::placeholder': {
+                        color: '#aab7c4'
+                    }
+                },
+                invalid: {
+                    color: '#fa755a',
+                    iconColor: '#fa755a'
+                }
+            };
+
             var elements = stripe.elements();
-            var cardElement = elements.create('card');
+            var cardElement = elements.create('card', {style: style});
             cardElement.mount('#card-element');
+
+            $("#payment-form").submit(function(event) {
+                // disable the submit button to prevent repeated clicks
+                $('.stripe-btn').attr("disabled", "disabled");
+                // createToken returns immediately - the supplied callback submits the form if there are no errors
+                Stripe.createToken({
+                    number: $('.card-number').val(),
+                    cvc: $('.card-cvc').val(),
+                    exp_month: $('.card-expiry-month').val(),
+                    exp_year: $('.card-expiry-year').val()
+                }, stripeResponseHandler);
+                return false; // submit from callback
+            });
+
+            function stripeResponseHandler(status, response) {
+                if (response.error) {
+                    // re-enable the submit button
+                    $('.stripe-btn').removeAttr("disabled");
+                    // show the errors on the form
+                    $(".payment-errors").html(response.error.message);
+                } else {
+                    var form$ = $("#payment-form");
+                    // token contains id, last4, and card type
+                    var token = response['id'];
+                    // insert the token into the form so it gets submitted to the server
+                    form$.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+                    // and submit
+                    form$.get(0).submit();
+                }
+            }
+
+            // Add an instance of the card Element into the `card-element` <div>.
+            // card.mount('#card-element');
+
+            // Handle real-time validation errors from the card Element.
+            cardElement.addEventListener('change', function(event) {
+                var displayError = document.getElementById('card-errors');
+                if (event.error) {
+                    displayError.textContent = event.error.message;
+                } else {
+                    displayError.textContent = '';
+                }
+            });
+
+            // Handle form submission.
+            var form = document.getElementById('payment-form');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                stripe.createToken(card).then(function(result) {
+                    if (result.error) {
+                        // Inform the user if there was an error.
+                        var errorElement = document.getElementById('card-errors');
+                        errorElement.textContent = result.error.message;
+                    } else {
+                        // Send the token to your server.
+                        stripeTokenHandler(result.token);
+                    }
+                });
+            });
+
+            // Submit the form with the token ID.
+            function stripeTokenHandler(token) {
+                // Insert the token ID into the form so it gets submitted to the server
+                var form = document.getElementById('payment-form');
+                var hiddenInput = document.createElement('input');
+                hiddenInput.setAttribute('type', 'hidden');
+                hiddenInput.setAttribute('name', 'stripeToken');
+                hiddenInput.setAttribute('value', token.id);
+                form.appendChild(hiddenInput);
+
+                // Submit the form
+                form.submit();
+            }
         });
     </script>
 {% endblock %}
