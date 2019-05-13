@@ -162,6 +162,13 @@ body {
 
 @media screen and (max-width: 480px) {
 
+  .topbar ul li {
+    margin: 0;
+    display: table-cell !important;
+    width: 50vw;
+    text-align: left;
+  }    
+    
   .visual {
     background: url(../../images/wb1.jpg) no-repeat 12% #d43b4d !important;
     background-size: 103vh !important;
@@ -280,7 +287,6 @@ body {
 
   .form-category input.btn-default {
     width: 100% !important;
-    margin-top: 15px;
     margin-left: 0px !important;
     background-color: #737373 !important;
   }
@@ -294,4 +300,19 @@ body {
     padding: 10px !important;
   }
 
+  .listing-container {
+    margin: 0;
+    padding: 12px;
+  }
+    
+  #photos .gallery-slider .gallery-slideset .slide {
+    height: 50vh !important;
+    width: 100%;
+  }
+
+  .listing-container .tab-content {
+    margin: 0 0 30px;
+    padding: 0px !important;
+  }  
+    
 }
