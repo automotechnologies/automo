@@ -120,7 +120,7 @@
                 // disable the submit button to prevent repeated clicks
                 $('.stripe-btn').attr("disabled", "disabled");
                 // createToken returns immediately - the supplied callback submits the form if there are no errors
-                Stripe.createToken({
+                stripe.createToken({
                     number: $('.card-number').val(),
                     cvc: $('.card-cvc').val(),
                     exp_month: $('.card-expiry-month').val(),
@@ -146,9 +146,6 @@
                 }
             }
 
-            // Add an instance of the card Element into the `card-element` <div>.
-            // card.mount('#card-element');
-
             // Handle real-time validation errors from the card Element.
             cardElement.addEventListener('change', function(event) {
                 var displayError = document.getElementById('card-errors');
@@ -164,7 +161,7 @@
             form.addEventListener('submit', function(event) {
                 event.preventDefault();
 
-                stripe.createToken(card).then(function(result) {
+                stripe.createToken(cardElement).then(function(result) {
                     if (result.error) {
                         // Inform the user if there was an error.
                         var errorElement = document.getElementById('card-errors');
