@@ -314,5 +314,40 @@ body {
     margin: 0 0 30px;
     padding: 0px !important;
   }  
+  
+ .features-list:last-child {
+    margin: 0;
+    padding: 13px !important;
+  }   
+ 
+ .features-area h3 {
+    margin-top: 0px !important;
+ }
+ 
+  #sidebar {
+    position: relative;
+    padding: 10px 22px !important;
+  }   
+  
+  .date-selection .col + .col {
+    margin: 0px !important;
+  }  
+    
+  .date-selection .add-on {
+    top: -32px;
+    left: 0px !important;
+    right: unset !important;
+    position: absolute; 
+  }  
+  
+  .date-selection .col .title {
+    color: #58595b;
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    line-height: 17px;
+    padding-left: 30px !important;
+    margin: 0 40px 10px 0;
+   }  
     
 }
