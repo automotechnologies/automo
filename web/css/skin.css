@@ -162,6 +162,22 @@ body {
 
 @media screen and (max-width: 480px) {
 
+.aside-footer {
+    padding: 30px 0 !important;
+}    
+
+.aside-footer .contact-info {
+    width: 100%;
+    padding: 0 0 15px;
+    text-align: left;
+    border-bottom: #ffffff solid 1px;
+}    
+
+.aside-footer .navarea {
+    padding: 25px 0 0 !important;
+    border-top: none;
+}    
+    
   .topbar ul li {
     margin: 0;
     display: table-cell !important;
