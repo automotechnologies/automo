@@ -168,6 +168,10 @@ body {
     width: 50vw;
     text-align: left;
   }    
+
+  .form-category .form-holder {
+    padding: 25px 10px !important;
+  }    
     
   .visual {
     background: url(../../images/wb1.jpg) no-repeat 12% #d43b4d !important;
@@ -198,13 +202,12 @@ body {
    }
 
    .form-category .input-append {
-    width: 40vw;
+    width: 45vw;
   }
 
   .form-category .col + .col {
     width: 50% !important;
     float: left !important;
-    margin-bottom: 10px !important;
    }
     
  .form-category .form-holder .col.time .title {
@@ -213,11 +216,11 @@ body {
    }
 
 .form-category .col + .col .title {
-    width: 65px !important;
+    width: 17vw !important;
 }    
 
 .form-category .title {
-    width: 65px !important;
+    width: 17vw !important;
 }    
     
 .form-category .col.categories {
@@ -295,8 +298,18 @@ body {
 
 
 @media screen and (max-width: 414px) {
-  input#location {
-    width: 100% !important;
+  #header {
+    margin: 0px !important;  
+  }
+
+.form-category .multiselect .btn-group, .form-category .multiselect .btn-default {
+    width: 73vw !important;
+    margin-left: 2px !important;
+    height: 36px;
+}    
+    
+ input#location {
+    width: 74vw !important;
   }
 
   .home-page .form-category .field-holder {
@@ -341,9 +354,11 @@ body {
     
   #photos .gallery-slider .gallery-slideset .slide {
     height: 50vh !important;
-    width: 100%;
-  }
+    width: 110%;
+    margin-left: -20px;
 
+  }    
+    
   .listing-container .tab-content {
     margin: 0 0 30px;
     padding: 0px !important;
@@ -353,7 +368,12 @@ body {
     margin: 0;
     padding: 13px !important;
   }   
- 
+
+ #conditions p:last-child, #description p:last-child {
+    margin: 0;
+    padding: 15px;
+  }   
+    
  .features-area h3 {
     margin-top: 0px !important;
  }
@@ -383,5 +403,14 @@ body {
     padding-left: 30px !important;
     margin: 0 40px 10px 0;
    }  
-    
+
+    div#user_contact {
+        margin-top: -40px;
+    }
+
+    .members-list {
+        position: relative;
+        margin-top: 40px;
+        padding: 18px 20px 2px;
+    }    
 }
