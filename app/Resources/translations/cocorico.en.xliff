@@ -24,7 +24,7 @@
       </trans-unit>
       <trans-unit id="695e169995f96bb1dbd6e45296991ca1e428c6a0" resname="booking.form.tac.error">
         <source>booking.form.tac.error</source>
-        <target>Please accept the Terms and conditions in order to make a booking</target>
+        <target>Please accept the Terms and Conditions in order to make a booking</target>
       </trans-unit>
       <trans-unit id="9cc287ca6419b68c601007f17a971052386de774" resname="booking.new.error.amount_invalid {{ min_price }}">
         <source>booking.new.error.amount_invalid {{ min_price }}</source>
@@ -84,17 +84,15 @@
       </trans-unit>
       <trans-unit id="b00b8c5d4f2925002545ca1ee8681e1bb4dbbf12" resname="cookie_consent_link">
         <source>cookie_consent_link</source>
-        <target state="new">cookie_consent_link</target>
+        <target>Learn More</target>
       </trans-unit>
       <trans-unit id="d22eda72c562facdefd09e8b58ae26cb484daaed" resname="cookie_consent_ok">
         <source>cookie_consent_ok</source>
-        <target state="new">OK</target>
+        <target>Accept</target>
       </trans-unit>
       <trans-unit id="548ca6c0ebcf302b1dac13cacc412ab35a6566cb" resname="cookie_consent_text">
         <source>cookie_consent_text</source>
-        <target state="new"><![CDATA[
-                <strong>Cookies use</strong><br>By continuing your browsing on this site, you agree to the use of Cookies for statistical purposes and to improve the interest and the ergonomics of our services.
-            ]]></target>
+        <target><![CDATA[                <strong>Cookies use</strong><br>Our website uses cookies to ensure you get the best experience on our website. By continuing to explore our site, you accept our use of cookies.]]></target>
       </trans-unit>
       <trans-unit id="4336563d509b02ea6d3d7a3c74d3322408f65679" resname="date_range.invalid.end_before_start">
         <source>date_range.invalid.end_before_start</source>
