@@ -193,16 +193,50 @@ body {
 
    .form-category .col:first-child {
     margin-bottom: 10px !important;
-    width: 100% !important;
+    width: 50% !important;
     float: left !important;
    }
 
+   .form-category .input-append {
+    width: 40vw;
+  }
+
   .form-category .col + .col {
-    width: 100% !important;
+    width: 50% !important;
     float: left !important;
     margin-bottom: 10px !important;
    }
+    
+ .form-category .form-holder .col.time .title {
+    width: auto;
+    margin: 12px 6px 5px 0 !important;
+   }
 
+.form-category .col + .col .title {
+    width: 65px !important;
+}    
+
+.form-category .title {
+    width: 65px !important;
+}    
+    
+.form-category .col.categories {
+    margin-bottom: 15px !important;
+}    
+
+.form-category .form-holder .col.location {
+    width: auto;
+    margin: 0 !important;
+}    
+    
+   .col.categories {
+    width: 95vw !important;
+   }    
+    
+   .form-category .multiselect {
+    display: inline !important;
+   }    
+    
   .form-category .col-xs-12 {
     padding: 0 !important;
     text-align: left !important;
