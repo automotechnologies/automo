@@ -20,6 +20,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class BookingVoter extends Voter
 {
     const CREATE = 'create';
+    const UPDATE_STATUS = 'update_status';
     const EDIT_AS_ASKER = 'edit_as_asker';
     const EDIT_AS_OFFERER = 'edit_as_offerer';
     const VIEW_AS_ASKER = 'view_as_asker';
@@ -28,6 +29,7 @@ class BookingVoter extends Voter
 
     const ATTRIBUTES = [
         self::CREATE,
+        self::UPDATE_STATUS,
         self::EDIT_AS_OFFERER,
         self::EDIT_AS_ASKER,
         self::VIEW_AS_ASKER,
@@ -139,5 +141,16 @@ class BookingVoter extends Voter
     protected function voteOnEditAsOfferer(Booking $booking, TokenInterface $token)
     {
         return ($token->getUser()->getId() === $booking->getListing()->getUser()->getId());
+    }
+
+    /**
+     * @param Booking $booking
+     * @param TokenInterface $token
+     *
+     * @return boolean
+     */
+    protected function voteOnUpdateStatus(Booking $booking, TokenInterface $token)
+    {
+        return ($booking->getUser()->getId() === $token->getUser()->getId());
     }
 }

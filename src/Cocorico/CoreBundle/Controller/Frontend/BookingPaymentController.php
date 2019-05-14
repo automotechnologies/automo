@@ -62,10 +62,13 @@ class BookingPaymentController extends Controller
      * @param Request $request
      * @param Booking $booking
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     * @Security("not has_role('ROLE_ADMIN') and has_role('ROLE_USER')")
-     * @Route("/{booking}/check-payment", name="cocorico_check_payment")
      * @Method({"POST"})
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
+     * @Route("/{booking}/check-payment", name="cocorico_check_payment", requirements={"booking" = "\d+"})
+     * @Security("is_granted('update_status', booking) and not has_role('ROLE_ADMIN') and has_role('ROLE_USER')")
+     *
      */
     public function paymentCheck(Request $request, Booking $booking)
     {

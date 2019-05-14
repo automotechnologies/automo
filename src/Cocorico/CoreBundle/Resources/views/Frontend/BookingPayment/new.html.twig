@@ -56,7 +56,7 @@
                         } only %}
 
                         <div class="stripe-row">
-                            <form action="{{ path('cocorico_check_payment', {'booking': booking}) }}" method="post" id="payment-form">
+                            <form action="{{ path('cocorico_check_payment', {'booking': booking.id}) }}" method="post" id="payment-form">
                                 <div class="form-row">
                                     <label for="card-element">
                                         Credit or debit card
