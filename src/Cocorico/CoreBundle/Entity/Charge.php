@@ -80,7 +80,7 @@ class Charge
      * @var array
      * @ORM\Column(name="billing_details", type="array", nullable=true)
      */
-    private $billing_details;
+    private $billing_details = [];
 
     /**
      * @var boolean
@@ -236,13 +236,13 @@ class Charge
      * @var array
      * @ORM\Column(name="shipping", type="array", nullable=true)
      */
-    private $shipping;
+    private $shipping = [];
 
     /**
      * @var array
      * @ORM\Column(name="source", type="array", nullable=true)
      */
-    private $source;
+    private $source = [];
 
     /**
      * @var string
@@ -318,7 +318,7 @@ class Charge
             $this->setRefunded($stripeCharge->refunded);
             $this->setRefunds($stripeCharge->refunds->values());
             $this->setReview($stripeCharge->review);
-            $this->setShipping($stripeCharge->shipping);
+            $this->setShipping($stripeCharge->shipping ?? []);
             $this->setSourceTransfer($stripeCharge->source_transfer);
             $this->setStatementDescriptor($stripeCharge->statement_descriptor);
             $this->setStatus($stripeCharge->status);
