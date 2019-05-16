@@ -40,6 +40,41 @@ class ChargeAdmin extends AbstractAdmin
             ->add('balance_transaction', null, ['disabled' => true])
             ->add('created', null, ['disabled' => true])
             ->add('currency', null, ['disabled' => true])
+            ->add('customer', null, ['disabled' => true])
+            ->add('description', null, ['disabled' => true])
+            ->add('dispute', null, ['disabled' => true])
+            ->add('failure_code', null, ['disabled' => true])
+            ->add('failure_message', null, ['disabled' => true])
+            ->add('fraud_details', 'choice', [
+                'disabled' => true,
+                'multiple' => true,
+            ])
+            ->add('invoice', null, ['disabled' => true])
+            ->add('livemode', null, ['disabled' => true])
+            ->add('metadata', null, [
+                'disabled' => true,
+            ])
+            ->add('on_behalf_of', null, ['disabled' => true])
+//            ->add('stripe_order', null, ['disabled' => true])
+            ->add('outcome', null, ['disabled' => true])
+            ->add('paid', null, ['disabled' => true])
+            ->add('payment_intent', null, ['disabled' => true])
+            ->add('payment_method', null, ['disabled' => true])
+            ->add('payment_method_details', null, ['disabled' => true])
+            ->add('receipt_email', null, ['disabled' => true])
+            ->add('receipt_number', null, ['disabled' => true])
+            ->add('receipt_url', null, ['disabled' => true])
+            ->add('refunded', null, ['disabled' => true])
+            ->add('refunds', null, ['disabled' => true])
+            ->add('review', null, ['disabled' => true])
+            ->add('shipping', null, ['disabled' => true])
+            ->add('source', null, ['disabled' => true])
+            ->add('source_transfer', null, ['disabled' => true])
+            ->add('statement_descriptor', null, ['disabled' => true])
+            ->add('status', null, ['disabled' => true])
+            ->add('transfer_data', null, ['disabled' => true])
+            ->add('transfer_group', null, ['disabled' => true])
+            ->end()
         ;
     }
 
