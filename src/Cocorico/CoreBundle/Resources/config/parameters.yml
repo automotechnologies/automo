@@ -106,9 +106,9 @@ parameters:
     cocorico.listing_price_precision: 2
 
     #Min listing price in euro cents
-    cocorico.listing_price_min: 100
+    cocorico.listing_price_min: 100000
     #Max listing price in euro cents
-    cocorico.listing_price_max: 100000
+    cocorico.listing_price_max: 99999999900
 
     #Add marker on listing show page if true or zone if false
     cocorico.listing_map_display_marker: false
