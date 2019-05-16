@@ -23,12 +23,11 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [SonataAdminBundle]]
-            - [ setLocales, ["%cocorico.locales%"]]
+            - [ setLocales, [""]]
             - [ setTimeUnit, ["%cocorico.time_unit%"]]
             - [ setBookingExpirationDelay, ["%cocorico.booking.expiration_delay%"]]
             - [ setBookingAcceptationDelay, ["%cocorico.booking.acceptation_delay%"]]
             - [ setIncludeVat, ["%cocorico.include_vat%"]]
-            - [ setBundlesEnabled, ["%kernel.bundles%"]]
             - [ setTimezone, ["%cocorico.time_zone%"]]
 
     sonata.admin.listing_characteristic:
@@ -135,3 +134,12 @@ services:
         calls:
             - [ setTranslationDomain, [cocorico_user]]
             - [ setLocales, ["%cocorico.locales%"]]
+
+    sonata.admin.charge:
+        class: Cocorico\CoreBundle\Admin\ChargeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Bookings", label: "Charge" }
+        arguments:
+            - ~
+            - Cocorico\CoreBundle\Entity\Charge
+            - ~
