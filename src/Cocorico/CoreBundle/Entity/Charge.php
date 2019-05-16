@@ -162,7 +162,7 @@ class Charge
 
     /**
      * @var string
-     * @ORM\Column(name="order_stripe", type="string", nullable=true)
+     * @ORM\Column(name="stripe_order", type="string", nullable=true)
      */
     private $order;
 
