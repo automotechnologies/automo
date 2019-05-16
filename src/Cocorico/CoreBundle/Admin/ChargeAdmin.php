@@ -38,8 +38,58 @@ class ChargeAdmin extends AbstractAdmin
             ->add('application_fee', null, ['disabled' => true])
             ->add('application_fee_amount', null, ['disabled' => true])
             ->add('balance_transaction', null, ['disabled' => true])
+            ->add('billing_details', 'choice', [
+                'disabled' => true,
+                'multiple' => true,
+            ])
             ->add('created', null, ['disabled' => true])
             ->add('currency', null, ['disabled' => true])
+            ->add('customer', null, ['disabled' => true])
+            ->add('description', null, ['disabled' => true])
+            ->add('dispute', null, ['disabled' => true])
+            ->add('failure_code', null, ['disabled' => true])
+            ->add('failure_message', null, ['disabled' => true])
+            ->add('fraud_details', 'choice', [
+                'disabled' => true,
+                'multiple' => true,
+            ])
+            ->add('invoice', null, ['disabled' => true])
+            ->add('livemode', null, ['disabled' => true])
+            ->add('metadata', 'choice', [
+                'disabled' => true,
+                'multiple' => true,
+            ])
+            ->add('on_behalf_of', null, ['disabled' => true])
+//            ->add('stripe_order', null, ['disabled' => true])
+            ->add('outcome', 'choice', [
+                'disabled' => true,
+                'multiple' => true,
+            ])
+            ->add('paid', null, ['disabled' => true])
+            ->add('payment_intent', null, ['disabled' => true])
+            ->add('payment_method', null, ['disabled' => true])
+            ->add('receipt_email', null, ['disabled' => true])
+            ->add('receipt_number', null, ['disabled' => true])
+            ->add('receipt_url', null, ['disabled' => true])
+            ->add('refunded', null, ['disabled' => true])
+            ->add('review', null, ['disabled' => true])
+            ->add('shipping', 'choice', [
+                'disabled' => true,
+                'multiple' => true,
+            ])
+            ->add('source', 'choice', [
+                'disabled' => true,
+                'multiple' => true,
+            ])
+            ->add('source_transfer', null, ['disabled' => true])
+            ->add('statement_descriptor', null, ['disabled' => true])
+            ->add('status', null, ['disabled' => true])
+            ->add('transfer_data', 'choice', [
+                'disabled' => true,
+                'multiple' => true,
+            ])
+            ->add('transfer_group', null, ['disabled' => true])
+            ->end()
         ;
     }
 
