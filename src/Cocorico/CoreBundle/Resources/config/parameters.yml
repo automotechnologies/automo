@@ -2,7 +2,7 @@ parameters:
     #### Environment independent parameters. Same values in dev, staging, prod environments  ####
     #Site general info
     cocorico.site_name: Otomo
-    cocorico.phone: +62-811-000-722
+    cocorico.phone: +62-8111000722
     cocorico.address: Ariobimo Sentral Level 8, Jakarta, Indonesia, 12950
     cocorico.short_description: 'Otomo is an automotive rental marketplace in Indonesia'
     cocorico.contact_mail: customer@otomo.co
