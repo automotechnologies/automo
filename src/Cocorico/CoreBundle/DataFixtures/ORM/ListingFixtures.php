@@ -41,9 +41,9 @@ class ListingFixtures extends Fixture implements DependentFixtureInterface
 
         //GeoGraphical entities
         $country = new Country();
-        $country->setCode("FR");
-        $country->translate('en')->setName('France');
-        $country->translate('fr')->setName('France');
+        $country->setCode("ID");
+        $country->translate('en')->setName('Indonesia');
+        $country->translate('fr')->setName('Indonesia');
 
         $area = new Area();
         $area->setCountry($country);
@@ -53,15 +53,15 @@ class ListingFixtures extends Fixture implements DependentFixtureInterface
         $department = new Department();
         $department->setCountry($country);
         $department->setArea($area);
-        $department->translate('en')->setName('Paris');
-        $department->translate('fr')->setName('Paris');
+        $department->translate('en')->setName('Jakarta');
+        $department->translate('fr')->setName('Jakarta');
 
         $city = new City();
         $city->setCountry($country);
         $city->setArea($area);
         $city->setDepartment($department);
-        $city->translate('en')->setName('Paris');
-        $city->translate('fr')->setName('Paris');
+        $city->translate('en')->setName('Jakarta');
+        $city->translate('fr')->setName('Jakarta');
 
         $manager->persist($country);
         $manager->persist($area);
@@ -78,21 +78,21 @@ class ListingFixtures extends Fixture implements DependentFixtureInterface
         $coordinate->setArea($area);
         $coordinate->setDepartment($department);
         $coordinate->setCity($city);
-        $coordinate->setZip("75002");
-        $coordinate->setRoute("Rue de la Lune");
-        $coordinate->setStreetNumber("9");
-        $coordinate->setAddress("9 Rue de la Lune, 75002 Paris, France");
-        $coordinate->setLat(48.8697174);
-        $coordinate->setLng(2.3509855);
+        $coordinate->setZip("12950");
+        $coordinate->setRoute("Jl. H. R. Rasuna Said No.5");
+        $coordinate->setStreetNumber("8");
+        $coordinate->setAddress("Ariobimo Sentral Level 8, Jakarta, Indonesia");
+        $coordinate->setLat(106.833428);
+        $coordinate->setLng(-6.227352);
         $manager->persist($coordinate);
 
         //Listing Location
         $location = new ListingLocation();
-        $location->setCountry("FR");
-        $location->setCity("Paris");
-        $location->setZip("75002");
-        $location->setRoute("rue de la Lune");
-        $location->setStreetNumber("9");
+        $location->setCountry("ID");
+        $location->setCity("Jakarta");
+        $location->setZip("12950");
+        $location->setRoute("Jl. H. R. Rasuna Said No.5");
+        $location->setStreetNumber("8");
         $location->setCoordinate($coordinate);
         $manager->persist($location);
 
