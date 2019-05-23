@@ -164,7 +164,7 @@
       </trans-unit>
       <trans-unit id="69a1518dded704dee13c212c8fa93bfdbec43543" resname="footer.title.various">
         <source>footer.title.various</source>
-        <target state="new">Various</target>
+        <target>Various</target>
       </trans-unit>
       <trans-unit id="5f64194a8d285094204c3ef94b8dc3b6bebfa2d0" resname="footer.who_we_are.link">
         <source>footer.who_we_are.link</source>
@@ -260,7 +260,7 @@
       </trans-unit>
       <trans-unit id="e02bfbaa7fa4edd8c578a1be1def202e6c3220ac" resname="nav.listing.new.link">
         <source>nav.listing.new.link</source>
-        <target>Publish your listing</target>
+        <target>Create Listing</target>
       </trans-unit>
       <trans-unit id="fed928e18fb9eaf3aa5370a5b1165bc628687578" resname="nav.listing.show.link">
         <source>nav.listing.show.link</source>
@@ -284,7 +284,7 @@
       </trans-unit>
       <trans-unit id="4d66148bc56e54a9936116977b8f8bbdf6092335" resname="nav.the_team.slug">
         <source>nav.the_team.slug</source>
-        <target>the-team</target>
+        <target>our-partners</target>
       </trans-unit>
       <trans-unit id="ae075cd0545e4ced4f09a93784ae2fc0dfc5e6cf" resname="nav.who_we_are.link">
         <source>nav.who_we_are.link</source>
@@ -300,7 +300,7 @@
       </trans-unit>
       <trans-unit id="cdae46d3a5003ced136ae32725222f26085e174a" resname="page.forbidden">
         <source>page.forbidden</source>
-        <target state="new">Access forbidden</target>
+        <target>Access forbidden</target>
       </trans-unit>
       <trans-unit id="0c3080174d88613f6d6f124231c6b2e279e89250" resname="page.not.found">
         <source>page.not.found</source>

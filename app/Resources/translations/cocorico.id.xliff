@@ -140,7 +140,7 @@
       </trans-unit>
       <trans-unit id="a650649eef07e27013b9ce411e4b9491b00f80b6" resname="footer.contact_us.title">
         <source>footer.contact_us.title</source>
-        <target>Contact Us Title</target>
+        <target>Hubungi Kami</target>
       </trans-unit>
       <trans-unit id="28ad4e2c00f3d990a04f9ab8768495124bb6c10a" resname="footer.faq.link">
         <source>footer.faq.link</source>
@@ -284,7 +284,7 @@
       </trans-unit>
       <trans-unit id="4d66148bc56e54a9936116977b8f8bbdf6092335" resname="nav.the_team.slug">
         <source>nav.the_team.slug</source>
-        <target>the-team</target>
+        <target>our-partners</target>
       </trans-unit>
       <trans-unit id="ae075cd0545e4ced4f09a93784ae2fc0dfc5e6cf" resname="nav.who_we_are.link">
         <source>nav.who_we_are.link</source>
