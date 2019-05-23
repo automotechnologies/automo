@@ -80,7 +80,9 @@ class BookingPaymentController extends Controller
         }
 
         // secret key
-        \Stripe\Stripe::setApiKey($this->getParameter('stripe_secret_key'));
+        $secretKey = $this->get('kernel')->isDebug() ?
+            $this->getParameter('stripe_test_secret_key') : $this->getParameter('stripe_live_secret_key');
+        \Stripe\Stripe::setApiKey($secretKey);
 
         /**
          * @var $stripeCharge \Stripe\ApiResource

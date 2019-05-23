@@ -92,7 +92,12 @@
     <script src="https://js.stripe.com/v3/"></script>
     <script type="text/javascript">
         $(function() {
-            var stripe = Stripe("{{ stripe_publishable_key }}");
+            var stripeKey = "{{ stripe_test_publishable_key }}";
+
+            {% if app.environment == 'prod' %}
+                stripeKey = "{{ stripe_live_publishable_key }}";
+            {% endif %}
+            var stripe = Stripe(stripeKey);
 
             // Custom styling can be passed to options when creating an Element.
             // (Note that this demo uses a wider set of styles than the guide below.)
