@@ -92,10 +92,11 @@
     <script src="https://js.stripe.com/v3/"></script>
     <script type="text/javascript">
         $(function() {
-            var stripeKey = "{{ stripe_test_publishable_key }}";
 
             {% if app.environment == 'prod' %}
-                stripeKey = "{{ stripe_live_publishable_key }}";
+                var stripeKey = "{{ stripe_live_publishable_key }}";
+            {% else %}
+                var stripeKey = "{{ stripe_test_publishable_key }}";
             {% endif %}
             var stripe = Stripe(stripeKey);
 
