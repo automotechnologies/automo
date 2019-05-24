@@ -148,7 +148,7 @@
       </trans-unit>
       <trans-unit id="8e429cf6802a2864ffd2d99ad6110a91682010c8" resname="form.address.zip">
         <source>form.address.zip</source>
-        <target>Zip</target>
+        <target>Postal Code</target>
       </trans-unit>
       <trans-unit id="acc506740716cd9d92e0ba6a6f025b9ef9eecd5e" resname="form.birthday.legal">
         <source>form.birthday.legal</source>
@@ -517,7 +517,7 @@
       </trans-unit>
       <trans-unit id="4bb58fc67702e6a49527f5e04ecf63b35fb773e7" resname="user.signup.title">
         <source>user.signup.title</source>
-        <target>Subscribe</target>
+        <target>Register</target>
       </trans-unit>
       <trans-unit id="09d7893d52caa3806811a4a82fd75ad169413f84" resname="user.translate.button">
         <source>user.translate.button</source>

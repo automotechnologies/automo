@@ -80,7 +80,7 @@
       </trans-unit>
       <trans-unit id="45b97052db6fdc4abdcdefcc65952e83c06f682c" resname="company_info">
         <source>company_info</source>
-        <target>Test</target>
+        <target>company_info</target>
       </trans-unit>
       <trans-unit id="b00b8c5d4f2925002545ca1ee8681e1bb4dbbf12" resname="cookie_consent_link">
         <source>cookie_consent_link</source>
@@ -92,7 +92,7 @@
       </trans-unit>
       <trans-unit id="548ca6c0ebcf302b1dac13cacc412ab35a6566cb" resname="cookie_consent_text">
         <source>cookie_consent_text</source>
-        <target>cookie_consent_text</target>
+        <target><![CDATA[                <strong>Cookies use</strong><br>Our website uses cookies to ensure you get the best experience on our website. By continuing to explore our site, you accept our use of cookies.]]></target>
       </trans-unit>
       <trans-unit id="4336563d509b02ea6d3d7a3c74d3322408f65679" resname="date_range.invalid.end_before_start">
         <source>date_range.invalid.end_before_start</source>

@@ -20,7 +20,7 @@
       </trans-unit>
       <trans-unit id="4553617369a88b3ab4dfdca6c8d4b1a6def76cee" resname="booking.form.message.error">
         <source>booking.form.message.error</source>
-        <target>Please let a message</target>
+        <target>Please let the vendor have more information on your booking request</target>
       </trans-unit>
       <trans-unit id="695e169995f96bb1dbd6e45296991ca1e428c6a0" resname="booking.form.tac.error">
         <source>booking.form.tac.error</source>
@@ -52,7 +52,7 @@
       </trans-unit>
       <trans-unit id="8e76df2f570186e6fcf3ba0b861b2fe7b1d19dc7" resname="cocorico.search.invalidate.address">
         <source>cocorico.search.invalidate.address</source>
-        <target>Please enter an address to view make a search.</target>
+        <target>Please enter a location to search for options</target>
       </trans-unit>
       <trans-unit id="c8e0d9c9ce43a45ffe8e790a561f78cf215d4c13" resname="cocorico.sunday">
         <source>cocorico.sunday</source>
@@ -92,7 +92,7 @@
       </trans-unit>
       <trans-unit id="548ca6c0ebcf302b1dac13cacc412ab35a6566cb" resname="cookie_consent_text">
         <source>cookie_consent_text</source>
-        <target><![CDATA[                <strong>Cookies use</strong><br>Our website uses cookies to ensure you get the best experience on our website. By continuing to explore our site, you accept our use of cookies.]]></target>
+        <target><![CDATA[<strong>Cookies use</strong><br>Our website uses cookies to ensure you get the best experience on our website. By continuing to explore our site, you accept our use of cookies.]]></target>
       </trans-unit>
       <trans-unit id="4336563d509b02ea6d3d7a3c74d3322408f65679" resname="date_range.invalid.end_before_start">
         <source>date_range.invalid.end_before_start</source>
@@ -140,7 +140,7 @@
       </trans-unit>
       <trans-unit id="a650649eef07e27013b9ce411e4b9491b00f80b6" resname="footer.contact_us.title">
         <source>footer.contact_us.title</source>
-        <target>Contact us</target>
+        <target>Contact Us</target>
       </trans-unit>
       <trans-unit id="28ad4e2c00f3d990a04f9ab8768495124bb6c10a" resname="footer.faq.link">
         <source>footer.faq.link</source>
@@ -208,7 +208,7 @@
       </trans-unit>
       <trans-unit id="7922207fb51f1d5e34be3c837b7ae78b4587854a" resname="nav.asker.link">
         <source>nav.asker.link</source>
-        <target>Asker</target>
+        <target>Vendor</target>
       </trans-unit>
       <trans-unit id="64b6d2da31ab9586cf0bb982e17ac89b0c341592" resname="nav.dashboard.bookings.link">
         <source>nav.dashboard.bookings.link</source>
@@ -276,7 +276,7 @@
       </trans-unit>
       <trans-unit id="c196e5e09e7055e5a42642875a4c0891203888db" resname="nav.offerer.link">
         <source>nav.offerer.link</source>
-        <target>Offerer</target>
+        <target>Customer</target>
       </trans-unit>
       <trans-unit id="405cbec13b0e25e8c2f8c13ce8d130ef15189168" resname="nav.register.link">
         <source>nav.register.link</source>
@@ -296,7 +296,7 @@
       </trans-unit>
       <trans-unit id="2a004ec467e55618ba224e27867bcb893ae731bc" resname="page.error">
         <source>page.error</source>
-        <target>Erreur</target>
+        <target>Error</target>
       </trans-unit>
       <trans-unit id="cdae46d3a5003ced136ae32725222f26085e174a" resname="page.forbidden">
         <source>page.forbidden</source>

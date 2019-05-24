@@ -32,7 +32,7 @@
       </trans-unit>
       <trans-unit id="8aa9acea16c2123387489f0797c9c22f8703c370" resname="cocorico_contact.first_name.long">
         <source>cocorico_contact.first_name.long</source>
-        <target>first name is too long</target>
+        <target>First name is too long</target>
       </trans-unit>
       <trans-unit id="ba484c0a25de893c4074a9e6f659115ca7cc2b0a" resname="cocorico_contact.first_name.short">
         <source>cocorico_contact.first_name.short</source>
@@ -40,7 +40,7 @@
       </trans-unit>
       <trans-unit id="1ff5218e47ac728dc74d24158b1d5c8ead9146cb" resname="cocorico_contact.last_name.blank">
         <source>cocorico_contact.last_name.blank</source>
-        <target>Please provide last name.</target>
+        <target>Please provide last name</target>
       </trans-unit>
       <trans-unit id="95b09cfd737d5da88e4dabc64c9da68902a76e66" resname="cocorico_contact.last_name.long">
         <source>cocorico_contact.last_name.long</source>
