@@ -36,11 +36,9 @@ class ListingController extends Controller
      *
      * @Method({"GET", "POST"})
      *
-     * @param Request $request
-     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function newAction(Request $request)
+    public function newAction()
     {
         $formHandler = $this->get('cocorico.form.handler.listing');
 
@@ -64,10 +62,10 @@ class ListingController extends Controller
 
         return $this->render(
             'CocoricoCoreBundle:Frontend/Listing:new.html.twig',
-            array(
+            [
                 'listing' => $listing,
                 'form' => $form->createView(),
-            )
+            ]
         );
     }
 
