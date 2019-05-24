@@ -79,10 +79,14 @@ class BookingPaymentController extends Controller
             return $this->redirect($url, 302);
         }
 
+        /**
+         * @var bool
+         */
+        $isProd = $this->get('kernel')->getEnvironment() === 'prod';
+
         // secret key
-        $secretKey = $this->get('kernel')->isDebug() ?
-            $this->getParameter('stripe_test_secret_key') : $this->getParameter('stripe_live_secret_key');
-        \Stripe\Stripe::setApiKey($secretKey);
+        $secretKey = $isProd ? 'stripe_live_secret_key' : 'stripe_test_secret_key';
+        \Stripe\Stripe::setApiKey($this->getParameter($secretKey));
 
         /**
          * @var $stripeCharge \Stripe\ApiResource
@@ -101,7 +105,7 @@ class BookingPaymentController extends Controller
         ]);
 
         if ($stripeCharge->status === \Stripe\Charge::STATUS_SUCCEEDED && $stripeCharge->paid === true) {
-            $charge = new Charge($stripeCharge);
+            $charge = new Charge($isProd, $stripeCharge);
             $charge->setBooking($booking);
 
             $em = $this->getDoctrine()->getManager();
