@@ -23,6 +23,13 @@ class Charge
     public $id;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_prod", type="boolean", options={"default": "0"})
+     */
+    private $prod = 0;
+
+    /**
      * @var Booking
      * @ORM\OneToOne(targetEntity="Cocorico\CoreBundle\Entity\Booking", mappedBy="charge")
      */
@@ -274,9 +281,16 @@ class Charge
      */
     private $transfer_group;
 
-    public function __construct($stripeCharge = null)
+    /**
+     * Charge constructor.
+     * @param \Stripe\ApiResource $stripeCharge
+     * @param bool $isProd
+     * @throws \Exception
+     */
+    public function __construct(bool $isProd = false, $stripeCharge = null)
     {
         if($stripeCharge instanceof \Stripe\Charge) {
+            $this->setProd($isProd);
             $this->setChargeId($stripeCharge->id);
             $this->setObject($stripeCharge->object);
             $this->setAmount($stripeCharge->amount);
@@ -333,6 +347,22 @@ class Charge
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isProd()
+    {
+        return $this->prod;
+    }
+
+    /**
+     * @param bool $prod
+     */
+    public function setProd(bool $prod)
+    {
+        $this->prod = $prod;
     }
 
     /**
