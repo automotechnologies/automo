@@ -82,10 +82,10 @@ class ListingController extends Controller
             'listing',
             ListingNewType::class,
             $listing,
-            array(
+            [
                 'method' => 'POST',
                 'action' => $this->generateUrl('cocorico_listing_new'),
-            )
+            ]
         );
 
         return $form;
