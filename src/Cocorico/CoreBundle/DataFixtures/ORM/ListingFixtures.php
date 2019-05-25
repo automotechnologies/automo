@@ -41,27 +41,27 @@ class ListingFixtures extends Fixture implements DependentFixtureInterface
 
         //GeoGraphical entities
         $country = new Country();
-        $country->setCode("FR");
-        $country->translate('en')->setName('France');
-        $country->translate('fr')->setName('France');
+        $country->setCode("ID");
+        $country->translate('en')->setName('Indonesia');
+        $country->translate('id')->setName('Indonesia');
 
         $area = new Area();
         $area->setCountry($country);
-        $area->translate('en')->setName('Île-de-France');
-        $area->translate('fr')->setName('Île-de-France');
+        $area->translate('en')->setName('Île-de-Indonesia');
+        $area->translate('id')->setName('Île-de-Indonesia');
 
         $department = new Department();
         $department->setCountry($country);
         $department->setArea($area);
-        $department->translate('en')->setName('Paris');
-        $department->translate('fr')->setName('Paris');
+        $department->translate('en')->setName('Jakarta');
+        $department->translate('id')->setName('Jakarta');
 
         $city = new City();
         $city->setCountry($country);
         $city->setArea($area);
         $city->setDepartment($department);
-        $city->translate('en')->setName('Paris');
-        $city->translate('fr')->setName('Paris');
+        $city->translate('en')->setName('Jakarta');
+        $city->translate('id')->setName('Jakarta');
 
         $manager->persist($country);
         $manager->persist($area);
@@ -78,21 +78,21 @@ class ListingFixtures extends Fixture implements DependentFixtureInterface
         $coordinate->setArea($area);
         $coordinate->setDepartment($department);
         $coordinate->setCity($city);
-        $coordinate->setZip("75002");
-        $coordinate->setRoute("Rue de la Lune");
-        $coordinate->setStreetNumber("9");
-        $coordinate->setAddress("9 Rue de la Lune, 75002 Paris, France");
-        $coordinate->setLat(48.8697174);
-        $coordinate->setLng(2.3509855);
+        $coordinate->setZip("");
+        $coordinate->setRoute("Jalan H. R. Rasuna Said");
+        $coordinate->setStreetNumber("");
+        $coordinate->setAddress("Ariobimo Sentral Level 8, Jakarta, Indonesia, 12950");
+        $coordinate->setLat(-6.227337);
+        $coordinate->setLng(106.833444);
         $manager->persist($coordinate);
 
         //Listing Location
         $location = new ListingLocation();
-        $location->setCountry("FR");
-        $location->setCity("Paris");
-        $location->setZip("75002");
-        $location->setRoute("rue de la Lune");
-        $location->setStreetNumber("9");
+        $location->setCountry("ID");
+        $location->setCity("Jakarta");
+        $location->setZip("");
+        $location->setRoute("jalan h. r. rasuna said");
+        $location->setStreetNumber("");
         $location->setCoordinate($coordinate);
         $manager->persist($location);
 
@@ -111,12 +111,12 @@ class ListingFixtures extends Fixture implements DependentFixtureInterface
         $listing->addImage($image1);
         $listing->addImage($image2);
         $listing->translate('en')->setTitle('Listing One');
-        $listing->translate('fr')->setTitle('Annonce une');
+        $listing->translate('id')->setTitle('Daftar satu');
 
         $listing->translate('en')->setDescription('Listing One Description');
-        $listing->translate('fr')->setDescription('Description de l\'annonce une');
+        $listing->translate('id')->setDescription('Daftar Satu Deskripsi');
         $listing->setStatus(Listing::STATUS_PUBLISHED);
-        $listing->setPrice(10000);
+        $listing->setPrice(100000);
         $listing->setCertified(1);
 
         /** @var User $user */
