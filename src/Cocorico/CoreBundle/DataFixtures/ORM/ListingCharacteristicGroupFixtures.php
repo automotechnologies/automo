@@ -26,7 +26,7 @@ class ListingCharacteristicGroupFixtures extends Fixture
         $listingCharacteristicGroup = new ListingCharacteristicGroup();
         $listingCharacteristicGroup->setPosition(1);
         $listingCharacteristicGroup->translate('en')->setName('Group_1');
-        $listingCharacteristicGroup->translate('fr')->setName('Groupe_1');
+        $listingCharacteristicGroup->translate('id')->setName('Kelompok_1');
         $manager->persist($listingCharacteristicGroup);
         $listingCharacteristicGroup->mergeNewTranslations();
         $manager->flush();
@@ -35,7 +35,7 @@ class ListingCharacteristicGroupFixtures extends Fixture
         $listingCharacteristicGroup = new ListingCharacteristicGroup();
         $listingCharacteristicGroup->setPosition(2);
         $listingCharacteristicGroup->translate('en')->setName('Group_2');
-        $listingCharacteristicGroup->translate('fr')->setName('Groupe_2');
+        $listingCharacteristicGroup->translate('id')->setName('Kelompok_2');
         $manager->persist($listingCharacteristicGroup);
         $listingCharacteristicGroup->mergeNewTranslations();
         $manager->flush();
