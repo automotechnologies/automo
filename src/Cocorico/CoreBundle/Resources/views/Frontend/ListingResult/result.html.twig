@@ -70,16 +70,6 @@
                 <small data-id="nb-result">
                     {{ 'listing.search.result.results'|trans({'%nb_results%': nb_listings}) }}
                 </small>
-
-                {% if bundleExist('CocoricoListingAlertBundle') %}
-                    <div class="listing-alert">
-                        <a href="{{ path('cocorico_listing_alert_new') }}" data-id="listing-alert"
-                           class="btn btn-default">
-                            {{ "listing.search.result.alert.link"|trans }}
-                        </a>
-                    </div>
-                    <div data-id="listing-alert-dialog"></div>
-                {% endif %}
             </h1>
             {#TO NOT DELETE#}
             <div data-id="seo-desc">
