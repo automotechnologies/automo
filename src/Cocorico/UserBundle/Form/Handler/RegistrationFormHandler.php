@@ -118,10 +118,10 @@ class RegistrationFormHandler
             $user->setEnabled(false);
             if (null === $user->getConfirmationToken()) {
                 $user->setConfirmationToken($this->tokenGenerator->generateToken());
-                $this->emailNotification->sendAccountCreationConfirmationMessageToUser($user);
             }
 
             $this->userManager->updateUser($user);
+            $this->emailNotification->sendAccountCreationConfirmationMessageToUser($user);
             $this->mailer->sendAccountCreationConfirmationMessageToUser($user);
         } else {
             $user->setEnabled(true);
