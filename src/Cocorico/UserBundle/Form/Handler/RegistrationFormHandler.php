@@ -16,8 +16,6 @@ use Cocorico\UserBundle\Entity\User;
 use Cocorico\UserBundle\Event\UserEvent;
 use Cocorico\UserBundle\Event\UserEvents;
 use Cocorico\UserBundle\Mailer\EmailNotification;
-use Cocorico\UserBundle\Mailer\MailerInterface;
-use Cocorico\UserBundle\Mailer\TwigSwiftMailer;
 use Cocorico\UserBundle\Model\UserManager;
 use Cocorico\UserBundle\Security\LoginManager;
 use FOS\UserBundle\Model\UserInterface;
@@ -30,8 +28,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class RegistrationFormHandler
 {
     protected $request;
-    /** @var  TwigSwiftMailer */
-    protected $mailer;
     /** @var  UserManager */
     protected $userManager;
     protected $formFactory;
@@ -43,7 +39,6 @@ class RegistrationFormHandler
     /**
      * @param RequestStack             $requestStack
      * @param UserManager              $userManager
-     * @param MailerInterface          $mailer
      * @param TokenGeneratorInterface  $tokenGenerator
      * @param LoginManager             $loginManager
      * @param EventDispatcherInterface $dispatcher
@@ -52,7 +47,6 @@ class RegistrationFormHandler
     public function __construct(
         RequestStack $requestStack,
         UserManager $userManager,
-        MailerInterface $mailer,
         TokenGeneratorInterface $tokenGenerator,
         LoginManager $loginManager,
         EventDispatcherInterface $dispatcher,
@@ -60,7 +54,6 @@ class RegistrationFormHandler
     ) {
         $this->request = $requestStack->getCurrentRequest();
         $this->userManager = $userManager;
-        $this->mailer = $mailer;
         $this->tokenGenerator = $tokenGenerator;
         $this->loginManager = $loginManager;
         $this->dispatcher = $dispatcher;
@@ -77,7 +70,7 @@ class RegistrationFormHandler
     {
         $user = $form->getData();
 
-        if ('POST' === $this->request->getMethod()) {
+        if ($this->request->isMethod('POST')) {
             $form->handleRequest($this->request);
 
             if ($form->isValid()) {
@@ -122,12 +115,10 @@ class RegistrationFormHandler
 
             $this->userManager->updateUser($user);
             $this->emailNotification->sendAccountCreationConfirmationMessageToUser($user);
-            $this->mailer->sendAccountCreationConfirmationMessageToUser($user);
         } else {
             $user->setEnabled(true);
             $this->userManager->updateUser($user);
             $this->loginManager->getLoginManager()->loginUser($this->loginManager->getFirewallName(), $user);
-            $this->mailer->sendAccountCreatedMessageToUser($user);
         }
     }
 
