@@ -15,6 +15,7 @@ namespace Cocorico\UserBundle\Form\Handler;
 use Cocorico\UserBundle\Entity\User;
 use Cocorico\UserBundle\Event\UserEvent;
 use Cocorico\UserBundle\Event\UserEvents;
+use Cocorico\UserBundle\Mailer\EmailNotification;
 use Cocorico\UserBundle\Mailer\MailerInterface;
 use Cocorico\UserBundle\Mailer\TwigSwiftMailer;
 use Cocorico\UserBundle\Model\UserManager;
@@ -37,6 +38,7 @@ class RegistrationFormHandler
     protected $tokenGenerator;
     protected $loginManager;
     protected $dispatcher;
+    protected $emailNotification;
 
     /**
      * @param RequestStack             $requestStack
@@ -45,6 +47,7 @@ class RegistrationFormHandler
      * @param TokenGeneratorInterface  $tokenGenerator
      * @param LoginManager             $loginManager
      * @param EventDispatcherInterface $dispatcher
+     * @param EmailNotification        $emailNotification
      */
     public function __construct(
         RequestStack $requestStack,
@@ -52,7 +55,8 @@ class RegistrationFormHandler
         MailerInterface $mailer,
         TokenGeneratorInterface $tokenGenerator,
         LoginManager $loginManager,
-        EventDispatcherInterface $dispatcher
+        EventDispatcherInterface $dispatcher,
+        EmailNotification $emailNotification
     ) {
         $this->request = $requestStack->getCurrentRequest();
         $this->userManager = $userManager;
@@ -60,6 +64,7 @@ class RegistrationFormHandler
         $this->tokenGenerator = $tokenGenerator;
         $this->loginManager = $loginManager;
         $this->dispatcher = $dispatcher;
+        $this->emailNotification = $emailNotification;
     }
 
     /**
@@ -116,6 +121,7 @@ class RegistrationFormHandler
             }
 
             $this->userManager->updateUser($user);
+            $this->emailNotification->sendAccountCreationConfirmationMessageToUser($user);
             $this->mailer->sendAccountCreationConfirmationMessageToUser($user);
         } else {
             $user->setEnabled(true);
