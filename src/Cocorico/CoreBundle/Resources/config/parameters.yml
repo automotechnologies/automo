@@ -43,7 +43,7 @@ parameters:
     cocorico.vat: 0.1
 
     #Does registration require email confirmation
-    cocorico.registration_confirmation: false
+    cocorico.registration_confirmation: true
 
     #Fees in %
     cocorico.fee_as_asker: 0.1

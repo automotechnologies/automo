@@ -96,3 +96,4 @@ parameters:
     stripe_live_secret_key: null
     stripe_test_publishable_key: null
     stripe_test_secret_key: null
+    email_from: null
