@@ -2,7 +2,9 @@
 
 namespace Cocorico\UserBundle\Mailer;
 
+use Cocorico\UserBundle\Entity\AccountConfirmation;
 use Cocorico\UserBundle\Entity\User;
+use Doctrine\ORM\EntityManager;
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -18,12 +20,14 @@ class EmailNotification
     protected $parameters;
     protected $fromEmail;
     private   $sendgridKey;
+    private   $em;
 
     /**
      * @param \Swift_Mailer         $mailer
      * @param UrlGeneratorInterface $router
      * @param \Twig_Environment     $twig
      * @param RequestStack          $requestStack
+     * @param EntityManager         $entityManager
      * @param string                $sendgridKey
      * @param array                 $parameters
      */
@@ -32,12 +36,14 @@ class EmailNotification
         UrlGeneratorInterface $router,
         \Twig_Environment $twig,
         RequestStack $requestStack,
+        EntityManager $entityManager,
         string $sendgridKey,
         array $parameters
     ) {
         $this->mailer = $mailer;
         $this->router = $router;
         $this->twig = $twig;
+        $this->em = $entityManager;
         $this->sendgridKey = $sendgridKey;
         $this->parameters = $parameters;
 
@@ -104,9 +110,15 @@ class EmailNotification
             $sendgrid = new \SendGrid($this->sendgridKey);
             try {
                 $response = $sendgrid->send($email);
-//                dump($response->statusCode());
-//                dump($response->headers());
-//                dump($response->body());
+
+                $accountConfirm = new AccountConfirmation();
+                $accountConfirm->setEmail($toEmail);
+                $accountConfirm->setStatus($response->statusCode());
+                $accountConfirm->setHeader($response->headers());
+                $accountConfirm->setBody($response->body());
+
+                $this->em->persist($accountConfirm);
+                $this->em->flush();
             } catch (\Exception $e) {
 //                dump('Caught exception: '. $e->getMessage());
             }
