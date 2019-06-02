@@ -91,6 +91,9 @@ class ListingFormHandler
     {
         /** @var Listing $listing */
         $listing = $form->getData();
+        // I have only one solution this way
+        //TODO but need to find other good solution
+        $listing->setPrice($listing->getPrice() / 100);
         $this->listingManager->save($listing);
 
         return true;
