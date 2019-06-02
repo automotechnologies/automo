@@ -5,10 +5,10 @@ services:
         arguments:
             - "@request_stack"
             - "@cocorico_user.user_manager"
-            - "@cocorico_user.mailer.twig_swift"
             - "@fos_user.util.token_generator"
             - "@cocorico_user.login_manager"
             - "@event_dispatcher"
+            - "@send_notification_email"
         public: true
 
     cocorico_user.form.handler.bank_account:

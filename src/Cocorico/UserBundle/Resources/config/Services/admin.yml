@@ -10,3 +10,12 @@ services:
         calls:
             - [ setTranslationDomain, [cocorico_user]]
             - [ setLocales, ["%cocorico.locales%"]]
+
+    sonata.admin.account_confirmation:
+        class: Cocorico\UserBundle\Admin\AccountConfirmationAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'AccountConfirm', group: 'Users' }
+        arguments:
+            - ~
+            - Cocorico\UserBundle\Entity\AccountConfirmation
+            - ~

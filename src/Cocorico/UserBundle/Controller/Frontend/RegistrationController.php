@@ -73,9 +73,7 @@ class RegistrationController extends Controller
 
         return $this->render(
             'CocoricoUserBundle:Frontend/Registration:register.html.twig',
-            array(
-                'form' => $form->createView(),
-            )
+            ['form' => $form->createView()]
         );
     }
 
@@ -196,5 +194,27 @@ class RegistrationController extends Controller
         if ($this->get('session')->has($key)) {
             return $this->get('session')->get($key);
         }
+    }
+
+    private function sendMessage()
+    {
+        $email = new \SendGrid\Mail\Mail();
+        $email->setFrom("otomo@otomo.co", "Otomo");
+        $email->setSubject("Sending with Twilio SendGrid is Fun");
+        $email->addTo("imanalopher@gmail.com", "Example User");
+        $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
+        $view = $this->renderView('@CocoricoUser/Frontend/Registration/confirmed.html.twig');
+        $email->addContent("text/html", $view);
+        $sendgrid = new \SendGrid('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');
+        try {
+            $response = $sendgrid->send($email);
+            dump($response->statusCode());
+            dump($response->headers());
+            dump($response->body());
+        } catch (\Exception $e) {
+            dump('Caught exception: '. $e->getMessage());
+        }
+        dump($email);
+        die;
     }
 }

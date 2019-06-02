@@ -100,3 +100,7 @@ parameters:
     ## Price filter
     listing_price_idr_min: 10000
     listing_price_idr_max: 14405485
+
+    ## SendGrid
+    email_from: null
+    sendgrid_key: null
