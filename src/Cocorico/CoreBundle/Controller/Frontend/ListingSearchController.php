@@ -41,7 +41,7 @@ class ListingSearchController extends Controller
         //For drag map mode
         $isXmlHttpRequest = $request->isXmlHttpRequest();
 
-        $markers = array('listingsIds' => array(), 'markers' => array());
+        $markers = ['listingsIds' => [], 'markers' => []];
         $listings = new \ArrayIterator();
         $nbListings = 0;
 

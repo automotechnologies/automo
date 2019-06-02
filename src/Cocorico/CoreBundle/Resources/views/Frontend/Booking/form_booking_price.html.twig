@@ -23,13 +23,13 @@
 
     {{ form_end(form) }}
 
-    <div class="add-info">
+    <div class="add-info 2">
         {% if includeVat %}
             {% set amount = booking.amountDecimal %}
         {% else %}
             {% set amount = booking.amountExcludingVATDecimal(vatRate) %}
         {% endif %}
-        {% set amount = amount | format_price(app.request.locale, 0) %}
+        {% set amount = amount | format_price(app.request.locale, 1) %}
 
         <strong class="price">
             {{ amount }}
@@ -37,12 +37,6 @@
                 <small>{{ vatInclusionText(app.request.getLocale()) }}</small>
             </sup> *
         </strong>
-
-        {% if bundleExist('CocoricoDeliveryBundle') %}
-            {% include 'CocoricoDeliveryBundle:Frontend:Booking/_show_delivery.html.twig' with {
-            'listing_delivery':  booking.listing.delivery
-            } only %}
-        {% endif %}
 
         {#{% if form.vars['errors'] is empty %}#}
         {% if form.vars.submitted and form.vars.valid %}
@@ -58,18 +52,6 @@
             <em class="text">
                 {{ 'booking.duration:'|trans ~ " " ~ duration|add_time_unit_text }}
             </em>
-        {% endif %}
-
-        {% if bundleExist('CocoricoCarrierBundle') %}
-            {% include 'CocoricoCarrierBundle:Frontend:Listing/_show_carrier.html.twig' with {
-            'listing_pallets': booking.listing.pallets
-            } only %}
-        {% endif %}
-
-        {% if bundleExist('CocoricoListingDepositBundle') %}
-            {% include 'CocoricoListingDepositBundle:Frontend:Listing/_show_amount_deposit.html.twig' with {
-                'listing_deposit': booking.listing.amountDepositDecimal
-            } only %}
         {% endif %}
     </div>
 
