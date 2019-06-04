@@ -17,8 +17,9 @@ use FOS\UserBundle\Model\UserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
@@ -26,7 +27,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  *
  * @Route("/user")
  */
-class ProfileController extends AbstractController
+class ProfileController extends Controller
 {
     /**
      * Show user profile
@@ -40,7 +41,7 @@ class ProfileController extends AbstractController
      * @param  Request $request
      * @param  User    $user
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      * @throws AccessDeniedException
      */
     public function showAction(Request $request, User $user)
