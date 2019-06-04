@@ -60,7 +60,7 @@ twig:
         ## Filter price
         listing_price_idr_min: "%listing_price_idr_min%"
         listing_price_idr_max: "%listing_price_idr_max%"
-        listing_price_idr_step: 72083
+        listing_price_idr_step: 172083
 
 
     #Forms customization

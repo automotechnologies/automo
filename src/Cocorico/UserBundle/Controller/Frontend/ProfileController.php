@@ -17,7 +17,7 @@ use FOS\UserBundle\Model\UserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
@@ -26,7 +26,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  *
  * @Route("/user")
  */
-class ProfileController extends Controller
+class ProfileController extends AbstractController
 {
     /**
      * Show user profile
@@ -43,14 +43,13 @@ class ProfileController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws AccessDeniedException
      */
-
     public function showAction(Request $request, User $user)
     {
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        $userListings = $this->get('doctrine')->getManager()->getRepository('CocoricoCoreBundle:Listing')->findByOwner(
+        $userListings = $this->getDoctrine()->getRepository(Listing::class)->findByOwner(
             $user->getId(),
             $request->getLocale(),
             array(Listing::STATUS_PUBLISHED)
@@ -62,10 +61,10 @@ class ProfileController extends Controller
 
         return $this->render(
             'CocoricoUserBundle:Frontend/Profile:show.html.twig',
-            array(
+            [
                 'user' => $user,
                 'user_listings' => $userListings
-            )
+            ]
         );
     }
 }

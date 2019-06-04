@@ -273,11 +273,11 @@ abstract class BaseListing
     /**
      * Get price
      *
-     * @return float
+     * @return int
      */
     public function getPriceDecimal()
     {
-        return $this->price / 100;
+        return $this->price;
     }
 
     /**
