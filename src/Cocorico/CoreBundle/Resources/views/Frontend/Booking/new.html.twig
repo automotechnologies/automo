@@ -74,16 +74,4 @@
 
 {% block javascripts %}
     {{ parent() }}
-
-    {% if deliveryBundleEnabled %}
-        {% include 'CocoricoDeliveryBundle:Frontend:Booking/js/_geocoding_js.html.twig' with {
-            'listing_location': listing_location
-        } only %}
-    {% elseif carrierBundleEnabled %}
-        {% include 'CocoricoCarrierBundle:Frontend:Booking/js/_geocoding_js.html.twig' with {} only %}
-    {% endif %}
-
-    {% if optionBundleEnabled %}
-        {% include 'CocoricoListingOptionBundle:Frontend:Booking/js/_options_js.html.twig' only %}
-    {% endif %}
 {% endblock %}

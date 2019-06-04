@@ -23,6 +23,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Booking controller.
@@ -56,7 +57,7 @@ class BookingController extends Controller
      * @param \DateTime $start format yyyy-mm-dd-H:i
      * @param \DateTime $end   format yyyy-mm-dd-H:i
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function newAction(
         Request $request,
@@ -112,12 +113,12 @@ class BookingController extends Controller
 
         return $this->render(
             'CocoricoCoreBundle:Frontend/Booking:new.html.twig',
-            array(
+            [
                 'booking' => $booking,
                 'form' => $form->createView(),
                 //Used to hide errors fields message when a secondary submission (Voucher, Delivery, ...) is done successfully
                 'display_errors' => ($success < 2)
-            )
+            ]
         );
     }
 
