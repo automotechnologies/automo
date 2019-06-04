@@ -18,6 +18,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -64,11 +65,12 @@ class BookingPaymentController extends Controller
      *
      * @Method({"POST"})
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      *
      * @Route("/{booking}/check-payment", name="cocorico_check_payment", requirements={"booking" = "\d+"})
      * @Security("is_granted('update_status', booking) and not has_role('ROLE_ADMIN') and has_role('ROLE_USER')")
      *
+     * @throws \Exception
      */
     public function paymentCheck(Request $request, Booking $booking)
     {
@@ -92,7 +94,7 @@ class BookingPaymentController extends Controller
          * @var $stripeCharge \Stripe\ApiResource
          */
         $stripeCharge = \Stripe\Charge::create([
-            'amount' => $booking->getAmount(),
+            'amount' => $booking->getAmount() * 100,
             'currency' => $this->getParameter('cocorico.currency'),
             'source' => $request->request->get('stripeToken', ''),
             'receipt_email' => $this->getUser()->getEmail(),
