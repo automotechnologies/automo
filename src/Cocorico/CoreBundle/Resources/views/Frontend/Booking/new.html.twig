@@ -2,13 +2,6 @@
 
 {% trans_default_domain 'cocorico_booking' %}
 
-{% set voucherBundleEnabled = bundleExist('CocoricoVoucherBundle') %}
-{% set optionBundleEnabled = bundleExist('CocoricoListingOptionBundle') %}
-{% set mangopayBundleEnabled = bundleExist('CocoricoMangoPayBundle') %}
-{% set deliveryBundleEnabled = bundleExist('CocoricoDeliveryBundle') %}
-{% set carrierBundleEnabled = bundleExist('CocoricoCarrierBundle') %}
-{% set depositBundleEnabled = bundleExist('CocoricoListingDepositBundle') %}
-
 {% set listing = booking.listing %}
 {% set listing_translation = listing.translations[app.request.locale] %}
 {% set listing_location = listing.location %}
