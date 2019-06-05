@@ -75,8 +75,8 @@ class BookingUserAddressFormType extends AbstractType
                 array(
                     'label' => 'form.address.country',
                     'required' => true,
-                    'preferred_choices' => array("GB", "FR", "ES", "DE", "IT", "CH", "US", "RU"),
-                    'data' => 'FR'
+                    'preferred_choices' => array("ID", "GB", "FR", "ES", "DE", "IT", "CH", "US", "RU"),
+                    'data' => 'ID'
                 )
             );
 

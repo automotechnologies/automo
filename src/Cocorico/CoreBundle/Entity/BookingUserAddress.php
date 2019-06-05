@@ -86,7 +86,7 @@ class BookingUserAddress
      *      "booking_new"
      * })
      */
-    protected $country = "FR";
+    protected $country = "ID";
 
     public function __construct()
     {
