@@ -165,7 +165,7 @@ class RegistrationController extends Controller
      *
      * @Route("/register-confirmed", name="cocorico_user_register_confirmed")
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      * @throws AccessDeniedException
      */
     public function confirmedAction()
@@ -177,22 +177,20 @@ class RegistrationController extends Controller
 
         return $this->render(
             'CocoricoUserBundle:Frontend/Registration:confirmed.html.twig',
-            array(
+            [
                 'user' => $user,
                 'targetUrl' => $this->getTargetUrlFromSession(),
-            )
+            ]
         );
     }
 
     /**
-     * @return mixed
+     * @return mixed|null
      */
     private function getTargetUrlFromSession()
     {
         $key = sprintf('_security.%s.target_path', $this->get('security.token_storage')->getToken()->getProviderKey());
 
-        if ($this->get('session')->has($key)) {
-            return $this->get('session')->get($key);
-        }
+        return $this->get('session')->get($key, null);
     }
 }
