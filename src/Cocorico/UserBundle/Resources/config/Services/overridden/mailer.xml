@@ -34,7 +34,8 @@
             <argument type="service" id="router"/>
             <argument type="service" id="twig"/>
             <argument type="service" id="request_stack"/>
-            <!--<argument type="service" id="translator"/>-->
+            <argument type="service" id="doctrine.orm.default_entity_manager"/>
+            <argument>%sendgrid_key%</argument>
             <argument type="collection">
                 <argument key="templates" type="collection">
                     <argument key="account_created_user">%cocorico_user.account_created_user.email.template%</argument>
