@@ -61,6 +61,7 @@ class ListingManager extends BaseManager
     /**
      * @param  Listing $listing
      * @return Listing
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function save(Listing $listing)
     {
@@ -103,6 +104,7 @@ class ListingManager extends BaseManager
         $this->em->refresh($listing);
 
         if ($listingPublished) {
+            ##TODO send via SendGrid
             $this->mailer->sendListingActivatedMessageToOfferer($listing);
         }
 
@@ -282,6 +284,7 @@ class ListingManager extends BaseManager
      */
     public function alertUpdateCalendar(Listing $listing)
     {
+        ##TODO send via SendGrid
         $this->mailer->sendUpdateYourCalendarMessageToOfferer($listing);
 
         return true;

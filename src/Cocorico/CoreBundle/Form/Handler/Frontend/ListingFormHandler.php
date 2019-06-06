@@ -71,6 +71,7 @@ class ListingFormHandler
      * @param Form $form
      *
      * @return Booking|string
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function process($form)
     {
@@ -86,6 +87,7 @@ class ListingFormHandler
     /**
      * @param Form $form
      * @return boolean
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     private function onSuccess(Form $form)
     {

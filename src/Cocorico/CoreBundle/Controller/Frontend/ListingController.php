@@ -13,12 +13,15 @@ namespace Cocorico\CoreBundle\Controller\Frontend;
 
 use Cocorico\CoreBundle\Entity\Listing;
 use Cocorico\CoreBundle\Form\Type\Frontend\ListingNewType;
+use Doctrine\ORM\OptimisticLockException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Listing controller.
@@ -36,7 +39,8 @@ class ListingController extends Controller
      *
      * @Method({"GET", "POST"})
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return RedirectResponse|Response
+     * @throws OptimisticLockException
      */
     public function newAction()
     {
@@ -49,12 +53,12 @@ class ListingController extends Controller
         if ($success) {
             $url = $this->generateUrl(
                 'cocorico_dashboard_listing_edit_presentation',
-                array('id' => $listing->getId())
+                ['id' => $listing->getId()]
             );
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('listing.new.success', array(), 'cocorico_listing')
+                $this->get('translator')->trans('listing.new.success', [], 'cocorico_listing')
             );
 
             return $this->redirect($url);
@@ -104,7 +108,7 @@ class ListingController extends Controller
      * @param Request $request
      * @param Listing $listing
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function showAction(Request $request, Listing $listing)
     {
@@ -131,7 +135,7 @@ class ListingController extends Controller
      *
      * @param Listing $listing
      * @param         $slug
-     * @return bool|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return bool|RedirectResponse
      */
     private function handleSlugChange(Listing $listing, $slug)
     {
