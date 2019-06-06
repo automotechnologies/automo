@@ -127,13 +127,13 @@ class TwigSwiftMailer implements MailerInterface
             UrlGeneratorInterface::ABSOLUTE_URL
         );
 
-        $context = array(
+        $context = [
             'user' => $user,
             'asker' => $asker,
             'listing' => $listing,
             'booking' => $booking,
             'booking_request_url' => $bookingRequestUrl,
-        );
+        ];
 
         $this->sendMessage($template, $context, $this->fromEmail, $user->getEmail());
     }
@@ -159,9 +159,7 @@ class TwigSwiftMailer implements MailerInterface
         );
         $profilePaymentInfoUrl = $this->router->generate(
             'cocorico_user_dashboard_profile_edit_bank_account',
-            array(
-                '_locale' => $userLocale
-            ),
+            ['_locale' => $userLocale],
             UrlGeneratorInterface::ABSOLUTE_URL
         );
 
@@ -410,10 +408,10 @@ class TwigSwiftMailer implements MailerInterface
 
         $listingCalendarEditUrl = $this->router->generate(
             'cocorico_dashboard_listing_edit_availabilities_status',
-            array(
+            [
                 'listing_id' => $listing->getId(),
                 '_locale' => $userLocale
-            ),
+            ],
             UrlGeneratorInterface::ABSOLUTE_URL
         );
 
