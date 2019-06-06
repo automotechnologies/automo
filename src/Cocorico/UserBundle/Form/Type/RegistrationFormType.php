@@ -35,116 +35,114 @@ class RegistrationFormType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $countries = ["ID", "GB", "FR", "ES", "DE", "IT", "CH", "US", "RU"];
+
         $builder
             ->add(
                 'personType',
                 ChoiceType::class,
-                array(
+                [
                     'label' => 'form.person_type',
                     'choices' => array_flip(User::$personTypeValues),
                     'expanded' => true,
                     'empty_data' => User::PERSON_TYPE_NATURAL,
                     'required' => true,
-                )
+                ]
             )
             ->add(
                 'companyName',
                 TextType::class,
-                array(
+                [
                     'label' => 'form.company_name',
                     'required' => false,
-                )
+                ]
             )
             ->add(
                 'lastName',
                 TextType::class,
-                array(
-                    'label' => 'form.last_name',
-                )
+                ['label' => 'form.last_name']
             )
             ->add(
                 'firstName',
                 TextType::class,
-                array(
-                    'label' => 'form.first_name',
-                )
+                ['label' => 'form.first_name']
             )
             ->add(
                 'phonePrefix',
                 TextType::class,
-                array(
+                [
                     'label' => 'form.user.phone_prefix',
                     'required' => false,
                     'empty_data' => '+33',
-                )
+                ]
             )
             ->add(
                 'phone',
                 TextType::class,
-                array(
+                [
                     'label' => 'form.user.phone',
                     'required' => false,
-                )
+                ]
             )
             ->add(
                 'email',
                 EmailType::class,
-                array('label' => 'form.email')
+                ['label' => 'form.email']
             )
             ->add(
                 'birthday',
                 BirthdayType::class,
-                array(
+                [
                     'label' => 'form.user.birthday',
                     'widget' => 'choice',
                     'years' => range(date('Y') - 18, date('Y') - 100),
                     'required' => true,
-                )
+                ]
             )
             ->add(
                 'nationality',
                 CountryType::class,
-                array(
+                [
                     'label' => 'form.user.nationality',
                     'required' => true,
-                    'preferred_choices' => array("GB", "FR", "ES", "DE", "IT", "CH", "US", "RU"),
-                )
+                    'preferred_choices' => $countries,
+                ]
             )
             ->add(
                 'countryOfResidence',
                 CountryType::class,
-                array(
+                [
                     'label' => 'form.user.country_of_residence',
                     'required' => true,
-                    'preferred_choices' => array('GB', 'FR', 'ES', 'DE', 'IT', 'CH', 'US', 'RU'),
-                    'data' => 'FR',
-                )
+                    'preferred_choices' => $countries,
+                    'data' => 'ID',
+                ]
             )
             ->add(
                 'plainPassword',
                 RepeatedType::class,
-                array(
+                [
                     'type' => 'password',
-                    'options' => array('translation_domain' => 'cocorico_user'),
-                    'first_options' => array(
+                    'options' => ['translation_domain' => 'cocorico_user'],
+                    'first_options' => [
                         'label' => 'form.password',
                         'required' => true,
-                    ),
-                    'second_options' => array(
+                    ],
+                    'second_options' => [
                         'label' => 'form.password_confirmation',
                         'required' => true,
-                    ),
+                    ],
                     'invalid_message' => 'fos_user.password.mismatch',
                     'required' => true,
-                )
+                ]
             )
             ->add(
                 'timeZone',
                 TimezoneType::class,
-                array(
+                [
                     'label' => 'form.time_zone',
                     'required' => true,
-                )
+                ]
             );
     }
 
@@ -154,12 +152,12 @@ class RegistrationFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
+            [
                 'data_class' => 'Cocorico\UserBundle\Entity\User',
                 'csrf_token_id' => 'user_registration',
                 'translation_domain' => 'cocorico_user',
-                'validation_groups' => array('CocoricoRegistration'),
-            )
+                'validation_groups' => ['CocoricoRegistration'],
+            ]
         );
     }
 
