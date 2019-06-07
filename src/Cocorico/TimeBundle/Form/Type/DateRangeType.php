@@ -74,26 +74,26 @@ class DateRangeType extends AbstractType
                             ->add(
                                 'nb_days',
                                 ChoiceType::class,
-                                array(
+                                [
                                     'choices' => array_combine(range(1, $this->daysMax), range(1, $this->daysMax)),
                                     'data' => $nbDays,
                                     /** @Ignore */
                                     'placeholder' => '',
-                                    'attr' => array(
+                                    'attr' => [
                                         'class' => 'no-arrow'
-                                    ),
+                                    ],
                                     'label' => 'date_range.nb_days',
                                     'translation_domain' => 'cocorico',
-                                )
+                                ]
                             );
                     } else {//$this->daysMax = 1
                         $form
                             ->add(
                                 'nb_days',
                                 HiddenType::class,
-                                array(
+                                [
                                     'data' => 1
-                                )
+                                ]
                             );
                     }
                 }
@@ -103,25 +103,29 @@ class DateRangeType extends AbstractType
                         'start',
                         DateType::class,
                         array_merge(
-                            array(
+                            [
                                 'property_path' => 'start',
                                 'widget' => 'single_text',
                                 'format' => 'dd/MM/yyyy',
-                            ),
+                                'attr' => [
+                                    'autocomplete' => 'disable',
+                                ],
+                            ],
                             $options['start_options']
                         )
                     )->add(
                         'end',
                         $dateEndType,
                         array_merge(
-                            array(
+                            [
                                 'property_path' => 'end',
                                 'widget' => 'single_text',
                                 'format' => 'dd/MM/yyyy',
-                                'attr' => array(
-                                    'class' => 'to'
-                                )
-                            ),
+                                'attr' => [
+                                    'class' => 'to',
+                                    'autocomplete' => 'disable',
+                                ]
+                            ],
                             $options['end_options']
                         )
                     );
@@ -136,10 +140,10 @@ class DateRangeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
+            [
                 'data_class' => 'Cocorico\TimeBundle\Model\DateRange',
-                'end_options' => array(),
-                'start_options' => array(),
+                'end_options' => [],
+                'start_options' => [],
 //                'transformer' => null,
 //                'validator' => null,
                 'allow_single_day' => true,
@@ -148,7 +152,7 @@ class DateRangeType extends AbstractType
                 'min_start_delay' => 0,
                 'days_max' => $this->daysMax,
                 'allow_end_in_past' => false,
-            )
+            ]
         );
 
         // Those normalizers lazily create the required objects, if none given.
@@ -166,7 +170,7 @@ class DateRangeType extends AbstractType
             )
             ->setAllowedTypes(
                 'transformer',
-                array('Symfony\Component\Form\DataTransformerInterface', 'null')
+                ['Symfony\Component\Form\DataTransformerInterface', 'null']
             );
 
         // Those normalizers lazily create the required objects, if none given.
@@ -177,13 +181,13 @@ class DateRangeType extends AbstractType
                 function (Options $options, $value) {
                     if (!$value) {
                         $value = new DateRangeValidator(
-                            new OptionsResolver(), array(
+                            new OptionsResolver(), [
                                 'required' => $options["required"],
                                 'allow_single_day' => $options["allow_single_day"],
                                 'min_start_delay' => $options["min_start_delay"],
                                 'days_max' => $options["days_max"],
                                 'allow_end_in_past' => $options["allow_end_in_past"]
-                            )
+                            ]
                         );
                     }
 
@@ -192,7 +196,7 @@ class DateRangeType extends AbstractType
             )
             ->setAllowedTypes(
                 'validator',
-                array('Symfony\Component\EventDispatcher\EventSubscriberInterface', 'null')
+                ['Symfony\Component\EventDispatcher\EventSubscriberInterface', 'null']
             );
 
     }

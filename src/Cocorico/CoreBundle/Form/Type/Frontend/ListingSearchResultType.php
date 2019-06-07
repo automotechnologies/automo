@@ -96,14 +96,14 @@ class ListingSearchResultType extends AbstractType
             ->add(
                 'categories',
                 ListingCategoryType::class,
-                array(
+                [
                     'label' => 'listing_search.form.categories',
                     'mapped' => false,
                     'data' => $categories,
                     'block_name' => 'listing_categories',
                     'multiple' => true,
                     'placeholder' => 'listing_search.form.categories.empty_value',
-                )
+                ]
             );
 
         //DATE RANGE
@@ -112,15 +112,15 @@ class ListingSearchResultType extends AbstractType
             ->add(
                 'date_range',
                 DateRangeType::class,
-                array(
-                    'start_options' => array(
+                [
+                    'start_options' => [
                         'label' => 'listing_search.form.start',
                         'data' => $dateRange && $dateRange->getStart() ? $dateRange->getStart() : null
-                    ),
-                    'end_options' => array(
+                    ],
+                    'end_options' => [
                         'label' => 'listing_search.form.end',
                         'data' => $dateRange && $dateRange->getEnd() ? $dateRange->getEnd() : null
-                    ),
+                    ],
                     'allow_single_day' => $this->allowSingleDay,
                     'end_day_included' => $this->endDayIncluded,
                     'required' => false,
@@ -129,15 +129,15 @@ class ListingSearchResultType extends AbstractType
                     'block_name' => 'date_range',
                     'display_mode' => $this->daysDisplayMode,
                     'min_start_delay' => $this->minStartDelay
-                )
+                ]
             )
             ->add(
                 'price_range',
                 PriceRangeType::class,
-                array(
+                [
                     /** @Ignore */
                     'label' => false
-                )
+                ]
             );
 
         //CHARACTERISTICS
@@ -146,18 +146,18 @@ class ListingSearchResultType extends AbstractType
             ->add(
                 'characteristics',
                 ListingCharacteristicType::class,
-                array(
+                [
                     'mapped' => false,
                     'data' => $characteristics
-                )
+                ]
             )
             ->add(
                 'sort_by',
                 ChoiceType::class,
-                array(
+                [
                     'choices' => array_flip(ListingSearchRequest::$sortByValues),
                     'placeholder' => 'listing_search.form.sort_by.empty_value',
-                )
+                ]
             )
             ->add(
                 'page',
@@ -171,21 +171,21 @@ class ListingSearchResultType extends AbstractType
             $builder->add(
                 'time_range',
                 TimeRangeType::class,
-                array(
-                    'start_options' => array(
+                [
+                    'start_options' => [
                         'label' => 'listing_search.form.start_time',
                         'data' => $timeRange && $timeRange->getStart() ? $timeRange->getStart() : null
-                    ),
-                    'end_options' => array(
+                    ],
+                    'end_options' => [
                         'label' => 'listing_search.form.end_time',
                         'data' => $timeRange && $timeRange->getEnd() ? $timeRange->getEnd() : null
-                    ),
+                    ],
                     'required' => false,
                     /** @Ignore */
                     'label' => false,
                     'block_name' => 'time_range',
                     'display_mode' => $this->timesDisplayMode
-                )
+                ]
             );
         }
 
@@ -194,7 +194,7 @@ class ListingSearchResultType extends AbstractType
             $builder->add(
                 'flexibility',
                 ChoiceType::class,
-                array(
+                [
                     'label' => 'listing_search.form.flexibility',
                     'placeholder' => 'listing_search.form.flexibility',
                     'choices' => array_combine(
@@ -202,7 +202,7 @@ class ListingSearchResultType extends AbstractType
                         range(1, $this->timeUnitFlexibility)
                     ),
                     'required' => false,
-                )
+                ]
             );
         }
 
@@ -240,11 +240,11 @@ class ListingSearchResultType extends AbstractType
         parent::configureOptions($resolver);
 
         $resolver->setDefaults(
-            array(
+            [
                 'csrf_protection' => false,
                 'data_class' => 'Cocorico\CoreBundle\Model\ListingSearchRequest',
                 'translation_domain' => 'cocorico_listing',
-            )
+            ]
         );
     }
 
