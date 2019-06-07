@@ -23,7 +23,10 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ListingSearchController extends Controller
 {
@@ -34,7 +37,7 @@ class ListingSearchController extends Controller
      * @Method("GET")
      *
      * @param  Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function searchAction(Request $request)
     {
@@ -92,19 +95,19 @@ class ListingSearchController extends Controller
                 '@CocoricoCore/Frontend/ListingResult/result_ajax.html.twig' :
                 '@CocoricoCore/Frontend/ListingResult/result.html.twig',
             array_merge(
-                array(
+                [
                     'form' => $form->createView(),
                     'listings' => $listings,
                     'nb_listings' => $nbListings,
                     'markers' => $markers['markers'],
                     'listing_search_request' => $listingSearchRequest,
-                    'pagination' => array(
+                    'pagination' => [
                         'page' => $listingSearchRequest->getPage(),
                         'pages_count' => ceil($nbListings / $listingSearchRequest->getMaxPerPage()),
                         'route' => $request->get('_route'),
                         'route_params' => $request->query->all()
-                    ),
-                ),
+                    ],
+                ],
                 $extraViewParams
             )
         );
@@ -113,7 +116,7 @@ class ListingSearchController extends Controller
     /**
      * @param  ListingSearchRequest $listingSearchRequest
      *
-     * @return \Symfony\Component\Form\Form|\Symfony\Component\Form\FormInterface
+     * @return Form|FormInterface
      */
     protected function createSearchResultForm(ListingSearchRequest $listingSearchRequest)
     {
@@ -121,10 +124,10 @@ class ListingSearchController extends Controller
             '',
             ListingSearchResultType::class,
             $listingSearchRequest,
-            array(
+            [
                 'method' => 'GET',
                 'action' => $this->generateUrl('cocorico_listing_search_result'),
-            )
+            ]
         );
 
         return $form;
@@ -144,7 +147,7 @@ class ListingSearchController extends Controller
     protected function getMarkers(Request $request, $results, $resultsIterator)
     {
         //We get listings id of current page to change their marker aspect on the map
-        $resultsInPage = array();
+        $resultsInPage = [];
         foreach ($resultsIterator as $i => $result) {
             $resultsInPage[] = $result[0]['id'];
         }
@@ -160,7 +163,7 @@ class ListingSearchController extends Controller
         $liipCacheManager = $this->get('liip_imagine.cache.manager');
         $currencyExtension = $this->get('lexik_currency.currency_extension');
         $currencyExtension->getFormatter()->setLocale($locale);
-        $markers = $listingsIds = array();
+        $markers = $listingsIds = [];
 
         foreach ($results->getIterator() as $i => $result) {
             $listing = $result[0];
@@ -168,7 +171,7 @@ class ListingSearchController extends Controller
 
             $imageName = count($listing['images']) ? $listing['images'][0]['name'] : ListingImage::IMAGE_DEFAULT;
 
-            $image = $liipCacheManager->getBrowserPath($imagePath . $imageName, 'listing_medium', array());
+            $image = $liipCacheManager->getBrowserPath($imagePath . $imageName, 'listing_medium', []);
 
             $price = $currencyExtension->convertAndFormat($listing['price'] / 100, $currentCurrency, false);
 
@@ -188,7 +191,7 @@ class ListingSearchController extends Controller
 
             //Allow to group markers with same location
             $locIndex = $listing['location']['coordinate']['lat'] . "-" . $listing['location']['coordinate']['lng'];
-            $markers[$locIndex][] = array(
+            $markers[$locIndex][] = [
                 'id' => $listing['id'],
                 'lat' => $listing['location']['coordinate']['lat'],
                 'lng' => $listing['location']['coordinate']['lng'],
@@ -204,23 +207,23 @@ class ListingSearchController extends Controller
                 'certified' => $listing['certified'] ? 'certified' : 'hidden',
                 'url' => $url = $this->generateUrl(
                     'cocorico_listing_show',
-                    array('slug' => $listing['translations'][$locale]['slug'])
+                    ['slug' => $listing['translations'][$locale]['slug']]
                 ),
                 'zindex' => $isInCurrentPage ? 2 * $nbResults - $i : $i,
                 'opacity' => $isInCurrentPage ? 1 : 0.4,
 
-            );
+            ];
         }
 
-        return array(
+        return [
             'markers' => $markers,
             'listingsIds' => $listingsIds
-        );
+        ];
     }
 
     /**
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function searchHomeFormAction()
     {
@@ -229,16 +232,16 @@ class ListingSearchController extends Controller
 
         return $this->render(
             '@CocoricoCore/Frontend/Home/form_search.html.twig',
-            array(
+            [
                 'form' => $form->createView(),
-            )
+            ]
         );
     }
 
     /**
      * @param  ListingSearchRequest $listingSearchRequest
      *
-     * @return \Symfony\Component\Form\Form|\Symfony\Component\Form\FormInterface
+     * @return Form|FormInterface
      */
     private function createSearchHomeForm(ListingSearchRequest $listingSearchRequest)
     {
@@ -246,10 +249,10 @@ class ListingSearchController extends Controller
             '',
             ListingSearchHomeType::class,
             $listingSearchRequest,
-            array(
+            [
                 'method' => 'GET',
                 'action' => $this->generateUrl('cocorico_listing_search_result'),
-            )
+            ]
         );
 
         return $form;
@@ -257,7 +260,7 @@ class ListingSearchController extends Controller
 
     /**
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function searchFormAction()
     {
@@ -266,16 +269,16 @@ class ListingSearchController extends Controller
 
         return $this->render(
             '@CocoricoCore/Frontend/Common/form_search.html.twig',
-            array(
+            [
                 'form' => $form->createView(),
-            )
+            ]
         );
     }
 
     /**
      * @param  ListingSearchRequest $listingSearchRequest
      *
-     * @return \Symfony\Component\Form\Form|\Symfony\Component\Form\FormInterface
+     * @return Form|FormInterface
      */
     protected function createSearchForm(ListingSearchRequest $listingSearchRequest)
     {
@@ -283,10 +286,10 @@ class ListingSearchController extends Controller
             '',
             ListingSearchType::class,
             $listingSearchRequest,
-            array(
+            [
                 'method' => 'GET',
                 'action' => $this->generateUrl('cocorico_listing_search_result'),
-            )
+            ]
         );
 
         return $form;
@@ -303,13 +306,13 @@ class ListingSearchController extends Controller
      * @param  Request $request
      * @param int      $id
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function similarListingAction(Request $request, $id = null)
     {
         $results = new ArrayCollection();
         $listingSearchRequest = $this->getListingSearchRequest();
-        $ids = ($listingSearchRequest) ? $listingSearchRequest->getSimilarListings() : array();
+        $ids = ($listingSearchRequest) ? $listingSearchRequest->getSimilarListings() : [];
         if ($listingSearchRequest && count($ids) > 0) {
             $results = $this->get("cocorico.listing_search.manager")->getListingsByIds(
                 $listingSearchRequest,
@@ -322,9 +325,9 @@ class ListingSearchController extends Controller
 
         return $this->render(
             '@CocoricoCore/Frontend/Listing/similar_listing.html.twig',
-            array(
+            [
                 'results' => $results
-            )
+            ]
         );
     }
 
