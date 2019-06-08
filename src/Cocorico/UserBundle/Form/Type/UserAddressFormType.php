@@ -26,35 +26,35 @@ class UserAddressFormType extends AbstractType
             ->add(
                 'address',
                 TextareaType::class,
-                array(
+                [
                     'label' => 'form.address.address',
-                    'required' => false
-                )
+                    'required' => false,
+                ]
             )
             ->add(
                 'city',
                 null,
-                array(
+                [
                     'label' => 'form.address.city',
-                    'required' => false
-                )
+                    'required' => false,
+                ]
             )
             ->add(
                 'zip',
                 null,
-                array(
+                [
                     'label' => 'form.address.zip',
-                    'required' => false
-                )
+                    'required' => false,
+                ]
             )
             ->add(
                 'country',
                 CountryType::class,
-                array(
+                [
                     'label' => 'form.address.country',
                     'required' => false,
-                    'preferred_choices' => array("GB", "FR", "ES", "DE", "IT", "CH", "US", "RU"),
-                )
+                    'preferred_choices' => ["ID", "GB", "FR", "ES", "DE", "IT", "CH", "US", "RU"],
+                ]
             );
 
 
@@ -63,12 +63,12 @@ class UserAddressFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
+            [
                 'data_class' => 'Cocorico\UserBundle\Entity\UserAddress',
                 'csrf_token_id' => 'user_address',
                 'translation_domain' => 'cocorico_user',
                 'constraints' => new Valid(),
-            )
+            ]
         );
     }
 
