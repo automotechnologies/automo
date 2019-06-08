@@ -20,7 +20,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Listing Dashboard controller.
@@ -42,12 +46,11 @@ class ListingAvailabilityPriceController extends Controller
      *
      * @Method({"GET", "POST"})
      *
-     * @param Request $request
-     * @param         $listing
+     * @param $listing
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return RedirectResponse|Response
      */
-    public function editAvailabilitiesPricesAction(Request $request, Listing $listing)
+    public function editAvailabilitiesPricesAction(Listing $listing)
     {
         $listingAvailabilityHandler = $this->get('cocorico.form.handler.listing_availability.price.dashboard');
         $form = $this->createEditAvailabilitiesPricesForm($listing);
@@ -56,7 +59,7 @@ class ListingAvailabilityPriceController extends Controller
         if ($success == 1) {
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('listing.edit.success', array(), 'cocorico_listing')
+                $this->get('translator')->trans('listing.edit.success', [], 'cocorico_listing')
             );
 
             return $this->redirectToRoute(
@@ -66,16 +69,16 @@ class ListingAvailabilityPriceController extends Controller
         } elseif ($success == -1) {
             $this->get('session')->getFlashBag()->add(
                 'error',
-                $this->get('translator')->trans('form.error', array(), 'cocorico')
+                $this->get('translator')->trans('form.error', [], 'cocorico')
             );
         }
 
         return $this->render(
             'CocoricoCoreBundle:Dashboard/Listing:edit_availabilities_prices.html.twig',
-            array(
+            [
                 'listing' => $listing,
-                'form_prices' => $form->createView()
-            )
+                'form_prices' => $form->createView(),
+            ]
         );
 
     }
@@ -85,7 +88,7 @@ class ListingAvailabilityPriceController extends Controller
      *
      * @param Listing $listing The entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return Form The form
      */
     private function createEditAvailabilitiesPricesForm(Listing $listing)
     {
@@ -93,13 +96,13 @@ class ListingAvailabilityPriceController extends Controller
             'listing_availabilities_prices',
             ListingEditAvailabilitiesPricesType::class,
             $listing,
-            array(
+            [
                 'action' => $this->generateUrl(
                     'cocorico_dashboard_listing_edit_availabilities_prices',
-                    array('listing_id' => $listing->getId())
+                    ['listing_id' => $listing->getId()]
                 ),
                 'method' => 'POST',
-            )
+            ]
         );
 
         return $form;
@@ -125,21 +128,15 @@ class ListingAvailabilityPriceController extends Controller
      *
      * @Method({"GET", "POST"})
      *
-     * @param  Request $request
      * @param  Listing $listing
      * @param  string  $day
      * @param  string  $start_time
      * @param  string  $end_time
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function editAvailabilityPriceAction(
-        Request $request,
-        Listing $listing,
-        $day,
-        $start_time,
-        $end_time
-    ) {
+    public function editAvailabilityPriceAction(Listing $listing, $day, $start_time, $end_time)
+    {
         $listingAvailabilityHandler = $this->get('cocorico.form.handler.listing_availability.price.dashboard');
         $form = $this->createEditAvailabilityPriceForm($listing->getId(), $day, $start_time, $end_time);
         $success = $listingAvailabilityHandler->processOne($form, $listing, $day, $start_time, $end_time);
@@ -147,20 +144,20 @@ class ListingAvailabilityPriceController extends Controller
         if ($success == 1) {
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('listing.availability.edit.success', array(), 'cocorico_listing')
+                $this->get('translator')->trans('listing.availability.edit.success', [], 'cocorico_listing')
             );
         } elseif ($success == -1) {
             $this->get('session')->getFlashBag()->add(
                 'error',
-                $this->get('translator')->trans('form.error', array(), 'cocorico')
+                $this->get('translator')->trans('form.error', [], 'cocorico')
             );
         }
 
         return $this->render(
             'CocoricoCoreBundle:Dashboard/Listing:form_availability_price.html.twig',
-            array(
+            [
                 'form' => $form->createView(),
-            )
+            ]
         );
     }
 
@@ -171,7 +168,7 @@ class ListingAvailabilityPriceController extends Controller
      * @param  string $startTime
      * @param  string $endTime
      *
-     * @return \Symfony\Component\Form\Form|\Symfony\Component\Form\FormInterface
+     * @return Form|FormInterface
      */
     private function createEditAvailabilityPriceForm($listingId, $day, $startTime, $endTime)
     {
@@ -179,18 +176,18 @@ class ListingAvailabilityPriceController extends Controller
             'listing_availability',
             ListingEditAvailabilityPriceType::class,
             null,
-            array(
+            [
                 'method' => 'POST',
                 'action' => $this->generateUrl(
                     'cocorico_dashboard_listing_edit_availability_price',
-                    array(
+                    [
                         'listing_id' => $listingId,
                         'day' => $day,
                         'start_time' => $startTime,
                         'end_time' => $endTime,
-                    )
+                    ]
                 ),
-            )
+            ]
         );
 
         return $form;
@@ -215,7 +212,9 @@ class ListingAvailabilityPriceController extends Controller
      * @param  Listing $listing
      * @param  string  $day format yyyy-mm-dd
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws
+     *
+     * @return Response
      */
     public function newAction(Request $request, Listing $listing, $day)
     {
@@ -233,22 +232,22 @@ class ListingAvailabilityPriceController extends Controller
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('listing.availability.new.success', array(), 'cocorico_listing')
+                $this->get('translator')->trans('listing.availability.new.success', [], 'cocorico_listing')
             );
         }
 
         return $this->render(
             'CocoricoCoreBundle:Dashboard/Listing:form_availability_price.html.twig',
-            array(
+            [
                 'form' => $form->createView(),
-            )
+            ]
         );
     }
 
     /**
      * @param ListingAvailability $availability
      *
-     * @return \Symfony\Component\Form\Form|\Symfony\Component\Form\FormInterface
+     * @return Form|FormInterface
      */
     private function createCreateForm(ListingAvailability $availability)
     {
@@ -256,16 +255,16 @@ class ListingAvailabilityPriceController extends Controller
             'listing_availability',
             ListingEditAvailabilityPriceType::class,
             $availability,
-            array(
+            [
                 'method' => 'POST',
                 'action' => $this->generateUrl(
                     'cocorico_dashboard_listing_new_availability_price',
-                    array(
+                    [
                         'listing_id' => $availability->getListingId(),
                         'day' => $availability->getDay()->format('Y-m-d')
-                    )
+                    ]
                 ),
-            )
+            ]
         );
 
         return $form;

@@ -19,7 +19,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Booking controller.
@@ -32,7 +35,7 @@ class BookingPriceController extends Controller
      * Creates a new Booking price form.
      *
      * @param  Listing $listing
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function bookingPriceFormAction(Listing $listing)
     {
@@ -43,10 +46,10 @@ class BookingPriceController extends Controller
 
         return $this->render(
             '@CocoricoCore/Frontend/Booking/form_booking_price.html.twig',
-            array(
+            [
                 'form' => $form->createView(),
-                'booking' => $booking
-            )
+                'booking' => $booking,
+            ]
         );
     }
 
@@ -55,7 +58,7 @@ class BookingPriceController extends Controller
      *
      * @param Booking $booking The entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return Form The form
      */
     private function createBookingPriceForm(Booking $booking)
     {
@@ -63,15 +66,14 @@ class BookingPriceController extends Controller
             '',
             BookingPriceType::class,
             $booking,
-            array(
+            [
                 'method' => 'POST',
                 'action' => $this->generateUrl(
-                    'cocorico_booking_price',
-                    array(
+                    'cocorico_booking_price', [
                         'listing_id' => $booking->getListing()->getId()
-                    )
-                )
-            )
+                    ]
+                ),
+            ]
         );
 
         return $form;
@@ -91,7 +93,7 @@ class BookingPriceController extends Controller
      * @param Request  $request
      * @param  Listing $listing
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return RedirectResponse|Response
      *
      * @throws \Exception
      */
@@ -105,25 +107,25 @@ class BookingPriceController extends Controller
 
         //Return form if Ajax request
         if ($request->isXmlHttpRequest()) {
-            return
-                $this->render(
-                    '@CocoricoCore/Frontend/Booking/form_booking_price.html.twig',
-                    array(
-                        'form' => $form->createView(),
-                        'booking' => $booking
-                    )
-                );
-        } else {//Redirect to new Booking page if no ajax request
-            return $this->redirect(
-                $this->generateUrl(
-                    'cocorico_booking_new',
-                    array(
-                        'listing_id' => $listing->getId(),
-                        'start' => $booking->getStart()->format('Y-m-d-H:i'),
-                        'end' => $booking->getEnd()->format('Y-m-d-H:i'),
-                    )
-                )
+            return $this->render(
+                '@CocoricoCore/Frontend/Booking/form_booking_price.html.twig',
+                [
+                    'form' => $form->createView(),
+                    'booking' => $booking,
+                ]
             );
         }
+        //Redirect to new Booking page if no ajax request
+
+        return $this->redirect(
+            $this->generateUrl(
+                'cocorico_booking_new',
+                [
+                    'listing_id' => $listing->getId(),
+                    'start' => $booking->getStart()->format('Y-m-d-H:i'),
+                    'end' => $booking->getEnd()->format('Y-m-d-H:i'),
+                ]
+            )
+        );
     }
 }

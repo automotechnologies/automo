@@ -224,20 +224,33 @@ class CoreExtension extends \Twig_Extension implements \Twig_Extension_GlobalsIn
 
         $this->currencyExtension->getFormatter()->setLocale($locale);
         if ($price > 0) {
-            $price = $this->currencyExtension->convert($price, $targetCurrency, !$precision);
+            if ($targetCurrency === 'USD') {
+                $price = $this->currencyExtension->convert($price, $targetCurrency, 0);
+            } else {
+                $price = $this->currencyExtension->convert($price, $targetCurrency, !$precision);
+            }
         } else {
             $price = 0;
         }
 
         if ($price > 1000) {
-            $price = round($price / 1000, 10);
+            if ($targetCurrency === 'USD') {
+                $price = round($price / 1000, 10);
+            } else {
+                $price = intval($price / 1000);
+            }
             $kilo = true;
         }
 
-        $price = $this->currencyExtension->format($price, $targetCurrency, $precision);
+
+        if ($targetCurrency === 'USD') {
+            $price = $this->currencyExtension->format($price, $targetCurrency, 0);
+        } elseif ($targetCurrency === 'IDR') {
+            $price = $this->currencyExtension->format($price, $targetCurrency, $precision);
+        }
 
         if ($targetCurrency === 'IDR') {
-            $price = str_replace($targetCurrency, 'Rp ', $price);
+            $price = str_replace($targetCurrency, 'Rp', $price);
         }
 
         $price = $kilo ? $price . 'K' : $price;

@@ -19,8 +19,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Listing Dashboard controller.
@@ -31,7 +34,7 @@ class ListingPriceSimulatorController extends Controller
 {
     /**
      * @param  Listing $listing
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function priceSimulatorFormAction($listing)
     {
@@ -42,17 +45,17 @@ class ListingPriceSimulatorController extends Controller
 
         return $this->render(
             '@CocoricoCore/Dashboard/Listing/form_price_simulator.html.twig',
-            array(
+            [
                 'form' => $form->createView(),
                 'booking' => $booking
-            )
+            ]
         );
     }
 
     /**
      * @param Booking $booking
      *
-     * @return \Symfony\Component\Form\Form|\Symfony\Component\Form\FormInterface
+     * @return Form|FormInterface
      */
     private function createPriceSimulatorForm(Booking $booking)
     {
@@ -60,13 +63,13 @@ class ListingPriceSimulatorController extends Controller
             '',
             BookingPriceType::class,
             $booking,
-            array(
+            [
                 'method' => 'POST',
                 'action' => $this->generateUrl(
                     'cocorico_dashboard_listing_price_simulator',
-                    array('id' => $booking->getListing()->getId())
+                    ['id' => $booking->getListing()->getId()]
                 ),
-            )
+            ]
         );
 
         return $form;
@@ -84,7 +87,7 @@ class ListingPriceSimulatorController extends Controller
      * @param Request $request
      * @param Listing $listing
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return RedirectResponse|Response
      */
     public function priceSimulatorAction(Request $request, Listing $listing)
     {
@@ -99,21 +102,21 @@ class ListingPriceSimulatorController extends Controller
         if ($request->isXmlHttpRequest()) {
             return $this->render(
                 'CocoricoCoreBundle:Dashboard/Listing:form_price_simulator.html.twig',
-                array(
+                [
                     'booking' => $booking,
                     'form' => $form->createView()
-                )
+                ]
             );
-        } else {
-            if (!$formIsValid) {
-                $this->get('cocorico.helper.global')->addFormErrorMessagesToFlashBag(
-                    $form,
-                    $this->get('session')->getFlashBag()
-                );
-            }
-
-            return new RedirectResponse($request->headers->get('referer'));
         }
+
+        if (!$formIsValid) {
+            $this->get('cocorico.helper.global')->addFormErrorMessagesToFlashBag(
+                $form,
+                $this->get('session')->getFlashBag()
+            );
+        }
+
+        return new RedirectResponse($request->headers->get('referer'));
     }
 
 

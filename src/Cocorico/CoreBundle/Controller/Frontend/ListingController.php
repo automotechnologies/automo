@@ -19,6 +19,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -78,7 +79,7 @@ class ListingController extends Controller
      *
      * @param Listing $listing The entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return Form The form
      */
     private function createCreateForm(Listing $listing)
     {
@@ -123,10 +124,10 @@ class ListingController extends Controller
 
         return $this->render(
             'CocoricoCoreBundle:Frontend/Listing:show.html.twig',
-            array(
+            [
                 'listing' => $listing,
                 'reviews' => $reviews,
-            )
+            ]
         );
     }
 
@@ -140,10 +141,7 @@ class ListingController extends Controller
     private function handleSlugChange(Listing $listing, $slug)
     {
         if ($slug != $listing->getSlug()) {
-            return $this->redirect(
-                $this->generateUrl('cocorico_listing_show', array('slug' => $listing->getSlug())),
-                301
-            );
+            return $this->redirectToRoute('cocorico_listing_show', ['slug' => $listing->getSlug()], 301);
         }
 
         return false;

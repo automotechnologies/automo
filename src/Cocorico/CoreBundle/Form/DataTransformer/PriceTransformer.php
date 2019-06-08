@@ -53,7 +53,7 @@ class PriceTransformer implements DataTransformerInterface
             $value = $this->currencyConverter->convert($value, $this->currency, !$this->pricePrecision);
         }
 
-        return $value / 100;
+        return $value;
     }
 
     /**
@@ -86,7 +86,7 @@ class PriceTransformer implements DataTransformerInterface
             throw new TransformationFailedException();
         }
 
-        return strval($value * 100);
+        return strval($value);
     }
 
 }

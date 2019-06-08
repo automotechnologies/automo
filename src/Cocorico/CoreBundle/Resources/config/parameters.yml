@@ -103,7 +103,7 @@ parameters:
     cocorico.listing_category_min: 1
 
     #Listing price precision. true or false for now
-    cocorico.listing_price_precision: 2
+    cocorico.listing_price_precision: 0
 
     #Min listing price in euro cents
     cocorico.listing_price_min: 100

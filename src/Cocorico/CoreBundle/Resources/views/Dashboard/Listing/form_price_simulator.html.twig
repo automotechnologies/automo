@@ -25,7 +25,7 @@
         {% else %}
             {% set amount = booking.amountExcludingVATDecimal(vatRate) %}
         {% endif %}
-        {% set amount = amount | format_price(app.request.locale, 2) %}
+        {% set amount = amount | format_price(app.request.locale, 0) %}
         <strong class="price">
             {{ amount }}
             <sup>
@@ -48,7 +48,7 @@
                 {% else %}
                     {% set amount_to_pay_to_offerer = booking.amountToPayToOffererExcludingVATDecimal(vatRate) %}
                 {% endif %}
-                {% set amount_to_pay_to_offerer = amount_to_pay_to_offerer | format_price(app.request.locale, 2) %}
+                {% set amount_to_pay_to_offerer = amount_to_pay_to_offerer | format_price(app.request.locale, 0) %}
                 <span class="info price">
                     {{ amount_to_pay_to_offerer }}
                     <sup>
@@ -66,7 +66,7 @@
             <li>
                 {{ 'listing.price_simulator.fee'|trans }}
                 <span class="info">
-                    {% set amount_fee_as_offerer = booking.amountFeeAsOffererDecimal | format_price(app.request.locale, 2) %}
+                    {% set amount_fee_as_offerer = booking.amountFeeAsOffererDecimal | format_price(app.request.locale, 0) %}
                     <span class="info price">
                         {{ amount_fee_as_offerer }}
                         <sup>

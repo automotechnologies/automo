@@ -29,7 +29,7 @@
         {% else %}
             {% set amount = booking.amountExcludingVATDecimal(vatRate) %}
         {% endif %}
-        {% set amount = amount | format_price(app.request.locale, 1) %}
+        {% set amount = amount | format_price(app.request.locale) %}
 
         <strong class="price">
             {{ amount }}

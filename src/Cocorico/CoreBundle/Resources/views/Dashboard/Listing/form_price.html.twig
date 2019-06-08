@@ -20,16 +20,6 @@
         }) }}
     </div>
 
-    {% if bundleExist('CocoricoDeliveryBundle') %}
-        {% include 'CocoricoDeliveryBundle:Dashboard:Listing/_form_delivery.html.twig' with {
-        'form': form
-        } only %}
-    {% elseif bundleExist('CocoricoCarrierBundle') %}
-        {% include 'CocoricoCarrierBundle:Dashboard:Listing/_form_carrier.html.twig' with {
-        'form': form
-        } only %}
-    {% endif %}
-
     <ul class="list-unstyled price-info">
         <li>
             {{ 'listing.price_simulator.cash_in'|trans }}
@@ -39,7 +29,7 @@
                 {% else %}
                     {% set amount_to_pay_to_offerer = listing.amountToPayToOffererForPriceExcludingVATDecimal(feeAsOfferer) %}
                 {% endif %}
-                {% set amount_to_pay_to_offerer = amount_to_pay_to_offerer | format_price(app.request.locale, 2) %}
+                {% set amount_to_pay_to_offerer = amount_to_pay_to_offerer | format_price(app.request.locale, 0) %}
 
                 <span class="info price">
                     {{ amount_to_pay_to_offerer }}
@@ -64,7 +54,7 @@
                 {% else %}
                     {% set amount_fee_as_offerer = listing.amountFeeAsOffererForPriceExcludingVATDecimal(feeAsOfferer, vatRate) %}
                 {% endif %}
-                {% set amount_fee_as_offerer = amount_fee_as_offerer | format_price(app.request.locale, 2) %}
+                {% set amount_fee_as_offerer = amount_fee_as_offerer | format_price(app.request.locale, 0) %}
                 <span class="info price">
                     {{ amount_fee_as_offerer }}
                     <sup>
