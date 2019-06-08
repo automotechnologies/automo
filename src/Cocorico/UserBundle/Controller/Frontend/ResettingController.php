@@ -37,7 +37,7 @@ class ResettingController extends Controller
      *
      * @Route("/password-resetting-request", name="cocorico_user_resetting_request")
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function requestAction()
     {
@@ -51,6 +51,7 @@ class ResettingController extends Controller
      * @Method("POST")
      *
      * @param Request $request
+     * @throws
      *
      * @return Response
      */
@@ -96,9 +97,9 @@ class ResettingController extends Controller
                 return $event->getResponse();
             }
 
-            $this->get('cocorico_user.mailer.twig_swift')->sendResettingEmailMessageToUser($user);
             $user->setPasswordRequestedAt(new \DateTime());
             $this->get('cocorico_user.user_manager')->updateUser($user);
+            $this->get('send_notification_email')->sendResettingEmailMessageToUser($user);
 
             /* Dispatch completed event */
             $event = new GetResponseUserEvent($user, $request);
@@ -110,7 +111,7 @@ class ResettingController extends Controller
         }
 
         return new RedirectResponse(
-            $this->generateUrl('cocorico_user_resetting_check_email', array('username' => $username))
+            $this->generateUrl('cocorico_user_resetting_check_email', ['username' => $username])
         );
     }
 
@@ -134,10 +135,10 @@ class ResettingController extends Controller
 
         return $this->render(
             'CocoricoUserBundle:Frontend/Resetting:checkEmail.html.twig',
-            array(
+            [
                 'username' => $username,
                 'tokenLifetime' => ceil($this->getParameter('fos_user.resetting.retry_ttl') / 3600),
-            )
+            ]
         );
     }
 
@@ -202,10 +203,10 @@ class ResettingController extends Controller
 
         return $this->render(
             'CocoricoUserBundle:Frontend/Resetting:reset.html.twig',
-            array(
+            [
                 'token' => $token,
                 'form' => $form->createView(),
-            )
+            ]
         );
     }
 

@@ -75,6 +75,26 @@ class EmailNotification
         $this->sendMessage($template, $context, $this->fromEmail, $user->getEmail());
     }
 
+    /**
+     * @param UserInterface $user
+     */
+    public function sendResettingEmailMessageToUser(UserInterface $user)
+    {
+        $template = $this->parameters['templates']['forgot_password_user'];
+        $password_reset_link = $this->router->generate(
+            'cocorico_user_resetting_reset',
+            ['token' => $user->getConfirmationToken()],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
+
+        $context = [
+            'user' => $user,
+            'password_reset_link' => $password_reset_link,
+        ];
+
+        $this->sendMessage($template, $context, $this->fromEmail, $user->getEmail());
+    }
+
     protected function sendMessage($templateName, $context, $fromEmail, $toEmail)
     {
 //        $toEmail = "imanalopher@gmail.com";
