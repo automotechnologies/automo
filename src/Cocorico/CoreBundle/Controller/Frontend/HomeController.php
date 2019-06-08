@@ -23,31 +23,30 @@ use Symfony\Component\HttpFoundation\Response;
 class HomeController extends Controller
 {
     /**
-     * @Route("/", name="cocorico_home")
+     * @Route(name="cocorico_home")
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function indexAction(Request $request)
     {
         $listings = $this->get("cocorico.listing_search.manager")->getHighestRanked(
             $this->get('cocorico.listing_search_request'),
-            6,
+            8,
             $request->getLocale()
         );
 
-        return $this->render(
-            'CocoricoCoreBundle:Frontend\Home:index.html.twig',
-            array(
+        return $this->render('CocoricoCoreBundle:Frontend\Home:index.html.twig',
+            [
                 'listings' => $listings->getIterator(),
-            )
+            ]
         );
     }
 
 
     /**
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function rssFeedsAction()
     {

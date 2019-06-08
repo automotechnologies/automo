@@ -21,6 +21,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -59,12 +60,8 @@ class BookingController extends Controller
      *
      * @return Response
      */
-    public function newAction(
-        Request $request,
-        Listing $listing,
-        \DateTime $start,
-        \DateTime $end
-    ) {
+    public function newAction(Request $request, Listing $listing, \DateTime $start, \DateTime $end)
+    {
         $bookingHandler = $this->get('cocorico.form.handler.booking');
         $booking = $bookingHandler->init($this->getUser(), $listing, $start, $end);
         //Availability is validated through BookingValidator and amounts are setted through Form Event PRE_SET_DATA
@@ -187,7 +184,7 @@ class BookingController extends Controller
      *
      * @param Booking $booking The entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return Form The form
      */
     private function createCreateForm(Booking $booking)
     {
@@ -195,17 +192,17 @@ class BookingController extends Controller
             '',
             BookingNewType::class,
             $booking,
-            array(
+            [
                 'method' => 'POST',
                 'action' => $this->generateUrl(
                     'cocorico_booking_new',
-                    array(
+                    [
                         'listing_id' => $booking->getListing()->getId(),
                         'start' => $booking->getStart()->format('Y-m-d-H:i'),
                         'end' => $booking->getEnd()->format('Y-m-d-H:i'),
-                    )
+                    ]
                 ),
-            )
+            ]
         );
 
         return $form;
