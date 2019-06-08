@@ -85,7 +85,7 @@ class UserAddress
      * @ORM\Column(name="country", type="string", length=3, nullable=true)
      *
      */
-    protected $country = "FR";
+    protected $country = "ID";
 
     public function __construct()
     {
