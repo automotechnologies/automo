@@ -46,7 +46,7 @@
 
 {%- block price_range_widget -%}
     {% set listing_step = 10 %}
-    {% if app.session.get('currency')|lower == 'idr' %}
+    {% if app.session.get('currency') is null or app.session.get('currency')|lower == 'idr' %}
         {% set priceMax = listing_price_idr_max %}
         {% set priceMin = listing_price_idr_min %}
         {% set listing_step = listing_price_idr_step %}
