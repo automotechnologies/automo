@@ -19,3 +19,12 @@ services:
             - ~
             - Cocorico\UserBundle\Entity\AccountConfirmation
             - ~
+
+    sonata.admin.listing_publish_notification:
+        class: Cocorico\UserBundle\Admin\ListingPublishNotificationAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'ListingPublishNotification', group: 'Users' }
+        arguments:
+            - ~
+            - Cocorico\CoreBundle\Entity\ListingPublishNotification
+            - ~

@@ -2,6 +2,8 @@
 
 namespace Cocorico\UserBundle\Mailer;
 
+use Cocorico\CoreBundle\Entity\Listing;
+use Cocorico\CoreBundle\Entity\ListingPublishNotification;
 use Cocorico\UserBundle\Entity\AccountConfirmation;
 use Cocorico\UserBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
@@ -21,6 +23,7 @@ class EmailNotification
     protected $fromEmail;
     private   $sendgridKey;
     private   $em;
+    private   $templates;
 
     /**
      * @param \Swift_Mailer         $mailer
@@ -50,6 +53,7 @@ class EmailNotification
         $this->locales = $parameters['locales'];
         $this->fromEmail = $parameters['from_email'];
         $this->locale = $parameters['locale'];
+        $this->templates = $parameters['templates'];
         if ($requestStack->getCurrentRequest()) {
             $this->locale = $requestStack->getCurrentRequest()->getLocale();
         }
@@ -95,6 +99,33 @@ class EmailNotification
         $this->sendMessage($template, $context, $this->fromEmail, $user->getEmail());
     }
 
+    /**
+     * @param Listing $listing
+     */
+    public function sendListingActivatedMessageToOfferer(Listing $listing)
+    {
+        $user = $listing->getUser();
+        $userLocale = $user->guessPreferredLanguage($this->locales, $this->locale);
+        $template = $this->templates['listing_activated_offerer'];
+
+        $listingCalendarEditUrl = $this->router->generate(
+            'cocorico_dashboard_listing_edit_availabilities_status',
+            [
+                'listing_id' => $listing->getId(),
+                '_locale' => $userLocale,
+            ],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
+
+        $context = [
+            'user' => $user,
+            'listing' => $listing,
+            'listing_calendar_edit_url' => $listingCalendarEditUrl,
+        ];
+
+        $this->sendMessage($template, $context, $this->fromEmail, $user->getEmail());
+    }
+
     protected function sendMessage($templateName, $context, $fromEmail, $toEmail)
     {
 //        $toEmail = "imanalopher@gmail.com";
@@ -108,6 +139,29 @@ class EmailNotification
             $context['user_locale'] = $user->guessPreferredLanguage($this->locales, $this->locale);
             $context['locale'] = $context['user_locale'];
             $context['app']['request']['locale'] = $context['user_locale'];
+        }
+
+        if (isset($context['listing'])) {
+            /** @var Listing $listing */
+            $listing = $context['listing'];
+            $translations = $listing->getTranslations();
+            if ($translations->count() && isset($translations[$context['user_locale']])) {
+                $slug = $translations[$context['user_locale']]->getSlug();
+                $title = $translations[$context['user_locale']]->getTitle();
+            } else {
+                $slug = $listing->getSlug();
+                $title = $listing->getTitle();
+            }
+            $context['listing_public_url'] = $this->router->generate(
+                'cocorico_listing_show',
+                [
+                    '_locale' => $context['user_locale'],
+                    'slug' => $slug
+                ],
+                UrlGeneratorInterface::ABSOLUTE_URL
+            );
+
+            $context['listing_title'] = $title;
         }
 
         try {
@@ -128,21 +182,38 @@ class EmailNotification
             $email->addContent("text/plain", $textBody);
             $email->addContent("text/html", $htmlBody);
             $sendgrid = new \SendGrid($this->sendgridKey);
-            try {
-                $response = $sendgrid->send($email);
 
-                $accountConfirm = new AccountConfirmation();
-                $accountConfirm->setEmail($toEmail);
-                $accountConfirm->setStatus($response->statusCode());
-                $accountConfirm->setHeader($response->headers());
-                $accountConfirm->setBody($response->body());
+            if (isset($context['user'])) {
+                try {
+                    $response = $sendgrid->send($email);
 
-                $this->em->persist($accountConfirm);
-                $this->em->flush();
-            } catch (\Exception $e) {
-//                dump('Caught exception: '. $e->getMessage());
+                    $accountConfirm = new AccountConfirmation();
+                    $accountConfirm->setEmail($toEmail);
+                    $accountConfirm->setStatus($response->statusCode());
+                    $accountConfirm->setHeader($response->headers());
+                    $accountConfirm->setBody($response->body());
+
+                    $this->em->persist($accountConfirm);
+                    $this->em->flush();
+                } catch (\Exception $e) {
+                }
+
+            } elseif (isset($context['listing'])) {
+                try {
+                    $response = $sendgrid->send($email);
+
+                    $listingPublishNotification = new ListingPublishNotification();
+                    $listingPublishNotification->setEmail($toEmail);
+                    $listingPublishNotification->setStatus($response->statusCode());
+                    $listingPublishNotification->setHeader($response->headers());
+                    $listingPublishNotification->setBody($response->body());
+
+                    $this->em->persist($listingPublishNotification);
+                    $this->em->flush();
+                } catch (\Exception $exception) {
+
+                }
             }
-//            dump($email);
         } catch (\Exception $e) {
         }
     }
