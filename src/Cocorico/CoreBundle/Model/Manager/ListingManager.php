@@ -23,6 +23,7 @@ use Cocorico\CoreBundle\Model\ListingCategoryListingCategoryFieldInterface;
 use Cocorico\CoreBundle\Model\ListingOptionInterface;
 use Cocorico\CoreBundle\Repository\ListingCharacteristicRepository;
 use Cocorico\CoreBundle\Repository\ListingRepository;
+use Cocorico\UserBundle\Mailer\EmailNotification;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Pagination\Paginator;
@@ -36,26 +37,30 @@ class ListingManager extends BaseManager
     protected $newListingIsPublished;
     public $maxPerPage;
     protected $mailer;
+    protected $emailNotification;
 
     /**
-     * @param EntityManager   $em
-     * @param TokenStorage    $securityTokenStorage
-     * @param int             $newListingIsPublished
-     * @param int             $maxPerPage
-     * @param TwigSwiftMailer $mailer
+     * @param EntityManager     $em
+     * @param TokenStorage      $securityTokenStorage
+     * @param int               $newListingIsPublished
+     * @param int               $maxPerPage
+     * @param TwigSwiftMailer   $mailer
+     * @param EmailNotification $emailNotification
      */
     public function __construct(
         EntityManager $em,
         TokenStorage $securityTokenStorage,
         $newListingIsPublished,
         $maxPerPage,
-        TwigSwiftMailer $mailer
+        TwigSwiftMailer $mailer,
+        EmailNotification $emailNotification
     ) {
         $this->em = $em;
         $this->securityTokenStorage = $securityTokenStorage;
         $this->newListingIsPublished = $newListingIsPublished;
         $this->maxPerPage = $maxPerPage;
         $this->mailer = $mailer;
+        $this->emailNotification = $emailNotification;
     }
 
     /**
@@ -104,8 +109,8 @@ class ListingManager extends BaseManager
         $this->em->refresh($listing);
 
         if ($listingPublished) {
-            ##TODO send via SendGrid
-            $this->mailer->sendListingActivatedMessageToOfferer($listing);
+//            $this->mailer->sendListingActivatedMessageToOfferer($listing);
+            $this->emailNotification->sendListingActivatedMessageToOfferer($listing);
         }
 
         return $listing;
