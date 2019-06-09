@@ -14,6 +14,7 @@ use Cocorico\CoreBundle\Entity\Booking;
 use Cocorico\CoreBundle\Entity\Listing;
 use Cocorico\CoreBundle\Model\Manager\ListingManager;
 use Cocorico\UserBundle\Entity\User;
+use Doctrine\ORM\OptimisticLockException;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
@@ -71,7 +72,7 @@ class ListingFormHandler
      * @param Form $form
      *
      * @return Booking|string
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws OptimisticLockException
      */
     public function process($form)
     {
@@ -87,15 +88,12 @@ class ListingFormHandler
     /**
      * @param Form $form
      * @return boolean
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws OptimisticLockException
      */
     private function onSuccess(Form $form)
     {
         /** @var Listing $listing */
         $listing = $form->getData();
-        // I have only one solution this way
-        //TODO but need to find other good solution
-        $listing->setPrice($listing->getPrice() / 100);
         $this->listingManager->save($listing);
 
         return true;
