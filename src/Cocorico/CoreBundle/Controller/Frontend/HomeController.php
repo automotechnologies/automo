@@ -71,7 +71,7 @@ class HomeController extends Controller
                 ),
             );
 
-            $content = @file_get_contents($feed, false, stream_context_create($options));
+            $content = @file_get_contents($feed);
 
             $feeds = array();
             if ($content) {
