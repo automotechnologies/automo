@@ -91,8 +91,8 @@ class ListingSearchManager
         if ($priceRange->getMin() && $priceRange->getMax()) {
             $queryBuilder
                 ->andWhere('l.price BETWEEN :minPrice AND :maxPrice')
-                ->setParameter('minPrice', $priceRange->getMin() / 100)
-                ->setParameter('maxPrice', $priceRange->getMax() / 100);
+                ->setParameter('minPrice', $priceRange->getMin())
+                ->setParameter('maxPrice', $priceRange->getMax());
         }
 
         //Categories
