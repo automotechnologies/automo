@@ -59,21 +59,22 @@ class HomeController extends Controller
         $cacheDir = $this->getParameter('kernel.cache_dir');
         $cacheFile = $cacheDir . '/rss-home-feed.json';
         $timeDif = @(time() - filemtime($cacheFile));
-        $renderFeeds = array();
+        $renderFeeds = [];
 
         if (file_exists($cacheFile) && $timeDif < $cacheTime) {
             $renderFeeds = json_decode(@file_get_contents($cacheFile), true);
         } else {
-            $options = array(
-                'http' => array(
-                    'user_agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1',
-                    'timeout' => 5,
-                ),
-            );
+//            $options = [
+//                'http' => [
+//                    'user_agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1',
+//                    'timeout' => 5,
+//                ],
+//            ];
 
             $content = @file_get_contents($feed);
+//            @file_get_contents($feed, false, stream_context_create($options));
 
-            $feeds = array();
+            $feeds = [];
             if ($content) {
                 try {
                     $feeds = new \SimpleXMLElement($content);
@@ -105,9 +106,9 @@ class HomeController extends Controller
 
         return $this->render(
             'CocoricoCoreBundle:Frontend/Home:rss_feed.html.twig',
-            array(
+            [
                 'feeds' => $renderFeeds,
-            )
+            ]
         );
     }
 
