@@ -10,8 +10,9 @@
         <source>account_created_user.email.message</source>
         <target xml:space="preserve">Welcome %firstname%!
 
-                    Thank you for joining our website. Your account is now active.
-                </target>
+Thank you for registering at Otomo. Your account is now activated.
+
+You can now book from a wide range of automotive through Otomo.</target>
       </trans-unit>
       <trans-unit id="2147122da71224905cdb61c5102009842ff146ca" resname="account_created_user.email.subject">
         <source>account_created_user.email.subject</source>
@@ -23,8 +24,7 @@
       </trans-unit>
       <trans-unit id="853e97000eb085f59edd323edd4efa73afab7742" resname="booking.time_range.title">
         <source>booking.time_range.title</source>
-        <target xml:space="preserve">
-                    - Time range:
+        <target xml:space="preserve">                    - Time range:
                 </target>
       </trans-unit>
       <trans-unit id="f17ef1a038a42f4a585e3645125e101e00c41a0b" resname="booking_accepted_asker.email.message">
@@ -253,7 +253,7 @@ Click on the following <a href="%password_reset_link%">link</a> to set a new pas
       </trans-unit>
       <trans-unit id="aef43b2d316d5cfb834db5c2851207ad7d603ece" resname="forgot_password_user.email.subject">
         <source>forgot_password_user.email.subject</source>
-        <target>Password recovery</target>
+        <target>Otomo Password recovery</target>
       </trans-unit>
       <trans-unit id="0a1705934a8d8daaa7e148e554c3625a9a4717d6" resname="imminent_booking_asker.email.message">
         <source>imminent_booking_asker.email.message</source>
@@ -388,7 +388,7 @@ Don’t hesitate to let us know if there is anything we can do to make these req
       </trans-unit>
       <trans-unit id="10df4e23ec43b671aafea0a3a9ebc8dcc92b1bd0" resname="registration.email.subject">
         <source>registration.email.subject</source>
-        <target state="new">registration.email.subject</target>
+        <target>Activate your Otomo account</target>
       </trans-unit>
       <trans-unit id="d7c0ead101acaa46a152dfda651b653a7e54024a" resname="reminder_to_rate_asker_offerer.email.message">
         <source>reminder_to_rate_asker_offerer.email.message</source>

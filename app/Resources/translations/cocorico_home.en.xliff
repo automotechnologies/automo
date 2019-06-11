@@ -12,7 +12,7 @@
       </trans-unit>
       <trans-unit id="537c6d941057a83d467aadaf06db30b0a01da6b7" resname="home.feeds.section.header.title">
         <source>home.feeds.section.header.title</source>
-        <target state="new">Last news</target>
+        <target>Our Blog</target>
       </trans-unit>
       <trans-unit id="ac829dba1f97945e59fd87f2618384bfe8516497" resname="home.header.title">
         <source>home.header.title</source>
