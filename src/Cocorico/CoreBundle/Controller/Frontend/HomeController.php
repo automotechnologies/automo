@@ -89,15 +89,12 @@ class HomeController extends Controller
              * @var  \SimpleXMLElement $feed
              */
             foreach ($feeds as $key => $feed) {
+                $mediaArray = $feed->xpath('media:thumbnail');
+                $media = end($mediaArray);
                 $renderFeeds[$key]['title'] = (string)$feed->children()->title;
                 $renderFeeds[$key]['pubDate'] = (string)$feed->children()->pubDate;
                 $renderFeeds[$key]['link'] = (string)$feed->children()->link;
-                $description = $feed->children()->description;
-                $matches = [];
-                preg_match('/src="([^"]+)"/', $description, $matches);
-                if (count($matches)) {
-                    $renderFeeds[$key]['image'] = str_replace('http:', '', $matches[1]);
-                }
+                $renderFeeds[$key]['image'] = end($media->attributes()->url);
             }
 
             @file_put_contents($cacheFile, json_encode($renderFeeds));
