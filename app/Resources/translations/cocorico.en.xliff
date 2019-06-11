@@ -208,7 +208,7 @@
       </trans-unit>
       <trans-unit id="7922207fb51f1d5e34be3c837b7ae78b4587854a" resname="nav.asker.link">
         <source>nav.asker.link</source>
-        <target>Vendor</target>
+        <target>Customer</target>
       </trans-unit>
       <trans-unit id="64b6d2da31ab9586cf0bb982e17ac89b0c341592" resname="nav.dashboard.bookings.link">
         <source>nav.dashboard.bookings.link</source>
@@ -276,7 +276,7 @@
       </trans-unit>
       <trans-unit id="c196e5e09e7055e5a42642875a4c0891203888db" resname="nav.offerer.link">
         <source>nav.offerer.link</source>
-        <target>Customer</target>
+        <target>Vendor</target>
       </trans-unit>
       <trans-unit id="405cbec13b0e25e8c2f8c13ce8d130ef15189168" resname="nav.register.link">
         <source>nav.register.link</source>
