@@ -162,33 +162,6 @@ body {
 
 @media screen and (max-width: 480px) {
 
-.aside-footer {
-    padding: 30px 0 !important;
-}    
-
-.aside-footer .contact-info {
-    width: 100%;
-    padding: 0 0 15px;
-    text-align: left;
-    border-bottom: #ffffff solid 1px;
-}    
-
-.aside-footer .navarea {
-    padding: 25px 0 0 !important;
-    border-top: none;
-}    
-    
-  .topbar ul li {
-    margin: 0;
-    display: table-cell !important;
-    width: 50vw;
-    text-align: left;
-  }    
-
-  .form-category .form-holder {
-    padding: 25px 10px !important;
-  }    
-    
   .visual {
     background: url(../../images/wb1.jpg) no-repeat 12% #d43b4d !important;
     background-size: 103vh !important;
@@ -213,49 +186,16 @@ body {
 
    .form-category .col:first-child {
     margin-bottom: 10px !important;
-    width: 50% !important;
+    width: 100% !important;
     float: left !important;
    }
-
-   .form-category .input-append {
-    width: 45vw;
-  }
 
   .form-category .col + .col {
-    width: 50% !important;
+    width: 100% !important;
     float: left !important;
-   }
-    
- .form-category .form-holder .col.time .title {
-    width: auto;
-    margin: 12px 6px 5px 0 !important;
+    margin-bottom: 10px !important;
    }
 
-.form-category .col + .col .title {
-    width: 17vw !important;
-}    
-
-.form-category .title {
-    width: 17vw !important;
-}    
-    
-.form-category .col.categories {
-    margin-bottom: 15px !important;
-}    
-
-.form-category .form-holder .col.location {
-    width: auto;
-    margin: 0 !important;
-}    
-    
-   .col.categories {
-    width: 95vw !important;
-   }    
-    
-   .form-category .multiselect {
-    display: inline !important;
-   }    
-    
   .form-category .col-xs-12 {
     padding: 0 !important;
     text-align: left !important;
@@ -314,18 +254,8 @@ body {
 
 
 @media screen and (max-width: 414px) {
-  #header {
-    margin: 0px !important;  
-  }
-
-.form-category .multiselect .btn-group, .form-category .multiselect .btn-default {
-    width: 73vw !important;
-    margin-left: 2px !important;
-    height: 36px;
-}    
-    
- input#location {
-    width: 74vw !important;
+  input#location {
+    width: 100% !important;
   }
 
   .home-page .form-category .field-holder {
@@ -350,6 +280,7 @@ body {
 
   .form-category input.btn-default {
     width: 100% !important;
+    margin-top: 15px;
     margin-left: 0px !important;
     background-color: #737373 !important;
   }
@@ -363,70 +294,4 @@ body {
     padding: 10px !important;
   }
 
-  .listing-container {
-    margin: 0;
-    padding: 12px;
-  }
-    
-  #photos .gallery-slider .gallery-slideset .slide {
-    height: 50vh !important;
-    width: 110%;
-    margin-left: -20px;
-
-  }    
-    
-  .listing-container .tab-content {
-    margin: 0 0 30px;
-    padding: 0px !important;
-  }  
-  
- .features-list:last-child {
-    margin: 0;
-    padding: 13px !important;
-  }   
-
- #conditions p:last-child, #description p:last-child {
-    margin: 0;
-    padding: 15px;
-  }   
-    
- .features-area h3 {
-    margin-top: 0px !important;
- }
- 
-  #sidebar {
-    position: relative;
-    padding: 10px 22px !important;
-  }   
-  
-  .date-selection .col + .col {
-    margin: 0px !important;
-  }  
-    
-  .date-selection .add-on {
-    top: -32px;
-    left: 0px !important;
-    right: unset !important;
-    position: absolute; 
-  }  
-  
-  .date-selection .col .title {
-    color: #58595b;
-    display: block;
-    text-align: left;
-    font-size: 14px;
-    line-height: 17px;
-    padding-left: 30px !important;
-    margin: 0 40px 10px 0;
-   }  
-
-    div#user_contact {
-        margin-top: -40px;
-    }
-
-    .members-list {
-        position: relative;
-        margin-top: 40px;
-        padding: 18px 20px 2px;
-    }    
 }
