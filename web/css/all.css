@@ -5882,11 +5882,6 @@ span.btn:focus {
 }
 
 /* visual */
-.visual {
-    margin: 0 0 50px;
-    background: url(../images/bg-section.png) no-repeat 50% 0 #58595b;
-}
-
 .visual .title-holder {
     display: table;
     width: 100%;
