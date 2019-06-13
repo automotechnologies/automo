@@ -294,4 +294,23 @@ body {
     padding: 10px !important;
   }
 
+    .slider-secondary .slider-secondary-actions a.slider-prev {
+    left: -15px;
+    left: 0 !important;
+    top: 40% !important;
+    background-color: #c53142;
+    border-radius: 0 5px 5px 0;
+    width: 25px;
+    height: 35px;
+  }  
+
+  .slider-secondary .slider-secondary-actions a.slider-next {
+    right: 0px !important;
+    top: 40% !important;
+    width: 25px;
+    height: 35px;
+    background-color: #c53142;
+    border-radius: 5px 0 0 5px;
+   }    
+    
 }
