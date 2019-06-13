@@ -20,7 +20,7 @@
                         <li class="feed-item">
                             <a href="{{ feed.link }}" target="_blank">
                                 <div class="feed-item-image">
-                                    <img src="{{ image }}" alt=""/>
+                                    <img src="{{ image | imagine_filter('blog_news') }}" alt=""/>
                                 </div>
 
                                 <div class="feed-item-content">
