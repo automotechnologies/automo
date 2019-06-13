@@ -64,17 +64,9 @@ class HomeController extends Controller
         if (file_exists($cacheFile) && $timeDif < $cacheTime) {
             $renderFeeds = json_decode(@file_get_contents($cacheFile), true);
         } else {
-//            $options = [
-//                'http' => [
-//                    'user_agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1',
-//                    'timeout' => 5,
-//                ],
-//            ];
-
             $content = @file_get_contents($feed);
-//            @file_get_contents($feed, false, stream_context_create($options));
-
             $feeds = [];
+
             if ($content) {
                 try {
                     $feeds = new \SimpleXMLElement($content);
@@ -83,6 +75,8 @@ class HomeController extends Controller
                     // silently fail error
                 }
             }
+
+            $uploadsDir = $this->getParameter('kernel.project_dir') . "/web/uploads/blog-news";
 
             /**
              * @var                    $key
@@ -94,7 +88,14 @@ class HomeController extends Controller
                 $renderFeeds[$key]['title'] = (string)$feed->children()->title;
                 $renderFeeds[$key]['pubDate'] = (string)$feed->children()->pubDate;
                 $renderFeeds[$key]['link'] = (string)$feed->children()->link;
-                $renderFeeds[$key]['image'] = end($media->attributes()->url);
+                $imageUrl = end($media->attributes()->url);
+                $pathInfo = pathinfo($imageUrl);
+                $imageName = uniqid() . "." . $pathInfo['extension'];
+                $imageLocal = $uploadsDir .'/'. $imageName;
+                file_put_contents($imageLocal, file_get_contents($imageUrl));
+                $renderFeeds[$key]['image'] = "/uploads/blog-news/" . $imageName;
+                if ($key === 4)
+                    break;
             }
 
             @file_put_contents($cacheFile, json_encode($renderFeeds));
