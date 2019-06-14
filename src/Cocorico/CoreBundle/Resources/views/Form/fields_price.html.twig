@@ -52,7 +52,9 @@
         {% set listing_step = listing_price_idr_step %}
         {% set price_min_default = priceMin %}
         {% set price_max_default = priceMax %}
+        {% set currency = 'idr' %}
     {% else %}
+        {% set currency = 'usd' %}
         {% set price_min_default = priceMin / 100 %}
         {% set price_max_default = priceMax / 100 %}
     {% endif %}
@@ -66,6 +68,7 @@
         <strong class="title">{{ form_label(form.min) }}</strong>
         <!-- range-box -->
         <div class="range-box">
+            <input type="hidden" id="currency" value="{{ currency }}">
             <div class="range-bar ui-slider" data-min="{{ price_min_default }}" data-max="{{ price_max_default }}" data-value="{{ average_search_price }}" data-step="{{ listing_step }}">
                 <span class="ui-slider-handle">
                     <span class="value value-left">
@@ -83,8 +86,13 @@
                 <input type="hidden" id="{{ form.max.vars.id }}" class="value-max" name="{{ form.max.vars.full_name }}" value="{{ price_max }}">
             </div>
             <div class="range-price">
-                <span class="price">{{ price_min_default }} {{ currentCurrencySymbol }}</span>
-                <span class="price right">{{ price_max_default }} {{ currentCurrencySymbol }}</span>
+                {% if currency == 'idr' %}
+                    <span class="price">{{ price_min_default / 1000 ~ 'K' }} {{ currentCurrencySymbol }}</span>
+                    <span class="price right">{{ price_max_default / 1000 ~ 'K' }} {{ currentCurrencySymbol }}</span>
+                {% else %}
+                    <span class="price">{{ price_min_default }} {{ currentCurrencySymbol }}</span>
+                    <span class="price right">{{ price_max_default }} {{ currentCurrencySymbol }}</span>
+                {% endif %}
             </div>
         </div>
     </div>
