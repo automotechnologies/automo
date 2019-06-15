@@ -61,6 +61,8 @@ twig:
         listing_price_idr_min: "%listing_price_idr_min%"
         listing_price_idr_max: "%listing_price_idr_max%"
         listing_price_idr_step: 172083
+        ## Google ReCaptcha
+        google_recaptcha_site_key: "%google_recaptcha_site_key%"
 
 
     #Forms customization

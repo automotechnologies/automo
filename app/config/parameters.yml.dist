@@ -104,3 +104,7 @@ parameters:
     ## SendGrid
     email_from: null
     sendgrid_key: null
+
+    ## Google recaptcha
+    google_recaptcha_site_key: null
+    google_recaptcha_secret_key: null
