@@ -63,7 +63,7 @@ class BlogDownloadCommand extends ContainerAwareCommand
                 file_put_contents($imageLocal, file_get_contents($imageUrl));
                 $renderFeeds[$key]['image'] = "/uploads/blog-news/" . $imageName;
 
-                if ($key === 1)
+                if ($key === 4)
                     break;
             }
 
