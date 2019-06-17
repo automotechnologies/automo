@@ -11,6 +11,7 @@
 
 namespace Cocorico\CoreBundle\Controller\Frontend;
 
+use Psr\Cache\InvalidArgumentException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,6 +27,8 @@ class HomeController extends Controller
      * @Route(name="cocorico_home")
      * @param Request $request
      *
+     * @throws
+     *
      * @return Response
      */
     public function indexAction(Request $request)
@@ -39,30 +42,24 @@ class HomeController extends Controller
         return $this->render('CocoricoCoreBundle:Frontend\Home:index.html.twig',
             [
                 'listings' => $listings->getIterator(),
+                'feeds' => $this->getBlogNewsFromCache(),
             ]
         );
     }
 
-
     /**
-     *
-     * @return Response
+     * @return mixed|null
+     * @throws InvalidArgumentException
      */
-    public function rssFeedsAction()
+    private function getBlogNewsFromCache()
     {
+        $blogNews = $this->get('cache.app')->getItem('blog-news');
         $feed = $this->getParameter('cocorico.home_rss_feed');
-        if (!$feed) {
-            return new Response();
-        }
-
-        $cacheTime = 3600 * 12;
-        $cacheDir = $this->getParameter('kernel.cache_dir');
-        $cacheFile = $cacheDir . '/rss-home-feed.json';
-        $timeDif = @(time() - filemtime($cacheFile));
         $renderFeeds = [];
+        $cacheTime = 3600 * 12;
 
-        if (file_exists($cacheFile) && $timeDif < $cacheTime) {
-            $renderFeeds = json_decode(@file_get_contents($cacheFile), true);
+        if ($blogNews->isHit()) {
+            $renderFeeds = $blogNews->get();
         } else {
             $content = @file_get_contents($feed);
             $feeds = [];
@@ -97,17 +94,12 @@ class HomeController extends Controller
                 if ($key === 4)
                     break;
             }
-
-            @file_put_contents($cacheFile, json_encode($renderFeeds));
+            $blogNews->set($renderFeeds);
+            $blogNews->expiresAfter($cacheTime);
+            $this->container->get('cache.app')->save($blogNews);
         }
 
-
-        return $this->render(
-            'CocoricoCoreBundle:Frontend/Home:rss_feed.html.twig',
-            [
-                'feeds' => $renderFeeds,
-            ]
-        );
+        return $renderFeeds;
     }
 
 }

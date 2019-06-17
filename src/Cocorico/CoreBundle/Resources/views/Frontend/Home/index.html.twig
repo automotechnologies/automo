@@ -89,7 +89,7 @@
             'listings': listings
             } only %}
 
-            {{ render(controller('CocoricoCoreBundle:Frontend/Home:rssFeeds')) }}
+            {% include '@CocoricoCore/Frontend/Home/rss_feed.html.twig' with {'feeds': feeds} only %}
 
         {% endblock %}
 

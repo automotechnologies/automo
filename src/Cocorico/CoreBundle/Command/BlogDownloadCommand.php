@@ -27,14 +27,11 @@ class BlogDownloadCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $feed = $this->getContainer()->getParameter('cocorico.home_rss_feed');
-        $cacheTime = 3600 * 6;
-//        $cacheTime = 12;
-        $cacheDir = $this->getContainer()->getParameter('kernel.cache_dir');
-        $cacheFile = $cacheDir . '/rss-home-feed.json';
-        $timeDif = @(time() - filemtime($cacheFile));
+        $cacheTime = 3600 * 12;
         $renderFeeds = [];
+        $blogNews = $this->getContainer()->get('cache.app')->getItem('blog-news');
 
-        if (!file_exists($cacheFile) || $timeDif >= $cacheTime) {
+        if (!$blogNews->isHit()) {
             $content = @file_get_contents($feed);
             $feeds = [];
 
@@ -70,7 +67,9 @@ class BlogDownloadCommand extends ContainerAwareCommand
                     break;
             }
 
-            @file_put_contents($cacheFile, json_encode($renderFeeds));
+            $blogNews->set($renderFeeds);
+            $blogNews->expiresAfter($cacheTime);
+            $this->getContainer()->get('cache.app')->save($blogNews);
         }
     }
 }
