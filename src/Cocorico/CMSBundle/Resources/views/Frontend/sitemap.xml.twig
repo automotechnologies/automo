@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.w3.org/1999/xhtml">
+    {% for url in urls %}
+        <url>{# check if hostname is not alreay in url#}
+            <loc>{%if url.loc|replace({hostname:''}) == url.loc%}{{url.loc}}{%else%}{{url.loc}}{%endif%}</loc>
+
+            {% if url.lastmod is defined %}
+                <lastmod>{{url.lastmod | date('Y-m-d')}}</lastmod>
+            {% endif %}
+            {% if url.changefreq is defined %}
+                <changefreq>{{url.changefreq}}</changefreq>
+            {% endif %}
+            {% if url.priority is defined %}
+                <priority>{{url.priority}}</priority>
+            {% endif %}
+
+            {% if url.image is defined and url.image is not empty %}
+                <image:image>
+                    <image:loc>{{url.image.loc}}</image:loc>
+                    <image:title>{{ url.image.title }}</image:title>
+                </image:image>
+            {% endif %}
+        </url>
+    {% endfor %}
+</urlset>
