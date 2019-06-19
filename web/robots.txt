@@ -13,4 +13,5 @@ Disallow: /en/login-check
 Disallow: /en/login-check
 Disallow: /fr/tableau-de-bord/message/*
 Disallow: /en/dashboard/message/*
-Sitemap: https://otomo.co/sitemap.xml
+Sitemap: https://otomo.co/en/sitemap.xml
+Sitemap: https://otomo.co/id/sitemap.xml
