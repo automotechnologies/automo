@@ -23,3 +23,7 @@ cocorico_geo:
 cocorico_extra_bundle:
     resource: .
     type: extra_bundle
+
+cocorico_sitemap:
+    path: /sitemap.{_format}
+    controller: CocoricoCMSBundle:Frontend\SiteMap:index
