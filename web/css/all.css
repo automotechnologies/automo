@@ -5,6 +5,7 @@
 	4. Custom form styles
 	5. Styles for responsive breakpoints
    ---------------------------------------------------------*/
+@import "skin.css";
 /* ---------------------------------------------------------
 	1. Import styles
 ---------------------------------------------------------*/
@@ -5086,19 +5087,6 @@ input[type="radio"],
 input[type="checkbox"] {
     opacity: 0;
     visibility: hidden;
-}
-
-.skip a {
-    color: #000000;
-    top: -9999px;
-    left: -9999px;
-    position: absolute;
-}
-
-.skip a:focus {
-    position: static;
-    width: auto;
-    height: auto;
 }
 
 .btn {
