@@ -63,12 +63,11 @@
     {% block stylesheets %}
         {% stylesheets
         'css/all.css'
-        'css/vendor/bootstrap-datetimepicker.css'
         'css/vendor/bootstrap-multiselect.css'
         'css/vendor/unslider.css'
         'css/all-override.css'
 
-        filter='cssrewrite, ?minifycsscompressor' output='css/compiled/all.css' %}
+        filter='cssrewrite, ?minifycsscompressor' output='css/compiled/allHome.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all">
         {% endstylesheets %}
     {% endblock %}
@@ -79,7 +78,7 @@
             w.readyQ = [];
             w.bindReadyQ = [];
             function p(x, y) {
-                if (x == "ready") {
+                if (x === "ready") {
                     w.bindReadyQ.push(y);
                 } else {
                     w.readyQ.push(x);
@@ -175,23 +174,17 @@
     </script>
 
     {% javascripts
-    'js/vendor/moment.js'
-    'js/vendor/json2.js'
     'js/vendor/jquery.cookie.js'
     'js/vendor/jquery.touch-punch.js'
-    'js/vendor/hammer.js'
     'js/vendor/bootstrap-multiselect.js'
-    'js/vendor/bootstrap-datetimepicker.js'
-    'js/vendor/parsley.min.js'
     'js/vendor/jquery.unslider.js'
     'js/vendor/jquery.caroufredsel.min.js'
     'js/vendor/jquery.clearsearch.js'
-    'js/jquery.main.js'
+    'js/jquery.main.home.js'
     'js/jquery.main-override.js'
     'js/common.js'
-    'js/date-time.js'
 
-    filter="?jsqueeze" output='js/compiled/all.js' %}
+    filter="?jsqueeze" output='js/compiled/allHome.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 

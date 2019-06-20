@@ -11,7 +11,6 @@ jQuery(function () {
     initRowRemove();
     initCategories();
     initValidation();
-    initDatepicker();
     initRating();
     initSelectLanguage();
     jQuery('input, textarea').placeholder();
@@ -127,74 +126,6 @@ function initRating() {
     });
 }
 
-// dragable init
-function initDraggable() {
-    return false;//abe++
-    var readyClass = 'js-upload-ready';
-    var previewWidth = 150;
-    var previewHeight = 120;
-
-    jQuery('.file-selection').each(function () {
-        var container = jQuery(this);
-        var uploaderHolder = container.find('.uploader');
-        var images = container.find('.files-list .img-thumbnail');
-        var imagesHolder = container.find('.files-list');
-        var jsFileuploadInput = container.find('input[type="file"]');
-
-        ResponsiveHelper.addRange({
-            '..767': {
-                on: function () {
-                    previewWidth = 108;
-                    previewHeight = 87;
-                    jsFileuploadInput.fileupload();
-                }
-            },
-            '768..': {
-                on: function () {
-                    previewWidth = 148;
-                    previewHeight = 120;
-                }
-            }
-        });
-
-        jsFileuploadInput.fileupload({
-            url: uploaderHolder.data('url'),
-            dataType: 'json',
-            autoUpload: true,
-            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
-            maxFileSize: 10000000, // 10 MB
-            previewMaxWidth: previewWidth,
-            previewMaxHeight: previewHeight,
-            previewCrop: true,
-            dropZone: uploaderHolder,
-            done: function (e, data) {
-                var preview = jQuery('<div class="img-thumbnail"><a href="#" class="close" data-dismiss="alert" aria-label="Close"><span class="hidden">Close</span><i class="icon-cancel"></i></a><div class="image"></div></div>');
-                preview.prependTo(imagesHolder);
-                var imgHold = preview.find('.image');
-                imgHold.html(data.files[0].preview || data.files[0].name);
-            }
-        });
-
-        images.each(function () {
-            var image = jQuery(this);
-            var btnClose = image.find('a.close');
-
-            btnClose.on('click', function (e) {
-                e.preventDefault();
-                image.remove();
-            });
-        });
-
-        imagesHolder.sortable({
-            revert: true
-        });
-    });
-
-    jQuery('.js-drag-holder').sortable({
-        revert: true
-    });
-}
-
 // remove row init
 function initRowRemove() {
     jQuery('.js-removed-row').each(function () {
@@ -297,116 +228,6 @@ function initCategories() {
 
                 e.preventDefault();
             });
-        });
-    });
-}
-
-// calendar init
-function initCalendar() {
-    return;//abe++
-    jQuery('.calendar-block').each(function () {
-        var calendar = jQuery(this);
-        var dataEvents = calendar.data('events');
-        var lang = calendar.data('lang');
-
-        calendar.fullCalendar({
-            header: {
-                left: 'prev',
-                center: 'title',
-                right: 'next'
-            },
-            lang: lang,
-            firstDay: 0,
-            views: {
-                month: { // name of view
-                    titleFormat: 'MMMM - YYYY'
-                }
-            },
-            editable: false,
-            eventLimit: false, // allow "more" link when too many events
-            events: {
-                url: dataEvents ? dataEvents : ' ',
-            },
-            loading: function (bool) {
-                var self = jQuery(this);
-                var title = self.find('.fc-center h2');
-
-                if (!bool) {
-                    var string = title.html();
-                    var newString = '';
-
-                    string = string.split(' ');
-                    for (i = 0; i < string.length; i++) {
-                        if (i !== 2) {
-                            newString = newString + string[i] + ' ';
-                        } else {
-                            newString = newString + ' <span>' + string[i] + '</span> ';
-                        }
-                    }
-                    title.html(newString);
-                }
-            }
-        });
-    });
-
-    jQuery('.calendar-box').each(function () {
-        var sheduleCalendar = jQuery(this);
-        var defaultDate = sheduleCalendar.data('date');
-        var dataSheduleEvents = sheduleCalendar.data('events');
-        var lang = sheduleCalendar.data('lang');
-
-        sheduleCalendar.fullCalendar({
-            header: {
-                left: '',
-                center: 'title',
-                right: ''
-            },
-            lang: lang,
-            firstDay: 0,
-            defaultDate: defaultDate,
-            views: {
-                month: { // name of view
-                    titleFormat: 'MMMM YYYY'
-                }
-            },
-            editable: true,
-            eventLimit: false, // allow "more" link when too many events
-            events: {
-                url: dataSheduleEvents,
-            }
-        });
-    });
-}
-
-// file upload init
-function initFileUpload() {
-    return; //abe++
-    var doneClass = 'js-image-loaded';
-    var readyClass = 'js-upload-ready';
-
-    jQuery('.image-upload-holder').not('.' + readyClass).each(function () {
-        var holder = jQuery(this).addClass(readyClass);
-        var jsFileuploadInput = holder.find('input[type="file"]');
-        var preview = holder.find('.img-holder');
-
-        preview.on('click', function () {
-            jsFileuploadInput.trigger('click');
-        });
-
-        jsFileuploadInput.fileupload({
-            url: holder.data('url'),
-            dataType: 'json',
-            autoUpload: true,
-            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
-            maxFileSize: 10000000, // 10 MB
-            previewMaxWidth: preview.width(),
-            previewMaxHeight: preview.height(),
-            previewCrop: true,
-            dropZone: holder,
-            done: function (e, data) {
-                preview.html(data.files[0].preview || data.files[0].name);
-                holder.addClass(doneClass);
-            }
         });
     });
 }
