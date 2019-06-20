@@ -12,10 +12,12 @@
 namespace Cocorico\PageBundle\Controller\Frontend;
 
 use Cocorico\PageBundle\Repository\PageRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -36,9 +38,10 @@ class PageController extends Controller
      * @param  Request $request
      * @param  string  $slug
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      *
      * @throws NotFoundHttpException
+     * @throws NonUniqueResultException
      */
     public function showAction(Request $request, $slug)
     {
@@ -53,12 +56,7 @@ class PageController extends Controller
             throw new NotFoundHttpException(sprintf('%s page not found.', $slug));
         }
 
-        return $this->render(
-            '@CocoricoPage/Frontend/Page/show.html.twig',
-            array(
-                'page' => $page
-            )
-        );
+        return $this->render('@CocoricoPage/Frontend/Page/show.html.twig', ['page' => $page]);
 
     }
 }

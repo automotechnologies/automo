@@ -28,6 +28,19 @@ class SiteMapController extends Controller
 
         $listings = $em->getRepository('CocoricoCoreBundle:Listing')->findAll();
 
+        $pages = $em->getRepository('CocoricoPageBundle:Page')->findAll();
+
+        foreach ($pages as $page) {
+            $urls[] = [
+                'loc' => $this->generateUrl('cocorico_page_show', ['slug' => $page->getSlug()],
+                    UrlGeneratorInterface::ABSOLUTE_URL
+                ),
+                'priority' => '0.7',
+                'lastmod' => $page->getUpdatedAt(),
+                'changefreq' => 'monthly'
+            ];
+        }
+
         foreach ($listings as $listing) {
 
             /** @var $listingImage ListingImage */
