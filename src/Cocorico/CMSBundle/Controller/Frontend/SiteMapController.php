@@ -6,6 +6,7 @@ namespace Cocorico\CMSBundle\Controller\Frontend;
 use Cocorico\CoreBundle\Entity\ListingImage;
 use Psr\Cache\InvalidArgumentException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Cache\CacheItem;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -22,6 +23,7 @@ class SiteMapController extends Controller
      */
     public function indexAction()
     {
+        /** @var $siteMapItem CacheItem */
         $siteMapItem = $this->get('cache.app')->getItem('sitemap');
         $cacheTime = 172800; // 3600 * 48;
 
@@ -38,6 +40,7 @@ class SiteMapController extends Controller
             $listings = $em->getRepository('CocoricoCoreBundle:Listing')->findAll();
 
             $pages = $em->getRepository('CocoricoPageBundle:Page')->findAll();
+            $users = $em->getRepository('CocoricoUserBundle:User')->findAllEnabledForSitemap();
 
             foreach ($pages as $page) {
                 $urls[] = [
@@ -46,6 +49,17 @@ class SiteMapController extends Controller
                     ),
                     'priority' => '0.7',
                     'lastmod' => $page->getUpdatedAt(),
+                    'changefreq' => 'monthly'
+                ];
+            }
+
+            foreach ($users as $user) {
+                $urls[] = [
+                    'loc' => $this->generateUrl('cocorico_user_profile_show', ['id' => $user['id']],
+                        UrlGeneratorInterface::ABSOLUTE_URL
+                    ),
+                    'priority' => '0.5',
+                    'lastmod' => $user['updatedAt'],
                     'changefreq' => 'monthly'
                 ];
             }
