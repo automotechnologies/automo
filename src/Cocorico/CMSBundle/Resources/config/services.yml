@@ -8,3 +8,12 @@ services:
         arguments:
             - "@doctrine.orm.entity_manager"
         public: true
+
+    cocorico.sitemap:
+        class: Cocorico\CMSBundle\Sitemap\Sitemap
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@cache.app"
+            - "@router"
+            - "@liip_imagine.cache.manager"
+        public: true
