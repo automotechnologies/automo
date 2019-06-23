@@ -26,15 +26,11 @@ class Sitemap
         $this->manager = $manager;
     }
 
-    public function getSitemapXml()
+    public function getSitemapXml(string $lang)
     {
         /** @var $siteMapItem CacheItem */
-        $siteMapItem = $this->cache->getItem('sitemap');
+        $siteMapItem = $this->cache->getItem('sitemap-' . $lang);
         $cacheTime = 172800; // 3600 * 48;
-
-        if ($siteMapItem->isHit()) {
-            return $siteMapItem->get();
-        }
 
         $urls = [];
 
