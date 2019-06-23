@@ -28,6 +28,7 @@ class AccountConfirmationAdmin extends AbstractAdmin
             ->add('email', TextType::class)
             ->add('status', NumberType::class)
             ->add('body', TextareaType::class)
+            ->add('createdAt', 'datetime')
         ;
     }
 
