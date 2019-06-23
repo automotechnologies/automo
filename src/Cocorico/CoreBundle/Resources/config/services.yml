@@ -61,3 +61,12 @@ services:
             - "%kernel.environment%"
         tags:
             - { name: routing.loader }
+
+    #Download blog news
+    cocorico.blog_news:
+        class: Cocorico\CoreBundle\Service\BlogNews
+        arguments:
+            - "%cocorico.home_rss_feed%"
+            - "%kernel.project_dir%"
+            - "@cache.app"
+            - "@router"

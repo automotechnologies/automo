@@ -26,50 +26,10 @@ class BlogDownloadCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $feed = $this->getContainer()->getParameter('cocorico.home_rss_feed');
-        $cacheTime = 3600 * 12;
-        $renderFeeds = [];
         $blogNews = $this->getContainer()->get('cache.app')->getItem('blog-news');
 
         if (!$blogNews->isHit()) {
-            $content = @file_get_contents($feed);
-            $feeds = [];
-
-            if ($content) {
-                try {
-                    $feeds = new \SimpleXMLElement($content);
-                    $feeds = $feeds->channel->xpath('//item');
-                } catch (\Exception $e) {
-                    // silently fail error
-                }
-            }
-
-            $uploadsDir = $this->getContainer()->getParameter('kernel.project_dir') . "/web/uploads/blog-news";
-
-            /**
-             * @var                    $key
-             * @var  \SimpleXMLElement $feed
-             */
-            foreach ($feeds as $key => $feed) {
-                $mediaArray = $feed->xpath('media:thumbnail');
-                $media = end($mediaArray);
-                $renderFeeds[$key]['title'] = (string)$feed->children()->title;
-                $renderFeeds[$key]['pubDate'] = (string)$feed->children()->pubDate;
-                $renderFeeds[$key]['link'] = (string)$feed->children()->link;
-                $imageUrl = end($media->attributes()->url);
-                $pathInfo = pathinfo($imageUrl);
-                $imageName = uniqid() . "." . $pathInfo['extension'];
-                $imageLocal = $uploadsDir .'/'. $imageName;
-                file_put_contents($imageLocal, file_get_contents($imageUrl));
-                $renderFeeds[$key]['image'] = "/uploads/blog-news/" . $imageName;
-
-                if ($key === 4)
-                    break;
-            }
-
-            $blogNews->set($renderFeeds);
-            $blogNews->expiresAfter($cacheTime);
-            $this->getContainer()->get('cache.app')->save($blogNews);
+            $this->getContainer()->get('cocorico.blog_news')->getBlogNews();
         }
     }
 }
