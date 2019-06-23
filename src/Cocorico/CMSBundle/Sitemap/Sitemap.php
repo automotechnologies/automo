@@ -4,6 +4,7 @@
 namespace Cocorico\CMSBundle\Sitemap;
 
 use Cocorico\CoreBundle\Entity\ListingImage;
+use Cocorico\UserBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
@@ -51,14 +52,23 @@ class Sitemap
             ];
         }
 
+        /** @var User $user */
         foreach ($users as $user) {
+            $image = $user['imageName'] ?? 'default-user.png';
+            $url = '/uploads/users/images/' . $image;
+            $url = $this->manager->getBrowserPath($url, 'user_profile');
+
             $urls[] = [
                 'loc' => $this->router->generate('cocorico_user_profile_show', ['id' => $user['id']],
                     UrlGeneratorInterface::ABSOLUTE_URL
                 ),
                 'priority' => '0.5',
                 'lastmod' => $user['updatedAt'],
-                'changefreq' => 'monthly'
+                'changefreq' => 'monthly',
+                'image' => [
+                    'loc' => $url,
+                    'title' => $user['fullName'],
+                ],
             ];
         }
 

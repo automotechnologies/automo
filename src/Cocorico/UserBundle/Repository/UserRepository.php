@@ -111,9 +111,13 @@ class UserRepository extends EntityRepository
         $queryBuilder = $this->createQueryBuilder('u')
             ->select('u.id')
             ->addSelect('u.updatedAt')
+            ->addSelect('img.name as imageName')
+            ->addSelect("CONCAT(u.firstName, ' ', u.lastName) as fullName")
             ->where('u.enabled = :enabled')
+            ->leftJoin('u.images', 'img')
             ->andWhere('u.roles NOT LIKE :roles')
             ->setParameter('enabled', true)
+            ->groupBy('u.id')
             ->setParameter('roles', '%ROLE_SUPER_ADMIN%');
 
         try {
