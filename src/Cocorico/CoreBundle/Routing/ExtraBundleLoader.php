@@ -16,15 +16,6 @@ use Symfony\Component\Routing\RouteCollection;
 
 class ExtraBundleLoader extends Loader
 {
-    protected $bundles;
-    protected $env;
-
-    public function __construct(array $bundles, $env)
-    {
-        $this->bundles = $bundles;
-        $this->env = $env;
-    }
-
     /**
      * Add routing from extra bundles
      *
