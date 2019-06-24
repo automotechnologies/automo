@@ -3,6 +3,7 @@
 
 namespace Cocorico\CMSBundle\Sitemap;
 
+use Cocorico\CoreBundle\Entity\Listing;
 use Cocorico\CoreBundle\Entity\ListingImage;
 use Cocorico\UserBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
@@ -36,8 +37,18 @@ class Sitemap
         $urls = [];
 
         // add static urls
-        $urls[] = ['loc' => $this->router->generate('cocorico_home', [], UrlGeneratorInterface::ABSOLUTE_URL)];
-        $listings = $this->em->getRepository('CocoricoCoreBundle:Listing')->findAll();
+        $lastListing = $this->em->getRepository('CocoricoCoreBundle:Listing')->findOneBy([], ['createdAt' => 'DESC']);
+
+        if ($lastListing instanceof Listing) {
+            $urls[] = [
+                'loc' => $this->router->generate('cocorico_home', [], UrlGeneratorInterface::ABSOLUTE_URL),
+                'priority' => '0.9',
+                'lastmod' => $lastListing->getUpdatedAt(),
+                'changefreq' => 'weekly',
+            ];
+        }
+
+        $listings = $this->em->getRepository('CocoricoCoreBundle:Listing')->findBy([], ['createdAt' => 'DESC']);
         $pages = $this->em->getRepository('CocoricoPageBundle:Page')->findAll();
         $users = $this->em->getRepository('CocoricoUserBundle:User')->findAllEnabledForSitemap();
 
