@@ -56,9 +56,6 @@ services:
     #Extra bundles routing loader
     cocorico.extra_bundle.routing_loader:
         class: Cocorico\CoreBundle\Routing\ExtraBundleLoader
-        arguments:
-            - "%kernel.bundles%"
-            - "%kernel.environment%"
         tags:
             - { name: routing.loader }
 
