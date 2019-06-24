@@ -99,22 +99,8 @@
                     {% endif %}
                 </div>
 
-                {% if bundleExist('CocoricoDeliveryBundle') %}
-                    {% include 'CocoricoDeliveryBundle:Dashboard:Booking/_show_delivery.html.twig' with {
-                        'booking': booking
-                    } only %}
-                {% elseif bundleExist('CocoricoCarrierBundle') %}
-                    {% include 'CocoricoCarrierBundle:Dashboard:Booking/_show_carrier.html.twig' with {
-                        'booking': booking
-                    } only %}
-                {% endif %}
             </div>
 
-            {% if bundleExist('CocoricoListingOptionBundle') %}
-                {% include 'CocoricoListingOptionBundle:Dashboard:Booking/_booking_show_options.html.twig' with {
-                    'booking': booking
-                } only %}
-            {% endif %}
         </div>
     </div>
 
@@ -131,12 +117,6 @@
                 ?
             </button>
         </strong>
-
-        {% if bundleExist('CocoricoListingDepositBundle') %}
-            {% include 'CocoricoListingDepositBundle:Dashboard:Booking/_show_amount_deposit.html.twig' with {
-                'booking': booking
-            } only %}
-        {% endif %}
 
         {% set status_class = bookingStatusClass[booking.status] %}
         <span class="btn {{ status_class }}">
