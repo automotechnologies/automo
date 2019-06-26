@@ -15,7 +15,6 @@ class EmailNotification
 {
     protected $locale;
     protected $locales;
-    protected $mailer;
     protected $router;
     protected $twig;
     protected $requestStack;
@@ -26,7 +25,6 @@ class EmailNotification
     private   $templates;
 
     /**
-     * @param \Swift_Mailer         $mailer
      * @param UrlGeneratorInterface $router
      * @param \Twig_Environment     $twig
      * @param RequestStack          $requestStack
@@ -35,7 +33,6 @@ class EmailNotification
      * @param array                 $parameters
      */
     public function __construct(
-        \Swift_Mailer $mailer,
         UrlGeneratorInterface $router,
         \Twig_Environment $twig,
         RequestStack $requestStack,
@@ -43,7 +40,6 @@ class EmailNotification
         string $sendgridKey,
         array $parameters
     ) {
-        $this->mailer = $mailer;
         $this->router = $router;
         $this->twig = $twig;
         $this->em = $entityManager;
