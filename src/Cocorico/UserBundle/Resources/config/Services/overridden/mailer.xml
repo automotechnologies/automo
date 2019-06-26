@@ -31,7 +31,6 @@
             </argument>
         </service>
         <service id="send_notification_email" class="Cocorico\UserBundle\Mailer\EmailNotification" public="true">
-            <argument type="service" id="mailer"/>
             <argument type="service" id="router"/>
             <argument type="service" id="twig"/>
             <argument type="service" id="request_stack"/>
