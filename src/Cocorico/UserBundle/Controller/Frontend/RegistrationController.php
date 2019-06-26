@@ -85,7 +85,7 @@ class RegistrationController extends Controller
                     return new RedirectResponse($url);
                 }
             }
-	    $form->handleRequest($request);
+            $form->handleRequest($request);
             $googleReCaptchaIsValid = false;
         }
 
