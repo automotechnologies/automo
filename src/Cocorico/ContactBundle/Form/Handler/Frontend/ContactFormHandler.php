@@ -11,7 +11,7 @@
 namespace Cocorico\ContactBundle\Form\Handler\Frontend;
 
 use Cocorico\ContactBundle\Entity\Contact;
-use Cocorico\ContactBundle\Mailer\TwigSwiftMailer;
+use Cocorico\ContactBundle\Mailer\ContactMailer;
 use Cocorico\ContactBundle\Model\Manager\ContactManager;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -23,18 +23,18 @@ class ContactFormHandler
 {
     protected $request;
     protected $contactManager;
-    protected $mailer;
+    protected $contactMailer;
 
     /**
      * @param RequestStack    $requestStack
      * @param ContactManager  $contactManager
-     * @param TwigSwiftMailer $mailer
+     * @param ContactMailer $contactMailer
      */
-    public function __construct(RequestStack $requestStack, ContactManager $contactManager, TwigSwiftMailer $mailer)
+    public function __construct(RequestStack $requestStack, ContactManager $contactManager, ContactMailer $contactMailer)
     {
         $this->request = $requestStack->getCurrentRequest();
         $this->contactManager = $contactManager;
-        $this->mailer = $mailer;
+        $this->contactMailer = $contactMailer;
     }
 
     /**
@@ -64,7 +64,7 @@ class ContactFormHandler
         /** @var Contact $contact */
         $contact = $form->getData();
         $contact = $this->contactManager->save($contact);
-        $this->mailer->sendContactMessage($contact);
+        $this->contactMailer->sendContactMessage($contact);
 
         return $contact;
     }
