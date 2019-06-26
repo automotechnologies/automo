@@ -41,21 +41,40 @@ class ContactController extends Controller
         $contact = new Contact();
         $form = $this->createCreateForm($contact);
 
-        $submitted = $this->get('cocorico_contact.form.handler.contact')->process($form);
-        if ($submitted !== false) {
-            $this->get('session')->getFlashBag()->add(
-                'success',
-                $this->get('translator')->trans('contact.new.success', array(), 'cocorico_contact')
-            );
+	$googleReCaptchaIsValid = true;
+	if ($request->isMethod('POST') && $request->request->has('g-recaptcha-response') && $request->request->has('g-recaptcha-response')) {
+	    // Google reCAPTCHA API secret key
+            $secretKey = $this->getParameter('google_recaptcha_secret_key');
 
-            return $this->redirect($this->generateUrl('cocorico_contact_new'));
-        }
+	    // Verify the reCAPTCHA response
+            $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $request->request->get('g-recaptcha-response'));
+
+            // Decode json data
+            $responseData = json_decode($verifyResponse);
+
+	    if ($responseData->success) {
+		$submitted = $this->get('cocorico_contact.form.handler.contact')->process($form);
+       		if ($submitted !== false) {
+                    $this->get('session')->getFlashBag()->add(
+                        'success',
+                	$this->get('translator')->trans('contact.new.success', array(), 'cocorico_contact')
+            	    );
+
+            	    return $this->redirect($this->generateUrl('cocorico_contact_new'));
+        	}
+	    }
+	    else {
+		$form->handleRequest($request);
+	    	$googleReCaptchaIsValid = false;
+	    }
+	}
 
         return $this->render(
             'CocoricoContactBundle:Frontend:index.html.twig',
-            array(
-                'form' => $form->createView()
-            )
+            [
+                'form' => $form->createView(),
+		'googleReCaptchaIsValid' => $googleReCaptchaIsValid,
+            ]
         );
     }
 

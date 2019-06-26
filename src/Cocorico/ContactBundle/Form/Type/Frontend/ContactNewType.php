@@ -81,7 +81,7 @@ class ContactNewType extends AbstractType implements TranslationContainerInterfa
                 'data_class' => 'Cocorico\ContactBundle\Entity\Contact',
                 'translation_domain' => 'cocorico_contact',
                 'constraints' => new Valid(),
-                'validation_groups' => array('CocoricoContact'),
+                'validation_groups' => false,
             )
         );
     }
