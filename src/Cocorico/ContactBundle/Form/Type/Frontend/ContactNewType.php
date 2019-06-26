@@ -30,44 +30,44 @@ class ContactNewType extends AbstractType implements TranslationContainerInterfa
             ->add(
                 'firstName',
                 null,
-                array(
-                    'label' => 'contact.form.first_name.label'
-                )
+                [
+                    'label' => 'contact.form.first_name.label',
+                ]
             )
             ->add(
                 'lastName',
                 null,
-                array(
-                    'label' => 'contact.form.last_name.label'
-                )
+                [
+                    'label' => 'contact.form.last_name.label',
+                ]
             )
             ->add(
                 'email',
                 null,
-                array(
-                    'label' => 'contact.form.email.label'
-                )
+                [
+                    'label' => 'contact.form.email.label',
+                ]
             )
             ->add(
                 'phone',
                 null,
-                array(
-                    'label' => 'contact.form.phone.label'
-                )
+                [
+                    'label' => 'contact.form.phone.label',
+                ]
             )
             ->add(
                 'subject',
                 null,
-                array(
-                    'label' => 'contact.form.subject.label'
-                )
+                [
+                    'label' => 'contact.form.subject.label',
+                ]
             )
             ->add(
                 'message',
                 null,
-                array(
-                    'label' => 'contact.form.message.label'
-                )
+                [
+                    'label' => 'contact.form.message.label',
+                ]
             );
     }
 
@@ -77,12 +77,12 @@ class ContactNewType extends AbstractType implements TranslationContainerInterfa
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
+            [
                 'data_class' => 'Cocorico\ContactBundle\Entity\Contact',
                 'translation_domain' => 'cocorico_contact',
                 'constraints' => new Valid(),
                 'validation_groups' => false,
-            )
+            ]
         );
     }
 
