@@ -13,6 +13,11 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class AccountConfirmationAdmin extends AbstractAdmin
 {
+    protected $datagridValues = [
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'createdAt',
+    ];
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
