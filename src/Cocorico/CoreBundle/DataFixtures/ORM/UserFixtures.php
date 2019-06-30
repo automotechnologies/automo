@@ -114,7 +114,6 @@ class UserFixtures extends Fixture implements ContainerAwareInterface
         $user->setBirthday(new \DateTime('1978-07-01'));
         $user->addRole('ROLE_USER');
         $user->setEnabled(true);
-        $user->addRole('ROLE_SUPER_ADMIN');
 
         $event = new UserEvent($user);
         $this->container->get('event_dispatcher')->dispatch(UserEvents::USER_REGISTER, $event);
