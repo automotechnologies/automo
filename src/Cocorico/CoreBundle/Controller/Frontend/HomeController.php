@@ -24,7 +24,7 @@ use Symfony\Component\HttpFoundation\Response;
 class HomeController extends Controller
 {
     /**
-     * @Route(name="cocorico_home")
+     * @Route(name="cocorico_home", methods={"GET"})
      * @param Request $request
      *
      * @throws
