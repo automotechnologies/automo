@@ -125,11 +125,3 @@
         });
     </script>
 {% endblock %}
-
-{% block markup_jsonld %}
-    {{ parent() }}
-
-    {% include 'CocoricoSeoBundle:Frontend:Home/_index_markup.jsonld.twig' ignore missing with {
-    'listings': listings
-    } only %}
-{% endblock %}

@@ -509,17 +509,3 @@
     'coordinate': coordinate
     } only %}
 {% endblock %}
-
-
-
-{% block markup_jsonld %}
-    {{ parent() }}
-
-    {% include 'CocoricoSeoBundle:Frontend:Listing/_show_markup.jsonld.twig' ignore missing with {
-    'listing': listing,
-    'listing_translation': listing_translation,
-    'listing_user': listing_user,
-    'listing_location': listing_location,
-    'reviews': reviews
-    } only %}
-{% endblock %}
