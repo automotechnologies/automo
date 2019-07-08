@@ -196,6 +196,7 @@
             //Handle Ajax Unauthorised access
             handleUnauthorisedAjaxAccess("{{ path("cocorico_user_login") }}");
 
+            {% if app.environment == 'prod' %}
             <!-- WhatsHelp.io widget -->
                 (function () {
                     var options = {
@@ -212,6 +213,7 @@
                     var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
                 })();
             <!-- /WhatsHelp.io widget -->
+            {% endif %}
         });
     </script>
 {% endblock %}
