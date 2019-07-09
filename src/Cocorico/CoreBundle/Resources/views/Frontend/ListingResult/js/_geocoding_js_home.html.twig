@@ -75,11 +75,5 @@
             $searchForm.find("#location_route").val(resultLocale.route);
             $searchForm.find("#location_streetNumber").val(resultLocale.street_number);
         }
-
-        //Center modal dialog box
-        $('.modal').on('show.bs.modal', centerModal);
-        $(window).on("resize", function () {
-            $('.modal:visible').each(centerModal);
-        });
     });
 </script>
