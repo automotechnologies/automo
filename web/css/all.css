@@ -5959,7 +5959,7 @@ span.btn:focus {
 
 .aside-footer .navarea ul {
     width: 220px;
-    margin: 0 10px 0 0;
+    margin: 0 33px 0 0;
 }
 
 .aside-footer .navarea ul li + li {
@@ -5977,7 +5977,7 @@ span.btn:focus {
 
 .aside-footer .contact-info {
     color: #ffffff;
-    width: 254px;
+    width: auto;
     line-height: 17px;
 }
 
