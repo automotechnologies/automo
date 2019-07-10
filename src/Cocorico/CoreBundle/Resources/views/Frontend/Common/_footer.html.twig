@@ -67,9 +67,7 @@
     </aside>
 
 
-    {{ render(controller('CocoricoCMSBundle:Frontend/Footer:index',{
-        request: app.request
-    })) }}
+    {{ render(controller('CocoricoCMSBundle:Frontend/Footer:index')) }}
 
     <!-- footer of the page -->
     <footer id="footer" class="container text-left">
@@ -79,12 +77,6 @@
                    class="by pull-right">
                     {{ 'footer.legal_notices.link'|trans }}
                 </a>
-
-                {#<a href="http://www.cocolabs.io/fr/"#}
-                   {#class="by pull-right credit" target="_blank">#}
-                    {#<img src="{{ asset('images/marketplace-solutions.png') }}" width="45" height="15"#}
-                         {#alt="creation marketplace">#}
-                {#</a>#}
 
                 <p>
                     &copy; {{ "now"|date("Y") }} {{ 'footer.all_right_reserved'|trans }}
