@@ -13,32 +13,30 @@ namespace Cocorico\CMSBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NoResultException;
+use Doctrine\ORM\Query;
 
 class FooterRepository extends EntityRepository
 {
     /**
-     * @param string $urlHash
      * @param string $locale
      * @return array|null
      */
-    public function findByHash($urlHash, $locale)
+    public function findByHash($locale)
     {
         $queryBuilder = $this->createQueryBuilder('f')
             ->addSelect("ft")
             ->leftJoin('f.translations', 'ft')
-            ->where('(ft.urlHash IS NULL OR ft.urlHash =:urlHash)')
-            ->andWhere('ft.locale = :locale')
+            ->where('ft.locale = :locale')
             ->andWhere('f.published = :published')
             ->setParameter('locale', $locale)
             ->setParameter('published', true)
-            ->setParameter('urlHash', $urlHash)
             ->orderBy('ft.title');
         try {
             $query = $queryBuilder->getQuery();
 
             return $query->getResult();
         } catch (NoResultException $e) {
-            return null;
+            return [];
         }
     }
 
