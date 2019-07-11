@@ -12,10 +12,11 @@ body {
 }
 
 .visual {
-    margin: 0 0 50px;
-    background: url(../../images/wb1.jpg) no-repeat 20% 0 #d43b4d !important;
-    background-size: contain !important;
+    margin: 0 0 27px;
+    background: url(../../../images/web2.png) no-repeat 13% 30% #d43b4d !important;
+    background-size: 40% !important;
     height: 440px !important;
+    padding: 0px 45px 0;
 }
 
 .visual h1 {
