@@ -48,7 +48,7 @@ class FooterController extends Controller
     private function getFooter(string $locale)
     {
         $cache = $this->get('cache.app');
-        $footerItem = $cache->getItem('footer-item');
+        $footerItem = $cache->getItem('footer-item-' . $locale);
 
         if ($footerItem->isHit()) {
             return $footerItem->get();
