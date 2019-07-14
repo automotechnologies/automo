@@ -26,7 +26,7 @@ class LanguageController extends Controller
 {
     /**
      * @param  Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function switchAction(Request $request)
     {
@@ -37,12 +37,9 @@ class LanguageController extends Controller
         $languagesLinks = $this->get('cocorico.language.manager')
             ->getLanguageLinks($routeName, $routeParams, $queryString);
 
-        return $this->render(
-            '@CocoricoCore/Frontend/Common/language_switcher.html.twig',
-            array(
-                'languages_links' => $languagesLinks,
-            )
-        );
+        return $this->render('@CocoricoCore/Frontend/Common/language_switcher.html.twig', [
+            'languages_links' => $languagesLinks
+        ]);
     }
 
     /**
@@ -57,7 +54,7 @@ class LanguageController extends Controller
      */
     public function translateDataAction(Request $request)
     {
-        $response = array('textData' => '');
+        $response = ['textData' => ''];
         if ($request->isXmlHttpRequest()) {
             $from = $request->request->get('from');
             $to = $request->request->get('to');
