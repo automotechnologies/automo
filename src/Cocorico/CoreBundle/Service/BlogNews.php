@@ -39,8 +39,14 @@ class BlogNews
          * @var  \SimpleXMLElement $feed
          */
         foreach ($feeds as $key => $feed) {
-            $mediaArray = $feed->xpath('media:thumbnail');
-            $media = end($mediaArray);
+            if ('https://blog.otomo.co/2019/05/07/if-theres-something-you-should-spend-your-time-on-during-ramadan-its-this/' == (string)$feed->children()->link) {
+                $mediaArray = $feed->xpath('media:content');
+                $media = $mediaArray[2];
+            } else {
+                $mediaArray = $feed->xpath('media:thumbnail');
+                $media = end($mediaArray);
+            }
+
             $renderFeeds[$key]['title'] = (string)$feed->children()->title;
             $renderFeeds[$key]['pubDate'] = (string)$feed->children()->pubDate;
             $renderFeeds[$key]['link'] = (string)$feed->children()->link;
