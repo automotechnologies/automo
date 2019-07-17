@@ -42,6 +42,7 @@ class ListingController extends Controller
      *
      * @return RedirectResponse|Response
      * @throws OptimisticLockException
+     * @throws \Psr\Cache\InvalidArgumentException
      */
     public function newAction()
     {
@@ -52,17 +53,19 @@ class ListingController extends Controller
         $success = $formHandler->process($form);
 
         if ($success) {
-            $url = $this->generateUrl(
-                'cocorico_dashboard_listing_edit_presentation',
-                ['id' => $listing->getId()]
-            );
+            $cache = $this->get('cache.app');
+
+            $cache->deleteItem('sitemap-id');
+            $cache->deleteItem('sitemap-en');
+            $this->get('cocorico.sitemap')->getSitemapXml('en');
+            $this->get('cocorico.sitemap')->getSitemapXml('id');
 
             $this->get('session')->getFlashBag()->add(
                 'success',
                 $this->get('translator')->trans('listing.new.success', [], 'cocorico_listing')
             );
 
-            return $this->redirect($url);
+            return $this->redirectToRoute('cocorico_dashboard_listing_edit_presentation', ['id' => $listing->getId()]);
         }
 
         return $this->render(
