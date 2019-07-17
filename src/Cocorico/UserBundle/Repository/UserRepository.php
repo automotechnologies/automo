@@ -102,4 +102,30 @@ class UserRepository extends EntityRepository
             return null;
         }
     }
+
+    /**
+     * @return array|null
+     */
+    public function findAllEnabledForSitemap()
+    {
+        $queryBuilder = $this->createQueryBuilder('u')
+            ->select('u.id')
+            ->addSelect('u.updatedAt')
+            ->addSelect('img.name as imageName')
+            ->addSelect("CONCAT(u.firstName, ' ', u.lastName) as fullName")
+            ->where('u.enabled = :enabled')
+            ->leftJoin('u.images', 'img')
+            ->andWhere('u.roles NOT LIKE :roles')
+            ->setParameter('enabled', true)
+            ->groupBy('u.id')
+            ->setParameter('roles', '%ROLE_SUPER_ADMIN%');
+
+        try {
+            $query = $queryBuilder->getQuery();
+
+            return $query->getResult(AbstractQuery::HYDRATE_ARRAY);
+        } catch (NoResultException $e) {
+            return null;
+        }
+    }
 }
