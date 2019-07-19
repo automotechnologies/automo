@@ -19,6 +19,18 @@ use Doctrine\ORM\Query;
 
 class ListingRepository extends EntityRepository
 {
+    public function getImages() {
+        return $this
+            ->createQueryBuilder('l')
+            ->select('l.id')
+            ->addSelect('i.name')
+            ->leftJoin('l.images', 'i')
+            ->groupBy('l.id')
+            ->getQuery()
+            ->getArrayResult()
+        ;
+    }
+
     /**
      *
      * @return \Doctrine\ORM\QueryBuilder
