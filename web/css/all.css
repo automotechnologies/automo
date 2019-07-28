@@ -2986,18 +2986,21 @@ input[type="button"].btn-block {
     line-height: 1.428571429;
     border: 1px solid transparent;
     border-radius: 4px 4px 0 0;
+    color: #fff;
 }
 
 .nav-tabs > li > a:hover {
     border-color: #c6ccd2 #c6ccd2 #eaebec;
+    background-color: #d43b4d;
+    color: #fff;
 }
 
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-    color: #58595b;
-    background-color: #ffffff;
-    border: 1px solid #eaebec;
+    color: #fff;
+    background-color: #d43b4d;
+    border: 1px solid #d43b4d;
     border-bottom-color: transparent;
     cursor: default;
 }
@@ -8628,7 +8631,7 @@ label {
 }
 
 .nav-tabs > li > a {
-    color: #ffffff;
+    color: #444;
     text-decoration: none;
     background: #c6ccd2;
     padding: 13px 15px 10px;
@@ -9474,7 +9477,7 @@ h1.listing-title a {
 .listing-container .nav-tabs > li > a:focus,
 .listing-container .nav-tabs > li > a:active {
     outline: none;
-    background: #c6ccd2;
+    background: #d43b4d;
 }
 
 /* gallery-slider */
@@ -9998,7 +10001,7 @@ h1.listing-title a {
 .listing-detail .nav-tabs > li > a:focus,
 .listing-detail .nav-tabs > li > a:active {
     outline: none;
-    background: #c6ccd2;
+    background: #d43b4d;
 }
 
 /* main-tabs */
@@ -10345,11 +10348,12 @@ h1.listing-title a {
 /* nav-tabs */
 .nav-tabs > li > a:active,
 .nav-tabs > li > a:focus {
-    background: #c6ccd2;
+    background: #d43b4d;
+    color: #fff;
 }
 
 .nav-tabs > li.active > a:focus {
-    background: #ffffff;
+    background: #d43b4d;;
 }
 
 /* form-area */
