@@ -57,15 +57,12 @@ class FooterManager
 
 
     /**
-     * @param $url
      * @param $locale
      * @return mixed|null
      */
-    public function findByURL($url, $locale)
+    public function findByURL($locale)
     {
-        $urlHash = $this->hashUrl($url);
-        $footers = $this->getRepository()->findByHash($urlHash, $locale);
-
+        $footers = $this->getRepository()->findByHash($locale);
         return $footers;
     }
 

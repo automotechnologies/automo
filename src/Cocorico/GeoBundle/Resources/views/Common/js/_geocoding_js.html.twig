@@ -12,15 +12,17 @@
 <script type="text/javascript"
         src="//maps.googleapis.com/maps/api/js?libraries=places&language={{ app.request.locale }}{{ gKey|raw }}">
 </script>
-<script type="text/javascript"
-        src="{{ asset('js/vendor/gmap-infobox.js') }}">
-</script>
-<script type="text/javascript"
-        src="{{ asset('js/vendor/gmap-marker-clusterer.js') }}">
-</script>
-<script type="text/javascript"
-        src="{{ asset('js/vendor/gmap-marker-with-label.js') }}">
-</script>
+
+{#It is for performance for home page speed up#}
+{% if app.request.get('_route') != 'cocorico_home' %}
+    {% if app.environment == 'prod' %}
+        <script type="text/javascript" src="{{ asset('js/vendor/gmap-infobox-marker-cluster.js') }}"></script>
+    {% else %}
+        <script type="text/javascript" src="{{ asset('js/vendor/gmap-infobox.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/vendor/gmap-marker-clusterer.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/vendor/gmap-marker-with-label.js') }}"></script>
+    {% endif %}
+{% endif %}
 <style>
     .gmap-marker-label {
         color: #fff;
@@ -43,8 +45,8 @@
 
     $(function () {
         //var maxZoom = 18;
-        var defaultLat = '{{ (default_lat|default(46.227638))|e('js') }}';
-        var defaultLng = '{{ (default_lng|default(2.213749000000007))|e('js') }}';
+        var defaultLat = '{{ (default_lat|default(-6.1753942))|e('js') }}';
+        var defaultLng = '{{ (default_lng|default(106.827183))|e('js') }}';
         var defaultZoom = {{ (default_zoom|default(4))|e('js') }};
         var mapElt = $("{{ map_elt|default('') }}");
         var autoCompleteElt = $("{{ auto_complete_elt|default('') }}");
@@ -149,8 +151,6 @@
                         if (typeof translate !== 'undefined' && translate == true) {
                             translateGeocodeResultFunc(formattedResult.lat, formattedResult.lng).done(
                                 function (resultsTranslated) {
-//                                        console_log("resultsTranslated", resultsTranslated);
-//                                        console_log("formattedResult", formattedResult);
                                     deferred.resolve(
                                         $.extend(formattedResult, resultsTranslated)
                                     );
@@ -346,34 +346,6 @@
                 }
             }
         };
-
-        /**
-         * Add markers to viewport coordinates
-         */
-        function addNeSwMarkers() {
-            var currentMapViewport = map.getBounds();
-
-            var ne2 = currentMapViewport.getNorthEast();
-            latlng = new google.maps.LatLng(ne2.lat(), ne2.lng());
-
-            var markerA = new google.maps.Marker({
-                map: map,
-                position: latlng,
-                draggable: false,
-                zIndex: 0
-            });
-            markerA.setVisible(true);
-
-            var sw2 = currentMapViewport.getSouthWest();
-            latlng = new google.maps.LatLng(sw2.lat(), sw2.lng());
-            var markerB = new google.maps.Marker({
-                map: map,
-                position: latlng,
-                draggable: false,
-                zIndex: 0
-            });
-            markerB.setVisible(true);
-        }
 
 
         /**
@@ -885,7 +857,7 @@
             var strokeOpacity = 0;
 
             {% if app.environment == 'dev' %}
-            strokeOpacity = 0.5;
+                strokeOpacity = 0.5;
             {% endif %}
 
             var boundingBoxPoints = [

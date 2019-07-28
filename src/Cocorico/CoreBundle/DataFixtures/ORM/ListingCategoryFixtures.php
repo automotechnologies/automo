@@ -25,16 +25,16 @@ class ListingCategoryFixtures extends Fixture
     {
         $category = new ListingCategory();
         $category->translate('en')->setName('Category1');
-        $category->translate('fr')->setName('Categorie1');
+        $category->translate('id')->setName('Kategori1');
 
         $subCategory1 = new ListingCategory();
         $subCategory1->translate('en')->setName('Category1_1');
-        $subCategory1->translate('fr')->setName('Categorie1_1');
+        $subCategory1->translate('id')->setName('Kategori1_1');
         $subCategory1->setParent($category);
 
         $subCategory2 = new ListingCategory();
         $subCategory2->translate('en')->setName('Category1_2');
-        $subCategory2->translate('fr')->setName('Categorie1_2');
+        $subCategory2->translate('id')->setName('Kategori1_2');
         $subCategory2->setParent($category);
 
 
@@ -49,21 +49,21 @@ class ListingCategoryFixtures extends Fixture
 
         $category = new ListingCategory();
         $category->translate('en')->setName('Category2');
-        $category->translate('fr')->setName('Categorie2');
+        $category->translate('id')->setName('Kategori2');
 
         $subCategory1 = new ListingCategory();
         $subCategory1->translate('en')->setName('Category2_1');
-        $subCategory1->translate('fr')->setName('Categorie2_1');
+        $subCategory1->translate('id')->setName('Kategori2_1');
         $subCategory1->setParent($category);
 
         $subSubCategory1 = new ListingCategory();
         $subSubCategory1->translate('en')->setName('Category2_1_1');
-        $subSubCategory1->translate('fr')->setName('Categorie2_1_1');
+        $subSubCategory1->translate('id')->setName('Kategori2_1_1');
         $subSubCategory1->setParent($subCategory1);
 
         $subCategory2 = new ListingCategory();
         $subCategory2->translate('en')->setName('Category2_2');
-        $subCategory2->translate('fr')->setName('Categorie2_2');
+        $subCategory2->translate('id')->setName('Kategori2_2');
         $subCategory2->setParent($category);
 
 

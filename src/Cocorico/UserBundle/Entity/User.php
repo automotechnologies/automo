@@ -188,7 +188,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @ORM\Column(name="nationality", type="string", length=3, nullable=true)
      */
-    protected $nationality = 'FR';
+    protected $nationality = 'ID';
 
     /**
      * @var string
@@ -199,7 +199,7 @@ class User extends BaseUser implements ParticipantInterface
      *  "CocoricoRegistration", "CocoricoProfileBankAccount"
      * })
      */
-    protected $countryOfResidence = 'FR';
+    protected $countryOfResidence = 'ID';
 
     /**
      * @var string
@@ -357,7 +357,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @var string
      */
-    protected $timeZone = 'Europe/Paris';
+    protected $timeZone = 'Asia/Jakarta';
 
     /**
      * @ORM\OneToMany(targetEntity="Cocorico\MessageBundle\Entity\Message", mappedBy="sender", cascade={"remove"}, orphanRemoval=true)
@@ -1753,5 +1753,15 @@ class User extends BaseUser implements ParticipantInterface
     public function getImpersonating()
     {
         return $this;
+    }
+
+    public function addRole($role)
+    {
+        $role = strtoupper($role);
+        if (!in_array($role, $this->roles, true)) {
+            $this->roles[] = $role;
+        }
+
+        return parent::addRole($role);
     }
 }

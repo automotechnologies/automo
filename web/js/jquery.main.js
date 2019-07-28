@@ -30,9 +30,9 @@ jQuery(window).load(function () {
     //abe-- initFileUpload();
     //abe-- initDraggable();
     //abe-- initMap();
-    setTimeout(function () {
-        jQuery('body').removeClass('loading');
-    }, 500);
+    // setTimeout(function () {
+    //     jQuery('body').removeClass('loading');
+    // }, 500);
 });
 
 //abe ++
@@ -424,36 +424,54 @@ function initUiSlider() {
         var sliderStep = parseInt(slider.data('step'), 10) || 1;
         var valueLeft = slider.find('.value-left .text');
         var valueRight = slider.find('.value-right .text');
-        //abe++
-        var valueMin = valueFieldMin.val();
-        var valueMax = valueFieldMax.val();
+        var currency = holder.find('#currency').val();
+
+        if (currency === 'idr') {
+            //abe++
+            var valueMin = Math.floor((valueFieldMin.val() / 1000)) + 'K';
+            var valueMax = Math.floor((valueFieldMax.val() / 1000)) + 'K';
+        } else {
+            var valueMin = valueFieldMin.val();
+            var valueMax = valueFieldMax.val();
+        }
 
         slider.slider({
             range: true,
-            values: [valueMin, valueMax],
+            values: [valueFieldMin.val(), valueFieldMax.val()],
             min: sliderMin,
             max: sliderMax,
             step: sliderStep,
-            slide: function (event, ui) {//abe++
-                //abe++
-                valueMin = ui.values[0];
-                valueMax = ui.values[1];
-                //abe--
-                //sliderMin = ui.values[0];
-                //sliderValue = ui.values[1];
+            slide: function (event, ui) {
+                if (currency === 'idr') {
+                    valueMin = Math.floor((ui.values[0] / 1000)) + 'K';
+                    valueMax = Math.floor((ui.values[1] / 1000)) + 'K';
+                } else {
+                    valueMin = ui.values[0];
+                    valueMax = ui.values[1];
+                }
                 refreshText();
             },
             change: function (event, ui) {//abe++
-                valueMin = ui.values[0];
-                valueMax = ui.values[1];
+                if (currency === 'idr') {
+                    valueMin = Math.floor((ui.values[0] / 1000)) + 'K';
+                    valueMax = Math.floor((ui.values[1] / 1000)) + 'K';
+                } else {
+                    valueMin = ui.values[0];
+                    valueMax = ui.values[1];
+                }
                 refreshText();
             }
         });
 
         function refreshText() {
             //abe++
-            valueFieldMin.val(valueMin);
-            valueFieldMax.val(valueMax);
+            if (currency === 'idr') {
+                valueFieldMin.val(parseInt(valueMin) * 1000);
+                valueFieldMax.val(parseInt(valueMax) * 1000);
+            } else {
+                valueFieldMin.val(valueMin);
+                valueFieldMax.val(valueMax);
+            }
             valueLeft.text(valueMin);
             valueRight.text(valueMax);
         }

@@ -6,7 +6,7 @@
     {% set listing_translation = listing.translations[app.request.locale] %}
     {% set listing_location = listing.location %}
     {% set listing_user = listing.user %}
-    {% set price = (listing.price / 100) | format_price(app.request.locale, 0) %}
+    {% set price = listing.price | format_price(app.request.locale, 0) %}
     {% set listing_image = listing.images|length ? listing.images[0].name : ListingImageConstants.IMAGE_DEFAULT %}
     {% set user_image = listing_user.images|length ? listing_user.images[0].name : UserImageConstants.IMAGE_DEFAULT %}
 
@@ -67,23 +67,9 @@
                              alt="{{ listing_user.firstName }}"/>
                     </div>
                     <div class="textbox">
-                        {% if bundleExist('CocoricoDeliveryBundle') and not app.request.xmlHttpRequest %}
-                            {% include 'CocoricoDeliveryBundle:Frontend:Listing/_show_delivery.html.twig' with {
-                            'listing_delivery': listing.delivery
-                            } only %}
-                        {% endif %}
-
                         <h2>{{ listing_translation.title }}</h2>
 
                         <p>{{ listing_location.city }} </p>
-
-                        {#<!--Debug:#}
-                        {#accuracy : {{ listingTmp.accuracy|default(-1) }}<br/>#}
-                        {#distance : {{ listingTmp.distance|default(-1) }}<br/>#}
-                        {#distance_range : {{ listingTmp.distance_range|default(-1) }}<br/>#}
-                        {#platformNotation : {{ listing.platformNotation|default(-1) }}<br/>#}
-                        {#reallyAvailable : {{ listingTmp.really_available|default(-1) }}<br/>#}
-                        {#-->#}
                     </div>
                 </div>
             </div>

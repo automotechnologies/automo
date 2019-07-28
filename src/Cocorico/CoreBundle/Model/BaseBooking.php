@@ -243,14 +243,14 @@ abstract class BaseBooking
      *
      * @var string
      */
-    protected $timeZoneAsker = 'Europe/Paris';
+    protected $timeZoneAsker = 'Asia/Jakarta';
 
     /**
      * @ORM\Column(name="time_zone_offerer", type="string", length=100,  nullable=false)
      *
      * @var string
      */
-    protected $timeZoneOfferer = 'Europe/Paris';
+    protected $timeZoneOfferer = 'Asia/Jakarta';
 
     public function __construct()
     {
@@ -470,7 +470,7 @@ abstract class BaseBooking
      */
     public function getAmountExcludingVATDecimal($vatRate)
     {
-        return $this->getAmountExcludingVAT($vatRate) / 100;
+        return $this->getAmountExcludingVAT($vatRate);
     }
 
     /**
@@ -513,7 +513,7 @@ abstract class BaseBooking
      */
     public function getAmountTotalExcludingVATDecimal($vatRate)
     {
-        return $this->getAmountTotalExcludingVAT($vatRate) / 100;
+        return $this->getAmountTotalExcludingVAT($vatRate);
     }
 
 
@@ -547,7 +547,7 @@ abstract class BaseBooking
      */
     public function getAmountExcludingFeesDecimal()
     {
-        return $this->getAmountExcludingFees() / 100;
+        return $this->getAmountExcludingFees();
     }
 
     /**
@@ -659,7 +659,7 @@ abstract class BaseBooking
      */
     public function getAmountToPayToOffererExcludingVATDecimal($vatRate)
     {
-        return $this->getAmountToPayToOffererExcludingVAT($vatRate) / 100;
+        return $this->getAmountToPayToOffererExcludingVAT($vatRate);
 
     }
 
@@ -670,7 +670,7 @@ abstract class BaseBooking
      */
     public function getAmountDecimal()
     {
-        return $this->amount / 100;
+        return $this->amount;
     }
 
     /**
@@ -680,7 +680,7 @@ abstract class BaseBooking
      */
     public function getAmountTotalDecimal()
     {
-        return $this->amountTotal / 100;
+        return $this->amountTotal;
     }
 
     /**
@@ -690,7 +690,7 @@ abstract class BaseBooking
      */
     public function getAmountFeeAsAskerDecimal()
     {
-        return $this->amountFeeAsAsker / 100;
+        return $this->amountFeeAsAsker;
     }
 
     /**
@@ -700,7 +700,7 @@ abstract class BaseBooking
      */
     public function getAmountFeeAsOffererDecimal()
     {
-        return $this->amountFeeAsOfferer / 100;
+        return $this->amountFeeAsOfferer;
     }
 
     /**

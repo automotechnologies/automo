@@ -138,7 +138,8 @@ class BookingFormHandler
                 $result = -1;//form not valid
             }
         } else {
-            $result = 0; //Not submitted
+            //Not submitted $result = 0;
+            return 0;
         }
 
         return $result;

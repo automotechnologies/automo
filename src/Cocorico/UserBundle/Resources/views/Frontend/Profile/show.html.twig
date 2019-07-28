@@ -362,14 +362,3 @@
         });
     </script>
 {% endblock %}
-
-{% block markup_jsonld %}
-    {{ parent() }}
-
-    {% include 'CocoricoSeoBundle:Frontend:Profile/_show_markup.jsonld.twig' ignore missing with {
-        'user': user,
-        'user_listings': user_listings,
-        'user_description': user_description,
-        'user_address': user_address
-    } only %}
-{% endblock %}

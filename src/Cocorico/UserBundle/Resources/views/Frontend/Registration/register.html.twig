@@ -15,7 +15,8 @@
 
                         {% include '@CocoricoUser/Frontend/Common/_login_register.html.twig' with {
                         'form_registration': form,
-                        'form_login': false
+                        'form_login': false,
+			'googleReCaptchaIsValid': googleReCaptchaIsValid
                         } only %}
 
                         <div class="btn-block text-center">
@@ -28,3 +29,9 @@
 
     {% endembed %}
 {% endblock layout %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endblock %}

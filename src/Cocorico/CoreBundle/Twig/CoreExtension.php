@@ -214,19 +214,46 @@ class CoreExtension extends \Twig_Extension implements \Twig_Extension_GlobalsIn
             $precision = $this->listingPricePrecision;
         }
 
+        $kilo = false;
+
         $targetCurrency = $this->currentCurrency;
+
         if (!$convert) {
             $targetCurrency = $this->defaultCurrency;
         }
 
         $this->currencyExtension->getFormatter()->setLocale($locale);
         if ($price > 0) {
-            $price = $this->currencyExtension->convert($price, $targetCurrency, !$precision);
+            if ($targetCurrency === 'USD') {
+                $price = $this->currencyExtension->convert($price, $targetCurrency, 0);
+            } else {
+                $price = $this->currencyExtension->convert($price, $targetCurrency, !$precision);
+            }
         } else {
             $price = 0;
         }
 
-        $price = $this->currencyExtension->format($price, $targetCurrency, $precision);
+        if ($price > 1000) {
+            if ($targetCurrency === 'USD') {
+                $price = round($price / 1000, 10);
+            } else {
+                $price = intval($price / 1000);
+            }
+            $kilo = true;
+        }
+
+
+        if ($targetCurrency === 'USD') {
+            $price = $this->currencyExtension->format($price, $targetCurrency, 0);
+        } elseif ($targetCurrency === 'IDR') {
+            $price = $this->currencyExtension->format($price, $targetCurrency, $precision);
+        }
+
+        if ($targetCurrency === 'IDR') {
+            $price = str_replace($targetCurrency, 'Rp', $price);
+        }
+
+        $price = $kilo ? $price . 'K' : $price;
 
 
         return $price;
@@ -405,8 +432,8 @@ class CoreExtension extends \Twig_Extension implements \Twig_Extension_GlobalsIn
         $bookingBankWire = new \ReflectionClass("Cocorico\CoreBundle\Entity\BookingBankWire");
         $bookingBankWireConstants = $bookingBankWire->getConstants();
 
-        $bookingPayinRefund = new \ReflectionClass("Cocorico\CoreBundle\Entity\BookingPayinRefund");
-        $bookingPayinRefundConstants = $bookingPayinRefund->getConstants();
+        $bookingPayingRefund = new \ReflectionClass("Cocorico\CoreBundle\Entity\BookingPayinRefund");
+        $bookingPayingRefundConstants = $bookingPayingRefund->getConstants();
 
         return array(
             'locales' => $this->locales,
@@ -416,7 +443,7 @@ class CoreExtension extends \Twig_Extension implements \Twig_Extension_GlobalsIn
             'UserImageConstants' => $userImageConstants,
             'BookingConstants' => $bookingConstants,
             'BookingBankWireConstants' => $bookingBankWireConstants,
-            'BookingPayinRefundConstants' => $bookingPayinRefundConstants,
+            'BookingPayinRefundConstants' => $bookingPayingRefundConstants,
             'bookingStatusClass' => $bookingStatusClass,
             'timeUnit' => $this->timeUnit,
             'timeUnitIsDay' => $this->timeUnitIsDay,

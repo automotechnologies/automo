@@ -21,8 +21,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Booking controller.
@@ -56,14 +58,10 @@ class BookingController extends Controller
      * @param \DateTime $start format yyyy-mm-dd-H:i
      * @param \DateTime $end   format yyyy-mm-dd-H:i
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function newAction(
-        Request $request,
-        Listing $listing,
-        \DateTime $start,
-        \DateTime $end
-    ) {
+    public function newAction(Request $request, Listing $listing, \DateTime $start, \DateTime $end)
+    {
         $bookingHandler = $this->get('cocorico.form.handler.booking');
         $booking = $bookingHandler->init($this->getUser(), $listing, $start, $end);
         //Availability is validated through BookingValidator and amounts are setted through Form Event PRE_SET_DATA
@@ -86,10 +84,7 @@ class BookingController extends Controller
                         );
 
                         $response = new RedirectResponse(
-                            $this->generateUrl(
-                                'cocorico_dashboard_booking_show_asker',
-                                array('id' => $booking->getId())
-                            )
+                            $this->generateUrl('cocorico_booking_payment_new', ['booking_id' => $booking->getId()])
                         );
                     } else {
                         throw new \Exception('booking.new.form.error');
@@ -115,12 +110,12 @@ class BookingController extends Controller
 
         return $this->render(
             'CocoricoCoreBundle:Frontend/Booking:new.html.twig',
-            array(
+            [
                 'booking' => $booking,
                 'form' => $form->createView(),
                 //Used to hide errors fields message when a secondary submission (Voucher, Delivery, ...) is done successfully
                 'display_errors' => ($success < 2)
-            )
+            ]
         );
     }
 
@@ -189,7 +184,7 @@ class BookingController extends Controller
      *
      * @param Booking $booking The entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return Form The form
      */
     private function createCreateForm(Booking $booking)
     {
@@ -197,17 +192,17 @@ class BookingController extends Controller
             '',
             BookingNewType::class,
             $booking,
-            array(
+            [
                 'method' => 'POST',
                 'action' => $this->generateUrl(
                     'cocorico_booking_new',
-                    array(
+                    [
                         'listing_id' => $booking->getListing()->getId(),
                         'start' => $booking->getStart()->format('Y-m-d-H:i'),
                         'end' => $booking->getEnd()->format('Y-m-d-H:i'),
-                    )
+                    ]
                 ),
-            )
+            ]
         );
 
         return $form;

@@ -1,17 +1,11 @@
 {% trans_default_domain 'cocorico_booking' %}
 
-{% set optionBundleEnabled = bundleExist('CocoricoListingOptionBundle') %}
-
-{% set amount = booking.amountDecimal | format_price(app.request.locale, 2, false) %}
-{% set amount_excl_vat = booking.amountExcludingVATDecimal(vatRate) | format_price(app.request.locale, 2, false) %}
-{% set amount_total = booking.amountToPayByAskerDecimal | format_price(app.request.locale, 2, false) %}
+{#{% set amount = booking.amountDecimal | format_price(app.request.locale, 0, false) %}#}
+{#{% set amount_excl_vat = booking.amountExcludingVATDecimal(vatRate) | format_price(app.request.locale, 0, false) %}#}
+{% set amount_total = booking.amountToPayByAskerDecimal | format_price(app.request.locale, 0, false) %}
 {#{% set amount_total_excl_vat = booking.amountTotalExcludingVATDecimal(vatRate) | format_price(app.request.locale, 2, false) %}#}
-{% set amount_total_vat = booking.amountTotalVATDecimal(vatRate) | format_price(app.request.locale, 2, false) %}
-{% set fee_as_asker = booking.amountFeeAsAskerDecimal | format_price(app.request.locale, 2, false) %}
-
-{% if optionBundleEnabled %}
-    {% set amount = (booking.amountDecimal - booking.amountOptionsDecimal) | format_price(app.request.locale, 2, false) %}
-{% endif %}
+{% set amount_total_vat = booking.amountTotalVATDecimal(vatRate) | format_price(app.request.locale, 0, false) %}
+{% set fee_as_asker = booking.amountFeeAsAskerDecimal | format_price(app.request.locale, 0, false) %}
 
 <div class="total-reservation">
     <h3>{{ 'booking.total_amount'|trans }}</h3>

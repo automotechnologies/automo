@@ -1,6 +1,17 @@
 <!doctype html>
 <html lang="{{ app.request.locale }}">
 <head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114148924-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-114148924-3');
+    </script>
+
     <title>
         {%- block meta_title -%}
             {{ app.request.requestUri|slice(4)|replace({'/': " > ", '-': " ", '_': " "})|ucwords ~ " - " ~ cocorico_site_name }}
@@ -23,11 +34,29 @@
     <![endif]-->
 
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('apple-icon-57x57.png') }}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('apple-icon-60x60.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('apple-icon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('apple-icon-76x76.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('apple-icon-114x114.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('apple-icon-120x120.png') }}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('apple-icon-144x144.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('apple-icon-152x152.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-icon-180x180.png') }}">
+
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+
     <link rel="manifest" href="{{ asset('manifest.json') }}">
-    <link rel="mask-icon" href="{{ asset('safari-pinned-tab.svg') }}" color="#d61022">
+    <meta name="msapplication-config" content="{{ asset('browserconfig.xml') }}">
+
+    <meta name="msapplication-square70x70logo" content="{{ asset('ms-icon-70x70.png') }}">
+    <meta name="msapplication-square150x150logo" content="{{ asset('ms-icon-150x150.png') }}">
+    <meta name="msapplication-wide310x150logo" content="{{ asset('ms-icon-310x310.png') }}">
+    <meta name="msapplication-square310x310logo" content="{{ asset('ms-icon-310x310.png') }}">
+
     <meta name="theme-color" content="#ffffff">
 
     {% block stylesheets %}
@@ -36,8 +65,8 @@
         'css/vendor/bootstrap-datetimepicker.css'
         'css/vendor/bootstrap-multiselect.css'
         'css/vendor/unslider.css'
-        'css/vendor/cookie-consent.css'
         'css/all-override.css'
+        'css/skin.css'
 
         filter='cssrewrite, ?minifycsscompressor' output='css/compiled/all.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all">
@@ -69,32 +98,33 @@
     </script>
 
     {% include '@CocoricoCore/Frontend/Common/js/_google_analytics_js.html.twig' only %}
+    
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '467459190659930');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=467459190659930&ev=PageView&noscript=1"
+    /></noscript>
 
-    {#Rich snippets used by search engines like google  #}
-    {%- block markup_jsonld -%}
-        {% include 'CocoricoSeoBundle:Frontend:Common/_markup.jsonld.twig' ignore missing only %}
-    {%- endblock -%}
-
-    {% include '@CocoricoCore/Frontend/Common/_cookie_consent_js.html.twig' only %}
 </head>
 
-<body class="loading {% block theme %}{% endblock %}">
+<body class="{% block theme %}{% endblock %}">
 <!-- allow a user to go to the main content of the page -->
 <noscript>Javascript must be enabled for the correct page display</noscript>
 
 {% include '@CocoricoCore/Frontend/Common/js/_google_tag_manager_js.html.twig' only %}
 
-<div class="skip">
-    <a tabindex="1" href="#main">skip to content</a>
-</div>
-
 <div id="wrapper">
     {% block layout %}{% endblock %}
-</div>
-
-<!-- allow a user to go to the top of the page -->
-<div class="skip">
-    <a href="#header">back to top</a>
 </div>
 
 {% block javascripts %}
@@ -160,7 +190,6 @@
     'js/jquery.main-override.js'
     'js/common.js'
     'js/date-time.js'
-    'js/vendor/cookie-consent.js'
 
     filter="?jsqueeze" output='js/compiled/all.js' %}
     <script src="{{ asset_url }}"></script>
@@ -174,6 +203,25 @@
             }
             //Handle Ajax Unauthorised access
             handleUnauthorisedAjaxAccess("{{ path("cocorico_user_login") }}");
+
+            {% if app.environment == 'prod' %}
+            <!-- WhatsHelp.io widget -->
+                setTimeout(function () {
+                    var options = {
+                        whatsapp: "+628111000722", // WhatsApp number
+                        call: "+628111000722", // Call phone number
+                        call_to_action: "Need help? Butuh bantuan?", // Call to action
+                        button_color: "#E74339", // Color of button
+                        position: "left", // Position may be 'right' or 'left'
+                        order: "whatsapp,call", // Order of buttons
+                    };
+                    var proto = document.location.protocol, host = "whatshelp.io", url = proto + "//static." + host;
+                    var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+                    s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+                    var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+                }, 5000);
+            <!-- /WhatsHelp.io widget -->
+            {% endif %}
         });
     </script>
 {% endblock %}

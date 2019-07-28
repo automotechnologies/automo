@@ -4,11 +4,6 @@
 <fieldset>
     <legend class="hidden">form-category</legend>
     <div class="form-holder">
-        <div class="keyword clearable">
-            {% if bundleExist('CocoricoElasticsearchBundle') %}
-                {% include '@CocoricoElasticsearch/_form_keywords.html.twig' %}
-            {% endif %}
-        </div>
         <div class="col categories">
             <strong class="title">
                 {{ form_label(form.categories) }}

@@ -10,3 +10,21 @@ services:
         calls:
             - [ setTranslationDomain, [cocorico_user]]
             - [ setLocales, ["%cocorico.locales%"]]
+
+    sonata.admin.account_confirmation:
+        class: Cocorico\UserBundle\Admin\AccountConfirmationAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'AccountConfirm', group: 'Users' }
+        arguments:
+            - ~
+            - Cocorico\UserBundle\Entity\AccountConfirmation
+            - ~
+
+    sonata.admin.listing_publish_notification:
+        class: Cocorico\UserBundle\Admin\ListingPublishNotificationAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'ListingPublishNotification', group: 'Users' }
+        arguments:
+            - ~
+            - Cocorico\CoreBundle\Entity\ListingPublishNotification
+            - ~

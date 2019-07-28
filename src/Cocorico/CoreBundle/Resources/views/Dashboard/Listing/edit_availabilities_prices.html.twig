@@ -36,10 +36,6 @@
                     <div class="price-section">
                         {{ render(controller('CocoricoCoreBundle:Dashboard/Offerer/Listing:priceForm', {'listing': listing})) }}
 
-                        {% if bundleExist('CocoricoListingDepositBundle') %}
-                            {{ render(controller('CocoricoListingDepositBundle:Dashboard/Offerer/ListingDeposit:depositForm', {'listing': listing})) }}
-                        {% endif %}
-
                         <!-- simulator -->
                         {{ render(controller('CocoricoCoreBundle:Dashboard/Offerer/ListingPriceSimulator:priceSimulatorForm', {'listing': listing})) }}
                     </div>
@@ -49,13 +45,6 @@
                         <h2>{{ 'listing.edit.discount.title'|trans }}</h2>
                         {{ render(controller('CocoricoCoreBundle:Dashboard/Offerer/ListingDiscount:discountForm', {'listing': listing})) }}
                     </div>
-
-                    {% if bundleExist('CocoricoListingOptionBundle') %}
-                        <div class="option-area">
-                            <h2>{{ 'listing.edit.options.title'|trans }}</h2>
-                            {{ render(controller('CocoricoListingOptionBundle:Dashboard/Offerer/ListingOption:optionForm', {'listing': listing})) }}
-                        </div>
-                    {% endif %}
 
                     <div class="booking-policy">
                         <h2>{{ 'listing.edit.policy.title'|trans }}</h2>

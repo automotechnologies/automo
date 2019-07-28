@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="{{ app.request.locale }}">
+<head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114148924-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-114148924-3');
+    </script>
+
+    <title>
+        {%- block meta_title -%}
+            {{ app.request.requestUri|slice(4)|replace({'/': " > ", '-': " ", '_': " "})|ucwords ~ " - " ~ cocorico_site_name }}
+        {%- endblock -%}
+    </title>
+    <meta name="description" content="{%- block meta_description -%}{{ cocorico_short_description }}{%- endblock -%}">
+
+    {%- block open_graph_data -%}{%- endblock -%}
+
+    <meta charset="utf-8">
+    <!-- set the viewport width and initial-scale on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- include HTML5 IE enabling script and stylesheet for IE -->
+    <!--[if lt IE 9]>
+    <link type="text/css" media="all" rel="stylesheet" href="{{ asset('css/ie.css') }}">
+    <script type="text/javascript" src="{{ asset('js/vendor/ie.js') }}"></script>
+    <![endif]-->
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('apple-icon-57x57.png') }}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('apple-icon-60x60.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('apple-icon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('apple-icon-76x76.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('apple-icon-114x114.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('apple-icon-120x120.png') }}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('apple-icon-144x144.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('apple-icon-152x152.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-icon-180x180.png') }}">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
+    <meta name="msapplication-config" content="{{ asset('browserconfig.xml') }}">
+
+    <meta name="msapplication-square70x70logo" content="{{ asset('ms-icon-70x70.png') }}">
+    <meta name="msapplication-square150x150logo" content="{{ asset('ms-icon-150x150.png') }}">
+    <meta name="msapplication-wide310x150logo" content="{{ asset('ms-icon-310x310.png') }}">
+    <meta name="msapplication-square310x310logo" content="{{ asset('ms-icon-310x310.png') }}">
+
+    <meta name="theme-color" content="#ffffff">
+
+    {% block stylesheets %}
+        {% stylesheets
+        'css/all.css'
+        'css/vendor/bootstrap-multiselect.css'
+        'css/all-override.css'
+        'css/skin.css'
+
+        filter='cssrewrite, ?minifycsscompressor' output='css/compiled/allHome.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all">
+        {% endstylesheets %}
+    {% endblock %}
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+
+    {# Safely using .ready() before including jQuery #}
+    <script>
+        (function (w, d, u) {
+            w.readyQ = [];
+            w.bindReadyQ = [];
+            function p(x, y) {
+                if (x === "ready") {
+                    w.bindReadyQ.push(y);
+                } else {
+                    w.readyQ.push(x);
+                }
+            }
+
+            var a = {ready: p, bind: p};
+            w.$ = w.jQuery = function (f) {
+                if (f === d || f === u) {
+                    return a
+                } else {
+                    p(f)
+                }
+            }
+        })(window, document);
+    </script>
+
+    {% include '@CocoricoCore/Frontend/Common/js/_google_analytics_js.html.twig' only %}
+    
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '467459190659930');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=467459190659930&ev=PageView&noscript=1"
+    /></noscript>
+
+</head>
+
+<body class="{% block theme %}{% endblock %}">
+<!-- allow a user to go to the main content of the page -->
+<noscript>Javascript must be enabled for the correct page display</noscript>
+
+{% include '@CocoricoCore/Frontend/Common/js/_google_tag_manager_js.html.twig' only %}
+
+<div id="wrapper">
+    {% block layout %}{% endblock %}
+</div>
+
+{% block javascripts %}
+    <script>
+        //Global Javascript variables
+        var locale = '{{ app.request.locale }}';
+        var locales = {{ locales|json_encode|raw }};
+        var defaultCurrency = '{{ defaultCurrency }}';
+        var currentCurrency = '{{ currentCurrency }}';
+        //Does the app is in day mode or time mode
+        var timeUnitIsDay = {{ timeUnitIsDay ? 'true' : 'false' }};
+        var timeUnitAllDay = {{ timeUnitAllDay ? 'true' : 'false' }};
+        var endDayIncluded = {{ endDayIncluded ? 'true' : 'false' }};
+        var isAuthenticated = {{ app.user is not null and is_granted("IS_AUTHENTICATED_FULLY") ? 'true' : 'false' }};
+        var hoursAvailable = {{ timeHoursAvailable|json_encode|raw }};
+    </script>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script type="text/javascript"
+            src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/i18n/jquery-ui-i18n.min.js"></script>
+
+    <script type="text/javascript">
+        var jqEnabled = window.jQuery && typeof window.jQuery("html") !== 'undefined';
+        jqEnabled || document.write('<script src="{{ asset('js/vendor/jquery.min.js') }}"><\/script>');
+        jqEnabled || document.write('<script src="{{ asset('js/vendor/jquery-ui.min.js') }}"><\/script>');
+        jqEnabled || document.write('<script src="{{ asset('js/vendor/jquery-ui-i18n.min.js') }}"><\/script>');
+    </script>
+
+    {#Safely using .ready() before including jQuery #}
+    <script>
+        (function ($, d) {
+            $.each(readyQ, function (i, f) {
+                $(f)
+            });
+            $.each(bindReadyQ, function (i, f) {
+                $(d).bind("ready", f)
+            })
+        })(jQuery, document)
+    </script>
+
+    <script type="text/javascript"
+            src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $.fn.modal || document.write('<script src="{{ asset('js/vendor/bootstrap.min.js') }}"><\/script>');
+    </script>
+
+    {% javascripts
+    'js/vendor/jquery.cookie.js'
+    'js/vendor/jquery.touch-punch.js'
+    'js/vendor/bootstrap-multiselect.js'
+    'js/vendor/jquery.caroufredsel.min.js'
+    'js/vendor/jquery.clearsearch.js'
+    'js/jquery.main.home.js'
+    'js/jquery.main-override.js'
+    'js/common.js'
+
+    filter="?jsqueeze" output='js/compiled/allHome.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <script type="text/javascript">
+        $(function () {
+            if (isAuthenticated) {
+                //Unread messages
+                getNbUnReadMessages("{{ path('cocorico_dashboard_message_nb_unread') }}");
+            }
+            //Handle Ajax Unauthorised access
+            handleUnauthorisedAjaxAccess("{{ path("cocorico_user_login") }}");
+
+            {% if app.environment == 'prod' %}
+            <!-- WhatsHelp.io widget -->
+                setTimeout(function () {
+                    var options = {
+                        whatsapp: "+628111000722", // WhatsApp number
+                        call: "+628111000722", // Call phone number
+                        call_to_action: "Need help? Butuh bantuan?", // Call to action
+                        button_color: "#E74339", // Color of button
+                        position: "left", // Position may be 'right' or 'left'
+                        order: "whatsapp,call", // Order of buttons
+                    };
+                    var proto = document.location.protocol, host = "whatshelp.io", url = proto + "//static." + host;
+                    var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+                    s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+                    var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+                }, 5000);
+            <!-- /WhatsHelp.io widget -->
+            {% endif %}
+        });
+    </script>
+{% endblock %}
+
+</body>
+</html>

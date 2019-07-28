@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends '::baseHome.html.twig' %}
 
 {%- block meta_title -%}
     {{ 'home.meta_title'|trans({}, 'cocorico_meta') ~ " - " ~ cocorico_site_name }}
@@ -41,45 +41,39 @@
                 <div class="row">
                     <!-- info-box -->
                     <div class="col-xs-12 col-sm-6 col-md-4 info-box">
-                        <img src="{{ asset('images/icon1.png') }}" alt="icon description" class="pull-left icon">
+                        <img src="{{ asset('images/icon-1.png') }}" alt="icon description" class="pull-left icon">
 
                         <div class="textbox">
                             <h2>
                                 <a href="#">{{ 'home.subinfo.title1'|trans|raw }}</a>
                             </h2>
 
-                            <p>
-                                {{ 'home.subinfo.desc1'|trans|raw }}
-                            </p>
+                            <p>{{ 'home.subinfo.desc1'|trans|raw }}</p>
                         </div>
                     </div>
                     <!-- info-box -->
                     <div class="col-xs-12 col-sm-6 col-md-4 info-box">
-                        <img src="{{ asset('images/icon2.png') }}" alt="icon description" class="pull-left icon">
+                        <img src="{{ asset('images/icon-2.png') }}" alt="icon description" class="pull-left icon">
 
                         <div class="textbox">
                             <h2>
                                 <a href="#">{{ 'home.subinfo.title2'|trans|raw }}</a>
                             </h2>
 
-                            <p>
-                                {{ 'home.subinfo.desc2'|trans|raw }}
-                            </p>
+                            <p>{{ 'home.subinfo.desc2'|trans|raw }}</p>
                         </div>
                     </div>
                     <div class="clearfix visible-sm"></div>
                     <!-- info-box -->
                     <div class="col-xs-12 col-sm-6 col-md-4 info-box">
-                        <img src="{{ asset('images/icon3.png') }}" alt="icon description" class="pull-left icon">
+                        <img src="{{ asset('images/icon-3.png') }}" alt="icon description" class="pull-left icon">
 
                         <div class="textbox">
                             <h2>
                                 <a href="#">{{ 'home.subinfo.title3'|trans|raw }}</a>
                             </h2>
 
-                            <p>
-                                {{ 'home.subinfo.desc3'|trans|raw }}
-                            </p>
+                            <p>{{ 'home.subinfo.desc3'|trans|raw }}</p>
                         </div>
                     </div>
                 </div>
@@ -89,7 +83,7 @@
             'listings': listings
             } only %}
 
-            {{ render(controller('CocoricoCoreBundle:Frontend/Home:rssFeeds')) }}
+            {% include '@CocoricoCore/Frontend/Home/rss_feed.html.twig' with {'feeds': feeds} only %}
 
         {% endblock %}
 
@@ -104,7 +98,7 @@
     {{ parent() }}
 
     {#Geocoding #}
-    {% include '@CocoricoCore/Frontend/ListingResult/js/_geocoding_js.html.twig' with {
+    {% include '@CocoricoCore/Frontend/ListingResult/js/_geocoding_js_home.html.twig' with {
     'map_elt': '',
     'auto_complete_elt': '#location'
     } only %}
@@ -124,12 +118,4 @@
             );
         });
     </script>
-{% endblock %}
-
-{% block markup_jsonld %}
-    {{ parent() }}
-
-    {% include 'CocoricoSeoBundle:Frontend:Home/_index_markup.jsonld.twig' ignore missing with {
-    'listings': listings
-    } only %}
 {% endblock %}

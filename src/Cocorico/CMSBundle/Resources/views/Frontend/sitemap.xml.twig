@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="
+    http://www.sitemaps.org/schemas/sitemap/0.9
+    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+    http://www.google.com/schemas/sitemap-image/1.1
+    http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
+
+    {% for url in urls %}
+        <url>{# check if hostname is not alreay in url#}
+            <loc>{%if url.loc|replace({hostname:''}) == url.loc%}{{url.loc}}{%else%}{{url.loc}}{%endif%}</loc>
+
+            {% if url.lastmod is defined %}
+                <lastmod>{{url.lastmod | date('Y-m-d')}}</lastmod>
+            {% endif %}
+            {% if url.changefreq is defined %}
+                <changefreq>{{url.changefreq}}</changefreq>
+            {% endif %}
+            {% if url.priority is defined %}
+                <priority>{{url.priority}}</priority>
+            {% endif %}
+
+            {% if url.image is defined and url.image is not empty %}
+                <image:image>
+                    <image:loc>{{url.image.loc}}</image:loc>
+                    <image:title>{{ url.image.title }}</image:title>
+                </image:image>
+            {% endif %}
+        </url>
+    {% endfor %}
+</urlset>

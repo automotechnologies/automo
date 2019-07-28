@@ -14,6 +14,7 @@ use Cocorico\CoreBundle\Entity\Booking;
 use Cocorico\CoreBundle\Entity\Listing;
 use Cocorico\CoreBundle\Model\Manager\ListingManager;
 use Cocorico\UserBundle\Entity\User;
+use Doctrine\ORM\OptimisticLockException;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
@@ -71,6 +72,7 @@ class ListingFormHandler
      * @param Form $form
      *
      * @return Booking|string
+     * @throws OptimisticLockException
      */
     public function process($form)
     {
@@ -86,6 +88,7 @@ class ListingFormHandler
     /**
      * @param Form $form
      * @return boolean
+     * @throws OptimisticLockException
      */
     private function onSuccess(Form $form)
     {

@@ -1,12 +1,5 @@
 {% trans_default_domain 'cocorico_booking' %}
 
-{% set voucherBundleEnabled = bundleExist('CocoricoVoucherBundle') %}
-{% set optionBundleEnabled = bundleExist('CocoricoListingOptionBundle') %}
-{% set mangopayBundleEnabled = bundleExist('CocoricoMangoPayBundle') %}
-{% set deliveryBundleEnabled = bundleExist('CocoricoDeliveryBundle') %}
-{% set carrierBundleEnabled = bundleExist('CocoricoCarrierBundle') %}
-{% set depositBundleEnabled = bundleExist('CocoricoListingDepositBundle') %}
-
 {% set booking_duration = booking.duration(endDayIncluded, timeUnit) %}
 {% set user_timezone = app.session.get('timezone', timeZone) %}
 
@@ -77,39 +70,6 @@
         </li>
     </ul>
 </div>
-
-{#Delivery OR Carrier bundle form#}
-{% if deliveryBundleEnabled %}
-    {% include 'CocoricoDeliveryBundle:Frontend:Booking/_form_delivery.html.twig' with {
-        'form': form,
-        'booking': booking
-    } only %}
-{% elseif carrierBundleEnabled %}
-    {% include 'CocoricoCarrierBundle:Frontend:Booking/_form_carrier.html.twig' with {
-        'form': form,
-        'booking': booking
-    } only %}
-{% endif %}
-
-{% if optionBundleEnabled %}
-    {% include 'CocoricoListingOptionBundle:Frontend:Booking/_form_options.html.twig' with {
-        'form': form,
-        'booking': booking
-    } only %}
-{% endif %}
-
-{% if voucherBundleEnabled %}
-    {% include 'CocoricoVoucherBundle:Frontend/Booking:_form_voucher.html.twig' with {
-        'form': form,
-        'booking': booking
-    } only %}
-{% endif %}
-
-{% if depositBundleEnabled %}
-    {% include 'CocoricoListingDepositBundle:Frontend/Booking:_show_amount_deposit.html.twig' with {
-        'booking': booking
-    } only %}
-{% endif %}
 
 {% include 'CocoricoCoreBundle:Frontend:Booking/_amounts.html.twig' with {
     'booking' : booking

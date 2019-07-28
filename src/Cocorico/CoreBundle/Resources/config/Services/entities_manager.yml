@@ -21,6 +21,7 @@ services:
             - "%cocorico.listing_new_is_published%"
             - "%cocorico.dashboard_max_per_page%"
             - "@cocorico.mailer.twig_swift"
+            - "@send_notification_email"
 
   #todo: Split it in multiple services
     cocorico.booking.manager:

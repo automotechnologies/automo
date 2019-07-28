@@ -11,9 +11,11 @@
 
 namespace Cocorico\CMSBundle\Controller\Frontend;
 
+use Psr\Cache\InvalidArgumentException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Footer frontend controller.
@@ -27,21 +29,37 @@ class FooterController extends Controller
      *
      * @param  Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
+     * @throws InvalidArgumentException
      */
     public function indexAction(Request $request)
     {
-        $footers = $this->get('cocorico_cms.footer.manager')->findByURL(
-            $request->getUri(),
-            $request->getLocale()
-        );
+        return $this->render('@CocoricoCMS/Frontend/Footer/index.html.twig', [
+            'footers' => $this->getFooter($request->getLocale())
+        ]);
 
-        return $this->render(
-            '@CocoricoCMS/Frontend/Footer/index.html.twig',
-            array(
-                'footers' => $footers
-            )
-        );
+    }
 
+    /**
+     * @param string $locale
+     * @return array|mixed|null
+     * @throws InvalidArgumentException
+     */
+    private function getFooter(string $locale)
+    {
+        $cache = $this->get('cache.app');
+        $footerItem = $cache->getItem('footer-item-' . $locale);
+
+        if ($footerItem->isHit()) {
+            return $footerItem->get();
+        } else {
+            $footers = $this->getDoctrine()->getRepository('CocoricoCMSBundle:Footer')->findByHash($locale);
+        }
+
+        $footerItem->set($footers);
+        $footerItem->expiresAfter(345600);
+        $cache->save($footerItem);
+
+        return $footers;
     }
 }

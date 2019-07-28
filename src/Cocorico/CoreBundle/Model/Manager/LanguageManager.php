@@ -41,7 +41,7 @@ class LanguageManager
      *
      * @param string $routeName   passes the current route name
      * @param array  $routeParams passes all route parameters
-     * @param string $queryString passes the query string from the current route
+     * @param array $queryString passes the query string from the current route
      *
      * @return array all translated routes for each locales
      */

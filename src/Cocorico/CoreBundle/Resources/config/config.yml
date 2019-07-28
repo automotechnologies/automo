@@ -9,9 +9,6 @@ imports:
     - { resource: "../../../../../vendor/knplabs/doctrine-behaviors/config/orm-services.yml" }
 
 framework:
-     assets:
-        base_urls:
-            - '%cocorico.assets_base_urls%'
      session:
         gc_probability: 0
 
@@ -56,6 +53,16 @@ twig:
         listing_search_map_h: "%cocorico.listing_search_map_h%"
         upload_image_w: "%cocorico.upload_image_w%"
         upload_image_h: "%cocorico.upload_image_h%"
+        stripe_test_publishable_key: "%stripe_test_publishable_key%"
+        stripe_test_secret_key: "%stripe_test_secret_key%"
+        stripe_live_publishable_key: "%stripe_live_publishable_key%"
+        stripe_live_secret_key: "%stripe_live_secret_key%"
+        ## Filter price
+        listing_price_idr_min: "%listing_price_idr_min%"
+        listing_price_idr_max: "%listing_price_idr_max%"
+        listing_price_idr_step: 172083
+        ## Google ReCaptcha
+        google_recaptcha_site_key: "%google_recaptcha_site_key%"
 
 
     #Forms customization
@@ -212,6 +219,13 @@ liip_imagine:
                 upscale: { min: ["%cocorico.listing_img_large_w%", "%cocorico.listing_img_large_h%"] }
                 thumbnail: { size: ["%cocorico.listing_img_large_w%", "%cocorico.listing_img_large_h%"], mode: outbound, cache_type: public, cache_expires: 1 months, allow_upscale: true }
 
+        blog_news:
+            quality: 50
+            filters:
+                auto_rotate: ~
+                upscale: { min: ["%cocorico.listing_img_large_w%", "%cocorico.listing_img_large_h%"] }
+                thumbnail: { size: ["%cocorico.listing_img_large_w%", "%cocorico.listing_img_large_h%"], mode: outbound, cache_type: public, cache_expires: 1 months, allow_upscale: true }
+
 lexik_currency:
     currencies:
         default: "%cocorico.currency%"
@@ -219,7 +233,7 @@ lexik_currency:
     decimal_part:
         precision:  0                           # number of digits for the decimal part
         round_mode: up                          # round mode to use (up|down|even|odd)
-    #currency_class: Cocorico\CurrencyBundle\Entity\Currency
+    currency_class: Cocorico\CoreBundle\Entity\Currency
     #default_adapter: doctrine_currency_adapter  # service id OR tag alias, this is adapter used by the conversion service
 
 bazinga_geocoder:

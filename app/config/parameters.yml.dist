@@ -24,9 +24,6 @@ parameters:
 
     ### Cocorico environments dependant parameters (See CocoricoCoreBundle/Resources/config/parameters.yml) ###
 
-    #Assets for emails
-    cocorico.assets_base_urls: https://cocorico.dev
-
     #Request Context url for email send from command
     router.request_context.host: cocorico.dev
     router.request_context.scheme: https
@@ -93,3 +90,21 @@ parameters:
     ##Set to true in dev env to avoid to ask to mangopay to manually validate a bank wire
     ##Set to false in prod env
     cocorico.bankwire_checking_simulation: false
+
+    ## Stripe
+    stripe_live_publishable_key: null
+    stripe_live_secret_key: null
+    stripe_test_publishable_key: null
+    stripe_test_secret_key: null
+
+    ## Price filter
+    listing_price_idr_min: 10000
+    listing_price_idr_max: 14405485
+
+    ## SendGrid
+    email_from: null
+    sendgrid_key: null
+
+    ## Google recaptcha
+    google_recaptcha_site_key: null
+    google_recaptcha_secret_key: null

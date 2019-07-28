@@ -21,6 +21,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,7 +37,7 @@ class ListingController extends Controller
 
     /**
      * @param  Listing $listing
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function statusIndexFormAction($listing)
     {
@@ -43,16 +45,16 @@ class ListingController extends Controller
 
         return $this->render(
             '@CocoricoCore/Dashboard/Listing/form_status_index.html.twig',
-            array(
+            [
                 'form' => $form->createView(),
                 'listing' => $listing
-            )
+            ]
         );
     }
 
     /**
      * @param  Listing $listing
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function statusNavSideFormAction($listing)
     {
@@ -60,10 +62,10 @@ class ListingController extends Controller
 
         return $this->render(
             '@CocoricoCore/Dashboard/Listing/form_status_nav_side.html.twig',
-            array(
+            [
                 'form' => $form->createView(),
                 'listing' => $listing
-            )
+            ]
         );
     }
 
@@ -71,7 +73,7 @@ class ListingController extends Controller
      * @param Listing $listing
      * @param string  $view
      *
-     * @return \Symfony\Component\Form\Form|\Symfony\Component\Form\FormInterface
+     * @return Form|FormInterface
      */
     private function createStatusForm(Listing $listing, $view)
     {
@@ -79,13 +81,13 @@ class ListingController extends Controller
             'listing_status',
             ListingEditStatusType::class,
             $listing,
-            array(
+            [
                 'method' => 'POST',
                 'action' => $this->generateUrl(
                         'cocorico_dashboard_listing_edit_status',
-                        array('id' => $listing->getId())
+                        ['id' => $listing->getId()]
                     ) . '?view=' . $view,
-            )
+            ]
         );
 
         return $form;
@@ -104,7 +106,9 @@ class ListingController extends Controller
      * @param Request $request
      * @param         $listing
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws
+     *
+     * @return RedirectResponse|Response
      */
     public function editStatusAction(Request $request, Listing $listing)
     {
@@ -139,26 +143,26 @@ class ListingController extends Controller
 
     /**
      * @param  Listing $listing
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function priceFormAction($listing)
+    public function priceFormAction(Listing $listing)
     {
         $form = $this->createPriceForm($listing);
 
         return $this->render(
             '@CocoricoCore/Dashboard/Listing/form_price.html.twig',
-            array(
+            [
                 'form' => $form->createView(),
                 'listing' => $listing,
                 'feeAsOfferer' => $this->getFeeAsOfferer($listing->getUser())
-            )
+            ]
         );
     }
 
     /**
      * @param Listing $listing
      *
-     * @return \Symfony\Component\Form\Form|\Symfony\Component\Form\FormInterface
+     * @return Form|FormInterface
      */
     private function createPriceForm(Listing $listing)
     {
@@ -166,13 +170,13 @@ class ListingController extends Controller
             'listing_price',
             ListingEditPriceType::class,
             $listing,
-            array(
+            [
                 'method' => 'POST',
                 'action' => $this->generateUrl(
                     'cocorico_dashboard_listing_edit_price',
-                    array('id' => $listing->getId())
+                    ['id' => $listing->getId()]
                 ),
-            )
+            ]
         );
 
         return $form;
@@ -190,7 +194,10 @@ class ListingController extends Controller
      * @param Request $request
      * @param Listing $listing
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return RedirectResponse|Response
+     *
+     * @throws
+     *
      */
     public function editPriceAction(Request $request, Listing $listing)
     {
@@ -204,9 +211,9 @@ class ListingController extends Controller
 
             return $this->redirectToRoute(
                 'cocorico_dashboard_listing_edit_price',
-                array(
+                [
                     'id' => $listing->getId()
-                )
+                ]
             );
         }
 
@@ -214,11 +221,11 @@ class ListingController extends Controller
         if ($request->isXmlHttpRequest()) {
             return $this->render(
                 '@CocoricoCore/Dashboard/Listing/form_price.html.twig',
-                array(
+                [
                     'form' => $form->createView(),
                     'listing' => $listing,
                     'feeAsOfferer' => $this->getFeeAsOfferer($listing->getUser())
-                )
+                ]
             );
         } else {
             if (!$formIsValid) {
@@ -245,7 +252,7 @@ class ListingController extends Controller
 
     /**
      * @param  Listing $listing
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function durationFormAction($listing)
     {
@@ -253,17 +260,17 @@ class ListingController extends Controller
 
         return $this->render(
             '@CocoricoCore/Dashboard/Listing/form_duration.html.twig',
-            array(
+            [
                 'form' => $form->createView(),
                 'listing' => $listing
-            )
+            ]
         );
     }
 
     /**
      * @param Listing $listing
      *
-     * @return \Symfony\Component\Form\Form|\Symfony\Component\Form\FormInterface
+     * @return Form|FormInterface
      */
     private function createDurationForm(Listing $listing)
     {
@@ -271,13 +278,13 @@ class ListingController extends Controller
             'listing_duration',
             ListingEditDurationType::class,
             $listing,
-            array(
+            [
                 'method' => 'POST',
                 'action' => $this->generateUrl(
                     'cocorico_dashboard_listing_edit_duration',
-                    array('id' => $listing->getId())
+                    ['id' => $listing->getId()]
                 ),
-            )
+            ]
         );
 
         return $form;
@@ -295,7 +302,9 @@ class ListingController extends Controller
      * @param Request $request
      * @param Listing $listing
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws
+     *
+     * @return RedirectResponse|Response
      */
     public function editDurationAction(Request $request, Listing $listing)
     {
@@ -311,10 +320,10 @@ class ListingController extends Controller
         if ($request->isXmlHttpRequest()) {
             return $this->render(
                 '@CocoricoCore/Dashboard/Listing/form_duration.html.twig',
-                array(
+                [
                     'form' => $form->createView(),
-                    'listing' => $listing
-                )
+                    'listing' => $listing,
+                ]
             );
         } else {
             if (!$formIsValid) {
@@ -335,7 +344,7 @@ class ListingController extends Controller
      * @param  Request $request
      * @param  int     $page
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function indexAction(Request $request, $page)
     {
@@ -349,15 +358,15 @@ class ListingController extends Controller
 
         return $this->render(
             'CocoricoCoreBundle:Dashboard/Listing:index.html.twig',
-            array(
+            [
                 'listings' => $listings,
-                'pagination' => array(
+                'pagination' => [
                     'page' => $page,
                     'pages_count' => ceil($listings->count() / $listingManager->maxPerPage),
                     'route' => $request->get('_route'),
-                    'route_params' => $request->query->all()
-                )
-            )
+                    'route_params' => $request->query->all(),
+                ]
+            ]
         );
 
     }
@@ -400,7 +409,7 @@ class ListingController extends Controller
 
     /**
      * @param  Listing $listing
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function completionNoticeAction(Listing $listing)
     {
@@ -413,7 +422,7 @@ class ListingController extends Controller
 
         return $this->render(
             '@CocoricoCore/Dashboard/Listing/_completion_notice.html.twig',
-            array(
+            [
                 'listing_id' => $listing->getId(),
                 'listing_title' => $listingCompletion["title"],
                 'listing_desc' => $listingCompletion["description"],
@@ -422,7 +431,7 @@ class ListingController extends Controller
                 'listing_characteristics' => $listingCompletion["characteristic"],
                 'profile_photo' => $userCompletion["image"],
                 'profile_desc' => $userCompletion["description"]
-            )
+            ]
         );
     }
 

@@ -12,7 +12,7 @@
       </trans-unit>
       <trans-unit id="d70f93df5e8f9b55be44fbeee9d203972e3383d4" resname="Address">
         <source>Address</source>
-        <target state="new">Address</target>
+        <target>Address</target>
       </trans-unit>
       <trans-unit id="4281c52d617278a34a14cf5faf9c6fb11df197a6" resname="Asker">
         <source>Asker</source>
@@ -20,7 +20,7 @@
       </trans-unit>
       <trans-unit id="3310eafbbbcd08a70af2c5d250fb2ba82046f114" resname="Bank wire">
         <source>Bank wire</source>
-        <target state="new">Bank wire</target>
+        <target>Bank wire</target>
       </trans-unit>
       <trans-unit id="135229c7beadb48dd31d1567028d035586fb41f3" resname="Bookings">
         <source>Bookings</source>
@@ -32,7 +32,7 @@
       </trans-unit>
       <trans-unit id="6ccb60071be8f00760a3824d9f7d0fad57de789f" resname="Categories">
         <source>Categories</source>
-        <target state="new">Categories</target>
+        <target>Categories</target>
       </trans-unit>
       <trans-unit id="2fa17410341c773958ab0b06148ed01369e49360" resname="Characteristics">
         <source>Characteristics</source>
@@ -64,11 +64,11 @@
       </trans-unit>
       <trans-unit id="27a372ec5448ccccde2d678d3d8d2720d0cae107" resname="My Alerts">
         <source>My Alerts</source>
-        <target state="new">My Alerts</target>
+        <target>My Alerts</target>
       </trans-unit>
       <trans-unit id="af65ae0e9f04990618e53d608489530582356c11" resname="New comment">
         <source>New comment</source>
-        <target state="new">New comment</target>
+        <target>New comment</target>
       </trans-unit>
       <trans-unit id="b6efbc728e20a592f93cc71db4d9e5cfe7f9e414" resname="Offerer">
         <source>Offerer</source>
@@ -80,7 +80,7 @@
       </trans-unit>
       <trans-unit id="7dd2ad616489d5356d1ea0e7956255acfb86d372" resname="Payment cards">
         <source>Payment cards</source>
-        <target state="new">Payment cards</target>
+        <target>Payment cards</target>
       </trans-unit>
       <trans-unit id="44357ae55a217646f4d1c3bb7cb7b437fa838999" resname="Payments">
         <source>Payments</source>
@@ -88,11 +88,11 @@
       </trans-unit>
       <trans-unit id="11ce7a38e303255ce9127db6c5e770703c616b2a" resname="Payments done">
         <source>Payments done</source>
-        <target state="new">Payments done</target>
+        <target>Payments done</target>
       </trans-unit>
       <trans-unit id="9527f09619e511d64b9397e62a36fc280a854ecf" resname="Payments refund">
         <source>Payments refund</source>
-        <target state="new">Payments refund</target>
+        <target>Payments refund</target>
       </trans-unit>
       <trans-unit id="c8b2e864eccb38901097806819bf6aba2eed7ae1" resname="Photos">
         <source>Photos</source>
@@ -120,11 +120,11 @@
       </trans-unit>
       <trans-unit id="18d5c8fe5b4b201008b78c20cab30e09864fac38" resname="Reservation">
         <source>Reservation</source>
-        <target state="new">Reservation</target>
+        <target>Reservation</target>
       </trans-unit>
       <trans-unit id="0144dae8fb18fc9c75bdd6b191b93bae5f7a68f8" resname="Search results">
         <source>Search results</source>
-        <target state="new">Search results</target>
+        <target>Search results</target>
       </trans-unit>
     </body>
   </file>

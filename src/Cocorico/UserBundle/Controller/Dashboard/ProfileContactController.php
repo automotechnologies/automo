@@ -17,7 +17,8 @@ use FOS\UserBundle\Model\UserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
@@ -33,12 +34,10 @@ class ProfileContactController extends Controller
      * @Route("/edit-contact", name="cocorico_user_dashboard_profile_edit_contact")
      * @Method({"GET", "POST"})
      *
-     * @param $request Request
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      * @throws AccessDeniedException
      */
-    public function editAction(Request $request)
+    public function editAction()
     {
         $user = $this->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
@@ -57,27 +56,23 @@ class ProfileContactController extends Controller
         if ($success > 0) {
             $session->getFlashBag()->add(
                 'success',
-                $translator->trans('user.edit.contact.success', array(), 'cocorico_user')
+                $translator->trans('user.edit.contact.success', [], 'cocorico_user')
             );
 
-            return $this->redirect(
-                $this->generateUrl(
-                    'cocorico_user_dashboard_profile_edit_contact'
-                )
-            );
+            return $this->redirectToRoute('cocorico_user_dashboard_profile_edit_contact');
         } elseif ($success < 0) {
             $session->getFlashBag()->add(
                 'error',
-                $translator->trans('user.edit.contact.error', array(), 'cocorico_user')
+                $translator->trans('user.edit.contact.error', [], 'cocorico_user')
             );
         }
 
         return $this->render(
             'CocoricoUserBundle:Dashboard/Profile:edit_contact.html.twig',
-            array(
+            [
                 'form' => $form->createView(),
-                'user' => $user
-            )
+                'user' => $user,
+            ]
         );
     }
 
@@ -86,7 +81,7 @@ class ProfileContactController extends Controller
      *
      * @param mixed $user
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return Form The form
      */
     private function createContactForm($user)
     {
@@ -94,10 +89,10 @@ class ProfileContactController extends Controller
             'user',
             ProfileContactFormType::class,
             $user,
-            array(
+            [
                 'method' => 'POST',
                 'action' => $this->generateUrl('cocorico_user_dashboard_profile_edit_contact'),
-            )
+            ]
         );
 
         return $form;

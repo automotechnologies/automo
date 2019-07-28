@@ -54,7 +54,8 @@
         {% if form_registration %}
             {% include '@CocoricoUser/Frontend/Common/_register.html.twig'  with {
             'form_registration' : form_registration,
-            'register_class' : register_class
+            'register_class' : register_class,
+		'googleReCaptchaIsValid': googleReCaptchaIsValid
             } only %}
         {% endif %}
 

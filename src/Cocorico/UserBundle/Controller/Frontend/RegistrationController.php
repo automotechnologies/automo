@@ -42,52 +42,70 @@ class RegistrationController extends Controller
      */
     public function registerAction(Request $request)
     {
-        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+        if ($this->getUser() instanceof UserInterface) {
             return $this->redirectToRoute('cocorico_home');
         }
 
         $user = $this->get('cocorico_user.user_manager')->createUser();
         $form = $this->createCreateForm($user);
-        $confirmation = $this->getParameter('cocorico.registration_confirmation');
+        
+        $googleReCaptchaIsValid = true;
+        if ($request->isMethod('POST') && $request->request->has('g-recaptcha-response') && $request->request->has('g-recaptcha-response')) {
+            // Google reCAPTCHA API secret key
+            $secretKey = $this->getParameter('google_recaptcha_secret_key');
 
-        $process = $this->get('cocorico_user.form.handler.registration')->process($form, $confirmation);
-        if ($process) {
-            /** @var User $user */
-            $user = $form->getData();
+            // Verify the reCAPTCHA response
+            $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $request->request->get('g-recaptcha-response'));
 
-            $this->get('session')->getFlashBag()->add(
-                'success',
-                $this->get('translator')->trans('user.register.success', array(), 'cocorico_user')
-            );
+            // Decode json data
+            $responseData = json_decode($verifyResponse);
 
-            if ($confirmation) {
-                $this->get('session')->set('cocorico_user_send_confirmation_email/email', $user->getEmail());
-                $url = $this->get('router')->generate('cocorico_user_registration_check_email');
-            } else {
-                $url = $request->get('redirect_to') ? $request->get('redirect_to') :
-                    $this->get('router')->generate('cocorico_user_register_confirmed');
+            if ($responseData->success) {
+                
+                $confirmation = $this->getParameter('cocorico.registration_confirmation');
+                $process = $this->get('cocorico_user.form.handler.registration')->process($form, $confirmation);
+
+                if ($process) {
+                    /** @var User $user */
+                    $user = $form->getData();
+
+                    $this->get('session')->getFlashBag()->add(
+                        'success',
+                        $this->get('translator')->trans('user.register.success', [], 'cocorico_user')
+                    );
+
+                    if ($confirmation) {
+                        $this->get('session')->set('cocorico_user_send_confirmation_email/email', $user->getEmail());
+                        $url = $this->get('router')->generate('cocorico_user_registration_check_email');
+                    } else {
+                        $url = $request->get('redirect_to') ? $request->get('redirect_to') :
+                            $this->get('router')->generate('cocorico_user_register_confirmed');
+                    }
+
+                    return new RedirectResponse($url);
+                }
             }
-
-            return new RedirectResponse($url);
+            $form->handleRequest($request);
+            $googleReCaptchaIsValid = false;
         }
 
         return $this->render(
             'CocoricoUserBundle:Frontend/Registration:register.html.twig',
-            array(
+            [
                 'form' => $form->createView(),
-            )
+                'googleReCaptchaIsValid' => $googleReCaptchaIsValid,
+            ]
         );
     }
-
 
     /**
      * Creates a Registration form
      *
-     * @param User $user The entity
+     * @param UserInterface $user The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(User $user)
+    private function createCreateForm(UserInterface $user)
     {
         $form = $this->get('form.factory')->createNamed(
             'user_registration',
@@ -137,15 +155,13 @@ class RegistrationController extends Controller
      *
      * @Route("/register-confirmation/{token}", name="cocorico_user_register_confirmation")
      * @Method("GET")
-     *
-     * @param Request $request
-     * @param string  $token
+     * @param string $token
      *
      * @return Response
      *
-     * @throws NotFoundHttpException
+     * @throws \Exception
      */
-    public function confirmAction(Request $request, $token)
+    public function confirmAction($token)
     {
         /** @var User $user */
         $user = $this->get('cocorico_user.user_manager')->findUserByConfirmationToken($token);
@@ -169,7 +185,7 @@ class RegistrationController extends Controller
      *
      * @Route("/register-confirmed", name="cocorico_user_register_confirmed")
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      * @throws AccessDeniedException
      */
     public function confirmedAction()
@@ -181,22 +197,20 @@ class RegistrationController extends Controller
 
         return $this->render(
             'CocoricoUserBundle:Frontend/Registration:confirmed.html.twig',
-            array(
+            [
                 'user' => $user,
                 'targetUrl' => $this->getTargetUrlFromSession(),
-            )
+            ]
         );
     }
 
     /**
-     * @return mixed
+     * @return mixed|null
      */
     private function getTargetUrlFromSession()
     {
         $key = sprintf('_security.%s.target_path', $this->get('security.token_storage')->getToken()->getProviderKey());
 
-        if ($this->get('session')->has($key)) {
-            return $this->get('session')->get($key);
-        }
+        return $this->get('session')->get($key, null);
     }
 }

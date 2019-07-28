@@ -15,8 +15,8 @@
                             </a>
                         </li>
                         <li>
-                            <a tabindex="11" href="mailto:customer@automo.id">
-                                <i class="icon-mail-alt"></i>customer@automo.id
+                            <a tabindex="11" href="mailto:{{ cocorico_contact_mail_obfuscated|raw }}">
+                                <i class="icon-mail-alt"></i>{{ cocorico_contact_mail_obfuscated|raw }}
                             </a>
                         </li>
                     </ul>
@@ -41,7 +41,8 @@
                         </button>
                         <!-- page logo -->
                         <a class="navbar-brand" href="{{ path('cocorico_home') }}" tabindex="3">
-                            <img src="{{ asset('images/logo.png') }}" alt="{{ 'nav.home.link'|trans }}" width="120">
+                            {#<img src="{{ asset('images/logo.png') }}" alt="{{ 'nav.home.link'|trans }}" width="120">#}
+                            <img src="{{ asset('images/otomo-logo.png') }}" alt="{{ 'nav.home.link'|trans }}" width="120">
                         </a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->

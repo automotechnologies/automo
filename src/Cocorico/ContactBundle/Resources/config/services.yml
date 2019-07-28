@@ -17,12 +17,11 @@ services:
         arguments:
             - "@request_stack"
             - "@cocorico_contact.contact.manager"
-            - "@cocorico_contact.mailer.twig_swift"
+            - "@cocorico_contact.cocorico_sendgrid.mailer"
 
-    cocorico_contact.mailer.twig_swift:
-        class: Cocorico\ContactBundle\Mailer\TwigSwiftMailer
+    cocorico_contact.cocorico_sendgrid.mailer:
+        class: Cocorico\ContactBundle\Mailer\ContactMailer
         arguments:
-            - "@mailer"
             - "@twig"
             - parameters:
                 cocorico_locale: "%cocorico.locale%"
@@ -30,3 +29,4 @@ services:
                 cocorico_contact_contact_email: "%cocorico.contact_mail%"
             - templates:
                 contact_message: "CocoricoContactBundle:Mails:contact_message.txt.twig"
+            - "%sendgrid_key%"

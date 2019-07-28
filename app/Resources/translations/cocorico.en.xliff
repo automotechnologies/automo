@@ -20,11 +20,11 @@
       </trans-unit>
       <trans-unit id="4553617369a88b3ab4dfdca6c8d4b1a6def76cee" resname="booking.form.message.error">
         <source>booking.form.message.error</source>
-        <target>Please let a message</target>
+        <target>Please let the vendor have more information on your booking request</target>
       </trans-unit>
       <trans-unit id="695e169995f96bb1dbd6e45296991ca1e428c6a0" resname="booking.form.tac.error">
         <source>booking.form.tac.error</source>
-        <target>Please accept the Terms and conditions in order to make a booking</target>
+        <target>Please accept the Terms and Conditions in order to make a booking</target>
       </trans-unit>
       <trans-unit id="9cc287ca6419b68c601007f17a971052386de774" resname="booking.new.error.amount_invalid {{ min_price }}">
         <source>booking.new.error.amount_invalid {{ min_price }}</source>
@@ -52,7 +52,7 @@
       </trans-unit>
       <trans-unit id="8e76df2f570186e6fcf3ba0b861b2fe7b1d19dc7" resname="cocorico.search.invalidate.address">
         <source>cocorico.search.invalidate.address</source>
-        <target>Please enter an address to view make a search.</target>
+        <target>Please enter a location to search for options</target>
       </trans-unit>
       <trans-unit id="c8e0d9c9ce43a45ffe8e790a561f78cf215d4c13" resname="cocorico.sunday">
         <source>cocorico.sunday</source>
@@ -84,17 +84,15 @@
       </trans-unit>
       <trans-unit id="b00b8c5d4f2925002545ca1ee8681e1bb4dbbf12" resname="cookie_consent_link">
         <source>cookie_consent_link</source>
-        <target state="new">cookie_consent_link</target>
+        <target>Learn More</target>
       </trans-unit>
       <trans-unit id="d22eda72c562facdefd09e8b58ae26cb484daaed" resname="cookie_consent_ok">
         <source>cookie_consent_ok</source>
-        <target state="new">OK</target>
+        <target>Accept</target>
       </trans-unit>
       <trans-unit id="548ca6c0ebcf302b1dac13cacc412ab35a6566cb" resname="cookie_consent_text">
         <source>cookie_consent_text</source>
-        <target state="new"><![CDATA[
-                <strong>Cookies use</strong><br>By continuing your browsing on this site, you agree to the use of Cookies for statistical purposes and to improve the interest and the ergonomics of our services.
-            ]]></target>
+        <target><![CDATA[<strong>Cookies use</strong><br>Our website uses cookies to ensure you get the best experience on our website. By continuing to explore our site, you accept our use of cookies.]]></target>
       </trans-unit>
       <trans-unit id="4336563d509b02ea6d3d7a3c74d3322408f65679" resname="date_range.invalid.end_before_start">
         <source>date_range.invalid.end_before_start</source>
@@ -130,19 +128,19 @@
       </trans-unit>
       <trans-unit id="a949baa3fcb4d3b0ab046dccd4e8b71bf5974dcb" resname="footer.about.title">
         <source>footer.about.title</source>
-        <target>About</target>
+        <target>Otomo</target>
       </trans-unit>
       <trans-unit id="5e1d2c2c71162e0c24eddb9cae78b0296d9f6425" resname="footer.all_right_reserved">
         <source>footer.all_right_reserved</source>
-        <target>all right reserved</target>
+        <target>All Rights Reserved</target>
       </trans-unit>
       <trans-unit id="eafbb9e9132e8fc3dfed33243e7fb8781ab79935" resname="footer.contact_us.link">
         <source>footer.contact_us.link</source>
-        <target>Contact us</target>
+        <target>Contact Us</target>
       </trans-unit>
       <trans-unit id="a650649eef07e27013b9ce411e4b9491b00f80b6" resname="footer.contact_us.title">
         <source>footer.contact_us.title</source>
-        <target>Contact us</target>
+        <target>Contact Us</target>
       </trans-unit>
       <trans-unit id="28ad4e2c00f3d990a04f9ab8768495124bb6c10a" resname="footer.faq.link">
         <source>footer.faq.link</source>
@@ -162,15 +160,15 @@
       </trans-unit>
       <trans-unit id="e961dfa45f7be14560d14913711c071c88968d3c" resname="footer.the_team.link">
         <source>footer.the_team.link</source>
-        <target>The team</target>
+        <target>Our Partners</target>
       </trans-unit>
       <trans-unit id="69a1518dded704dee13c212c8fa93bfdbec43543" resname="footer.title.various">
         <source>footer.title.various</source>
-        <target state="new">Various</target>
+        <target>Various</target>
       </trans-unit>
       <trans-unit id="5f64194a8d285094204c3ef94b8dc3b6bebfa2d0" resname="footer.who_we_are.link">
         <source>footer.who_we_are.link</source>
-        <target>Who we are?</target>
+        <target>About Us</target>
       </trans-unit>
       <trans-unit id="ccaeec1d1b1dbbc71e18f43031b34b69864d0ec0" resname="form.error">
         <source>form.error</source>
@@ -210,7 +208,7 @@
       </trans-unit>
       <trans-unit id="7922207fb51f1d5e34be3c837b7ae78b4587854a" resname="nav.asker.link">
         <source>nav.asker.link</source>
-        <target>Asker</target>
+        <target>Customer</target>
       </trans-unit>
       <trans-unit id="64b6d2da31ab9586cf0bb982e17ac89b0c341592" resname="nav.dashboard.bookings.link">
         <source>nav.dashboard.bookings.link</source>
@@ -250,7 +248,7 @@
       </trans-unit>
       <trans-unit id="4b578fb3be67b06f105daa2f8d907066fe9993ce" resname="nav.home.link">
         <source>nav.home.link</source>
-        <target>Home</target>
+        <target>Otomo - rent car</target>
       </trans-unit>
       <trans-unit id="7b82d68a47d23888af84cb20db4bcd9734f3b056" resname="nav.how_it_works.slug">
         <source>nav.how_it_works.slug</source>
@@ -262,7 +260,7 @@
       </trans-unit>
       <trans-unit id="e02bfbaa7fa4edd8c578a1be1def202e6c3220ac" resname="nav.listing.new.link">
         <source>nav.listing.new.link</source>
-        <target>Publish your listing</target>
+        <target>Create Listing</target>
       </trans-unit>
       <trans-unit id="fed928e18fb9eaf3aa5370a5b1165bc628687578" resname="nav.listing.show.link">
         <source>nav.listing.show.link</source>
@@ -278,7 +276,7 @@
       </trans-unit>
       <trans-unit id="c196e5e09e7055e5a42642875a4c0891203888db" resname="nav.offerer.link">
         <source>nav.offerer.link</source>
-        <target>Offerer</target>
+        <target>Vendor</target>
       </trans-unit>
       <trans-unit id="405cbec13b0e25e8c2f8c13ce8d130ef15189168" resname="nav.register.link">
         <source>nav.register.link</source>
@@ -286,23 +284,23 @@
       </trans-unit>
       <trans-unit id="4d66148bc56e54a9936116977b8f8bbdf6092335" resname="nav.the_team.slug">
         <source>nav.the_team.slug</source>
-        <target>the-team</target>
+        <target>our-partners</target>
       </trans-unit>
       <trans-unit id="ae075cd0545e4ced4f09a93784ae2fc0dfc5e6cf" resname="nav.who_we_are.link">
         <source>nav.who_we_are.link</source>
-        <target>Who we are?</target>
+        <target>About Us</target>
       </trans-unit>
       <trans-unit id="25752f0500683a8055d9b148a43277a0977e61ce" resname="nav.who_we_are.slug">
         <source>nav.who_we_are.slug</source>
-        <target>who-we-are</target>
+        <target>about-us</target>
       </trans-unit>
       <trans-unit id="2a004ec467e55618ba224e27867bcb893ae731bc" resname="page.error">
         <source>page.error</source>
-        <target>Erreur</target>
+        <target>Error</target>
       </trans-unit>
       <trans-unit id="cdae46d3a5003ced136ae32725222f26085e174a" resname="page.forbidden">
         <source>page.forbidden</source>
-        <target state="new">Access forbidden</target>
+        <target>Access forbidden</target>
       </trans-unit>
       <trans-unit id="0c3080174d88613f6d6f124231c6b2e279e89250" resname="page.not.found">
         <source>page.not.found</source>

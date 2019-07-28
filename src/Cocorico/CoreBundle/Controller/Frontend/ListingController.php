@@ -13,12 +13,16 @@ namespace Cocorico\CoreBundle\Controller\Frontend;
 
 use Cocorico\CoreBundle\Entity\Listing;
 use Cocorico\CoreBundle\Form\Type\Frontend\ListingNewType;
+use Doctrine\ORM\OptimisticLockException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Listing controller.
@@ -36,11 +40,11 @@ class ListingController extends Controller
      *
      * @Method({"GET", "POST"})
      *
-     * @param Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return RedirectResponse|Response
+     * @throws OptimisticLockException
+     * @throws \Psr\Cache\InvalidArgumentException
      */
-    public function newAction(Request $request)
+    public function newAction()
     {
         $formHandler = $this->get('cocorico.form.handler.listing');
 
@@ -49,25 +53,27 @@ class ListingController extends Controller
         $success = $formHandler->process($form);
 
         if ($success) {
-            $url = $this->generateUrl(
-                'cocorico_dashboard_listing_edit_presentation',
-                array('id' => $listing->getId())
-            );
+            $cache = $this->get('cache.app');
+
+            $cache->deleteItem('sitemap-id');
+            $cache->deleteItem('sitemap-en');
+            $this->get('cocorico.sitemap')->getSitemapXml('en');
+            $this->get('cocorico.sitemap')->getSitemapXml('id');
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                $this->get('translator')->trans('listing.new.success', array(), 'cocorico_listing')
+                $this->get('translator')->trans('listing.new.success', [], 'cocorico_listing')
             );
 
-            return $this->redirect($url);
+            return $this->redirectToRoute('cocorico_dashboard_listing_edit_presentation', ['id' => $listing->getId()]);
         }
 
         return $this->render(
             'CocoricoCoreBundle:Frontend/Listing:new.html.twig',
-            array(
+            [
                 'listing' => $listing,
                 'form' => $form->createView(),
-            )
+            ]
         );
     }
 
@@ -76,7 +82,7 @@ class ListingController extends Controller
      *
      * @param Listing $listing The entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return Form The form
      */
     private function createCreateForm(Listing $listing)
     {
@@ -84,10 +90,10 @@ class ListingController extends Controller
             'listing',
             ListingNewType::class,
             $listing,
-            array(
+            [
                 'method' => 'POST',
                 'action' => $this->generateUrl('cocorico_listing_new'),
-            )
+            ]
         );
 
         return $form;
@@ -106,7 +112,7 @@ class ListingController extends Controller
      * @param Request $request
      * @param Listing $listing
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function showAction(Request $request, Listing $listing)
     {
@@ -121,10 +127,10 @@ class ListingController extends Controller
 
         return $this->render(
             'CocoricoCoreBundle:Frontend/Listing:show.html.twig',
-            array(
+            [
                 'listing' => $listing,
                 'reviews' => $reviews,
-            )
+            ]
         );
     }
 
@@ -133,15 +139,12 @@ class ListingController extends Controller
      *
      * @param Listing $listing
      * @param         $slug
-     * @return bool|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return bool|RedirectResponse
      */
     private function handleSlugChange(Listing $listing, $slug)
     {
         if ($slug != $listing->getSlug()) {
-            return $this->redirect(
-                $this->generateUrl('cocorico_listing_show', array('slug' => $listing->getSlug())),
-                301
-            );
+            return $this->redirectToRoute('cocorico_listing_show', ['slug' => $listing->getSlug()], 301);
         }
 
         return false;

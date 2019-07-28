@@ -244,6 +244,25 @@
                     }) }}
                 </div>
             </div>
+
+            <div class="field-row validate-row">
+                {% if not googleReCaptchaIsValid %}
+                    <div class="error-container">
+                        <div class="errors">
+                            <i class="icon-error-field"></i>
+                            Please verify that you are a Human.
+                            <br>
+                        </div>
+                        <div class="errors" id="parsley-id-9432"></div>
+                    </div>
+                {% endif %}
+                <span class="label"></span>
+                <div class="field-holder">
+                    <!-- Google reCAPTCHA box -->
+                    <div class="g-recaptcha" data-sitekey="{{ google_recaptcha_site_key }}"></div>
+                </div>
+            </div>
+
         </div>
 
         <div class="column">
