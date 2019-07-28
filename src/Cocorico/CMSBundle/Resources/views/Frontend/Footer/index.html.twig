@@ -3,7 +3,7 @@
         <li class="title">{{ 'footer.title.various'|trans({}, 'cocorico') }}</li>
         {% for footer in footers %}
             <li>
-                <a href="{{ footer.link }}">{{ footer.title }}</a>
+                <a target="_blank" href="{{ footer.link }}">{{ footer.title }}</a>
             </li>
             {% if loop.index is divisible by(3) and not loop.last %}
                 {{ '</ul>' }}
