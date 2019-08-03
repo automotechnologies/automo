@@ -4645,6 +4645,11 @@ input[type="button"].btn-block {
     content: '\e800';
 }
 
+/* '' */
+.icon-down-open-mini:before {
+    content: '\e809';
+}
+
 /* '' */
 .icon-left-open:before {
     content: '\e801';
