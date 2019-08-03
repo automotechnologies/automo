@@ -30,7 +30,7 @@ parameters:
     router.request_context.base_url: ''
 
     #Admin access
-    cocorico.admin: admin
+    cocorico.admin: otomo-admin
     #Admin Web JMS translations activation
     cocorico.admin_translation: false
     #To check if site texts are translatable
