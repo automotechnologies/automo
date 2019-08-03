@@ -63,13 +63,12 @@
         'css/vendor/bootstrap-multiselect.css'
         'css/all-override.css'
         'css/skin.css'
+        'css/fonts.css'
 
         filter='cssrewrite, ?minifycsscompressor' output='css/compiled/allHome.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all">
         {% endstylesheets %}
     {% endblock %}
-
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
 
     {# Safely using .ready() before including jQuery #}
     <script>
