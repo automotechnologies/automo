@@ -256,6 +256,7 @@ body {
 
   .infoarea .icon {
     width: 60% !important;
+      margin: auto;
   }
 }
 
