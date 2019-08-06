@@ -138,7 +138,7 @@
       </trans-unit>
       <trans-unit id="057c7d9bab55cfec93c2f668f2ca90424f6b57f7" resname="listing.comments.header">
         <source>listing.comments.header</source>
-        <target>Last comments</target>
+        <target>Latest Reviews</target>
       </trans-unit>
       <trans-unit id="89a665745f28f00d3b72f22e28568dd80863987e" resname="listing.confirm.delete">
         <source>listing.confirm.delete</source>
@@ -262,7 +262,7 @@
       </trans-unit>
       <trans-unit id="fe972c610fe8e5ade6286312f68c6d17544c168f" resname="listing.edit.index.certified">
         <source>listing.edit.index.certified</source>
-        <target>Listing certified</target>
+        <target>Certified Listing</target>
       </trans-unit>
       <trans-unit id="c75b4ce0fe7a516c4d8346a86942da24eeaee7ef" resname="listing.edit.location.title">
         <source>listing.edit.location.title</source>
@@ -594,7 +594,7 @@
       </trans-unit>
       <trans-unit id="89814edfe335fbfce2cc3582fbc6ecf400d23995" resname="listing.show.comments">
         <source>listing.show.comments</source>
-        <target>Comments</target>
+        <target>Reviews</target>
       </trans-unit>
       <trans-unit id="6ccb7ab4251c8fe7d27af0820204dcc806023e09" resname="listing.show.description">
         <source>listing.show.description</source>
@@ -634,11 +634,11 @@
       </trans-unit>
       <trans-unit id="3c16a0f6ad566fe2fa301ccf12e36c317c4b297a" resname="listing.show.nb_bookings_asker.help">
         <source>listing.show.nb_bookings_asker.help</source>
-        <target>listing.show.nb_bookings_asker.help</target>
+        <target>Booked other listings as a customer</target>
       </trans-unit>
       <trans-unit id="acffb69c919141c1a4fc0626c65ea7f32f7a23d4" resname="listing.show.nb_bookings_offerer.help">
         <source>listing.show.nb_bookings_offerer.help</source>
-        <target>Display help while mouse hover</target>
+        <target>Booked recently by customers</target>
       </trans-unit>
       <trans-unit id="ec450c43b78fe468a9c80305e073e77a47cdf499" resname="listing.show.options">
         <source>listing.show.options</source>

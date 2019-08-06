@@ -272,11 +272,11 @@
       </trans-unit>
       <trans-unit id="fac62ecee873d75e35c7969ee91109062cace1f8" resname="form.user.nb_bookings_asker:">
         <source>form.user.nb_bookings_asker:</source>
-        <target>Already made a rental:</target>
+        <target>Sudah Pernah Mamasan:</target>
       </trans-unit>
       <trans-unit id="35637b79ac1809dfca3542e924854084630ab47e" resname="form.user.nb_bookings_offerer:">
         <source>form.user.nb_bookings_offerer:</source>
-        <target>Already rent:</target>
+        <target>Baru Saja Di Pesan:</target>
       </trans-unit>
       <trans-unit id="148005ed10f2b75bbdb99c10f5b4d409245a2bf0" resname="form.user.phone">
         <source>form.user.phone</source>
@@ -488,7 +488,7 @@
       </trans-unit>
       <trans-unit id="8b14373c89f426fb1db4d41571f9ab2718134368" resname="user.register.success">
         <source>user.register.success</source>
-        <target>user.register.success</target>
+        <target>User Registration Success</target>
       </trans-unit>
       <trans-unit id="31e2cd9615198589f3489f7b13ce92bdc31c2ada" resname="user.request.h1">
         <source>user.request.h1</source>
@@ -516,7 +516,7 @@
       </trans-unit>
       <trans-unit id="4bb58fc67702e6a49527f5e04ecf63b35fb773e7" resname="user.signup.title">
         <source>user.signup.title</source>
-        <target>Subscribe</target>
+        <target>Register</target>
       </trans-unit>
       <trans-unit id="09d7893d52caa3806811a4a82fd75ad169413f84" resname="user.translate.button">
         <source>user.translate.button</source>
