@@ -302,6 +302,7 @@
 .gallery-small .slideset .slide img,
 #listing_images .files-list .img-thumbnail img,
 #images-new .image-upload-holder .img-holder img,
+#images-new .image-upload-holder .img-holder-without-img img,
 #user_images .list-inline .img-thumbnail img,
 .listing-box .frame .post-content .alignleft img,
 #sidebar .holder .author-area .author-img img,
@@ -1231,6 +1232,7 @@ images css for making it 4:3
 
 #listing_images .files-list .img-thumbnail,
 #images-new .image-upload-holder .img-holder,
+#images-new .image-upload-holder .img-holder-without-img,
 #user_images .list-inline .img-thumbnail {
     width: 150px;
     height: 112px;

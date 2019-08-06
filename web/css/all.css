@@ -11087,6 +11087,16 @@ h1.listing-title a {
     background: url(../images/img13.png) no-repeat;
 }
 
+.form-area .img-holder-without-img {
+    width: 148px;
+    height: 141px;
+    overflow: hidden;
+    border-radius: 5px;
+    margin: 0 auto 20px;
+    border: #eaebec solid 1px;
+}
+
+.form-area .img-holder-without-img img,
 .form-area .img-holder img {
     width: 100%;
     height: auto;
@@ -11094,6 +11104,8 @@ h1.listing-title a {
 }
 
 .form-area .img-holder div,
+.form-area .img-holder-without-img div,
+.form-area .img-holder-without-img span,
 .form-area .img-holder span {
     float: left;
 }

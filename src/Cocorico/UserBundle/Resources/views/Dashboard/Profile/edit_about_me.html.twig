@@ -31,7 +31,8 @@
                             {{ form_errors(form.image.new) }}
                             <div class="image-upload-holder">
                                 {% set image_user = user.images|length > 0 and user.images.get(0) ? user.images.get(0).name : UserImageConstants.IMAGE_DEFAULT %}
-                                <div class="img-holder files">
+                                {% set hasImage = user.images|length > 0 and user.images.get(0) ? 'img-holder-without-img' : 'img-holder' %}
+                                <div class="{{ hasImage }} files">
                                     <img src="{{ (UserImageConstants.IMAGE_FOLDER ~ image_user) | imagine_filter('user_small') }}"/>
                                 </div>
                                 {{ form_widget(form.image.new ) }}
