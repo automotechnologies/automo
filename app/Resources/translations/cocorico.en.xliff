@@ -196,11 +196,11 @@
       </trans-unit>
       <trans-unit id="ee1536aec49276b3a23b8861008ee943786bc7cb" resname="multiselect.all_selected">
         <source>multiselect.all_selected</source>
-        <target>All selected</target>
+        <target>Show All</target>
       </trans-unit>
       <trans-unit id="780b109aaf541af74b8adc7fb6222d4fda7a980d" resname="multiselect.none_selected">
         <source>multiselect.none_selected</source>
-        <target>None selected</target>
+        <target>All Categories</target>
       </trans-unit>
       <trans-unit id="56aef35256504c5def3af2bfea3c78db49dd8cc3" resname="multiselect.num_selected">
         <source>multiselect.num_selected</source>
@@ -216,7 +216,7 @@
       </trans-unit>
       <trans-unit id="b34b7d4b69d704f8578cff80e633119b04efdeb3" resname="nav.dashboard.comments.link">
         <source>nav.dashboard.comments.link</source>
-        <target>Comments</target>
+        <target>Reviews</target>
       </trans-unit>
       <trans-unit id="00968900491344d2b7b09d638da429219ae8f879" resname="nav.dashboard.link">
         <source>nav.dashboard.link</source>

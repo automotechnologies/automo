@@ -272,11 +272,11 @@
       </trans-unit>
       <trans-unit id="fac62ecee873d75e35c7969ee91109062cace1f8" resname="form.user.nb_bookings_asker:">
         <source>form.user.nb_bookings_asker:</source>
-        <target>Already made a rental:</target>
+        <target>Rented as a customer:</target>
       </trans-unit>
       <trans-unit id="35637b79ac1809dfca3542e924854084630ab47e" resname="form.user.nb_bookings_offerer:">
         <source>form.user.nb_bookings_offerer:</source>
-        <target>Already rent:</target>
+        <target>Recently Booked:</target>
       </trans-unit>
       <trans-unit id="148005ed10f2b75bbdb99c10f5b4d409245a2bf0" resname="form.user.phone">
         <source>form.user.phone</source>

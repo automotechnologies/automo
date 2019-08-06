@@ -16,15 +16,15 @@
       </trans-unit>
       <trans-unit id="42a8f651d79fd005eeac0612df6442b983a01184" resname="Success">
         <source>Success</source>
-        <target>Test</target>
+        <target>Success</target>
       </trans-unit>
       <trans-unit id="4553617369a88b3ab4dfdca6c8d4b1a6def76cee" resname="booking.form.message.error">
         <source>booking.form.message.error</source>
-        <target>Please let a message</target>
+        <target>Beri vendor penjelasan lebih mengenai pemesanan anda</target>
       </trans-unit>
       <trans-unit id="695e169995f96bb1dbd6e45296991ca1e428c6a0" resname="booking.form.tac.error">
         <source>booking.form.tac.error</source>
-        <target>booking.form.tac.error</target>
+        <target>Tolong terima syarat dan kondisi untuk melakukan pemesanan</target>
       </trans-unit>
       <trans-unit id="9cc287ca6419b68c601007f17a971052386de774" resname="booking.new.error.amount_invalid {{ min_price }}">
         <source>booking.new.error.amount_invalid {{ min_price }}</source>
@@ -52,7 +52,7 @@
       </trans-unit>
       <trans-unit id="8e76df2f570186e6fcf3ba0b861b2fe7b1d19dc7" resname="cocorico.search.invalidate.address">
         <source>cocorico.search.invalidate.address</source>
-        <target>Please enter an address to view make a search.</target>
+        <target>Tolong masukan lokasi anda untuk mencari</target>
       </trans-unit>
       <trans-unit id="c8e0d9c9ce43a45ffe8e790a561f78cf215d4c13" resname="cocorico.sunday">
         <source>cocorico.sunday</source>
@@ -84,11 +84,11 @@
       </trans-unit>
       <trans-unit id="b00b8c5d4f2925002545ca1ee8681e1bb4dbbf12" resname="cookie_consent_link">
         <source>cookie_consent_link</source>
-        <target>cookie_consent_link</target>
+        <target>Learn More</target>
       </trans-unit>
       <trans-unit id="d22eda72c562facdefd09e8b58ae26cb484daaed" resname="cookie_consent_ok">
         <source>cookie_consent_ok</source>
-        <target>cookie_consent_ok</target>
+        <target>Accept</target>
       </trans-unit>
       <trans-unit id="548ca6c0ebcf302b1dac13cacc412ab35a6566cb" resname="cookie_consent_text">
         <source>cookie_consent_text</source>
@@ -184,7 +184,7 @@
       </trans-unit>
       <trans-unit id="9d7ce250577bc878ff98c5a30f972ab064b3bbe3" resname="listing.form.tac.error">
         <source>listing.form.tac.error</source>
-        <target>Please accept the Terms and conditions in order to make a booking</target>
+        <target>Tolong terima syarat dan kondisi untuk melakukan pemesanan</target>
       </trans-unit>
       <trans-unit id="dc5871d437a83613b76d71303942922665487e75" resname="listing.search.form.country.not_blank">
         <source>listing.search.form.country.not_blank</source>
@@ -196,11 +196,11 @@
       </trans-unit>
       <trans-unit id="ee1536aec49276b3a23b8861008ee943786bc7cb" resname="multiselect.all_selected">
         <source>multiselect.all_selected</source>
-        <target>All selected</target>
+        <target>Tunjukan Semua</target>
       </trans-unit>
       <trans-unit id="780b109aaf541af74b8adc7fb6222d4fda7a980d" resname="multiselect.none_selected">
         <source>multiselect.none_selected</source>
-        <target>None selected</target>
+        <target>Semua Kategori</target>
       </trans-unit>
       <trans-unit id="56aef35256504c5def3af2bfea3c78db49dd8cc3" resname="multiselect.num_selected">
         <source>multiselect.num_selected</source>
@@ -216,7 +216,7 @@
       </trans-unit>
       <trans-unit id="b34b7d4b69d704f8578cff80e633119b04efdeb3" resname="nav.dashboard.comments.link">
         <source>nav.dashboard.comments.link</source>
-        <target>Comments</target>
+        <target>Reviews</target>
       </trans-unit>
       <trans-unit id="00968900491344d2b7b09d638da429219ae8f879" resname="nav.dashboard.link">
         <source>nav.dashboard.link</source>
@@ -296,7 +296,7 @@
       </trans-unit>
       <trans-unit id="2a004ec467e55618ba224e27867bcb893ae731bc" resname="page.error">
         <source>page.error</source>
-        <target>Erreur</target>
+        <target>Error</target>
       </trans-unit>
       <trans-unit id="cdae46d3a5003ced136ae32725222f26085e174a" resname="page.forbidden">
         <source>page.forbidden</source>
