@@ -255,8 +255,17 @@ body {
   }
 
   .infoarea .icon {
-    width: 60% !important;
+      width: 60% !important;
       margin: auto;
+  }
+
+  .footer-right {
+      width: 100% !important;
+      margin: 0;
+      float: left !important;
+      text-align: left !important;
+      padding-top: 15px !important;
+      padding-left: 0 !important;
   }
 }
 

@@ -6818,7 +6818,7 @@ h1.listing-title a {
     .aside-footer .navarea ul {
         width: 50%;
         margin: 0;
-        padding: 0 10px 0 0;
+        padding: 10px 10px 0 0;
     }
 
     .aside-footer .navarea ul li + li {
@@ -6827,7 +6827,7 @@ h1.listing-title a {
 
     .aside-footer .navarea ul + ul {
         text-align: right;
-        padding: 0 0 0 10px;
+        padding: 10px 0 0 10px;
     }
 
     #footer .by {
