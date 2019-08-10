@@ -4362,8 +4362,8 @@ span.btn:focus {
 }
 
 .aside-footer .navarea ul {
-    width: 220px;
-    margin: 0 33px 0 0;
+    width: 20%;
+    margin: 0 15px 0 0;
 }
 
 .aside-footer .navarea ul li + li {
@@ -6819,6 +6819,12 @@ h1.listing-title a {
         width: 50%;
         margin: 0;
         padding: 10px 10px 0 0;
+    }
+
+    .footer-right {
+        text-align: left !important;
+        width: 100% !important;
+        padding: 15px 0 0 0 !important;
     }
 
     .aside-footer .navarea ul li + li {
