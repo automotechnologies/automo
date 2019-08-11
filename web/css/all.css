@@ -15804,6 +15804,12 @@ body > .jcf-select-drop.jcf-drop-flipped {
         padding: 0 10px 0 0;
     }
 
+    .footer-right {
+        text-align: left !important;
+        width: 100% !important;
+        padding: 15px 0 0 0 !important;
+    }
+
     .aside-footer .navarea ul li + li {
         margin: 5px 0 0;
     }
