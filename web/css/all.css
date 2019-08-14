@@ -10052,9 +10052,9 @@ h1.listing-title a {
 
 .main-tabs .nav-tabs > li.active > a,
 .main-tabs .nav-tabs > li a:hover {
-    color: #58595b;
-    background: #f7f7f7;
-    border-color: #f7f7f7;
+    color: #fff;
+    background: #d43b4d;
+    border-color: #d43b4d;
 }
 
 .main-tabs .nav-tabs > li.active > a {
