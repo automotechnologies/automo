@@ -29,7 +29,7 @@ class EmailNotification
      * @param \Twig_Environment     $twig
      * @param RequestStack          $requestStack
      * @param EntityManager         $entityManager
-     * @param mixed                $sendgridKey
+     * @param mixed                 $sendgridKey
      * @param array                 $parameters
      */
     public function __construct(
