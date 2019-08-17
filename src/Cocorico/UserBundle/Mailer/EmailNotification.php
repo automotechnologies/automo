@@ -29,7 +29,7 @@ class EmailNotification
      * @param \Twig_Environment     $twig
      * @param RequestStack          $requestStack
      * @param EntityManager         $entityManager
-     * @param string                $sendgridKey
+     * @param mixed                $sendgridKey
      * @param array                 $parameters
      */
     public function __construct(
@@ -37,7 +37,7 @@ class EmailNotification
         \Twig_Environment $twig,
         RequestStack $requestStack,
         EntityManager $entityManager,
-        string $sendgridKey,
+        $sendgridKey,
         array $parameters
     ) {
         $this->router = $router;
