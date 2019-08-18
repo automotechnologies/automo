@@ -591,29 +591,6 @@ images css for making it 4:3
 }
 
 /* new menu for cocorico*/
-ul.menu-sub-tabs {
-    width: 100%;
-    /*display: -webkit-inline-box;*/
-    /*display: -moz-block-box;*/
-    margin-top: -6px;
-}
-
-ul.dropdown-menu ul.menu-sub-tabs li {
-    margin-right: 0px;
-    padding-bottom: 0px;
-    float: left;
-    margin-top: 1px;
-    background-color: #c6ccd2;
-}
-
-.navbar-default .navbar-nav > li > ul.dropdown-menu.display-sub-tabs:after {
-    left: 39px;
-}
-
-.navbar-default .navbar-nav > li > ul.dropdown-menu.display-sub-tabs:before {
-    left: 38px;
-}
-
 ul.dropdown-menu li.dropdown.open.display-tab ul {
     width: 100%;
     padding: 0;
@@ -776,12 +753,6 @@ ul.dropdown-menu li a {
 /* end of new menu for cocorico*/
 
 /*  Phone  */
-@media screen and (max-width: 480px) {
-    .options-alpha-inner {
-        height: auto !important;
-    }
-}
-
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
     cursor: pointer;
 }
@@ -1725,87 +1696,6 @@ ul.collection {
     max-width: 100%;
 }
 
-#listing-location {
-    padding: 18px 17px;
-}
-
-.featured-block #characteristics li .label {
-    display: inline;
-}
-
-/* new booking delivery  */
-.booking-delivery {
-    color: #58595b;
-    margin: 0 0 20px;
-    border-radius: 5px;
-    padding: 19px 19px 19px;
-    border: #eaebec solid 1px;
-}
-
-.booking-delivery h2 {
-    margin: 0 10px 10px 0;
-    font-size: 14px;
-    line-height: 17px;
-}
-
-.booking-delivery .field-row-inner {
-    clear: both;
-    padding: 19px 20px;
-    margin-bottom: 0;
-    background-color: #f7f6f6;
-    border: 1px solid #eaebec;
-    border-bottom: 0;
-}
-
-.booking-delivery .field-row .checkbox {
-    display: inline-block;
-    padding: 0;
-    margin: 0;
-    vertical-align: middle;
-}
-
-.booking-delivery .field-row-inner .field-holder {
-    display: inline-block;
-    width: 252px;
-    margin: 0 20px 0 33px;
-    vertical-align: middle;
-}
-
-.booking-delivery .btn.btn-primary {
-    min-width: 157px;
-    height: 36px;
-    line-height: 36px;
-    text-align: center;
-    vertical-align: middle;
-    padding: 0;
-}
-
-.booking-delivery .box-inner .field-row:last-child {
-    padding: 10px 20px;
-    font-size: 18px;
-    text-align: left;
-    border: 1px solid #eaebec;
-    border-top: 0;
-}
-
-.booking-delivery .box-inner .field-row:last-child label,
-.booking-delivery .box-inner .field-row:last-child .form-controls {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.booking-delivery .box-inner .field-row:last-child .form-controls {
-    float: right;
-}
-
-.btn-loading {
-    background: #444546 url("../images/loading.gif") no-repeat 50% 50% !important;
-}
-
-.post-content .listing-box-delivery {
-    float: right;
-}
-
 /* ------------------------------------------------------------ *\
 	Feeds
 \* ------------------------------------------------------------ */
@@ -1873,16 +1763,6 @@ ul.collection {
     padding-top: 5px;
     height: 52px;
 }
-
-/*.feed-item-content h2:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 118px;
-    height: 2px;
-    background-color: #fff;
-}*/
 
 .feed-item-content p {
     text-align: right;
@@ -2102,83 +1982,4 @@ div.cluster.cluster-overlay img {
     transform: rotate(60deg) scale(1.1);
     -webkit-transition: .3s ease-in-out;
     transition: .3s ease-in-out;
-}
-
-/* Map drag checkbox*/
-.search-on-drag-cb-wrapper {
-    box-shadow: transparent 0 0 0 0 inset;
-    position: absolute;
-    background-color: #fff;
-    z-index: 1;
-    margin: 0;
-    padding: 10px 10px 10px 10px;
-    opacity: 0.9;
-}
-
-h1[data-id="result-title"] {
-    font-size: 21px;
-}
-
-/* Deposit */
-/* new booking deposit  */
-.booking-deposit {
-    color: #58595b;
-    margin: 0 0 20px;
-    border-radius: 5px;
-    padding: 19px 19px 19px;
-    border: #eaebec solid 1px;
-}
-
-.booking-deposit h2 {
-    margin: 0 10px 10px 0;
-    font-size: 14px;
-    line-height: 17px;
-}
-
-.postarea .posts-holder .post strong {
-    color: #58595b;
-}
-
-/** Booking card saving */
-#booking-card-form .form-payment {
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-}
-
-#booking-card-form .form-payment .field-row {
-    float: left;
-    clear: both;
-    line-height: 36px;
-    height: 36px;
-}
-
-#booking-card-form .form-payment .select-holder.cards {
-    width: 200px;
-    margin-left: 20px;
-}
-
-/**
-* Elastic search
-*/
-.form-category .keyword {
-    margin-top: -55px;
-    float: right;
-}
-
-.form-category .keyword .col {
-    margin-right: 0;
-}
-
-.form-category .keyword label {
-    display: none;
-}
-
-.form-category .keyword .field-holder {
-    width: 220px;
-}
-
-@media screen and (max-width: 767px) {
-    .form-category .keyword {
-        display: none;
-    }
 }
