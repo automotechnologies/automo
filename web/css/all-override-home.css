@@ -1983,3 +1983,54 @@ div.cluster.cluster-overlay img {
     -webkit-transition: .3s ease-in-out;
     transition: .3s ease-in-out;
 }
+
+/** Nav Dropdown */
+ul.dropdown-menu ul.menu-sub-tabs li.active a {
+    background: #fff;
+    color: #58595b;
+    font-size: 14px;
+    border-radius: 0;
+    font-weight: bold;
+}
+
+ul.dropdown-menu ul.menu-sub-tabs li a:hover {
+    background-color: #eeeeee;
+    border-top-right-radius: 4px;
+}
+
+ul.menu-sub-tabs {
+    width: 100%;
+    margin-top: -6px;
+}
+
+ul.dropdown-menu ul.menu-sub-tabs li.firstTab a:hover {
+    border-top-right-radius: 0;
+}
+
+.navbar-nav > li > .dropdown-menu li + li.menu-second-tab {
+    border: 0;
+}
+
+ul.dropdown-menu ul.menu-sub-tabs li.firstTab {
+    width: 50%;
+    border-top-left-radius: 4px;
+    height: 100%;
+}
+
+ul.nav.menu-sub-tabs li.menu-second-tab.secondTab {
+    width: 50%;
+    border-top-right-radius: 4px;
+    height: 100%;
+}
+
+ul.dropdown-menu ul.menu-sub-tabs li {
+    margin-right: 0px;
+    padding-bottom: 0px;
+    float: left;
+    margin-top: 1px;
+    background-color: #c6ccd2;
+}
+
+.navbar-default .navbar-nav > li > .dropdown-menu li {
+    font-size: 12px;
+}
