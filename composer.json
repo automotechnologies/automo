@@ -45,6 +45,7 @@
   ],
   "require": {
     "php": "^7.1",
+    "ext-simplexml": "*",
     "a2lix/translation-form-bundle": "^2.1",
     "alcaeus/mongo-php-adapter": "^1.1",
     "doctrine/doctrine-bundle": "^1.8",
@@ -87,13 +88,12 @@
     "stof/doctrine-extensions-bundle": "^1.2",
     "stripe/stripe-php": "^6.34",
     "symfony/assetic-bundle": "^2.8",
-    "symfony/intl": "^4.2",
+    "symfony/intl": "^4.3",
     "symfony/monolog-bundle": "^3.1",
     "symfony/swiftmailer-bundle": "^3.1",
     "symfony/symfony": "^3.4",
     "whiteoctober/breadcrumbs-bundle": "^1.2",
-    "willdurand/geocoder-bundle": "^5.0",
-    "ext-simplexml": "*"
+    "willdurand/geocoder-bundle": "^5.0"
   },
   "require-dev": {
     "behat/mink-browserkit-driver": "^1.3",
