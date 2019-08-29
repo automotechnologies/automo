@@ -6794,7 +6794,7 @@ h1.listing-title a {
 
     .infoarea .icon {
         display: block;
-        margin: 0 auto 10px;
+        margin: 0 auto 10px !important;
         float: none !important;
     }
 
