@@ -6698,6 +6698,10 @@ h1.listing-title a {
         cursor: pointer;
     }
 
+    .navbar-default .navbar-nav>li {
+        margin: 0 50px !important;
+    }
+
     .form-category {
         padding: 10px 0;
     }

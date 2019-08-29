@@ -32,7 +32,7 @@ body {
 }
 
 .navbar-default .navbar-nav > li {
-    margin: 0 0 0 50px !important;
+    margin: 0 0 0 50px;
     font-size: 18px !important;
 }
 
