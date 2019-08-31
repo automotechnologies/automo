@@ -13,6 +13,7 @@ namespace Cocorico\CoreBundle\Controller\Frontend;
 
 use Cocorico\CoreBundle\Entity\Listing;
 use Cocorico\CoreBundle\Form\Type\Frontend\ListingNewType;
+use Cocorico\UserBundle\Entity\User;
 use Doctrine\ORM\OptimisticLockException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -36,8 +37,6 @@ class ListingController extends Controller
      *
      * @Route("/new", name="cocorico_listing_new")
      *
-     * @Security("not has_role('ROLE_ADMIN') and has_role('ROLE_USER')")
-     *
      * @Method({"GET", "POST"})
      *
      * @return RedirectResponse|Response
@@ -46,6 +45,17 @@ class ListingController extends Controller
      */
     public function newAction()
     {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+
+            /** @var User $user */
+            $user = $this->getUser();
+            $excludedAdmins = $this->getParameter('cocorico_excluded_admin');
+
+            if(!in_array($user->getEmail(), $excludedAdmins)) {
+                throw $this->createAccessDeniedException();
+            }
+        }
+
         $formHandler = $this->get('cocorico.form.handler.listing');
 
         $listing = $formHandler->init();
