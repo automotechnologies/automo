@@ -37,6 +37,8 @@ class ListingController extends Controller
      *
      * @Route("/new", name="cocorico_listing_new")
      *
+     * @Security("has_role('ROLE_USER')")
+     *
      * @Method({"GET", "POST"})
      *
      * @return RedirectResponse|Response
