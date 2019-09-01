@@ -48,7 +48,10 @@ class Sitemap
             ];
         }
 
-        $listings = $this->em->getRepository('CocoricoCoreBundle:Listing')->findBy([], ['createdAt' => 'DESC']);
+        $listings = $this->em->getRepository('CocoricoCoreBundle:Listing')->findBy(
+            ['status' => Listing::STATUS_PUBLISHED],
+            ['createdAt' => 'DESC']
+        );
         $pages = $this->em->getRepository('CocoricoPageBundle:Page')->findAll();
         $users = $this->em->getRepository('CocoricoUserBundle:User')->findAllEnabledForSitemap();
 
