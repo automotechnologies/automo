@@ -174,8 +174,13 @@ body {
     background-size: 103vh !important;
     background-position-y: top !important;
     height: 55vh !important;
-      display: table-footer-group;
+    display: table-footer-group;
   }
+
+    .visual h1 {
+        width: 95vw !important;
+        font: 700 21px 'Otomo', "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    }
 
   .visual .title-holder {
     height: 49vh !important;
@@ -223,7 +228,7 @@ body {
   }
 
   .form-category input.btn-default {
-    width: 150px!important;
+    width: 200px !important;
     margin-left: 75px !important;
     background-color: #737373 !important;
   }
