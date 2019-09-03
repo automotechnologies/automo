@@ -5,6 +5,7 @@ namespace Cocorico\CMSBundle\Sitemap;
 
 use Cocorico\CoreBundle\Entity\Listing;
 use Cocorico\CoreBundle\Entity\ListingImage;
+use Cocorico\CoreBundle\Model\BaseListingImage;
 use Cocorico\UserBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
@@ -48,10 +49,7 @@ class Sitemap
             ];
         }
 
-        $listings = $this->em->getRepository('CocoricoCoreBundle:Listing')->findBy(
-            ['status' => Listing::STATUS_PUBLISHED],
-            ['createdAt' => 'DESC']
-        );
+        $listings = $this->em->getRepository('CocoricoCoreBundle:Listing')->getSiteMap($lang);
         $pages = $this->em->getRepository('CocoricoPageBundle:Page')->findAll();
         $users = $this->em->getRepository('CocoricoUserBundle:User')->findAllEnabledForSitemap();
 
@@ -86,22 +84,20 @@ class Sitemap
             ];
         }
 
+        /** @var Listing $listing */
         foreach ($listings as $listing) {
-
-            /** @var $listingImage ListingImage */
-            $listingImage = $listing->getImages()->get(0);
-            $url = $this->manager->getBrowserPath($listingImage->getWebPath(), 'listing_large');
+            $imageUrl = $this->manager->getBrowserPath(BaseListingImage::IMAGE_FOLDER . $listing['name'], 'listing_large');
 
             $urls[] = [
-                'loc' => $this->router->generate('cocorico_listing_show', ['slug' => $listing->getSlug()],
+                'loc' => $this->router->generate('cocorico_listing_show', ['slug' => $listing['slug']],
                     UrlGeneratorInterface::ABSOLUTE_URL
                 ),
                 'priority' => '0.7',
-                'lastmod' => $listing->getUpdatedAt(),
+                'lastmod' => $listing['updatedAt'],
                 'changefreq' => 'weekly',
                 'image' => [
-                    'loc' => $url,
-                    'title' => $listing->getTitle(),
+                    'loc' => $imageUrl,
+                    'title' => $listing['title'],
                 ]
             ];
         }

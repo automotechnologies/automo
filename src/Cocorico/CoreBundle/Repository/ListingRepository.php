@@ -362,4 +362,29 @@ class ListingRepository extends EntityRepository
 
         return $queryBuilder->getQuery()->getResult();
     }
+
+    /**
+     * @param string $lang
+     * @return array
+     */
+    public function getSiteMap(string $lang)
+    {
+        $queryBuilder = $this->createQueryBuilder('l')
+            ->select('l.id')
+            ->addSelect('li.name')
+            ->addSelect('lt.title')
+            ->addSelect('lt.slug')
+            ->addSelect('l.updatedAt')
+            ->innerJoin('l.images', 'li')
+            ->innerJoin('l.translations', 'lt')
+            ->where('l.status IN (:status)')
+            ->andWhere('li.position = 1')
+            ->andWhere('lt.locale = :lang')
+            ->setParameter('lang', $lang)
+            ->setParameter('status', Listing::STATUS_PUBLISHED)
+            ->orderBy('l.createdAt', 'DESC')
+        ;
+
+        return $queryBuilder->getQuery()->getResult();
+    }
 }
