@@ -6,6 +6,7 @@ namespace Cocorico\CMSBundle\Sitemap;
 use Cocorico\CoreBundle\Entity\Listing;
 use Cocorico\CoreBundle\Entity\ListingImage;
 use Cocorico\CoreBundle\Model\BaseListingImage;
+use Cocorico\PageBundle\Entity\Page;
 use Cocorico\UserBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
@@ -50,16 +51,17 @@ class Sitemap
         }
 
         $listings = $this->em->getRepository('CocoricoCoreBundle:Listing')->getSiteMap($lang);
-        $pages = $this->em->getRepository('CocoricoPageBundle:Page')->findAll();
+        $pages = $this->em->getRepository('CocoricoPageBundle:Page')->findAllPublished($lang);
         $users = $this->em->getRepository('CocoricoUserBundle:User')->findAllEnabledForSitemap();
 
+        /** @var Page $page */
         foreach ($pages as $page) {
             $urls[] = [
-                'loc' => $this->router->generate('cocorico_page_show', ['slug' => $page->getSlug()],
+                'loc' => $this->router->generate('cocorico_page_show', ['slug' => $page['slug']],
                     UrlGeneratorInterface::ABSOLUTE_URL
                 ),
                 'priority' => '0.7',
-                'lastmod' => $page->getUpdatedAt(),
+                'lastmod' => $page['updatedAt'],
                 'changefreq' => 'monthly'
             ];
         }

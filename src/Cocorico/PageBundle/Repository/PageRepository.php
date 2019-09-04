@@ -65,17 +65,22 @@ class PageRepository extends EntityRepository
     }
 
     /**
+     * @param string $lang
      * @return array|null
      */
-    public function findAllPublished()
+    public function findAllPublished(string $lang)
     {
         $queryBuilder = $this->createQueryBuilder('p')
-            ->addSelect("t")
+            ->select("t.locale")
+            ->addSelect('p.id')
+            ->addSelect('t.slug')
+            ->addSelect('p.updatedAt')
             ->leftJoin('p.translations', 't')
             ->andWhere('p.published = :published')
+            ->andWhere('t.locale = :locale')
+            ->setParameter('locale', $lang)
             ->setParameter('published', true)
-            ->orderBy('p.id', 'ASC')
-            ->addOrderBy('t.locale', 'ASC');
+            ->orderBy('p.id', 'ASC');
         try {
             $query = $queryBuilder->getQuery();
 
