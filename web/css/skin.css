@@ -65,8 +65,7 @@ body {
 }
 
 .infoarea {
-    /* padding-bottom: 0; */
-    padding: 50px 0 !important;
+    padding: 50px 0;
 }
 
 .infoarea .icon {
@@ -184,8 +183,12 @@ body {
     }
 
   .visual .title-holder {
-    height: 52vh !important;
+    height: 52vh;
   }
+
+    .infoarea {
+        padding: 25px 0;
+    }
 
   .home-page .form-category {
     width: auto !important;
@@ -372,4 +375,10 @@ body {
     text-align: left;
     }    
     
+}
+
+@media screen and (max-width: 320px) {
+    .visual .title-holder {
+        height: 54vh;
+    }
 }
