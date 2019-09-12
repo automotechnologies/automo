@@ -164,7 +164,7 @@
       </trans-unit>
       <trans-unit id="69a1518dded704dee13c212c8fa93bfdbec43543" resname="footer.title.various">
         <source>footer.title.various</source>
-        <target>Various</target>
+        <target>More</target>
       </trans-unit>
       <trans-unit id="5f64194a8d285094204c3ef94b8dc3b6bebfa2d0" resname="footer.who_we_are.link">
         <source>footer.who_we_are.link</source>
