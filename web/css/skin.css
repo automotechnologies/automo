@@ -12,11 +12,11 @@ body {
 }
 
 .visual {
-    margin: 0 0 27px;
-    background: url(../../../images/web2.png) no-repeat 13% 30% #d43b4d !important;
-    background-size: 40% !important;
-    height: 440px !important;
-    padding: 0px 45px 0;
+    margin: 0;
+    background: url(../../../images/banner-backgound.jpg) no-repeat 13% 30%;
+    background-size: 100% !important;
+    height: 440px;
+    padding: 0;
 }
 
 .visual h1 {
@@ -170,7 +170,7 @@ body {
 @media screen and (max-width: 480px) {
 
   .visual {
-    background: url(../../images/wb1.jpg) no-repeat 12% #d43b4d !important;
+    background: url(../../images/banner-backgound.jpg) no-repeat 12%;
     background-size: 103vh !important;
     background-position-y: top !important;
     height: 55vh !important;
@@ -180,16 +180,17 @@ body {
     .visual h1 {
         width: 95vw !important;
         font: 700 21px 'Otomo', "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+        color: #58595b;
     }
 
   .visual .title-holder {
-    height: 49vh !important;
+    height: 52vh !important;
   }
 
   .home-page .form-category {
     width: auto !important;
     float: left !important;
-    margin: 0 25px 50px !important;
+    margin: 0 25px 0 !important;
     padding: 20px !important;
   }
 
