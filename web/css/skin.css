@@ -23,6 +23,8 @@ body {
     color: #ffffff;
     margin: 0 auto;
     width: 40vw;
+    text-align: left;
+    padding-left: 100px;
     font: 700 40px/58px 'Otomo', "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
@@ -180,8 +182,8 @@ body {
         width: 95vw !important;
         font: 700 21px 'Otomo', "Helvetica Neue", Helvetica, Arial, sans-serif !important;
         color: #58595b;
-    }
-
+    }   
+    
   .visual .title-holder {
     height: 52vh;
   }
@@ -315,6 +317,8 @@ body {
   .visual h1 {
     width: 95vw !important;
     font: 700 21px 'Otomo', "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    padding: 0 50px;
+    text-align: center !important;
   }
 
   .infoarea .info-box {
