@@ -31,7 +31,6 @@ services:
             - "@doctrine.odm.mongodb.document_manager"
             - "@cocorico.listing_availability.manager"
             - "@cocorico.mailer.twig_swift"
-            - "@?cocorico_sms.smser.twig"
             - "@cocorico.mailer.sendgrid"
             - "@event_dispatcher"
             - parameters:
@@ -51,7 +50,6 @@ services:
                 cocorico_listing_availability_status: "%cocorico.listing_availability_status%"
                 cocorico_vat: "%cocorico.vat%"
                 cocorico_include_vat: "%cocorico.include_vat%"
-                cocorico_bundles: "%kernel.bundles%"
 
 
     cocorico.booking_bank_wire.manager:

@@ -42,7 +42,6 @@ class BookingManager extends BaseManager
     protected $availabilityManager;
     protected $mailer;
     protected $sendgridMailer;
-    protected $smser;
     protected $dispatcher;
     protected $feeAsAsker;
     protected $feeAsOfferer;
@@ -68,7 +67,7 @@ class BookingManager extends BaseManager
      * @param DocumentManager                         $dm
      * @param ListingAvailabilityManager              $availabilityManager
      * @param TwigSwiftMailer                         $mailer
-     * @param \Cocorico\SMSBundle\Twig\TwigSmser|null $smser
+     * @param SendgridMailerValidateBookings          $sendgridMailerValidateBookings
      * @param EventDispatcherInterface                $dispatcher
      * @param array                                   $parameters
      *        float     $feeAsAsker
@@ -92,7 +91,6 @@ class BookingManager extends BaseManager
         DocumentManager $dm,
         ListingAvailabilityManager $availabilityManager,
         TwigSwiftMailer $mailer,
-        $smser,
         SendgridMailerValidateBookings $sendgridMailerValidateBookings,
         EventDispatcherInterface $dispatcher,
         $parameters
@@ -101,7 +99,6 @@ class BookingManager extends BaseManager
         $this->dm = $dm;
         $this->availabilityManager = $availabilityManager;
         $this->mailer = $mailer;
-        $this->smser = $smser;
         $this->sendgridMailer = $sendgridMailerValidateBookings;
         $this->dispatcher = $dispatcher;
 
@@ -175,6 +172,7 @@ class BookingManager extends BaseManager
      *
      * @param Booking $booking
      * @return Booking
+     * @throws \Exception
      */
     public function initBookingDatesInNotDayMode(Booking $booking)
     {
@@ -308,6 +306,7 @@ class BookingManager extends BaseManager
      *
      * @param Booking $booking
      * @return Booking
+     * @throws \Exception
      */
     public function initBookingDatesInDayMode(Booking $booking)
     {
@@ -387,6 +386,7 @@ class BookingManager extends BaseManager
      * @param Booking $booking
      *
      * @return \stdClass
+     * @throws \Exception
      */
     public function checkBookingAndSetAmounts(Booking $booking)
     {
@@ -432,6 +432,7 @@ class BookingManager extends BaseManager
      * @param Booking $booking
      *
      * @return array
+     * @throws \Exception
      */
     private function checkBookingDates(Booking $booking)
     {
@@ -709,7 +710,8 @@ class BookingManager extends BaseManager
      *
      * @param Booking $booking
      *
-     * @return \Cocorico\CoreBundle\Entity\ListingDiscount|null
+     * @return ListingDiscount|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     private function getBookingDiscount(Booking $booking)
     {
@@ -894,11 +896,6 @@ class BookingManager extends BaseManager
             ->andWhere('b.payedBookingAt IS NOT NULL')
             ->orderBy('b.payedBookingAt', 'desc');
 
-        if ($this->mangopayIsEnabled()) {
-            $queryBuilder
-                ->andWhere('b.mangopayPayinPreAuthId IS NOT NULL');
-        }
-
         //Pagination
         $queryBuilder
             ->setFirstResult(($page - 1) * $this->maxPerPage)
@@ -958,6 +955,7 @@ class BookingManager extends BaseManager
      *
      * @param Booking $booking
      * @return Booking|false
+     * @throws \Exception
      */
     public function create(Booking $booking)
     {
@@ -974,9 +972,9 @@ class BookingManager extends BaseManager
             $this->mailer->sendBookingRequestMessageToOfferer($booking);
             $this->mailer->sendBookingRequestMessageToAsker($booking);
 
-            if ($this->smser) {
-                $this->smser->sendBookingRequestMessageToOfferer($booking);
-            }
+//            if ($this->smser) {
+//                $this->smser->sendBookingRequestMessageToOfferer($booking);
+//            }
 
             return $booking;
         }
@@ -993,11 +991,8 @@ class BookingManager extends BaseManager
      *
      * @return integer
      */
-    public function alertExpiringBookings(
-        $alertExpirationDelay,
-        $expirationDelay = null,
-        $acceptationDelay = null
-    ) {
+    public function alertExpiringBookings($alertExpirationDelay, $expirationDelay = null, $acceptationDelay = null)
+    {
         $result = 0;
         $expirationDelay = $expirationDelay !== null ? $expirationDelay : $this->expirationDelay;
         $acceptationDelay = $acceptationDelay !== null ? $acceptationDelay : $this->acceptationDelay;
@@ -1031,9 +1026,9 @@ class BookingManager extends BaseManager
             $booking = $this->save($booking);
             //Mail offerer
             $this->mailer->sendBookingExpirationAlertMessageToOfferer($booking);
-            if ($this->smser) {
-                $this->smser->sendBookingExpirationAlertMessageToOfferer($booking);
-            }
+//            if ($this->smser) {
+//                $this->smser->sendBookingExpirationAlertMessageToOfferer($booking);
+//            }
 
             return true;
         }
@@ -1085,10 +1080,10 @@ class BookingManager extends BaseManager
             $this->mailer->sendBookingRequestExpiredMessageToOfferer($booking);//Mail offerer
             $this->mailer->sendBookingRequestExpiredMessageToAsker($booking);//Mail asker
 
-            if ($this->smser) {
-                $this->smser->sendBookingRequestExpiredMessageToOfferer($booking);
-                $this->smser->sendBookingRequestExpiredMessageToAsker($booking);
-            }
+//            if ($this->smser) {
+//                $this->smser->sendBookingRequestExpiredMessageToOfferer($booking);
+//                $this->smser->sendBookingRequestExpiredMessageToAsker($booking);
+//            }
 
             return true;
         }
@@ -1134,10 +1129,10 @@ class BookingManager extends BaseManager
             $this->mailer->sendBookingImminentMessageToOfferer($booking);//Mail offerer
             $this->mailer->sendBookingImminentMessageToAsker($booking);//Mail asker
 
-            if ($this->smser) {
-                $this->smser->sendBookingImminentMessageToOfferer($booking);
-                $this->smser->sendBookingImminentMessageToAsker($booking);
-            }
+//            if ($this->smser) {
+//                $this->smser->sendBookingImminentMessageToOfferer($booking);
+//                $this->smser->sendBookingImminentMessageToAsker($booking);
+//            }
 
             return true;
         }
@@ -1156,13 +1151,6 @@ class BookingManager extends BaseManager
     {
         $statusIsOk = in_array($booking->getStatus(), Booking::$cancelableStatus);
         $hasStarted = $booking->hasStarted();
-
-        //todo: check if refund can be made with voucher amount
-        if ($this->voucherIsEnabled()) {
-            if ($booking->getAmountDiscountVoucher()) {
-                return false;
-            }
-        }
 
         if ($statusIsOk && !$hasStarted && !$booking->isValidated()) {
             return true;
@@ -1238,9 +1226,9 @@ class BookingManager extends BaseManager
                 $this->mailer->sendBookingAcceptedMessageToAsker($booking);
                 $this->mailer->sendBookingAcceptedMessageToOfferer($booking);
 
-                if ($this->smser) {
-                    $this->smser->sendBookingAcceptedMessageToAsker($booking);
-                }
+//                if ($this->smser) {
+//                    $this->smser->sendBookingAcceptedMessageToAsker($booking);
+//                }
 
                 //Refuse other booking requests existing in this booking date range
                 $bookingsToRefuse = $this->getRepository()->findBookingsToRefuse(
@@ -1274,6 +1262,7 @@ class BookingManager extends BaseManager
      * @param bool    $refusedByOfferer
      *
      * @return Booking|bool
+     * @throws \Exception
      */
     public function refuse(Booking $booking, $refusedByOfferer = true)
     {
@@ -1288,9 +1277,9 @@ class BookingManager extends BaseManager
                 $this->mailer->sendBookingRefusedMessageToOfferer($booking);
             }
 
-            if ($this->smser) {
-                $this->smser->sendBookingRefusedMessageToAsker($booking);
-            }
+//            if ($this->smser) {
+//                $this->smser->sendBookingRefusedMessageToAsker($booking);
+//            }
 
             return $booking;
         }
@@ -1306,6 +1295,7 @@ class BookingManager extends BaseManager
      * @param int    $validatedDelay  Time after or before the moment the booking is considered as validated (in minutes)
      *
      * @return int
+     * @throws \Exception
      */
     public function validateBookings($validatedMoment, $validatedDelay)
     {
@@ -1333,6 +1323,7 @@ class BookingManager extends BaseManager
      * @param Booking $booking
      *
      * @return bool
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function validate(Booking $booking)
     {
@@ -1397,6 +1388,7 @@ class BookingManager extends BaseManager
      * @param Booking $booking
      *
      * @return Booking|bool
+     * @throws \Exception
      */
     public function cancel(Booking $booking)
     {
@@ -1435,9 +1427,9 @@ class BookingManager extends BaseManager
                 $this->mailer->sendBookingCanceledByAskerMessageToAsker($booking);
                 $this->mailer->sendBookingCanceledByAskerMessageToOfferer($booking);
 
-                if ($this->smser) {
-                    $this->smser->sendBookingCanceledByAskerMessageToOfferer($booking);
-                }
+//                if ($this->smser) {
+//                    $this->smser->sendBookingCanceledByAskerMessageToOfferer($booking);
+//                }
 
 
                 return $booking;
@@ -1488,14 +1480,6 @@ class BookingManager extends BaseManager
     public function getMailer()
     {
         return $this->mailer;
-    }
-
-    /**
-     * @return bool
-     */
-    public function mangopayIsEnabled()
-    {
-        return isset($this->bundles["CocoricoMangoPayBundle"]);
     }
 
     /**

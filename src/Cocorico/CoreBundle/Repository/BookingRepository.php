@@ -472,11 +472,9 @@ SQLQUERY;
         $queryBuilder
             ->where('b.status IN (:status)')
             ->andWhere('b.validated = :validated')
-            ->setParameter(
-                'status',
-                array(
+            ->setParameter('status', [
                     Booking::STATUS_PAYED,
-                )
+                ]
             )
             ->setParameter('validated', false);
 

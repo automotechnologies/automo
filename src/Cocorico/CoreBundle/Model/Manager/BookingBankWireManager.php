@@ -36,22 +36,19 @@ class BookingBankWireManager extends BaseManager
      * @param TwigSwiftMailer          $mailer
      * @param int                      $maxPerPage
      * @param EventDispatcherInterface $dispatcher
-     * @param array                    $bundles
      */
     public function __construct(
         EntityManager $em,
         $checkingSimulation,
         TwigSwiftMailer $mailer,
         $maxPerPage,
-        EventDispatcherInterface $dispatcher,
-        $bundles
+        EventDispatcherInterface $dispatcher
     ) {
         $this->em = $em;
         $this->checkingSimulation = $checkingSimulation;
         $this->mailer = $mailer;
         $this->maxPerPage = $maxPerPage;
         $this->dispatcher = $dispatcher;
-        $this->bundles = $bundles;
     }
 
     /**
@@ -123,31 +120,6 @@ class BookingBankWireManager extends BaseManager
      */
     public function getAmountAndRemainingAmountToWire(BookingBankWire $bookingBankWire)
     {
-        if ($this->voucherIsEnabled()) {
-            $amountToWire = $remainingAmount = 0;
-
-            if ($bookingBankWire) {
-                $booking = $bookingBankWire->getBooking();
-                $amountDiscountVoucher = $bookingBankWire->getBooking()->getAmountDiscountVoucher();
-                if ($booking->getStatus() == Booking::STATUS_CANCELED_ASKER) {
-                    $payinRefund = 0;
-                    if ($booking->getPayinRefund()) {
-                        $payinRefund = $booking->getPayinRefund()->getAmount();
-                    }
-                    $amountToWire = $booking->getAmountExcludingFees() - $payinRefund - $amountDiscountVoucher;
-                    $remainingAmount = $bookingBankWire->getAmount() - $amountToWire;
-                } else {
-                    $amountToWire = $bookingBankWire->getAmount() - $amountDiscountVoucher;
-                    $remainingAmount = $bookingBankWire->getAmount() - $amountToWire;
-                }
-            }
-
-            return array(
-                'amountToWire' => $amountToWire,
-                'remainingAmount' => $remainingAmount,
-            );
-        }
-
         return null;
     }
 
@@ -155,6 +127,7 @@ class BookingBankWireManager extends BaseManager
      * Check Bookings Bank Wires
      *
      * @return int
+     * @throws \Exception
      */
     public function checkBookingsBankWires()
     {
@@ -213,14 +186,6 @@ class BookingBankWireManager extends BaseManager
     public function getCheckingSimulation()
     {
         return $this->checkingSimulation;
-    }
-
-    /**
-     * @return bool
-     */
-    public function voucherIsEnabled()
-    {
-        return isset($this->bundles["CocoricoVoucherBundle"]);
     }
 
 
