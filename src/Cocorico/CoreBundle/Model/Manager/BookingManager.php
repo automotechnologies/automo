@@ -21,6 +21,7 @@ use Cocorico\CoreBundle\Event\BookingEvent;
 use Cocorico\CoreBundle\Event\BookingEvents;
 use Cocorico\CoreBundle\Event\BookingPayinRefundEvent;
 use Cocorico\CoreBundle\Event\BookingValidateEvent;
+use Cocorico\CoreBundle\Mailer\SendgridMailerValidateBookings;
 use Cocorico\CoreBundle\Mailer\TwigSwiftMailer;
 use Cocorico\CoreBundle\Repository\BookingRepository;
 use Cocorico\CoreBundle\Repository\ListingAvailabilityRepository;
@@ -40,6 +41,7 @@ class BookingManager extends BaseManager
     protected $dm;
     protected $availabilityManager;
     protected $mailer;
+    protected $sendgridMailer;
     protected $smser;
     protected $dispatcher;
     protected $feeAsAsker;
@@ -91,6 +93,7 @@ class BookingManager extends BaseManager
         ListingAvailabilityManager $availabilityManager,
         TwigSwiftMailer $mailer,
         $smser,
+        SendgridMailerValidateBookings $sendgridMailerValidateBookings,
         EventDispatcherInterface $dispatcher,
         $parameters
     ) {
@@ -99,6 +102,7 @@ class BookingManager extends BaseManager
         $this->availabilityManager = $availabilityManager;
         $this->mailer = $mailer;
         $this->smser = $smser;
+        $this->sendgridMailer = $sendgridMailerValidateBookings;
         $this->dispatcher = $dispatcher;
 
         //Parameters
@@ -1358,9 +1362,13 @@ class BookingManager extends BaseManager
                 $this->dispatcher->dispatch(BookingEvents::BOOKING_POST_VALIDATE, $event);
 
                 //Mail offerer
-                $this->mailer->sendReminderToRateAskerMessageToOfferer($booking);
+                //TODO Remove {$this->>mailer}
+//                $this->mailer->sendReminderToRateAskerMessageToOfferer($booking);
+                $this->sendgridMailer->sendReminderToRateAskerMessageToOfferer($booking);
                 //Mail asker
-                $this->mailer->sendReminderToRateOffererMessageToAsker($booking);
+                //TODO Remove {$this->>mailer}
+                $this->sendgridMailer->sendReminderToRateOffererMessageToAsker($booking);
+//                $this->mailer->sendReminderToRateOffererMessageToAsker($booking);
 
                 return true;
             } else {

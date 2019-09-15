@@ -19,7 +19,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
@@ -42,7 +44,7 @@ class ReviewController extends Controller
      * @param  Request $request
      * @param  Booking $booking
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return RedirectResponse|Response
      * @throws AccessDeniedException
      */
     public function newAction(Request $request, Booking $booking)
@@ -67,15 +69,14 @@ class ReviewController extends Controller
             return $this->redirect($this->generateUrl('cocorico_dashboard_reviews_made'));
         }
 
-        return $this->render(
-            'CocoricoReviewBundle:Dashboard/Review:new.html.twig',
-            array(
+        return $this->render('CocoricoReviewBundle:Dashboard/Review:new.html.twig',
+            [
                 'form' => $form->createView(),
                 'booking' => $booking,
                 'reviewTo' => $review->getReviewTo(),
                 'user_timezone' => $user == $booking->getUser() ?
                     $booking->getTimeZoneAsker() : $booking->getTimeZoneOfferer()
-            )
+            ]
         );
     }
 
@@ -107,7 +108,7 @@ class ReviewController extends Controller
      *
      * @param  Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function madeReviewsAction(Request $request)
     {
@@ -137,7 +138,7 @@ class ReviewController extends Controller
      *
      * @param  Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function receivedReviewsAction(Request $request)
     {

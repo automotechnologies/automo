@@ -32,6 +32,7 @@ services:
             - "@cocorico.listing_availability.manager"
             - "@cocorico.mailer.twig_swift"
             - "@?cocorico_sms.smser.twig"
+            - "@cocorico.mailer.sendgrid"
             - "@event_dispatcher"
             - parameters:
                 cocorico_fee_as_asker: "%cocorico.fee_as_asker%"

@@ -61,12 +61,7 @@ class BookingFormHandler
      *
      * @return Booking $booking
      */
-    public function init(
-        $user,
-        Listing $listing,
-        \DateTime $start,
-        \DateTime $end
-    ) {
+    public function init($user, Listing $listing, \DateTime $start, \DateTime $end) {
         //Id of an eventual booking draft
         $bookingId = $this->request->query->get('id');
         //If no booking draft exists a new booking is initialized
