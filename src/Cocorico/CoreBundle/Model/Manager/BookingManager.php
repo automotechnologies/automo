@@ -1077,13 +1077,15 @@ class BookingManager extends BaseManager
             $booking->setStatus(Booking::STATUS_EXPIRED);
             $booking = $this->save($booking);
 
-            $this->mailer->sendBookingRequestExpiredMessageToOfferer($booking);//Mail offerer
-            $this->mailer->sendBookingRequestExpiredMessageToAsker($booking);//Mail asker
+//            $this->mailer->sendBookingRequestExpiredMessageToOfferer($booking);//Mail offerer
+//            $this->mailer->sendBookingRequestExpiredMessageToAsker($booking);//Mail asker
 
-//            if ($this->smser) {
-//                $this->smser->sendBookingRequestExpiredMessageToOfferer($booking);
-//                $this->smser->sendBookingRequestExpiredMessageToAsker($booking);
-//            }
+            # Mailer offerer
+            $this->sendgridMailer->sendBookingRequestExpiredMessageToOfferer($booking);
+
+            # Mailer asker
+            $this->sendgridMailer->sendBookingRequestExpiredMessageToAsker($booking);
+
 
             return true;
         }

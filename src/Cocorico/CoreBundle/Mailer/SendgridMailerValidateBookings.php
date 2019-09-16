@@ -144,7 +144,31 @@ class SendgridMailerValidateBookings implements MailerInterface
      */
     public function sendBookingRequestExpiredMessageToOfferer(Booking $booking)
     {
-        // TODO: Implement sendBookingRequestExpiredMessageToOfferer() method.
+        $listing = $booking->getListing();
+
+        $user = $listing->getUser();
+        $userLocale = $user->guessPreferredLanguage($this->locales, $this->locale);
+        $asker = $booking->getUser();
+        $template = $this->templates['booking_request_expired_offerer'];
+
+        $bookingRequestUrl = $this->router->generate(
+            'cocorico_dashboard_booking_show_offerer',
+            [
+                'id' => $booking->getId(),
+                '_locale' => $userLocale,
+            ],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
+
+        $context = [
+            'user' => $user,
+            'asker' => $asker,
+            'listing' => $listing,
+            'booking' => $booking,
+            'booking_request_url' => $bookingRequestUrl,
+        ];
+
+        $this->sendMessage($template, $context, $this->fromEmail, $user->getEmail());
     }
 
     /**
@@ -275,7 +299,25 @@ class SendgridMailerValidateBookings implements MailerInterface
      */
     public function sendBookingRequestExpiredMessageToAsker(Booking $booking)
     {
-        // TODO: Implement sendBookingRequestExpiredMessageToAsker() method.
+        $user = $booking->getUser();
+        $template = $this->templates['booking_request_expired_asker'];
+        $userLocale = $user->guessPreferredLanguage($this->locales, $this->locale);
+
+        $similarListingUrl = $this->router->generate(
+            'cocorico_home',
+            [
+                '_locale' => $userLocale,
+            ],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
+
+        $context = [
+            'user' => $user,
+            'booking' => $booking,
+            'similar_booking_listings_url' => $similarListingUrl
+        ];
+
+        $this->sendMessage($template, $context, $this->fromEmail, $user->getEmail());
     }
 
     /**
@@ -366,6 +408,29 @@ class SendgridMailerValidateBookings implements MailerInterface
             $context['locale'] = $context['user_locale'];
             $context['app']['request']['locale'] = $context['user_locale'];
             $context['user_timezone'] = $user->getTimeZone();
+        }
+
+        if (isset($context['listing'])) {
+            /** @var Listing $listing */
+            $listing = $context['listing'];
+            $translations = $listing->getTranslations();
+            if ($translations->count() && isset($translations[$context['user_locale']])) {
+                $slug = $translations[$context['user_locale']]->getSlug();
+                $title = $translations[$context['user_locale']]->getTitle();
+            } else {
+                $slug = $listing->getSlug();
+                $title = $listing->getTitle();
+            }
+            $context['listing_public_url'] = $this->router->generate(
+                'cocorico_listing_show',
+                [
+                    '_locale' => $context['user_locale'],
+                    'slug' => $slug,
+                ],
+                UrlGeneratorInterface::ABSOLUTE_URL
+            );
+
+            $context['listing_title'] = $title;
         }
 
         if (isset($context['booking'])) {
