@@ -58,7 +58,6 @@ class BookingManager extends BaseManager
     protected $defaultListingStatus;
     protected $vatRate;
     protected $includeVat;
-    protected $bundles;
     public $minPrice;
     public $maxPerPage;
 
@@ -126,7 +125,6 @@ class BookingManager extends BaseManager
         $this->defaultListingStatus = $parameters["cocorico_listing_availability_status"];
         $this->vatRate = $parameters["cocorico_vat"];
         $this->includeVat = $parameters["cocorico_include_vat"];
-        $this->bundles = $parameters["cocorico_bundles"];
     }
 
     /**
@@ -136,6 +134,7 @@ class BookingManager extends BaseManager
      * @param User|null     $user
      * @param DateTimeRange $dateTimeRange
      * @return Booking
+     * @throws \Exception
      */
     public function initBooking(Listing $listing, $user, DateTimeRange $dateTimeRange = null)
     {
@@ -678,6 +677,7 @@ class BookingManager extends BaseManager
      * @param Booking $booking
      *
      * @return \stdClass
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     private function setBookingAmounts(Booking $booking)
     {
@@ -1480,14 +1480,6 @@ class BookingManager extends BaseManager
     public function getMailer()
     {
         return $this->mailer;
-    }
-
-    /**
-     * @return bool
-     */
-    private function voucherIsEnabled()
-    {
-        return isset($this->bundles["CocoricoVoucherBundle"]);
     }
 
     /**
