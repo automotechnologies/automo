@@ -400,6 +400,14 @@ class SendgridMailerValidateBookings implements MailerInterface
      */
     protected function sendMessage($templateName, $context, $fromEmail, $toEmail)
     {
+        $user = null;
+        $context['trans_domain'] = self::TRANS_DOMAIN;
+
+        $context['user_locale'] = $this->locale;
+        $context['locale'] = $this->locale;
+        $context['app']['request']['locale'] = $this->locale;
+        $context['user_timezone'] = $this->timezone;
+
         #user receiving the email
         if (isset($context['user'])) {
             /** @var User $user */
