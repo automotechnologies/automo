@@ -1099,6 +1099,7 @@ class BookingManager extends BaseManager
      * @param int $imminentDelay
      *
      * @return integer
+     * @throws \Exception
      */
     public function alertImminentBookings($imminentDelay)
     {
@@ -1128,13 +1129,15 @@ class BookingManager extends BaseManager
             $booking->setAlertedImminent(true);
             $booking = $this->save($booking);
 
-            $this->mailer->sendBookingImminentMessageToOfferer($booking);//Mail offerer
-            $this->mailer->sendBookingImminentMessageToAsker($booking);//Mail asker
+            #TODO remove {$this->>mailer}
+//            $this->mailer->sendBookingImminentMessageToOfferer($booking);//Mail offerer
+//            $this->mailer->sendBookingImminentMessageToAsker($booking);//Mail asker
 
-//            if ($this->smser) {
-//                $this->smser->sendBookingImminentMessageToOfferer($booking);
-//                $this->smser->sendBookingImminentMessageToAsker($booking);
-//            }
+            # Mail offerer
+            $this->sendgridMailer->sendBookingImminentMessageToOfferer($booking);
+
+            # Mail asker
+            $this->sendgridMailer->sendBookingImminentMessageToAsker($booking);
 
             return true;
         }

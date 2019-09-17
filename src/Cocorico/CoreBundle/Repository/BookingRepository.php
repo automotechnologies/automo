@@ -321,6 +321,7 @@ SQLQUERY;
      *
      * @param int $bookingImminentDelay Delay in minutes to consider a booking as imminent.
      * @return \Doctrine\Common\Collections\ArrayCollection
+     * @throws \Exception
      */
     public function findBookingsImminentToAlert($bookingImminentDelay)
     {
@@ -339,12 +340,7 @@ SQLQUERY;
             ->where('b.status IN (:status)')
             ->andWhere('b.alertedImminent = :alertedImminent')
             ->andWhere($sql)
-            ->setParameter(
-                'status',
-                array(
-                    Booking::STATUS_PAYED,
-                )
-            )
+            ->setParameter('status', [Booking::STATUS_PAYED])
             ->setParameter('dateImminent', $dateImminent->format('Y-m-d H:i:s'))
             ->setParameter('alertedImminent', false);
 

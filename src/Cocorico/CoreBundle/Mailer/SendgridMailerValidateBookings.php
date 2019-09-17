@@ -226,7 +226,30 @@ class SendgridMailerValidateBookings implements MailerInterface
      */
     public function sendBookingImminentMessageToOfferer(Booking $booking)
     {
-        // TODO: Implement sendBookingImminentMessageToOfferer() method.
+        $listing = $booking->getListing();
+        $user = $listing->getUser();
+        $userLocale = $user->guessPreferredLanguage($this->locales, $this->locale);
+        $asker = $booking->getUser();
+        $template = $this->templates['booking_imminent_offerer'];
+
+        $bookingRequestUrl = $this->router->generate(
+            'cocorico_dashboard_booking_show_offerer',
+            [
+                'id' => $booking->getId(),
+                '_locale' => $userLocale,
+            ],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
+
+        $context = [
+            'user' => $user,
+            'asker' => $asker,
+            'listing' => $listing,
+            'booking' => $booking,
+            'booking_request_url' => $bookingRequestUrl,
+        ];
+
+        $this->sendMessage($template, $context, $this->fromEmail, $user->getEmail());
     }
 
     /**
@@ -329,7 +352,30 @@ class SendgridMailerValidateBookings implements MailerInterface
      */
     public function sendBookingImminentMessageToAsker(Booking $booking)
     {
-        // TODO: Implement sendBookingImminentMessageToAsker() method.
+        $user = $booking->getUser();
+        $userLocale = $user->guessPreferredLanguage($this->locales, $this->locale);
+        $listing = $booking->getListing();
+        $offerer = $listing->getUser();
+        $template = $this->templates['booking_imminent_asker'];
+
+        $bookingRequestUrl = $this->router->generate(
+            'cocorico_dashboard_booking_show_asker',
+            [
+                'id' => $booking->getId(),
+                '_locale' => $userLocale,
+            ],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
+
+        $context = [
+            'user' => $user,
+            'offerer' => $offerer,
+            'listing' => $listing,
+            'booking' => $booking,
+            'booking_request_url' => $bookingRequestUrl,
+        ];
+
+        $this->sendMessage($template, $context, $this->fromEmail, $user->getEmail());
     }
 
     /**
