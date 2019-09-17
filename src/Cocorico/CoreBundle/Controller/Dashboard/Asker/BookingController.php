@@ -24,6 +24,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 
 /**
@@ -42,7 +43,7 @@ class BookingController extends Controller
      *
      * @param  Request $request
      * @param  int     $page
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function indexAction(Request $request, $page)
     {
@@ -88,7 +89,7 @@ class BookingController extends Controller
      * @param Request $request
      * @param Booking $booking
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function showAction(Request $request, Booking $booking)
     {
@@ -148,7 +149,7 @@ class BookingController extends Controller
      * @param Booking $booking
      * @param string  $type The edition type (cancel)
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function editAction(Request $request, Booking $booking, $type)
     {
@@ -256,7 +257,6 @@ class BookingController extends Controller
     }
 
     /**
-     *
      * @Route("/{id}/show-voucher", name="cocorico_dashboard_booking_show_voucher", requirements={
      *      "id" = "\d+"
      * })
@@ -264,18 +264,16 @@ class BookingController extends Controller
      *
      * @Security("is_granted('view_voucher_as_asker', booking)")
      *
-     * @param Request $request
      * @param Booking $booking
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function showVoucherAction(Request $request, Booking $booking)
+    public function showVoucherAction(Booking $booking)
     {
-        return $this->render(
-            'CocoricoCoreBundle:Dashboard/Booking:show_voucher.html.twig',
-            array(
-                'booking' => $booking
-            )
+        return $this->render('CocoricoCoreBundle:Dashboard/Booking:show_voucher.html.twig',
+            [
+                'booking' => $booking,
+            ]
         );
     }
 
