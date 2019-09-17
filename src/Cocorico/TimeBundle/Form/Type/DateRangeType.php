@@ -108,7 +108,7 @@ class DateRangeType extends AbstractType
                                 'widget' => 'single_text',
                                 'format' => 'dd/MM/yyyy',
                                 'attr' => [
-                                    'autocomplete' => 'disable',
+                                    'autocomplete' => 'off',
                                 ],
                             ],
                             $options['start_options']
@@ -123,7 +123,7 @@ class DateRangeType extends AbstractType
                                 'format' => 'dd/MM/yyyy',
                                 'attr' => [
                                     'class' => 'to',
-                                    'autocomplete' => 'disable',
+                                    'autocomplete' => 'off',
                                 ]
                             ],
                             $options['end_options']
