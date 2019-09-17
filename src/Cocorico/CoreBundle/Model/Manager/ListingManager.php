@@ -289,8 +289,7 @@ class ListingManager extends BaseManager
      */
     public function alertUpdateCalendar(Listing $listing)
     {
-        ##TODO send via SendGrid
-        $this->mailer->sendUpdateYourCalendarMessageToOfferer($listing);
+        $this->emailNotification->sendUpdateYourCalendarMessageToOfferer($listing);
 
         return true;
     }

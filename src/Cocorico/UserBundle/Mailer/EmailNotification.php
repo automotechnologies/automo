@@ -122,6 +122,34 @@ class EmailNotification
         $this->sendMessage($template, $context, $this->fromEmail, $user->getEmail());
     }
 
+    /**
+     * @param Listing $listing
+     * @return void
+     */
+    public function sendUpdateYourCalendarMessageToOfferer(Listing $listing)
+    {
+        $user = $listing->getUser();
+        $template = $this->templates['listing_activated_offerer'];
+        $userLocale = $user->guessPreferredLanguage($this->locales, $this->locale);
+
+        $listingCalendarEditUrl = $this->router->generate(
+            'cocorico_dashboard_listing_edit_availabilities_status',
+            [
+                'listing_id' => $listing->getId(),
+                '_locale' => $userLocale,
+            ],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
+
+        $context = [
+            'user' => $user,
+            'listing' => $listing,
+            'listing_calendar_edit_url' => $listingCalendarEditUrl,
+        ];
+
+        $this->sendMessage($template, $context, $this->fromEmail, $user->getEmail());
+    }
+
     protected function sendMessage($templateName, $context, $fromEmail, $toEmail)
     {
 //        $toEmail = "imanalopher@gmail.com";
