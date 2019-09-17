@@ -87,12 +87,7 @@ class BookingBankWireRepository extends EntityRepository
         $queryBuilder
             ->where('bbw.status = :status')
             ->andWhere('bbw.payedAt IS NULL')
-            ->setParameter(
-                'status',
-                array(
-                    BookingBankWire::STATUS_DONE,
-                )
-            );
+            ->setParameter('status', [BookingBankWire::STATUS_DONE]);
 
         return new ArrayCollection($queryBuilder->getQuery()->getResult());
     }

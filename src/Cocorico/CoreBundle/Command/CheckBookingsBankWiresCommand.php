@@ -33,6 +33,12 @@ class CheckBookingsBankWiresCommand extends ContainerAwareCommand
             ->setHelp("Usage php app/console cocorico:bookings:checkBankWires");
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|void|null
+     * @throws \Exception
+     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $result = $this->getContainer()->get('cocorico.booking_bank_wire.manager')->checkBookingsBankWires();
