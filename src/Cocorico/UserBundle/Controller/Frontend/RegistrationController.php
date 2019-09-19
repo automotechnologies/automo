@@ -48,19 +48,27 @@ class RegistrationController extends Controller
 
         $user = $this->get('cocorico_user.user_manager')->createUser();
         $form = $this->createCreateForm($user);
+        $isProd = $this->isProd();
         
         $googleReCaptchaIsValid = true;
-        if ($request->isMethod('POST') && $request->request->has('g-recaptcha-response') && $request->request->has('g-recaptcha-response')) {
-            // Google reCAPTCHA API secret key
-            $secretKey = $this->getParameter('google_recaptcha_secret_key');
+        if ($request->isMethod('POST')) {
+            $googleReCaptchaIsSuccess = true;
 
-            // Verify the reCAPTCHA response
-            $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $request->request->get('g-recaptcha-response'));
+            if ($isProd) {
+                if ($request->request->has('g-recaptcha-response')) {
+                    // Google reCAPTCHA API secret key
+                    $secretKey = $this->getParameter('google_recaptcha_secret_key');
 
-            // Decode json data
-            $responseData = json_decode($verifyResponse);
+                    // Verify the reCAPTCHA response
+                    $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $request->request->get('g-recaptcha-response'));
 
-            if ($responseData->success) {
+                    // Decode json data
+                    $responseData = json_decode($verifyResponse);
+                    $googleReCaptchaIsSuccess = $responseData->success;
+                }
+            }
+
+            if ($googleReCaptchaIsSuccess) {
                 
                 $confirmation = $this->getParameter('cocorico.registration_confirmation');
                 $process = $this->get('cocorico_user.form.handler.registration')->process($form, $confirmation);
@@ -212,5 +220,13 @@ class RegistrationController extends Controller
         $key = sprintf('_security.%s.target_path', $this->get('security.token_storage')->getToken()->getProviderKey());
 
         return $this->get('session')->get($key, null);
+    }
+
+    /**
+     * @return bool
+     */
+    private function isProd(): bool
+    {
+        return $this->container->getParameter('kernel.environment') === 'prod';
     }
 }
