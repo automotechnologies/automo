@@ -448,7 +448,7 @@ class ListingAvailabilityManager
 
                 $result[] = array(
                     'id' => $event['id'],
-                    'title' => $event['price'] / 100,
+                    'title' => $event['price'],
                     'className' => 'cal-' . $status . '-evt',
                     'start' => $event['start'],
                     'end' => $event['end'],

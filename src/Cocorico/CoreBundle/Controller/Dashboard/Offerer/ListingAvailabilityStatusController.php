@@ -20,7 +20,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Listing Dashboard controller.
@@ -44,7 +49,7 @@ class ListingAvailabilityStatusController extends Controller
      *
      * @param         $listing
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return RedirectResponse|Response
      */
     public function editAvailabilitiesStatusAction(Listing $listing)
     {
@@ -69,12 +74,11 @@ class ListingAvailabilityStatusController extends Controller
             );
         }
 
-        return $this->render(
-            'CocoricoCoreBundle:Dashboard/Listing:edit_availabilities_status.html.twig',
-            array(
+        return $this->render('CocoricoCoreBundle:Dashboard/Listing:edit_availabilities_status.html.twig',
+            [
                 'listing' => $listing,
-                'form' => $form->createView()
-            )
+                'form' => $form->createView(),
+            ]
         );
 
     }
@@ -84,7 +88,7 @@ class ListingAvailabilityStatusController extends Controller
      *
      * @param Listing $listing The entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return Form The form
      */
     private function createEditAvailabilitiesStatusForm(Listing $listing)
     {
@@ -127,8 +131,8 @@ class ListingAvailabilityStatusController extends Controller
      * @param  string  $start_time
      * @param  string  $end_time
      *
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @return Response
+     * @throws NotFoundHttpException
      */
     public function editAvailabilityStatusAction(
         Listing $listing,
@@ -167,7 +171,7 @@ class ListingAvailabilityStatusController extends Controller
      * @param  string $startTime
      * @param  string $endTime
      *
-     * @return \Symfony\Component\Form\Form|\Symfony\Component\Form\FormInterface
+     * @return Form|FormInterface
      */
     private function createEditAvailabilityStatusForm($listingId, $day, $startTime, $endTime)
     {
@@ -212,9 +216,10 @@ class ListingAvailabilityStatusController extends Controller
      * @param  Listing $listing
      * @param  string  $day format yyyy-mm-dd
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      *
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws NotFoundHttpException
+     * @throws \Exception
      */
     public function newAction(Request $request, Listing $listing, $day)
     {
@@ -245,7 +250,7 @@ class ListingAvailabilityStatusController extends Controller
      * @param ListingAvailability $availability
      * @param int                 $defaultPrice
      *
-     * @return \Symfony\Component\Form\Form|\Symfony\Component\Form\FormInterface
+     * @return Form|FormInterface
      */
     private function createCreateForm(ListingAvailability $availability, $defaultPrice)
     {

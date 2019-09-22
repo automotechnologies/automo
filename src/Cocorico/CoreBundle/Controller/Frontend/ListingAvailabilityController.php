@@ -51,7 +51,8 @@ class ListingAvailabilityController extends Controller
      * @param  string  $start format yyyy-mm-dd
      * @param  string  $end   format yyyy-mm-dd
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return JsonResponse
+     * @throws \Exception
      */
     public function indexAction(Request $request, Listing $listing, $start, $end)
     {

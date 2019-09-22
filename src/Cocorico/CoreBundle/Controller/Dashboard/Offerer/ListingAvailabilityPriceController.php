@@ -108,9 +108,6 @@ class ListingAvailabilityPriceController extends Controller
         return $form;
     }
 
-
-
-
     /**
      * Update a ListingAvailability Document.
      *
@@ -160,7 +157,6 @@ class ListingAvailabilityPriceController extends Controller
             ]
         );
     }
-
 
     /**
      * @param int     $listingId
