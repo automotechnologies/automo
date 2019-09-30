@@ -9483,7 +9483,7 @@ h1.listing-title a {
 /* gallery-slider */
 .gallery-slider {
     position: relative;
-    padding: 0 150px 0 0;
+    padding: 0;
 }
 
 .gallery-slider .gallery-slideset {

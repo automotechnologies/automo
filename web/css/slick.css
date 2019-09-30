@@ -1,0 +1,12 @@
+#photos {
+    padding: 0 10px;
+}
+
+.gallery-slideset {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.slick-track img {
+    padding: 10px;
+}

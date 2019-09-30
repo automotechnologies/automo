@@ -25,20 +25,23 @@
     {% endif %}
 {%- endblock -%}
 
-
 {% block stylesheets %}
     {{ parent() }}
 
     {% stylesheets
     'css/vendor/fullcalendar.min.css'
     'css/fullcalendar-override.css'
+    'css/slick.css'
 
     filter='cssrewrite, ?minifycsscompressor' output='css/compiled/fullcalendar.css' %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
+
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/>
 {% endblock %}
-
-
 
 {% block layout %}
     {% embed '@CocoricoCore/Frontend/layout.html.twig' %}
@@ -115,30 +118,18 @@
                                             <div class="gallery-slideset">
                                                 {% for image in listing.images %}
                                                     <!-- slide -->
-                                                    <div class="slide" {% if loop.index > 1 %} style="display:none;"{% endif %}>
-                                                        <img src="{{ (ListingImageConstants.IMAGE_FOLDER ~ image.name) | imagine_filter('listing_xxlarge') }}"
-                                                             alt="{{ listing_translation.title ~ " " ~ price }}"/>
-                                                    </div>
+                                                    <img src="{{ (ListingImageConstants.IMAGE_FOLDER ~ image.name) | imagine_filter('listing_xxlarge') }}"
+                                                         alt="{{ listing_translation.title ~ " " ~ price }}" style="width: {% if loop.index == 1 %}100%{% else %}0{% endif %}"/>
                                                 {% endfor %}
                                             </div>
                                             <!-- vertical-slider -->
-                                            <div class="vertical-holder">
-                                                <div class="vertical-slider">
-                                                    <div class="vertical-slideset">
-                                                        {% for image in listing.images %}
-                                                            <!-- vertical-slide -->
-                                                            <div class="vertical-slide">
-                                                                <a href="">
-                                                                    <img src="{{ (ListingImageConstants.IMAGE_FOLDER ~ image.name) | imagine_filter('listing_xxmedium') }}"
-                                                                         alt="{{ listing_translation.title ~ " " ~ price }}"/>
-                                                                </a>
-                                                            </div>
-                                                        {% endfor %}
-                                                    </div>
-                                                </div>
+                                            <div class="slick-vertical-holder">
+                                                {% for image in listing.images %}
+                                                    <!-- vertical-slide -->
+                                                    <img src="{{ (ListingImageConstants.IMAGE_FOLDER ~ image.name) | imagine_filter('listing_xxmedium') }}"
+                                                         alt="{{ listing_translation.title ~ " " ~ price }}"/>
+                                                {% endfor %}
                                             </div>
-                                            <a href="#" class="btn-prev">previous</a>
-                                            <a href="#" class="btn-next">next</a>
                                         </div>
                                     </div>
 
@@ -448,6 +439,30 @@
     filter="jsqueeze" output='js/compiled/calendar.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
+    <script>
+        $(function() {
+            $(".gallery-slideset").slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: true,
+                dots: false,
+                asNavFor: '.slick-vertical-holder'
+            });
+
+            $(".slick-vertical-holder").slick({
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                asNavFor: '.gallery-slideset',
+                centerMode: false,
+                centerPadding: '0',
+                arrows: true,
+                dots: true,
+                focusOnSelect: true,
+            });
+        });
+    </script>
 
     {% include '@CocoricoCore/Frontend/Listing/js/_calendar_js.html.twig' with {
     'calendar_elt': '#fc-calendar',
