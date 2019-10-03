@@ -15584,8 +15584,7 @@ body > .jcf-select-drop.jcf-drop-flipped {
     }
 
     .navbar-default .navbar-nav > li {
-        margin: 0;
-        display: block;
+        margin: 0 50px !important;
     }
 
     .navbar-default .navbar-nav > li.link-flag + li {
