@@ -2,16 +2,6 @@
 <html lang="{{ app.request.locale }}">
 <head>
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114148924-3"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-114148924-3');
-    </script>
-
     <title>
         {%- block meta_title -%}
             {{ app.request.requestUri|slice(4)|replace({'/': " > ", '-': " ", '_': " "})|ucwords ~ " - " ~ cocorico_site_name }}
@@ -98,30 +88,12 @@
     </script>
 
     {% include '@CocoricoCore/Frontend/Common/js/_google_analytics_js.html.twig' only %}
-    
-    <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '467459190659930');
-      fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=467459190659930&ev=PageView&noscript=1"
-    /></noscript>
 
 </head>
 
 <body class="{% block theme %}{% endblock %}">
 <!-- allow a user to go to the main content of the page -->
 <noscript>Javascript must be enabled for the correct page display</noscript>
-
-{% include '@CocoricoCore/Frontend/Common/js/_google_tag_manager_js.html.twig' only %}
 
 <div id="wrapper">
     {% block layout %}{% endblock %}
@@ -203,25 +175,6 @@
             }
             //Handle Ajax Unauthorised access
             handleUnauthorisedAjaxAccess("{{ path("cocorico_user_login") }}");
-
-            {% if app.environment == 'prod' %}
-            <!-- WhatsHelp.io widget -->
-                setTimeout(function () {
-                    var options = {
-                        whatsapp: "+628111000722", // WhatsApp number
-                        call: "+628111000722", // Call phone number
-                        call_to_action: "Need help? Butuh bantuan?", // Call to action
-                        button_color: "#E74339", // Color of button
-                        position: "left", // Position may be 'right' or 'left'
-                        order: "whatsapp,call", // Order of buttons
-                    };
-                    var proto = document.location.protocol, host = "whatshelp.io", url = proto + "//static." + host;
-                    var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
-                    s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
-                    var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
-                }, 5000);
-            <!-- /WhatsHelp.io widget -->
-            {% endif %}
         });
     </script>
 {% endblock %}

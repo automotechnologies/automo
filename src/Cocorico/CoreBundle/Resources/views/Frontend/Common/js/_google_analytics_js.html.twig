@@ -1,19 +1,54 @@
 {% if cocorico_google_analytics %}
-    {#google analytics#}
+    {#Google tag manager#}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114148924-3"></script>
     <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                    m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        ga('create', '{{ cocorico_google_analytics }}', 'auto');
-        ga('send', 'pageview');
+        gtag('config', 'UA-114148924-3');
     </script>
+
+    {#Facebook#}
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '467459190659930');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id=467459190659930&ev=PageView&noscript=1"/>
+    </noscript>
+
+    {% if app.environment == 'prod' %}
+    {#WhatsHelp widget#}
+    <script type="text/javascript">
+
+        $(function() {
+            // WhatsHelp.io widget
+            setTimeout(function () {
+                var options = {
+                    whatsapp: "+628111000722", // WhatsApp number
+                    call: "+628111000722", // Call phone number
+                    call_to_action: "Need help? Butuh bantuan?", // Call to action
+                    button_color: "#E74339", // Color of button
+                    position: "left", // Position may be 'right' or 'left'
+                    order: "whatsapp,call", // Order of buttons
+                };
+                var proto = document.location.protocol, host = "whatshelp.io", url = proto + "//static." + host;
+                var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+                s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+                var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+            }, 5000);
+            // WhatsHelp.io widget
+        });
+    </script>
+    {% endif %}
 {% endif %}
