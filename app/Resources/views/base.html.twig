@@ -87,7 +87,9 @@
         })(window, document);
     </script>
 
-    {% include '@CocoricoCore/Frontend/Common/js/_google_analytics_js.html.twig' only %}
+    {% if app.environment == 'prod' %}
+        {% include '@CocoricoCore/Frontend/Common/js/_google_analytics_js.html.twig' only %}
+    {% endif %}
 
 </head>
 
