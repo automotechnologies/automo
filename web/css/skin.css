@@ -300,7 +300,10 @@ body {
 
   .form-category .multiselect {
     display: inline-block;
-    width: 100% !important;
+  }
+
+  .home-page .form-category .multiselect {
+      width: 100%;
   }
 
   .home-page .form-category .multiselect .btn-group, .home-page .form-category .multiselect .btn-default {
