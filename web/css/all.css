@@ -5600,7 +5600,7 @@ span.btn:focus {
 
 .form-category .form-holder .col.location .title {
     width: auto;
-    margin: 10px 7px 0 1px;
+    margin: 10px 6px 0 0;
 }
 
 .form-category .form-holder .col.location .field-holder {
@@ -16982,6 +16982,18 @@ body > .jcf-select-drop.jcf-drop-flipped {
         margin-bottom: 10px;
     }
 
+    .datepicker-holder span.add-on {
+        visibility: hidden;
+        display: none;
+    }
+
+    .form-category .input-append {
+        padding: 0;
+    }
+
+
+    .form-category .form-holder .col.categories .multiselect,
+    .form-category .input-append,
     .form-category .form-holder .col.location .field-holder {
         width: 220px;
     }
