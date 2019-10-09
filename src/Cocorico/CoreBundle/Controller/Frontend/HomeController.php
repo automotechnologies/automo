@@ -39,27 +39,6 @@ class HomeController extends Controller
             $request->getLocale()
         );
 
-        $cache = $this->get('cache.app');
-        $homePageItem = $cache->getItem('homePage-' . $request->getLocale());
-
-        if ($homePageItem->isHit()) {
-            $homeView = $homePageItem->get();
-            return new Response($homeView);
-        } else {
-            $homeView = $this->renderView('CocoricoCoreBundle:Frontend\Home:index.html.twig',
-                [
-                    'listings' => $listings->getIterator(),
-                    'feeds' => $this->getBlogNewsFromCache(),
-                ]
-            );
-
-            $homePageItem->set($homeView);
-            $homePageItem->expiresAfter(10800);
-            $cache->save($homePageItem);
-        }
-
-
-
         return $this->render('CocoricoCoreBundle:Frontend\Home:index.html.twig',
             [
                 'listings' => $listings->getIterator(),
