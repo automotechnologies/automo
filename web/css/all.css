@@ -15716,7 +15716,7 @@ body > .jcf-select-drop.jcf-drop-flipped {
         width: 100%;
     }
 
-    .form-category .form-holder .col.time, .form-category .form-holder .col.location {
+    .form-category .form-holder .col.time {
         width: auto !important;
         margin: 0;
     }
@@ -16994,6 +16994,22 @@ body > .jcf-select-drop.jcf-drop-flipped {
 
     .form-category .input-append {
         padding: 0;
+    }
+
+    .form-category .form-holder .col.categories,
+    .form-category .form-holder .col.location {
+        display: flex;
+        justify-content: center;
+        margin: 0 0 10px !important;
+    }
+
+    .form-category .form-holder .col.time .col .col {
+        display: flex;
+        justify-content: center;
+    }
+
+    .form-category .form-holder input.btn-default {
+        margin-top: 0px;
     }
 
 
