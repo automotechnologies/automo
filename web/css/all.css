@@ -3144,10 +3144,6 @@ input[type="button"].btn-block {
     }
 }
 
-/*.tab-content > .tab-pane {*/
-/*display: none;*/
-/*}*/
-
 .tab-content > .active {
     display: block;
 }
@@ -14644,6 +14640,14 @@ body > .jcf-select-drop.jcf-drop-flipped {
     width: 150px;
 }
 
+.datepicker-holder-ajax .col:first-child {
+    padding-right: 5px;
+}
+
+.datepicker-holder-ajax .col:last-child {
+    padding-left: 5px;
+}
+
 /* ---------------------------------------------------------
 	5. Styles for Responsive web design
 ---------------------------------------------------------*/
@@ -16969,6 +16973,18 @@ body > .jcf-select-drop.jcf-drop-flipped {
 
 /* styles for screens 480px wide and narrower */
 @media screen and (max-width: 480px) {
+    .reservation .price {
+        font-size: 21px;
+    }
+
+    .reservation .price small {
+        font-size: 12px !important;
+    }
+
+    #main .container .row .twocolumns {
+        padding: 0 10px;
+    }
+
     .topbar ul {
         text-align: center;
     }
