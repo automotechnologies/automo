@@ -33,7 +33,6 @@ class BookingBankWireAdmin extends AbstractAdmin
     protected $currency;
     /** @var  BookingBankWireManager $bookingBankWireManager */
     protected $bookingBankWireManager;
-    protected $bundles;
     protected $timezone;
 
     // setup the default sort column and order
@@ -61,11 +60,6 @@ class BookingBankWireAdmin extends AbstractAdmin
     public function setBookingBankWireManager(BookingBankWireManager $bookingBankWireManager)
     {
         $this->bookingBankWireManager = $bookingBankWireManager;
-    }
-
-    public function setBundlesEnabled($bundles)
-    {
-        $this->bundles = $bundles;
     }
 
     public function setTimezone($timezone)
@@ -120,104 +114,17 @@ class BookingBankWireAdmin extends AbstractAdmin
                 )
             );
 
-        if (array_key_exists("CocoricoVoucherBundle", $this->bundles)) {
-            if ($bookingBankWire) {
-                $bankWireAmounts = $this->bookingBankWireManager->getAmountAndRemainingAmountToWire($bookingBankWire);
-                $amountToWire = $bankWireAmounts["amountToWire"];
-                $remainingAmount = $bankWireAmounts["remainingAmount"];
-            }
-
-            $formMapper
-                ->add(
-                    'amount',
-                    PriceType::class,
-                    array(
-                        'disabled' => true,
-                        'label' => 'admin.booking_bank_wire.amount_excl_discount_voucher.label',
-                        'include_vat' => true,
-                        'scale' => 2,
-                    )
+        $formMapper
+            ->add(
+                'amount',
+                PriceType::class,
+                array(
+                    'disabled' => true,
+                    'label' => 'admin.booking_bank_wire.amount.label',
+                    'include_vat' => true,
+                    'scale' => 2,
                 )
-                ->add(
-                    'booking.amountDiscountVoucher',
-                    PriceType::class,
-                    array(
-                        'disabled' => true,
-                        'label' => 'admin.booking.amount_discount_voucher.label',
-                        'include_vat' => true,
-                        'scale' => 2,
-                    )
-                )
-                ->add(
-                    'amountToWire',
-                    PriceType::class,
-                    array(
-                        'disabled' => true,
-                        'label' => 'admin.booking.amount_to_wire.label',
-                        'mapped' => false,
-                        'data' => isset($amountToWire) ? $amountToWire : null,
-                        'include_vat' => true,
-                        'scale' => 2,
-                    )
-                )
-                ->add(
-                    'remainingAmount',
-                    PriceType::class,
-                    array(
-                        'disabled' => true,
-                        'label' => 'admin.booking.remaining_amount_to_pay_to_offerer.label',
-                        'mapped' => false,
-                        'data' => isset($remainingAmount) ? $remainingAmount : null,
-                        'include_vat' => true,
-                        'scale' => 2,
-                    )
-                )
-                ->add(
-                    'booking.codeVoucher',
-                    null,
-                    array(
-                        'disabled' => true,
-                        'label' => 'admin.booking.code_voucher.label',
-                    )
-                )
-                ->add(
-                    'booking.discountVoucher',
-                    'integer',
-                    array(
-                        'disabled' => true,
-                        'label' => 'admin.booking.discount_voucher.label',
-                        'help' => '%, €',
-                    )
-                );
-        } else {
-            $formMapper
-                ->add(
-                    'amount',
-                    PriceType::class,
-                    array(
-                        'disabled' => true,
-                        'label' => 'admin.booking_bank_wire.amount.label',
-                        'include_vat' => true,
-                        'scale' => 2,
-                    )
-                );
-        }
-
-        if (array_key_exists("CocoricoListingDepositBundle", $this->bundles)) {
-            $formMapper
-                ->add(
-                    'booking.amountDeposit',
-                    PriceType::class,
-                    array(
-                        'disabled' => true,
-                        'label' => 'listing_edit.form.deposit',
-                        'required' => false
-                    ),
-                    array(
-                        'translation_domain' => 'cocorico_listing_deposit',
-                    )
-                );
-        }
+            );
 
         $statusDisabled = true;
         if ($bookingBankWire && $bookingBankWire->getStatus() == BookingBankWire::STATUS_TO_DO) {
@@ -266,107 +173,6 @@ class BookingBankWireAdmin extends AbstractAdmin
             )
             ->end()
             ->end();
-
-        if (array_key_exists("CocoricoMangoPayBundle", $this->bundles)) {
-            $formMapper
-                ->tab('Mangopay')
-                ->with('')
-                ->add(
-                    'mangopayTransferId',
-                    null,
-                    array(
-                        'disabled' => true,
-                        'sonata_help' => 'Tag'
-                    )
-                )
-                ->add(
-                    'user.mangopayId',
-                    null,
-                    array(
-                        'disabled' => true,
-                        'sonata_help' => 'Author ID'
-                    )
-                );
-
-
-            if (array_key_exists("CocoricoVoucherBundle", $this->bundles)) {
-                $formMapper
-                    ->add(
-                        'amountToWireDecimal',
-                        'text',
-                        array(
-                            'disabled' => true,
-                            'label' => 'admin.booking.amount_to_wire.label',
-                            'mapped' => false,
-                            'data' => isset($amountToWire) ? number_format($amountToWire / 100, 2, ".", "") : null,
-                            'help' => 'Debited funds (' . $this->currency . ')'
-                        )
-                    );
-            } else {
-                $formMapper
-                    ->add(
-                        'amountDecimal',
-                        'number',
-                        array(
-                            'disabled' => true,
-                            'label' => 'admin.booking_bank_wire.amount.label',
-                            'help' => 'Debited funds (' . $this->currency . ')',
-                            'scale' => 2,
-                        )
-                    );
-            }
-
-            $formMapper
-                ->add(
-                    'fees',
-                    'number',
-                    array(
-                        'disabled' => true,
-                        'mapped' => false,
-                        'data' => 0,
-                        'help' => 'Fees'
-                    )
-                )
-                ->add(
-                    'user.mangopayWalletId',
-                    null,
-                    array(
-                        'disabled' => true,
-                        'sonata_help' => 'Debited Wallet ID'
-                    )
-                )
-                ->add(
-                    'wireReference',
-                    'text',
-                    array(
-                        'disabled' => true,
-                        'sonata_help' => 'Wire Reference',
-                        'mapped' => false,
-                        'data' => "CBId:" . (
-                            (is_object($bookingBankWire) && $bookingBankWire)
-                                ? $bookingBankWire->getBooking()->getId()
-                                : null
-                            ),
-                    )
-                )
-                ->add(
-                    'user.mangopayBankAccountId',
-                    null,
-                    array(
-                        'disabled' => true,
-                        'sonata_help' => 'Bank account ID'
-                    )
-                )
-                ->add(
-                    'mangopayPayoutId',
-                    null,
-                    array(
-                        'disabled' => true,
-                    )
-                )
-                ->end()
-                ->end();
-        }
     }
 
     /** @inheritdoc */
@@ -490,26 +296,9 @@ class BookingBankWireAdmin extends AbstractAdmin
                 null,
                 array(
                     /** @Ignore */
-                    'label' =>
-                        (
-                        array_key_exists("CocoricoVoucherBundle", $this->bundles) ?
-                            'admin.booking_bank_wire.amount_excl_discount_voucher.label' :
-                            'admin.booking_bank_wire.amount.label'
-                        )
+                    'label' => 'admin.booking_bank_wire.amount.label'
                 )
             );
-
-        if (array_key_exists("CocoricoMangoPayBundle", $this->bundles)) {
-            $listMapper
-                ->add(
-                    'user.mangopayId',
-                    null
-                )
-                ->add(
-                    'user.mangopayBankAccountId',
-                    null
-                );
-        }
 
         $listMapper->add(
             '_action',
@@ -548,15 +337,6 @@ class BookingBankWireAdmin extends AbstractAdmin
             'Amount' => 'amountDecimal',
         );
 
-        if (array_key_exists("CocoricoMangoPayBundle", $this->bundles)) {
-            $mangopayFields = array(
-                'User Mangopay Id' => 'user.mangopayId',
-                'User Mangopay Bank Account Id' => 'user.mangopayBankAccountId'
-            );
-
-            $fields = array_merge($fields, $mangopayFields);
-        }
-
         return $fields;
     }
 
@@ -575,11 +355,5 @@ class BookingBankWireAdmin extends AbstractAdmin
     {
         $collection->remove('create');
         $collection->remove('delete');
-
-        if (array_key_exists("CocoricoMangoPayBundle", $this->bundles)) {
-            $collection->add(
-                'mangopay_withdraw'//See Cocorico/SonataAdminBundle/Resources/views/CRUD/base_edit_form.html.twig
-            );
-        }
     }
 }

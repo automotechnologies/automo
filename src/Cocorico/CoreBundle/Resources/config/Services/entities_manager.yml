@@ -60,7 +60,6 @@ services:
             - "@cocorico.mailer.twig_swift"
             - "%cocorico.dashboard_max_per_page%"
             - "@event_dispatcher"
-            - "%kernel.bundles%"
 
     cocorico.booking_payin_refund.manager:
         class: Cocorico\CoreBundle\Model\Manager\BookingPayinRefundManager
@@ -69,7 +68,6 @@ services:
             - "%cocorico.booking.cancelation_policy%"
             - "@cocorico.mailer.twig_swift"
             - "%cocorico.dashboard_max_per_page%"
-            - "%kernel.bundles%"
 
     cocorico.language.manager:
         class: Cocorico\CoreBundle\Model\Manager\LanguageManager

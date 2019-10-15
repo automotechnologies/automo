@@ -28,7 +28,6 @@ class BookingPayinRefundAdmin extends AbstractAdmin
     protected $locales;
     protected $timeUnit;
     protected $timeUnitIsDay;
-    protected $bundles;
     protected $timezone;
 
     protected $datagridValues = array(
@@ -45,11 +44,6 @@ class BookingPayinRefundAdmin extends AbstractAdmin
     {
         $this->timeUnit = $timeUnit;
         $this->timeUnitIsDay = ($timeUnit % 1440 == 0) ? true : false;
-    }
-
-    public function setBundlesEnabled($bundles)
-    {
-        $this->bundles = $bundles;
     }
 
     public function setTimezone($timezone)
@@ -140,50 +134,6 @@ class BookingPayinRefundAdmin extends AbstractAdmin
                 )
             )
             ->end();
-
-        if (array_key_exists("CocoricoMangoPayBundle", $this->bundles)) {
-            $formMapper
-                ->with('Mangopay')
-                ->add(
-                    'mangopayRefundId',
-                    null,
-                    array(
-                        'disabled' => true,
-                    )
-                )
-                ->add(
-                    'user.mangopayId',
-                    null,
-                    array(
-                        'disabled' => true,
-                    )
-                )
-                ->add(
-                    'amountDecimal',
-                    'number',
-                    array(
-                        'disabled' => true,
-                        'label' => 'admin.booking_payin_refund.amount.label',
-                        'scale' => 2,
-                    )
-                )
-                ->add(
-                    'booking.mangopayPayinPreAuthId',
-                    null,
-                    array(
-                        'label' => 'admin.booking.mangopay_payin_pre_auth_id.label',
-                        'disabled' => true,
-                    )
-                )
-                ->add(
-                    'user.mangopayWalletId',
-                    null,
-                    array(
-                        'disabled' => true,
-                    )
-                )
-                ->end();
-        }
 
     }
 
@@ -316,28 +266,6 @@ class BookingPayinRefundAdmin extends AbstractAdmin
                 )
             );
 
-        if (array_key_exists("CocoricoMangoPayBundle", $this->bundles)) {
-            $listMapper
-                ->add(
-                    'user.mangopayId',
-                    null
-                )
-                ->add(
-                    'user.mangopayBankAccountId',
-                    null
-                );
-
-            $listMapper->add(
-                '_action',
-                'actions',
-                array(
-                    'actions' => array(
-                        'edit' => array()
-                    )
-                )
-            );
-        }
-
 
     }
 
@@ -364,16 +292,6 @@ class BookingPayinRefundAdmin extends AbstractAdmin
             'Amount' => 'amountDecimal',
             'Payed At' => 'payedAt'
         );
-
-        if (array_key_exists("CocoricoMangoPayBundle", $this->bundles)) {
-            $mangopayFields = array(
-                'User Mangopay Id' => 'user.mangopayId',
-                'User Mangopay Wallet Id' => 'user.mangopayWalletId',
-                'User Mangopay Bank Account Id' => 'user.mangopayBankAccountId',
-            );
-
-            $fields = array_merge($fields, $mangopayFields);
-        }
 
         return $fields;
     }

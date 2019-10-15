@@ -32,7 +32,6 @@ class ListingAdmin extends AbstractAdmin
     protected $baseRoutePattern = 'listing';
     protected $locales;
     protected $includeVat;
-    protected $bundles;
 
     // setup the default sort column and order
     protected $datagridValues = array(
@@ -51,11 +50,6 @@ class ListingAdmin extends AbstractAdmin
     public function setIncludeVat($includeVat)
     {
         $this->includeVat = $includeVat;
-    }
-
-    public function setBundlesEnabled($bundles)
-    {
-        $this->bundles = $bundles;
     }
 
     /** @inheritdoc */
@@ -194,21 +188,6 @@ class ListingAdmin extends AbstractAdmin
                 )
             );
 
-        if (array_key_exists("CocoricoListingDepositBundle", $this->bundles)) {
-            $formMapper
-                ->add(
-                    'amountDeposit',
-                    PriceType::class,
-                    array(
-                        'disabled' => true,
-                        'label' => 'listing_edit.form.deposit',
-                        'required' => false,
-                    ),
-                    array(
-                        'translation_domain' => 'cocorico_listing_deposit',
-                    )
-                );
-        }
 
         $formMapper
             ->add(
@@ -257,24 +236,6 @@ class ListingAdmin extends AbstractAdmin
 //                )
 //            )
             ->end();
-
-
-        if (array_key_exists("CocoricoCarrierBundle", $this->bundles)) {
-            $formMapper
-                ->with('admin.booking.delivery')
-                ->add(
-                    'pallets',
-                    'number',
-                    array(
-                        'label' => 'listing.form.pallets',
-                        'required' => true
-                    ),
-                    array(
-                        'translation_domain' => 'cocorico_carrier_listing',
-                    )
-                )
-                ->end();
-        }
     }
 
     /** @inheritdoc */

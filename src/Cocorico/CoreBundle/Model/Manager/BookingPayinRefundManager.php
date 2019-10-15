@@ -26,27 +26,23 @@ class BookingPayinRefundManager extends BaseManager
     protected $cancellationPolicyRules;
     protected $mailer;
     public $maxPerPage;
-    protected $bundles;
 
     /**
      * @param EntityManager   $em
      * @param array           $cancellationPolicyRules
      * @param TwigSwiftMailer $mailer
      * @param int             $maxPerPage
-     * @param array           $bundles
      */
     public function __construct(
         EntityManager $em,
         array $cancellationPolicyRules,
         TwigSwiftMailer $mailer,
-        $maxPerPage,
-        $bundles
+        $maxPerPage
     ) {
         $this->em = $em;
         $this->cancellationPolicyRules = $cancellationPolicyRules;
         $this->mailer = $mailer;
         $this->maxPerPage = $maxPerPage;
-        $this->bundles = $bundles;
     }
 
     /**
@@ -123,11 +119,6 @@ class BookingPayinRefundManager extends BaseManager
 
             //Amount refunded is equal to total amount without fees
             $amountToRefund = $booking->getAmountExcludingFees() * $refundPercentage;
-            if ($this->voucherIsEnabled() && $refundPercentage) {
-                if ($booking->getAmountDiscountVoucher()) {
-                    $amountToRefund -= $booking->getAmountDiscountVoucher();//Discount amount is not refunded
-                }
-            }
 
             $feeToCollectWhileRefund = 0;
             //If refund to asker is 100% then offerer fees are also refunded to asker
@@ -135,12 +126,6 @@ class BookingPayinRefundManager extends BaseManager
             if ($refundPercentage == 1) {
                 $amountToRefund += $booking->getAmountFeeAsOfferer();
                 $feeToCollectWhileRefund = $booking->getAmountTotalFee() - $booking->getAmountFeeAsOfferer();
-            }
-
-            if ($this->depositIsEnabled()) {
-                if ($booking->getAmountDeposit()) {
-                    $amountToRefund += $booking->getAmountDeposit();//Deposit amount is refunded totally
-                }
             }
 
             return array(
@@ -214,23 +199,6 @@ class BookingPayinRefundManager extends BaseManager
     public function getMailer()
     {
         return $this->mailer;
-    }
-
-
-    /**
-     * @return bool
-     */
-    public function voucherIsEnabled()
-    {
-        return isset($this->bundles["CocoricoVoucherBundle"]);
-    }
-
-    /**
-     * @return bool
-     */
-    public function depositIsEnabled()
-    {
-        return isset($this->bundles["CocoricoListingDepositBundle"]);
     }
 
     /**

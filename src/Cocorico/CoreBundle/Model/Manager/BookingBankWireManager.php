@@ -28,7 +28,6 @@ class BookingBankWireManager extends BaseManager
     protected $mailer;
     public $maxPerPage;
     protected $dispatcher;
-    protected $bundles;
 
     /**
      * @param EntityManager            $em

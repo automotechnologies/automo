@@ -25,18 +25,12 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class UserAdmin extends SonataUserAdmin
 {
     protected $baseRoutePattern = 'user';
-    protected $bundles;
     protected $locales;
 
     protected $datagridValues = array(
         '_sort_order' => 'DESC',
         '_sort_by' => 'createdAt',
     );
-
-    public function setBundlesEnabled($bundles)
-    {
-        $this->bundles = $bundles;
-    }
 
     public function setLocales($locales)
     {
@@ -332,7 +326,6 @@ class UserAdmin extends SonataUserAdmin
                             ),
                         ),
                     ),
-                    'disabled' => true,
                     'label' => false,
                 ),
                 array(
@@ -342,36 +335,6 @@ class UserAdmin extends SonataUserAdmin
                 )
             )
             ->end();
-
-
-        if (array_key_exists('CocoricoMangoPayBundle', $this->bundles)) {
-            $formMapper->with('Mangopay')
-                ->add(
-                    'mangopayId',
-                    null,
-                    array(
-                        'disabled' => true,
-                        'required' => false,
-                    )
-                )
-                ->add(
-                    'mangopayWalletId',
-                    null,
-                    array(
-                        'disabled' => true,
-                        'required' => false,
-                    )
-                )
-                ->add(
-                    'mangopayBankAccountId',
-                    null,
-                    array(
-                        'disabled' => true,
-                        'required' => false,
-                    )
-                )
-                ->end();
-        }
     }
 
 
@@ -384,14 +347,6 @@ class UserAdmin extends SonataUserAdmin
                 null,
                 array()
             );
-
-        if (array_key_exists('CocoricoMangoPayBundle', $this->bundles)) {
-            $listMapper->add(
-                'mangopayId',
-                null,
-                array()
-            );
-        }
 
         $listMapper
             ->addIdentifier('fullname')
@@ -506,14 +461,6 @@ class UserAdmin extends SonataUserAdmin
 //            'Locked' => 'locked',
             'Created At' => 'createdAt',
         );
-
-        if (array_key_exists('CocoricoMangoPayBundle', $this->bundles)) {
-            $mangopayFields = array(
-                'Mangopay Id' => 'mangopayId',
-            );
-
-            $fields = array_merge($fields, $mangopayFields);
-        }
 
         return $fields;
     }

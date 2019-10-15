@@ -27,16 +27,10 @@ class ListingCategoryAdmin extends AbstractAdmin
     protected $translationDomain = 'SonataAdminBundle';
     protected $baseRoutePattern = 'listing-category';
     protected $locales;
-    protected $bundles;
 
     public function setLocales($locales)
     {
         $this->locales = $locales;
-    }
-
-    public function setBundlesEnabled($bundles)
-    {
-        $this->bundles = $bundles;
     }
 
     /** @inheritdoc */
@@ -87,19 +81,6 @@ class ListingCategoryAdmin extends AbstractAdmin
                 )
             );
 
-        if (array_key_exists("CocoricoListingCategoryFieldBundle", $this->bundles)) {
-            $formMapper
-                ->add(
-                    'fields',
-                    null,
-                    array(
-                        'label' => 'admin.listing_category.fields.label',
-                        'disabled' => true,
-                        'choice_label' => 'field'
-                    )
-                );
-        }
-
         $formMapper
             ->end();
     }
@@ -137,18 +118,6 @@ class ListingCategoryAdmin extends AbstractAdmin
                 null,
                 array('label' => 'admin.listing_category.parent.label')
             );
-
-        if (array_key_exists("CocoricoListingCategoryFieldBundle", $this->bundles)) {
-            $listMapper
-                ->add(
-                    'fields',
-                    null,
-                    array(
-                        'label' => 'admin.listing_category.fields.label',
-                        'associated_property' => 'field'
-                    )
-                );
-        }
 
         $listMapper->add(
             '_action',
