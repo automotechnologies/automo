@@ -16973,6 +16973,31 @@ body > .jcf-select-drop.jcf-drop-flipped {
 
 /* styles for screens 480px wide and narrower */
 @media screen and (max-width: 480px) {
+
+    #search-container .range-area {
+        width: 100% !important;
+    }
+
+    #search-container .range-holder {
+        padding: 0;
+    }
+
+    #search-container ul.list-unstyled {
+        display: grid;
+    }
+
+    #search-container ul.list-unstyled li.field-row {
+        width: 100%;
+    }
+
+    #search-container .select-holder {
+        width: 100% !important;
+    }
+
+    .form-category .selection-holder .select-holder {
+        padding: 0px;
+    }
+
     .reservation .price {
         font-size: 21px;
     }
