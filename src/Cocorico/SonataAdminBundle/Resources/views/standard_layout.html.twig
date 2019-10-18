@@ -135,7 +135,7 @@ file that was distributed with this source code.
                 {% spaceless %}
                     <a class="logo" href="{{ path('sonata_admin_dashboard') }}">
                         {% if 'single_image' == sonata_admin.adminPool.getOption('title_mode') or 'both' == sonata_admin.adminPool.getOption('title_mode') %}
-                            <img src="{{ asset(sonata_admin.adminPool.titlelogo) }}"
+                            <img src="{{ asset(sonata_admin.adminPool.titlelogo) }}" style="width: 128px"
                                  alt="{{ sonata_admin.adminPool.title }}">
                         {% endif %}
                         {#{% if 'single_text' == sonata_admin.adminPool.getOption('title_mode') or 'both' == sonata_admin.adminPool.getOption('title_mode') %}#}

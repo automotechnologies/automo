@@ -24,21 +24,21 @@ $(window).load(function () {
     //jQuery(".datepicker").datepicker({"dateFormat": 'yy-mm-dd'});
 
     //Change img style when sidebar toggle
-    $("[data-toggle='offcanvas']").click(function (e) {
-        var $logoImg = $('.logo img');
-        if ($('.right-side').hasClass('strech') || window.matchMedia('(max-width: 992px)').matches) {
-            $logoImg.css('height', '50px');
-            $logoImg.css('width', '55px'); // auto
-            $('body > .header .logo').css('height', '50px');
-            $('.left-side').css('top', '0px');
-        }
-        else {
-            $logoImg.css('height', '122px');
-            $logoImg.css('width', '134px');
-            $('body > .header .logo').css('height', '122px');
-            $('.left-side').css('top', '72px');
-
-        }
-    });
+    // $("[data-toggle='offcanvas']").click(function (e) {
+    //     var $logoImg = $('.logo img');
+    //     if ($('.right-side').hasClass('strech') || window.matchMedia('(max-width: 992px)').matches) {
+    //         $logoImg.css('height', '50px');
+    //         $logoImg.css('width', '55px'); // auto
+    //         $('body > .header .logo').css('height', '50px');
+    //         $('.left-side').css('top', '0px');
+    //     }
+    //     else {
+    //         // $logoImg.css('height', '122px');
+    //         // $logoImg.css('width', '134px');
+    //         $('body > .header .logo').css('height', '122px');
+    //         $('.left-side').css('top', '72px');
+    //
+    //     }
+    // });
 
 });

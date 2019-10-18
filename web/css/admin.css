@@ -41,6 +41,13 @@ div.sonata-medium-date .col-sm-2, div.sonata-medium-date .col-sm-4, div.form-gro
     .small-box {
         min-height: 132px;
     }
+
+    .main-header .logo {
+        background-color: #fff !important;
+        color: #333;
+        border-right: 1px solid #eee !important;
+        border-bottom: 1px solid #eee !important;
+    }
 }
 
 /** Audit Revisions bundle */
