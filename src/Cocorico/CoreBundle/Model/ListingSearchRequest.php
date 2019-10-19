@@ -277,15 +277,17 @@ class ListingSearchRequest implements TranslationContainerInterface
     }
 
     /**
-     * @param mixed $page
+     * @param int $page
+     *
+     * @return void
      */
-    public function setPage($page)
+    public function setPage(?int $page): void
     {
         $this->page = $page;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getMaxPerPage()
     {
@@ -293,9 +295,9 @@ class ListingSearchRequest implements TranslationContainerInterface
     }
 
     /**
-     * @param mixed $maxPerPage
+     * @param int $maxPerPage
      */
-    public function setMaxPerPage($maxPerPage)
+    public function setMaxPerPage(?int $maxPerPage)
     {
         $this->maxPerPage = $maxPerPage;
     }
