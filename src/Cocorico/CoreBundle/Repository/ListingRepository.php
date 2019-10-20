@@ -16,6 +16,7 @@ use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 
 class ListingRepository extends EntityRepository
 {
@@ -33,7 +34,7 @@ class ListingRepository extends EntityRepository
 
     /**
      *
-     * @return \Doctrine\ORM\QueryBuilder
+     * @return QueryBuilder
      */
     public function getFindQueryBuilder()
     {
@@ -77,7 +78,7 @@ class ListingRepository extends EntityRepository
      * @param string $locale
      * @param bool   $joined
      *
-     * @return \Doctrine\ORM\QueryBuilder
+     * @return QueryBuilder
      */
     public function getFindOneBySlugQuery($slug, $locale, $joined = true)
     {
@@ -150,7 +151,7 @@ class ListingRepository extends EntityRepository
      * @param string $locale
      * @param array  $status
      *
-     * @return \Doctrine\ORM\QueryBuilder
+     * @return QueryBuilder
      */
     public function getFindByOwnerQuery($ownerId, $locale, $status)
     {
@@ -260,7 +261,7 @@ class ListingRepository extends EntityRepository
     /**
      * @param $limit
      * @param $locale
-     * @return \Doctrine\ORM\QueryBuilder
+     * @return QueryBuilder
      */
     public function getFindByHighestRankingQueryBuilder($limit, $locale)
     {
@@ -281,7 +282,7 @@ class ListingRepository extends EntityRepository
     /**
      * @param $listingId
      * @param $locale
-     * @return \Doctrine\ORM\QueryBuilder
+     * @return QueryBuilder
      */
     public function getFindOneByIdAndLocaleQuery($listingId, $locale)
     {

@@ -100,7 +100,7 @@
                                         </li>
                                     </ul>
                                     <a href="javascript:void(0)" id="favourite-{{ listing.id }}"
-                                       class="link-favourit favourit">
+                                       class="link-favourit favourit {% if listing.id in app.request.cookies.get('favourite')|split(',') %}active{% endif %}">
                                         {{ 'listing.show.favorites.add'|trans }}
                                         <i class="icon-heart"></i>
                                     </a>

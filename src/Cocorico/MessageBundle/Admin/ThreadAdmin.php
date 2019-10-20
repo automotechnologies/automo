@@ -11,8 +11,9 @@
 
 namespace Cocorico\MessageBundle\Admin;
 
+use Cocorico\CoreBundle\Entity\Listing;
+use Cocorico\CoreBundle\Repository\ListingRepository;
 use Cocorico\MessageBundle\Entity\Thread;
-use Cocorico\ReportBundle\Repository\ListingRepository;
 use Doctrine\ORM\Query\Expr;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -97,10 +98,8 @@ class ThreadAdmin extends AbstractAdmin
                     'label' => 'admin.thread.view.label',
                     'template' => 'CocoricoMessageBundle:Admin:view_thread.html.twig'
                 )
-            );
-
-
-        $listMapper->add(
+            )
+            ->add(
             '_action',
             'actions',
             array(
@@ -119,7 +118,8 @@ class ThreadAdmin extends AbstractAdmin
 
         $listing = null;
         if ($thread) {
-            if ($thread->getListing()) {
+
+            if ($thread->getListing() instanceof Listing) {
                 $listing = $thread->getListing();
             } elseif ($thread->getBooking()) {
                 $listing = $thread->getBooking()->getListing();
@@ -132,7 +132,7 @@ class ThreadAdmin extends AbstractAdmin
 
                 $listingQuery = $listingRepository->getFindOneByIdAndLocaleQuery(
                     $listing->getId(),
-                    $this->request ? $this->getRequest()->getLocale() : 'fr'
+                    $this->request ? $this->getRequest()->getLocale() : 'en'
                 );
 
                 $formMapper

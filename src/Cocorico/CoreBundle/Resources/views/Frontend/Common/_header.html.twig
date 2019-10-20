@@ -56,7 +56,7 @@
                             <li>
                                 <a href="{{ path('cocorico_listing_favourite') }}"
                                    tabindex="5">{{ 'nav.favorites.link'|trans }}
-                                    <span id="fav-count"></span>
+                                    <span id="fav-count">({{ app.request.cookies.get('favourite')|split(',')|length(0) }})</span>
                                 </a>
                             </li>
 
