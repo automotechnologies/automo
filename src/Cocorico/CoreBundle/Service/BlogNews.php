@@ -3,6 +3,7 @@
 
 namespace Cocorico\CoreBundle\Service;
 
+use Cocorico\CoreBundle\Entity\ListingImage;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
 
@@ -50,14 +51,19 @@ class BlogNews
             $renderFeeds[$key]['title'] = (string)$feed->children()->title;
             $renderFeeds[$key]['pubDate'] = (string)$feed->children()->pubDate;
             $renderFeeds[$key]['link'] = (string)$feed->children()->link;
-            $imageUrl = end($media->attributes()->url);
-            $pathInfo = pathinfo($imageUrl);
-            $imageName = uniqid() . "." . $pathInfo['extension'];
-            $imageLocal = $uploadsDir .'/'. $imageName;
-            file_put_contents($imageLocal, file_get_contents($imageUrl));
-            $renderFeeds[$key]['image'] = "/uploads/blog-news/" . $imageName;
 
-            if ($key === 4)
+            if ($media) {
+                $imageUrl = end($media->attributes()->url);
+                $pathInfo = pathinfo($imageUrl);
+                $imageName = uniqid() . "." . $pathInfo['extension'];
+                $imageLocal = $uploadsDir . '/' . $imageName;
+                file_put_contents($imageLocal, file_get_contents($imageUrl));
+                $renderFeeds[$key]['image'] = "/uploads/blog-news/" . $imageName;
+            } else {
+                $renderFeeds[$key]['image'] = ListingImage::IMAGE_FOLDER . ListingImage::IMAGE_DEFAULT;
+            }
+
+            if ($key >= 4)
                 break;
         }
 
