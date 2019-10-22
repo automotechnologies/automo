@@ -24,7 +24,6 @@ twig:
         cocorico_from_email: "%cocorico.from_email%"
         cocorico_vat_number: "%cocorico.vat_number%"
         cocorico_facebook_id: "%cocorico.facebook.app_id%"
-        cocorico_google_tag_manager: "%cocorico.google_tag_manager%"
         cocorico_admin_translation: "%cocorico.admin_translation%"
         cocorico_listing_countries: "%cocorico.listing_countries%"
         #Images sizes

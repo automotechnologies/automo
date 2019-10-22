@@ -12,7 +12,6 @@ parameters:
     cocorico.webmaster_email: customer@otomo.co
     cocorico.vat_number: ~
     cocorico.home_rss_feed: 'https://blog.otomo.co/feed/'
-    # cocorico.home_rss_feed: 'http://www.cocolabs.io/fr/feed/'
 
     # Excluded Users Admin to create Listing
     cocorico_excluded_admin:
@@ -320,12 +319,6 @@ parameters:
     #Image processing driver (liip_imagine_bundle): (gd, imagick, gmagick)
     cocorico.image_driver: ~
 
-    #Google analytics code
-    cocorico.google_analytics: ~
-
-    #Google Tag Manager
-    cocorico.google_tag_manager: ~
-
     #Google Place API Key (To set on prod)
     cocorico_geo.google_place_api_key: ~
     cocorico_geo.google_place_server_api_key: ~
@@ -340,33 +333,9 @@ parameters:
 
     ################################# Optional bundles #################################
 
-    #Mangopay
-    cocorico_mangopay.client_id: ~
-    cocorico_mangopay.client_password: ~
-    cocorico_mangopay.base_url: 'https://api.sandbox.mangopay.com'
-    cocorico_mangopay.debug: false
-    cocorico_mangopay.temporary_folder: '%kernel.root_dir%/../tmp/mangopay/'
-
-    #SMS
-    cocorico_sms.enabled:                false
-    cocorico_sms.phone_check:            false
-    cocorico_sms.thread_notification:    false
-    cocorico_sms.ovh_endpoint_name:      "ovh-eu"
-    cocorico_sms.ovh_application_key:    ~
-    cocorico_sms.ovh_application_secret: ~
-    cocorico_sms.ovh_consumer_key:       ~
-    cocorico_sms.ovh_service_name:       ~
-    cocorico_sms.ovh_debug:              false
-
     #Deposit
     #Booking deposit refund generation delay in minutes.
     cocorico_listing_deposit.booking.deposit_refund_delay: ~
     #Min deposit amount
     cocorico_listing_deposit.listing.min_deposit_amount: ~
 
-    #Elasticsearch
-    cocorico_elasticsearch.keyword_delimiter: ' '
-    cocorico_elasticsearch.listing_title_boost: 5
-    cocorico_elasticsearch.listing_description_boost: 5
-    cocorico_elasticsearch.listing_category_names_boost: 5
-    cocorico_elasticsearch.listing_user_description_boost: 5

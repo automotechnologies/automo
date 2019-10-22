@@ -46,12 +46,6 @@ parameters:
     #Image processing driver (liip_imagine_bundle): (gd, imagick, gmagick)
     cocorico.image_driver: imagick
 
-    #Google analytics code
-    cocorico.google_analytics: UA-64445856-1
-
-    #Google Tag Manager
-    cocorico.google_tag_manager: false
-
     #Google Place API Key
     cocorico_geo.google_place_api_key: ~
     cocorico_geo.google_place_server_api_key: ~
