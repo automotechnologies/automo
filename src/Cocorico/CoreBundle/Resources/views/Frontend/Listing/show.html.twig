@@ -37,6 +37,12 @@
     <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
 
+    <style>
+        body {
+            position: relative;
+        }
+    </style>
+
 {% endblock %}
 
 {% block layout %}
@@ -249,83 +255,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- contain sidebar of the page -->
-                <aside id="sidebar" class="col-xs-12 col-md-3">
-                    <div class="holder">
-                        <div class="sub-head">
-                            <!-- social-networks -->
-                            {#{{ socialButtons({'title': translation.title}) }}#}
-                            {% include 'CocoricoCoreBundle:Frontend/SocialButton:all.html.twig' with {'title': listing_translation.title} only %}
-
-                            <!-- rating -->
-                            {% if listing.averageRating %}
-                                {{ listing.averageRating | cocorico_star_rating }}
-                            {% endif %}
-                            <span class="counter">
-                                (
-                                <span>{{ listing.commentCount }}</span>
-                                {{ 'listing.show.comments'|trans }})
-                            </span>
-                        </div>
-
-                        {#booking form#}
-                        {{ render(controller('CocoricoCoreBundle:Frontend/BookingPrice:bookingPriceForm', {
-                            'listing': listing
-                        })) }}
-
-                        <section class="widget prices-conditions">
-                            <h2>{{ 'listing.show.policy.title'|trans }}</h2>
-                            <ul>
-                                <li>
-                                    {{ 'listing.show.cancellation_policy:'|trans() }}
-                                    <strong>{{ listing.cancellationPolicyText|trans }}</strong>
-                                    <button data-placement="right" data-toggle="tooltip" class="tooltip-button"
-                                            data-html="true" type="button"
-                                            data-original-title="{{ cancellationPolicies() }}"> ?
-                                    </button>
-                                </li>
-
-                                {% if listing.minDuration %}
-                                    <li>
-                                        {{ 'listing.show.min_duration:'|trans() }}
-                                        <strong>
-                                            {{ listing.minDuration ~ " " ~ (-1)|add_time_unit_text }}
-                                        </strong>
-                                    </li>
-                                {% endif %}
-
-                                {% if listing.maxDuration %}
-                                    <li>
-                                        {{ 'listing.show.max_duration:'|trans() }}
-                                        <strong>
-                                            {{ listing.maxDuration ? listing.maxDuration ~ " " ~ (-1)|add_time_unit_text : "none"|trans }}
-                                        </strong>
-                                    </li>
-                                {% endif %}
-
-                                {% if listing.discounts.count %}
-                                    {% set quantityText = {'%quantity_text%': 0|add_time_unit_text} %}
-                                    {% set quantitiesText = {'%quantity_text%': (-1)|add_time_unit_text} %}
-                                    <li>
-                                        {{ 'listing.show.discounts:'|trans() }}
-                                        <ul>
-                                            {% for discount in listing.discounts %}
-                                                <li>
-                                                    <strong>{{ discount.discount }}% </strong>
-                                                    {{ 'listing_edit.form.from_quantity'|trans(quantityText) }}
-                                                    <strong>{{ discount.fromQuantity }} </strong>
-                                                    {{ 'listing_edit.form.from_quantity.bought'|trans(quantitiesText) }}
-
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </li>
-                                {% endif %}
-                            </ul>
-                        </section>
-
+                    <div class="widget content-holder">
                         <!-- members-list -->
                         <section class="widget members-list">
                             <!-- gallery-small -->
@@ -434,12 +365,94 @@
 
                             </ul>
                         </section>
+                    </div>
 
+                    <div class="widget content-holder listing-holder">
                         {# similar results#}
                         {{ render(controller('CocoricoCoreBundle:Frontend/ListingSearch:similarListing',
-                        { 'id': listing.id }
+                            {'id': listing.id}
                         )) }}
+                    </div>
+                </div>
 
+                <!-- contain sidebar of the page -->
+                <aside id="sidebar" class="col-xs-12 col-md-3">
+                    <div class="holder">
+                        <div class="sub-head">
+                            <!-- social-networks -->
+                            {#{{ socialButtons({'title': translation.title}) }}#}
+                            {% include 'CocoricoCoreBundle:Frontend/SocialButton:all.html.twig' with {'title': listing_translation.title} only %}
+
+                            <!-- rating -->
+                            {% if listing.averageRating %}
+                                {{ listing.averageRating | cocorico_star_rating }}
+                            {% endif %}
+                            <span class="counter">
+                                (
+                                <span>{{ listing.commentCount }}</span>
+                                {{ 'listing.show.comments'|trans }})
+                            </span>
+                        </div>
+
+                        <div id="myAffix" data-spy="affix">
+
+                            {#booking form#}
+                            {{ render(controller('CocoricoCoreBundle:Frontend/BookingPrice:bookingPriceForm', {
+                                'listing': listing
+                            })) }}
+
+{#                        <section class="widget prices-conditions">#}
+{#                            <h2>{{ 'listing.show.policy.title'|trans }}</h2>#}
+{#                            <ul>#}
+{#                                <li>#}
+{#                                    {{ 'listing.show.cancellation_policy:'|trans() }}#}
+{#                                    <strong>{{ listing.cancellationPolicyText|trans }}</strong>#}
+{#                                    <button data-placement="right" data-toggle="tooltip" class="tooltip-button"#}
+{#                                            data-html="true" type="button"#}
+{#                                            data-original-title="{{ cancellationPolicies() }}"> ?#}
+{#                                    </button>#}
+{#                                </li>#}
+
+{#                                {% if listing.minDuration %}#}
+{#                                    <li>#}
+{#                                        {{ 'listing.show.min_duration:'|trans() }}#}
+{#                                        <strong>#}
+{#                                            {{ listing.minDuration ~ " " ~ (-1)|add_time_unit_text }}#}
+{#                                        </strong>#}
+{#                                    </li>#}
+{#                                {% endif %}#}
+
+{#                                {% if listing.maxDuration %}#}
+{#                                    <li>#}
+{#                                        {{ 'listing.show.max_duration:'|trans() }}#}
+{#                                        <strong>#}
+{#                                            {{ listing.maxDuration ? listing.maxDuration ~ " " ~ (-1)|add_time_unit_text : "none"|trans }}#}
+{#                                        </strong>#}
+{#                                    </li>#}
+{#                                {% endif %}#}
+
+{#                                {% if listing.discounts.count %}#}
+{#                                    {% set quantityText = {'%quantity_text%': 0|add_time_unit_text} %}#}
+{#                                    {% set quantitiesText = {'%quantity_text%': (-1)|add_time_unit_text} %}#}
+{#                                    <li>#}
+{#                                        {{ 'listing.show.discounts:'|trans() }}#}
+{#                                        <ul>#}
+{#                                            {% for discount in listing.discounts %}#}
+{#                                                <li>#}
+{#                                                    <strong>{{ discount.discount }}% </strong>#}
+{#                                                    {{ 'listing_edit.form.from_quantity'|trans(quantityText) }}#}
+{#                                                    <strong>{{ discount.fromQuantity }} </strong>#}
+{#                                                    {{ 'listing_edit.form.from_quantity.bought'|trans(quantitiesText) }}#}
+
+{#                                                </li>#}
+{#                                            {% endfor %}#}
+{#                                        </ul>#}
+{#                                    </li>#}
+{#                                {% endif %}#}
+{#                            </ul>#}
+{#                        </section>#}
+
+                        </div>
                     </div>
                 </aside>
             </div>
@@ -468,6 +481,16 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
     <script>
         $(function() {
+
+          $('#myAffix').affix({
+            offset: {
+              top: 100,
+              bottom: function () {
+                return (this.bottom = $('.bottom-container').outerHeight(true))
+              }
+            }
+          });
+
             $(".gallery-slideset").slick({
                 slidesToShow: 1,
                 slidesToScroll: 1,
