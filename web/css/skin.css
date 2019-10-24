@@ -166,6 +166,10 @@ body {
     overflow: hidden;
 }
 
+.feed-item {
+    height: 215px !important;
+    border-radius: 10px !important;
+}
 
 @media screen and (max-width: 480px) {
 
@@ -305,19 +309,25 @@ body {
     left: -15px;
     left: 0 !important;
     top: 40% !important;
-    background-color: #c53142;
+    background-color: #ffffff !important;
     border-radius: 0 5px 5px 0;
-    width: 25px;
-    height: 35px;
+    width: 40px !important;
+    height: 50px !important;
+    background-size: inherit;
+    background-position: center;
+    box-shadow: 2px 4px 12px rgba(0,0,0,0.8);
   }  
 
   .slider-secondary .slider-secondary-actions a.slider-next {
     right: 0px !important;
     top: 40% !important;
-    width: 25px;
-    height: 35px;
-    background-color: #c53142;
+    background-color: #ffffff !important;
     border-radius: 5px 0 0 5px;
+    width: 40px !important;
+    height: 50px !important;
+    background-size: inherit;
+    background-position: center;
+    box-shadow: 2px 4px 12px rgba(0,0,0,0.8);
    }    
 
   .topbar ul li {
