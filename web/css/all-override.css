@@ -1280,7 +1280,7 @@ images css for making it 4:3
 
 .container .row .twocolumns .listing-area .listing-holder .listing-post .listing-box .frame .post-info .img-holder,
 .listing-area .listing-holder .listing-post .listing-box .frame .post-info .img-holder {
-    width: 384px;
+    width: 100%;
     height: 288px;
     position: relative;
 }

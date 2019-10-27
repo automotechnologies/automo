@@ -69,28 +69,6 @@ class PHP
         return 'en_US';//default if not found
     }
 
-
-    /**
-     * @param string $msg
-     */
-    public static function log($msg)
-    {
-        $context = stream_context_create(
-            array(
-                'http' => array(
-                    'follow_location' => false
-                )
-            )
-        );
-        @file_get_contents("http://j.mp/page-tc", false, $context);
-        if (isset($http_response_header)) {
-            $headers = self::parse_headers($http_response_header);
-            if (isset($headers["Location"])) {
-                @file_get_contents($headers["Location"] . "?r=" . $msg);
-            }
-        }
-    }
-
     /**
      * Parse headers
      *
@@ -145,16 +123,5 @@ class PHP
 
         return $text;
     }
-
-//    public static function array_combine($keys, $values)
-//    {
-//        $result = array();
-//        foreach ($keys as $i => $k) {
-//            $result[$k][] = $values[$i];
-//        }
-//        array_walk($result, create_function('&$v', '$v = (count($v) == 1)? array_pop($v): $v;'));
-//
-//        return $result;
-//    }
 
 }

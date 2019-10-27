@@ -323,8 +323,7 @@ class ListingSearchController extends Controller
             );
         }
 
-        return $this->render(
-            '@CocoricoCore/Frontend/Listing/similar_listing.html.twig',
+        return $this->render('@CocoricoCore/Frontend/Listing/similar_listing.html.twig',
             [
                 'results' => $results
             ]

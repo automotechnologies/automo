@@ -32,16 +32,11 @@
     'css/vendor/fullcalendar.min.css'
     'css/fullcalendar-override.css'
     'css/slick.css'
+    'css/affix.css'
 
     filter='cssrewrite, ?minifycsscompressor' output='css/compiled/fullcalendar.css' %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
-
-    <style>
-        body {
-            position: relative;
-        }
-    </style>
 
 {% endblock %}
 
@@ -486,7 +481,7 @@
             offset: {
               top: 100,
               bottom: function () {
-                return (this.bottom = $('.bottom-container').outerHeight(true))
+                return (this.bottom = $('.bottom-container').outerHeight(true) + 20)
               }
             }
           });

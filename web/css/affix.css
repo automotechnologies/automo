@@ -1,0 +1,15 @@
+.affix {
+    position: fixed;
+    top: 290px;
+}
+@media (min-width: 992px) {
+    .affix {
+        position: fixed !important;
+        width: 21.5%;
+    }
+}
+@media (max-width: 991px) {
+    .affix {
+        position: static !important;
+    }
+}
