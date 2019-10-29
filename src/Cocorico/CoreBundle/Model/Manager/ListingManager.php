@@ -17,7 +17,6 @@ use Cocorico\CoreBundle\Entity\ListingImage;
 use Cocorico\CoreBundle\Entity\ListingListingCategory;
 use Cocorico\CoreBundle\Entity\ListingListingCharacteristic;
 use Cocorico\CoreBundle\Entity\ListingTranslation;
-use Cocorico\CoreBundle\Mailer\TwigSwiftMailer;
 use Cocorico\CoreBundle\Model\ListingCategoryFieldValueInterface;
 use Cocorico\CoreBundle\Model\ListingCategoryListingCategoryFieldInterface;
 use Cocorico\CoreBundle\Model\ListingOptionInterface;
@@ -36,7 +35,6 @@ class ListingManager extends BaseManager
     protected $securityTokenStorage;
     protected $newListingIsPublished;
     public $maxPerPage;
-    protected $mailer;
     protected $emailNotification;
 
     /**
@@ -44,7 +42,6 @@ class ListingManager extends BaseManager
      * @param TokenStorage      $securityTokenStorage
      * @param int               $newListingIsPublished
      * @param int               $maxPerPage
-     * @param TwigSwiftMailer   $mailer
      * @param EmailNotification $emailNotification
      */
     public function __construct(
@@ -52,14 +49,12 @@ class ListingManager extends BaseManager
         TokenStorage $securityTokenStorage,
         $newListingIsPublished,
         $maxPerPage,
-        TwigSwiftMailer $mailer,
         EmailNotification $emailNotification
     ) {
         $this->em = $em;
         $this->securityTokenStorage = $securityTokenStorage;
         $this->newListingIsPublished = $newListingIsPublished;
         $this->maxPerPage = $maxPerPage;
-        $this->mailer = $mailer;
         $this->emailNotification = $emailNotification;
     }
 
@@ -109,7 +104,6 @@ class ListingManager extends BaseManager
         $this->em->refresh($listing);
 
         if ($listingPublished) {
-//            $this->mailer->sendListingActivatedMessageToOfferer($listing);
             $this->emailNotification->sendListingActivatedMessageToOfferer($listing);
         }
 

@@ -2,6 +2,16 @@
     position: fixed;
     top: 290px;
 }
+
+.affix-top .widget,
+.affix-bottom .widget,
+.affix .widget {
+    border-radius: 10px !important;
+    background: #ffffff;
+    border: #eaebec solid 1px;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+    box-shadow: 0 1px 5px 0 rgba(0,0,0,.1);
+}
 @media (min-width: 992px) {
     .affix {
         position: fixed !important;
