@@ -18,6 +18,7 @@ use FOS\UserBundle\Model\UserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -111,7 +112,7 @@ class RegistrationController extends Controller
      *
      * @param UserInterface $user The entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return Form The form
      */
     private function createCreateForm(UserInterface $user)
     {
@@ -149,11 +150,10 @@ class RegistrationController extends Controller
             throw new NotFoundHttpException(sprintf('The user with email "%s" does not exist', $email));
         }
 
-        return $this->render(
-            'CocoricoUserBundle:Frontend/Registration:checkEmail.html.twig',
-            array(
+        return $this->render('CocoricoUserBundle:Frontend/Registration:checkEmail.html.twig',
+            [
                 'user' => $user,
-            )
+            ]
         );
     }
 
@@ -203,8 +203,7 @@ class RegistrationController extends Controller
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        return $this->render(
-            'CocoricoUserBundle:Frontend/Registration:confirmed.html.twig',
+        return $this->render('CocoricoUserBundle:Frontend/Registration:confirmed.html.twig',
             [
                 'user' => $user,
                 'targetUrl' => $this->getTargetUrlFromSession(),

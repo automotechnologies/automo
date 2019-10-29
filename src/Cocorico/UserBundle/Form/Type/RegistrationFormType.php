@@ -35,7 +35,7 @@ class RegistrationFormType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $countries = ["ID", "GB", "FR", "ES", "DE", "IT", "CH", "US", "RU"];
+        $countries = ["ID"];
 
         $builder
             ->add(
@@ -127,10 +127,12 @@ class RegistrationFormType extends AbstractType
                     'first_options' => [
                         'label' => 'form.password',
                         'required' => true,
+                        'attr' => ['autocomplete' => 'off']
                     ],
                     'second_options' => [
                         'label' => 'form.password_confirmation',
                         'required' => true,
+                        'attr' => ['autocomplete' => 'off']
                     ],
                     'invalid_message' => 'fos_user.password.mismatch',
                     'required' => true,

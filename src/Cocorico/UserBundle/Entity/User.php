@@ -27,6 +27,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\MessageBundle\Model\ParticipantInterface;
 use FOS\UserBundle\Model\User as BaseUser;
+use FOS\UserBundle\Model\UserInterface;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -163,7 +164,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @ORM\Column(name="phone_prefix", type="string", length=6, nullable=true)
      */
-    protected $phonePrefix = '+33';
+    protected $phonePrefix = '+62';
 
     /**
      * @var string
@@ -574,7 +575,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return User
      */
-    public function setCompanyName($companyName)
+    public function setCompanyName(?string $companyName)
     {
         $this->companyName = $companyName;
 
@@ -588,7 +589,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return User
      */
-    public function setLastName($lastName)
+    public function setLastName(?string $lastName)
     {
         $this->lastName = $lastName;
 
@@ -612,7 +613,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return User
      */
-    public function setFirstName($firstName)
+    public function setFirstName(?string $firstName)
     {
         $this->firstName = $firstName;
 
@@ -644,7 +645,7 @@ class User extends BaseUser implements ParticipantInterface
      */
     public function setEmail($email)
     {
-        $email = is_null($email) ? '' : $email;
+        $email = $email ?? '' ;
         parent::setEmail($email);
         $this->setUsername($email);
 
@@ -658,7 +659,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return User
      */
-    public function setPhoneVerified($phoneVerified)
+    public function setPhoneVerified(?bool $phoneVerified)
     {
         $this->phoneVerified = $phoneVerified;
 
@@ -682,7 +683,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return User
      */
-    public function setEmailVerified($emailVerified)
+    public function setEmailVerified(?bool $emailVerified)
     {
         $this->emailVerified = $emailVerified;
 
@@ -706,7 +707,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return User
      */
-    public function setIdCardVerified($idCardVerified)
+    public function setIdCardVerified(?bool $idCardVerified)
     {
         $this->idCardVerified = $idCardVerified;
 
@@ -730,7 +731,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return User
      */
-    public function setNbBookingsOfferer($nbBookingsOfferer)
+    public function setNbBookingsOfferer(?int $nbBookingsOfferer)
     {
         $this->nbBookingsOfferer = $nbBookingsOfferer;
 
@@ -758,7 +759,7 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * @param int $nbBookingsAsker
      */
-    public function setNbBookingsAsker($nbBookingsAsker)
+    public function setNbBookingsAsker(?int $nbBookingsAsker)
     {
         $this->nbBookingsAsker = $nbBookingsAsker;
     }
@@ -774,7 +775,7 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * @param int $feeAsAsker
      */
-    public function setFeeAsAsker($feeAsAsker)
+    public function setFeeAsAsker(?int $feeAsAsker)
     {
         $this->feeAsAsker = $feeAsAsker;
     }
@@ -790,7 +791,7 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * @param int $feeAsOfferer
      */
-    public function setFeeAsOfferer($feeAsOfferer)
+    public function setFeeAsOfferer(?int $feeAsOfferer)
     {
         $this->feeAsOfferer = $feeAsOfferer;
     }
@@ -838,7 +839,7 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * @param string $profession
      */
-    public function setProfession($profession)
+    public function setProfession(?string $profession)
     {
         $this->profession = $profession;
     }
@@ -870,7 +871,7 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * @param string $bic
      */
-    public function setBic($bic)
+    public function setBic(?string $bic)
     {
         $this->bic = $bic;
     }
@@ -886,7 +887,7 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * @param string $bankOwnerName
      */
-    public function setBankOwnerName($bankOwnerName)
+    public function setBankOwnerName(?string $bankOwnerName)
     {
         $this->bankOwnerName = $bankOwnerName;
     }
@@ -902,7 +903,7 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * @param string $bankOwnerAddress
      */
-    public function setBankOwnerAddress($bankOwnerAddress)
+    public function setBankOwnerAddress(?string $bankOwnerAddress)
     {
         $this->bankOwnerAddress = $bankOwnerAddress;
     }
@@ -918,7 +919,7 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * @param int $annualIncome
      */
-    public function setAnnualIncome($annualIncome)
+    public function setAnnualIncome(?int $annualIncome)
     {
         $this->annualIncome = $annualIncome;
     }
@@ -934,7 +935,7 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * @param string $phone
      */
-    public function setPhone($phone)
+    public function setPhone(?string $phone)
     {
         $this->phone = $phone;
     }
@@ -950,7 +951,7 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * @param string $phonePrefix
      */
-    public function setPhonePrefix($phonePrefix)
+    public function setPhonePrefix(?string $phonePrefix)
     {
         $this->phonePrefix = $phonePrefix;
     }
@@ -966,7 +967,7 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * @param string $countryOfResidence
      */
-    public function setCountryOfResidence($countryOfResidence)
+    public function setCountryOfResidence(?string $countryOfResidence)
     {
         $this->countryOfResidence = $countryOfResidence;
     }
@@ -978,7 +979,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return $this
      */
-    public function setAverageAskerRating($averageAskerRating)
+    public function setAverageAskerRating(?int $averageAskerRating)
     {
         $this->averageAskerRating = $averageAskerRating;
 
@@ -1002,7 +1003,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return $this
      */
-    public function setAverageOffererRating($averageOffererRating)
+    public function setAverageOffererRating(?int $averageOffererRating)
     {
         $this->averageOffererRating = $averageOffererRating;
 
@@ -1026,7 +1027,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return $this
      */
-    public function setAnswerDelay($answerDelay)
+    public function setAnswerDelay(?int $answerDelay)
     {
         $this->answerDelay = $answerDelay;
 
@@ -1054,7 +1055,7 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * @param string $motherTongue
      */
-    public function setMotherTongue($motherTongue)
+    public function setMotherTongue(?string $motherTongue)
     {
         $this->motherTongue = $motherTongue;
     }
@@ -1076,12 +1077,12 @@ class User extends BaseUser implements ParticipantInterface
         $this->userFacebook = $userFacebook;
     }
 
-    public function getFullName()
+    public function getFullName(): ?string
     {
         return implode(' ', array_filter(array($this->getFirstName(), $this->getLastName())));
     }
 
-    public function __toString()
+    public function __toString(): ?string
     {
         return $this->getFullName();
     }
@@ -1093,7 +1094,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return User
      */
-    public function addListing(Listing $listing)
+    public function addListing(Listing $listing): ?User
     {
         $this->listings[] = $listing;
 
@@ -1105,7 +1106,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @param Listing $listing
      */
-    public function removeListing(Listing $listing)
+    public function removeListing(Listing $listing): void
     {
         $this->listings->removeElement($listing);
     }
@@ -1399,7 +1400,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return UserAddress[]|Collection
      */
-    public function getAddressesOfType($type)
+    public function getAddressesOfType(?int $type)
     {
         return $this->addresses->filter(
             function (UserAddress $address) use ($type) {
@@ -1672,7 +1673,7 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * @return string
      */
-    public function getTimeZone()
+    public function getTimeZone(): ?string
     {
         return $this->timeZone;
     }
@@ -1680,7 +1681,7 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * @param string $timeZone
      */
-    public function setTimeZone($timeZone)
+    public function setTimeZone(?string $timeZone)
     {
         $this->timeZone = $timeZone;
     }
@@ -1755,6 +1756,11 @@ class User extends BaseUser implements ParticipantInterface
         return $this;
     }
 
+
+    /**
+     * @param string $role
+     * @return BaseUser|UserInterface
+     */
     public function addRole($role)
     {
         $role = strtoupper($role);
