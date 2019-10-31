@@ -29,12 +29,12 @@ abstract class BaseBookingBankWire
     const STATUS_PAYED = 2;
     const STATUS_FAILED = 3;
 
-    public static $statusValues = array(
+    public static $statusValues = [
         self::STATUS_TO_DO => 'entity.booking.bank_wire.status.to_do',
         self::STATUS_DONE => 'entity.booking.bank_wire.status.done',
         self::STATUS_PAYED => 'entity.booking.bank_wire.status.payed',
         self::STATUS_FAILED => 'entity.booking.bank_wire.status.failed',
-    );
+    ];
 
     /**
      * @ORM\Column(name="status", type="smallint")
@@ -57,12 +57,6 @@ abstract class BaseBookingBankWire
      * @var \DateTime
      */
     protected $payedAt;
-
-    public function __construct()
-    {
-
-    }
-
 
     /**
      * Set status

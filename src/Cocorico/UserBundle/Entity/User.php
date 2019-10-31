@@ -77,10 +77,10 @@ class User extends BaseUser implements ParticipantInterface
     const PERSON_TYPE_NATURAL = 1;
     const PERSON_TYPE_LEGAL = 2;
 
-    public static $personTypeValues = array(
+    public static $personTypeValues = [
         self::PERSON_TYPE_NATURAL => 'entity.user.person_type.natural',
         self::PERSON_TYPE_LEGAL => 'entity.user.person_type.legal',
-    );
+    ];
 
     /**
      * @ORM\Id
@@ -1124,7 +1124,7 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * Add images.
      *
-     * @param \Cocorico\UserBundle\Entity\UserImage $image
+     * @param UserImage $image
      *
      * @return $this
      */
@@ -1139,7 +1139,7 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * Remove images.
      *
-     * @param \Cocorico\UserBundle\Entity\UserImage $image
+     * @param UserImage $image
      */
     public function removeImage(UserImage $image)
     {
@@ -1159,7 +1159,7 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * Add language.
      *
-     * @param \Cocorico\UserBundle\Entity\UserLanguage $language
+     * @param UserLanguage $language
      *
      * @return $this
      */
@@ -1174,7 +1174,7 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * Remove language.
      *
-     * @param \Cocorico\UserBundle\Entity\UserLanguage $language
+     * @param UserLanguage $language
      */
     public function removeLanguage(UserLanguage $language)
     {
@@ -1255,26 +1255,19 @@ class User extends BaseUser implements ParticipantInterface
         $bookings = new ArrayCollection(array_merge($bookingsAsAsker->toArray(), $bookingsAsOfferer->toArray()));
 
         foreach ($bookings as $index => $booking) {
-            if ($booking->getStatus() == Booking::STATUS_NEW) {
-                return true;
-            } elseif ($booking->getStatus() == Booking::STATUS_PAYMENT_REFUSED) {
+            if (in_array($booking->getStatus(), [Booking::STATUS_NEW, Booking::STATUS_PAYMENT_REFUSED])) {
                 return true;
             } elseif ($booking->getStatus() == Booking::STATUS_PAYED) {
                 //If there is no bank wire or there is a bank wire not payed
+                /** @var BookingBankWire $bankWire */
                 $bankWire = $booking->getBankWire();
-                if (!$bankWire || ($bankWire &&
-                        ($bankWire->getStatus() != BookingBankWire::STATUS_PAYED || !$bankWire->getMangopayPayoutId())
-                    )
-                ) {
+                if (!$bankWire || ($bankWire && ($bankWire->getStatus() != BookingBankWire::STATUS_PAYED))) {
                     return true;
                 }
             } elseif ($booking->getStatus() == Booking::STATUS_CANCELED_ASKER) {
                 //If there is a bank wire not payed
                 $bankWire = $booking->getBankWire();
-                if (($bankWire &&
-                    ($bankWire->getStatus() != BookingBankWire::STATUS_PAYED || !$bankWire->getMangopayPayoutId())
-                )
-                ) {
+                if (($bankWire && ($bankWire->getStatus() != BookingBankWire::STATUS_PAYED))) {
                     return true;
                 }
             }
@@ -1694,7 +1687,7 @@ class User extends BaseUser implements ParticipantInterface
      */
     public function getCompletionInformations($minImages, $strict = true)
     {
-        return array(
+        return [
             'description' => (
                 ($strict && $this->getDescription()) ||
                 (!$strict && strlen($this->getDescription()) > 250)
@@ -1703,7 +1696,7 @@ class User extends BaseUser implements ParticipantInterface
                 ($strict && count($this->getImages()) >= $minImages) ||
                 (!$strict && count($this->getImages()) > $minImages)
             ) ? 1 : 0,
-        );
+        ];
     }
 
     /**

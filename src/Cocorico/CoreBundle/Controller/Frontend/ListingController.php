@@ -35,11 +35,9 @@ class ListingController extends Controller
     /**
      * Creates a new Listing entity.
      *
-     * @Route("/new", name="cocorico_listing_new")
+     * @Route("/new", name="cocorico_listing_new", methods={"GET", "POST"})
      *
      * @Security("has_role('ROLE_USER')")
-     *
-     * @Method({"GET", "POST"})
      *
      * @return RedirectResponse|Response
      * @throws OptimisticLockException
@@ -80,8 +78,7 @@ class ListingController extends Controller
             return $this->redirectToRoute('cocorico_dashboard_listing_edit_presentation', ['id' => $listing->getId()]);
         }
 
-        return $this->render(
-            'CocoricoCoreBundle:Frontend/Listing:new.html.twig',
+        return $this->render('CocoricoCoreBundle:Frontend/Listing:new.html.twig',
             [
                 'listing' => $listing,
                 'form' => $form->createView(),

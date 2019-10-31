@@ -57,11 +57,6 @@ class BookingBankWire extends BaseBookingBankWire
      */
     private $booking;
 
-
-    public function __construct()
-    {
-    }
-
     /**
      * Get id
      *
