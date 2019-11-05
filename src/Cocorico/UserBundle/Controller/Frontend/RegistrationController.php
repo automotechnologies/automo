@@ -78,12 +78,13 @@ class RegistrationController extends Controller
                     /** @var User $user */
                     $user = $form->getData();
 
-                    $this->get('session')->getFlashBag()->add(
-                        'success',
-                        $this->get('translator')->trans('user.register.success', [], 'cocorico_user')
-                    );
-
                     if ($confirmation) {
+                        if ($isProd) {
+                            $this->get('session')->getFlashBag()->add(
+                                'success',
+                                $this->get('translator')->trans('user.register.success', [], 'cocorico_user')
+                            );
+                        }
                         $this->get('session')->set('cocorico_user_send_confirmation_email/email', $user->getEmail());
                         $url = $this->get('router')->generate('cocorico_user_registration_check_email');
                     } else {
@@ -98,13 +99,10 @@ class RegistrationController extends Controller
             $googleReCaptchaIsValid = false;
         }
 
-        return $this->render(
-            'CocoricoUserBundle:Frontend/Registration:register.html.twig',
-            [
-                'form' => $form->createView(),
-                'googleReCaptchaIsValid' => $googleReCaptchaIsValid,
-            ]
-        );
+        return $this->render('CocoricoUserBundle:Frontend/Registration:register.html.twig', [
+            'form' => $form->createView(),
+            'googleReCaptchaIsValid' => $googleReCaptchaIsValid,
+        ]);
     }
 
     /**

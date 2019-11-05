@@ -9,6 +9,7 @@ services:
             - "@cocorico_user.login_manager"
             - "@event_dispatcher"
             - "@send_notification_email"
+            - "%kernel.environment%"
         public: true
 
     cocorico_user.form.handler.bank_account:

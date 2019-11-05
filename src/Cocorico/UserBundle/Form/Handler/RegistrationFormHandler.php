@@ -35,6 +35,7 @@ class RegistrationFormHandler
     protected $loginManager;
     protected $dispatcher;
     protected $emailNotification;
+    protected $environment;
 
     /**
      * @param RequestStack             $requestStack
@@ -43,6 +44,7 @@ class RegistrationFormHandler
      * @param LoginManager             $loginManager
      * @param EventDispatcherInterface $dispatcher
      * @param EmailNotification        $emailNotification
+     * @param bool                     $environment
      */
     public function __construct(
         RequestStack $requestStack,
@@ -50,7 +52,8 @@ class RegistrationFormHandler
         TokenGeneratorInterface $tokenGenerator,
         LoginManager $loginManager,
         EventDispatcherInterface $dispatcher,
-        EmailNotification $emailNotification
+        EmailNotification $emailNotification,
+        bool $environment
     ) {
         $this->request = $requestStack->getCurrentRequest();
         $this->userManager = $userManager;
@@ -58,6 +61,7 @@ class RegistrationFormHandler
         $this->loginManager = $loginManager;
         $this->dispatcher = $dispatcher;
         $this->emailNotification = $emailNotification;
+        $this->environment = $environment;
     }
 
     /**
@@ -107,7 +111,7 @@ class RegistrationFormHandler
         $user = $event->getUser();
         $user->addRole(UserInterface::ROLE_DEFAULT);
 
-        if ($confirmation) {
+        if ($confirmation && $this->environment === 'prod') {
             $user->setEnabled(false);
             if (null === $user->getConfirmationToken()) {
                 $user->setConfirmationToken($this->tokenGenerator->generateToken());
