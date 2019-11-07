@@ -44,7 +44,7 @@ class RegistrationFormHandler
      * @param LoginManager             $loginManager
      * @param EventDispatcherInterface $dispatcher
      * @param EmailNotification        $emailNotification
-     * @param bool                     $environment
+     * @param mixed                    $environment
      */
     public function __construct(
         RequestStack $requestStack,
@@ -53,7 +53,7 @@ class RegistrationFormHandler
         LoginManager $loginManager,
         EventDispatcherInterface $dispatcher,
         EmailNotification $emailNotification,
-        bool $environment
+        string $environment
     ) {
         $this->request = $requestStack->getCurrentRequest();
         $this->userManager = $userManager;
