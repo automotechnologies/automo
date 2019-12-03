@@ -16,7 +16,7 @@ parameters:
     # Excluded Users Admin to create Listing
     cocorico_excluded_admin:
         - customer@otomo.co
-        - test1@test1.com
+        - imanalopher@gmail.com
 
     #Languages
     #For knp translatable

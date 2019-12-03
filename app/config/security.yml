@@ -1,6 +1,5 @@
 security:
     encoders:
-        #@todo use bcrypt (need php 5.5)
         FOS\UserBundle\Model\UserInterface: sha512
 
     role_hierarchy:
