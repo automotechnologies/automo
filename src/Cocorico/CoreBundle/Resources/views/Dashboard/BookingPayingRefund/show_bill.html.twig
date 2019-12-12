@@ -3,10 +3,10 @@
 {% embed "@CocoricoCore/Dashboard/layout_show_bill.html.twig" %}
     {% trans_default_domain 'cocorico_booking' %}
 
-    {% set booking =  booking_payin_refund.booking %}
+    {% set booking =  booking_paying_refund.booking %}
 
     {#Currency values#}
-    {% set amount_dec = booking_payin_refund.amountDecimal %}
+    {% set amount_dec = booking_paying_refund.amountDecimal %}
     {% set amount_fees_dec = booking.amountFeeAsAskerDecimal %}
     {% set amount_excl_vat_dec = amount_fees_dec / (1 +  vatRate) %}
     {% set amount_vat_dec = amount_fees_dec - amount_excl_vat_dec %}
@@ -25,5 +25,5 @@
     {% set user_address = booking.user.getAddresses %}
     {% set user_address = (user_address is empty) ? null : user_address[0] %}
     {% set bill_date_title = 'booking.bill.date.title'|trans %}
-    {% set bill_date =  booking_payin_refund.getPayedAt ? booking_payin_refund.getPayedAt|localizeddate('short', 'none', 'fr', user_timezone) : '' %}
+    {% set bill_date =  booking_paying_refund.getPayedAt ? booking_paying_refund.getPayedAt|localizeddate('short', 'none', 'fr', user_timezone) : '' %}
 {% endembed %}

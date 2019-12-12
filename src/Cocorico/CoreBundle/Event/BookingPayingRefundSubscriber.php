@@ -13,19 +13,19 @@ namespace Cocorico\CoreBundle\Event;
 
 use Cocorico\CoreBundle\Entity\Booking;
 use Cocorico\CoreBundle\Entity\BookingPayinRefund;
-use Cocorico\CoreBundle\Model\Manager\BookingPayinRefundManager;
+use Cocorico\CoreBundle\Model\Manager\BookingPayingRefundManager;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class BookingPayinRefundSubscriber implements EventSubscriberInterface
+class BookingPayingRefundSubscriber implements EventSubscriberInterface
 {
-    protected $bookingPayinRefundManager;
+    protected $bookingPayingRefundManager;
     protected $entityManager;
 
-    public function __construct(BookingPayinRefundManager $bookingPayinRefundManager)
+    public function __construct(BookingPayingRefundManager $bookingPayingRefundManager)
     {
-        $this->entityManager = $bookingPayinRefundManager->getEntityManager();
-        $this->bookingPayinRefundManager = $bookingPayinRefundManager;
+        $this->entityManager = $bookingPayingRefundManager->getEntityManager();
+        $this->bookingPayingRefundManager = $bookingPayingRefundManager;
     }
 
     /**
@@ -41,23 +41,21 @@ class BookingPayinRefundSubscriber implements EventSubscriberInterface
         $booking = $event->getBooking();
         if ($booking->getStatus() == Booking::STATUS_PAYED) {
             //Get fees and refund amount
-            $feeAndAmountToRefund = $this->bookingPayinRefundManager->getFeeAndAmountToRefundToAsker($booking);
+            $feeAndAmountToRefund = $this->bookingPayingRefundManager->getFeeAndAmountToRefundToAsker($booking);
 
             //If there is something to refund to asker
             if ($feeAndAmountToRefund["refund_amount"]) { //$feeAndAmountToRefund["fee_to_collect_while_refund"] ||
-                $payinRefund = new BookingPayinRefund();
-                $payinRefund->setBooking($booking);
-                $payinRefund->setAmount($feeAndAmountToRefund["refund_amount"]);
-                $payinRefund->setUser($booking->getUser());
-                $payinRefund->setPayedAt(new \DateTime());
-                $this->bookingPayinRefundManager->save($payinRefund);
+                $payingRefund = new BookingPayinRefund();
+                $payingRefund->setBooking($booking);
+                $payingRefund->setAmount($feeAndAmountToRefund["refund_amount"]);
+                $payingRefund->setUser($booking->getUser());
+                $payingRefund->setPayedAt(new \DateTime());
+                $this->bookingPayingRefundManager->save($payingRefund);
                 $this->entityManager->refresh($booking);
 
                 $event->setCancelable(true);
             } elseif ($feeAndAmountToRefund["refund_percent"] == 0) {//nothing to refund to asker.
                 $event->setCancelable(true);
-            } else {
-                //should not happen
             }
         }
 

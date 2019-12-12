@@ -34,14 +34,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for cpt, booking_payin_refund in booking_payin_refunds.iterator %}
-                    {% set booking =  booking_payin_refund.booking %}
-                    {% set amount = booking_payin_refund.amountDecimal | format_price(app.request.locale, 2) %}
+                {% for cpt, booking_paying_refund in booking_paying_refunds.iterator %}
+                    {% set booking =  booking_paying_refund.booking %}
+                    {% set amount = booking_paying_refund.amountDecimal | format_price(app.request.locale, 2) %}
 
                     {% set amount_fees = booking.amountFeeAsAskerDecimal | format_price(app.request.locale, 2) %}
 
                     {% set even = (cpt%2==0) ? '' : 'even' %}
-                    {% set is_payed = (booking_payin_refund.status == BookingPayinRefundConstants.STATUS_PAYED) ? true : false %}
+                    {% set is_payed = (booking_paying_refund.status == BookingPayinRefundConstants.STATUS_PAYED) ? true : false %}
 
                     <tr class="{{ even }}">
                         <td class="col1" data-label="{{ "booking.show.number.title"| trans }}">
@@ -49,8 +49,8 @@
                         </td>
                         <td class="col2" data-label="{{ "booking.bank_wire.date.title"| trans }}">
                             <div>
-                                {% if is_payed and booking_payin_refund.payedAt %}
-                                    {{ booking_payin_refund.payedAt|localizeddate('short', 'none', 'fr', user_timezone) }}
+                                {% if is_payed and booking_paying_refund.payedAt %}
+                                    {{ booking_paying_refund.payedAt|localizeddate('short', 'none', 'fr', user_timezone) }}
                                 {% endif %}
                             </div>
                         </td>
@@ -72,7 +72,7 @@
                         </td>
                         <td class="col5" data-label="{{ "booking.bank_wire.status.title"| trans }}">
                             <div>
-                                <span class="text">{{ booking_payin_refund.statusText|trans }}</span>
+                                <span class="text">{{ booking_paying_refund.statusText|trans }}</span>
                                 <button title="{{ 'booking.bank_wire.status.help'|trans }}"
                                         data-placement="right" data-toggle="tooltip"
                                         class="tooltip-button" type="button">?
@@ -83,7 +83,7 @@
                             <div>
                                 {% if is_payed %}
                                     <a class="icon-pdf"
-                                       href="{{ path('cocorico_dashboard_booking_payin_refund_show_bill_asker',{'id': booking_payin_refund.id }) }}"
+                                       href="{{ path('cocorico_dashboard_booking_paying_refund_show_bill_asker',{'id': booking_paying_refund.id }) }}"
                                        target="_blank">
                                         <img alt="pdf" src="{{ asset('images/icon-pdf.png') }}">
                                     </a>

@@ -60,8 +60,8 @@ services:
             - "%cocorico.dashboard_max_per_page%"
             - "@event_dispatcher"
 
-    cocorico.booking_payin_refund.manager:
-        class: Cocorico\CoreBundle\Model\Manager\BookingPayinRefundManager
+    cocorico.booking_paying_refund.manager:
+        class: Cocorico\CoreBundle\Model\Manager\BookingPayingRefundManager
         arguments:
             - "@doctrine.orm.entity_manager"
             - "%cocorico.booking.cancelation_policy%"

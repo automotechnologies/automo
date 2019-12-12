@@ -81,7 +81,7 @@
                             <div>
                                 {% if booking.amountFeeAsAskerDecimal > 0 %}
                                     <a class="icon-pdf"
-                                       href="{{ path('cocorico_dashboard_booking_payin_show_bill_asker',{'id': booking.id }) }}"
+                                       href="{{ path('cocorico_dashboard_booking_paying_show_bill_asker',{'id': booking.id }) }}"
                                        target="_blank">
                                         <img alt="pdf" src="{{ asset('images/icon-pdf.png') }}">
                                     </a>

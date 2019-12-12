@@ -16,25 +16,26 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Booking Payin Dashboard controller.
+ * Booking Paying Dashboard controller.
  *
- * @Route("/asker/booking-payin")
+ * @Route("/asker/booking-paying")
  */
-class BookingPayinController extends Controller
+class BookingPayingController extends Controller
 {
 
     /**
-     * Lists all booking payin.
+     * Lists all booking paying.
      *
-     * @Route("/{page}", name="cocorico_dashboard_booking_payin_asker", defaults={"page" = 1})
+     * @Route("/{page}", name="cocorico_dashboard_booking_paying_asker", defaults={"page" = 1})
      * @Method("GET")
      *
      * @param  Request $request
      * @param  int     $page
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function indexAction(Request $request, $page)
     {
@@ -64,13 +65,13 @@ class BookingPayinController extends Controller
     /**
      * Show booking Bank Wire bill.
      *
-     * @Route("/{id}/show-bill", name="cocorico_dashboard_booking_payin_show_bill_asker", requirements={"id" = "\d+"})
+     * @Route("/{id}/show-bill", name="cocorico_dashboard_booking_paying_show_bill_asker", requirements={"id" = "\d+"})
      * @Method("GET")
      *
      * @param  Request $request
      * @param  int     $id
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */

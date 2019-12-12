@@ -16,42 +16,44 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Booking Payin Refund Dashboard controller.
+ * Booking Paying Refund Dashboard controller.
  *
- * @Route("/asker/booking-payin-refund")
+ * @Route("/asker/booking-paying-refund")
  */
-class BookingPayinRefundController extends Controller
+class BookingPayingRefundController extends Controller
 {
 
     /**
      * Lists all booking payin refund.
      *
-     * @Route("/{page}", name="cocorico_dashboard_booking_payin_refund_asker", defaults={"page" = 1})
+     * @Route("/{page}", name="cocorico_dashboard_booking_paying_refund_asker", defaults={"page" = 1})
      * @Method("GET")
      *
      * @param  Request $request
      * @param  int     $page
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function indexAction(Request $request, $page)
     {
-        $bookingPayinRefundManager = $this->get('cocorico.booking_payin_refund.manager');
-        $bookingPayinRefunds = $bookingPayinRefundManager->findByAsker(
+        $bookingPayingRefundManager = $this->get('cocorico.booking_paying_refund.manager');
+        $bookingPayingRefunds = $bookingPayingRefundManager->findByAsker(
             $this->getUser()->getId(),
             $page,
             array(BookingPayinRefund::STATUS_PAYED)
         );
 
         return $this->render(
-            'CocoricoCoreBundle:Dashboard/BookingPayinRefund:index.html.twig',
+            'CocoricoCoreBundle:Dashboard/BookingPayingRefund:index.html.twig',
             array(
-                'booking_payin_refunds' => $bookingPayinRefunds,
+                'booking_paying_refunds' => $bookingPayingRefunds,
                 'pagination' => array(
                     'page' => $page,
-                    'pages_count' => ceil($bookingPayinRefunds->count() / $bookingPayinRefundManager->maxPerPage),
+                    'pages_count' => ceil($bookingPayingRefunds->count() / $bookingPayingRefundManager->maxPerPage),
                     'route' => $request->get('_route'),
                     'route_params' => $request->query->all()
                 )
@@ -63,21 +65,21 @@ class BookingPayinRefundController extends Controller
     /**
      * Show booking Payin Refund bill.
      *
-     * @Route("/{id}/show-bill", name="cocorico_dashboard_booking_payin_refund_show_bill_asker", requirements={"id" = "\d+"})
+     * @Route("/{id}/show-bill", name="cocorico_dashboard_booking_paying_refund_show_bill_asker", requirements={"id" = "\d+"})
      * @Method("GET")
      *
      * @param  Request $request
      * @param  int     $id
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      *
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws NotFoundHttpException
      */
     public function showBillAction(Request $request, $id)
     {
-        $bookingPayinRefundManager = $this->get('cocorico.booking_payin_refund.manager');
+        $bookingPayingRefundManager = $this->get('cocorico.booking_paying_refund.manager');
         try {
-            $bookingPayinRefund = $bookingPayinRefundManager->findOneByAsker(
+            $bookingPayingRefund = $bookingPayingRefundManager->findOneByAsker(
                 $id,
                 $this->getUser()->getId(),
                 array(BookingPayinRefund::STATUS_PAYED)
@@ -87,9 +89,9 @@ class BookingPayinRefundController extends Controller
         }
 
         return $this->render(
-            'CocoricoCoreBundle:Dashboard/BookingPayinRefund:show_bill.html.twig',
+            'CocoricoCoreBundle:Dashboard/BookingPayingRefund:show_bill.html.twig',
             array(
-                'booking_payin_refund' => $bookingPayinRefund,
+                'booking_paying_refund' => $bookingPayingRefund,
             )
         );
     }

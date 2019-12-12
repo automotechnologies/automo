@@ -499,7 +499,7 @@ class TwigSwiftMailer implements MailerInterface
             UrlGeneratorInterface::ABSOLUTE_URL
         );
         $paymentAskerUrl = $this->router->generate(
-            'cocorico_dashboard_booking_payin_asker',
+            'cocorico_dashboard_booking_paying_asker',
             array(
                 '_locale' => $userLocale
             ),

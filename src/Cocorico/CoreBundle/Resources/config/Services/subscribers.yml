@@ -9,10 +9,10 @@ services:
             - { name: kernel.event_subscriber}
 
     #Booking Refund subscriber
-    cocorico.booking_payin_refund.subscriber:
-        class: Cocorico\CoreBundle\Event\BookingPayinRefundSubscriber
+    cocorico.booking_paying_refund.subscriber:
+        class: Cocorico\CoreBundle\Event\BookingPayingRefundSubscriber
         arguments:
-            - "@cocorico.booking_payin_refund.manager"
+            - "@cocorico.booking_paying_refund.manager"
         tags:
             - { name: kernel.event_subscriber}
 

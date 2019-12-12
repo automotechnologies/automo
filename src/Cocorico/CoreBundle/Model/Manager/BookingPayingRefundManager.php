@@ -20,7 +20,7 @@ use Cocorico\CoreBundle\Repository\BookingPayinRefundRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
-class BookingPayinRefundManager extends BaseManager
+class BookingPayingRefundManager extends BaseManager
 {
     protected $em;
     protected $cancellationPolicyRules;

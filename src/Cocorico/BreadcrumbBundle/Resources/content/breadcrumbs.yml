@@ -25,14 +25,14 @@ cocorico_dashboard_booking_show_asker:
         route: 'cocorico_dashboard_booking_asker'
     -   text: {'entityId': 'id', 'entityName': 'CocoricoCoreBundle:Booking', 'entityMethod': 'getListing'}
 
-cocorico_dashboard_booking_payin_asker:
+cocorico_dashboard_booking_paying_asker:
     -   text: 'Payments'
-        route: 'cocorico_dashboard_booking_payin_asker'
+        route: 'cocorico_dashboard_booking_paying_asker'
     -   text: 'Payments done'
 
-cocorico_dashboard_booking_payin_refund_asker:
+cocorico_dashboard_booking_paying_refund_asker:
     -   text: 'Payments'
-        route: 'cocorico_dashboard_booking_payin_refund_asker'
+        route: 'cocorico_dashboard_booking_paying_refund_asker'
     -   text: 'Payments refund'
 
 
