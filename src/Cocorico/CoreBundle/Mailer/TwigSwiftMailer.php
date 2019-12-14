@@ -651,7 +651,7 @@ class TwigSwiftMailer implements MailerInterface
             UrlGeneratorInterface::ABSOLUTE_URL
         );
 
-        $askerCancellationAmount = $booking->getPayinRefund() ? $booking->getPayinRefund()->getAmountDecimal() : 0;
+        $askerCancellationAmount = $booking->getPayingRefund() ? $booking->getPayingRefund()->getAmountDecimal() : 0;
 
         $context = array(
             'user' => $user,

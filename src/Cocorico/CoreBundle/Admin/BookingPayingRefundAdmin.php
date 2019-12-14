@@ -1,17 +1,8 @@
 <?php
 
-/*
- * This file is part of the Cocorico package.
- *
- * (c) Cocolabs SAS <contact@cocolabs.io>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Cocorico\CoreBundle\Admin;
 
-use Cocorico\CoreBundle\Entity\BookingPayinRefund;
+use Cocorico\CoreBundle\Entity\BookingPayingRefund;
 use Cocorico\CoreBundle\Form\Type\PriceType;
 use Cocorico\UserBundle\Repository\UserRepository;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
@@ -21,10 +12,10 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class BookingPayinRefundAdmin extends AbstractAdmin
+class BookingPayingRefundAdmin extends AbstractAdmin
 {
     protected $translationDomain = 'SonataAdminBundle';
-    protected $baseRoutePattern = 'booking-payin-refund';
+    protected $baseRoutePattern = 'booking-paying-refund';
     protected $locales;
     protected $timeUnit;
     protected $timeUnitIsDay;
@@ -54,16 +45,16 @@ class BookingPayinRefundAdmin extends AbstractAdmin
     /** @inheritdoc */
     protected function configureFormFields(FormMapper $formMapper)
     {
-        /** @var BookingPayinRefund $bookingPayinRefund */
-        $bookingPayinRefund = $this->getSubject();
+        /** @var BookingPayingRefund $bookingPayingRefund */
+        $bookingPayingRefund = $this->getSubject();
 
         $askerQuery = null;
-        if ($bookingPayinRefund) {
+        if ($bookingPayingRefund) {
             /** @var UserRepository $userRepository */
             $userRepository = $this->modelManager->getEntityManager('CocoricoUserBundle:User')
                 ->getRepository('CocoricoUserBundle:User');
 
-            $askerQuery = $userRepository->getFindOneQueryBuilder($bookingPayinRefund->getUser()->getId());
+            $askerQuery = $userRepository->getFindOneQueryBuilder($bookingPayingRefund->getUser()->getId());
         }
 
         $formMapper
@@ -100,7 +91,7 @@ class BookingPayinRefundAdmin extends AbstractAdmin
                 ChoiceType::class,
                 array(
                     'disabled' => true,
-                    'choices' => array_flip(BookingPayinRefund::$statusValues),
+                    'choices' => array_flip(BookingPayingRefund::$statusValues),
                     'placeholder' => 'admin.booking.status.label',
                     'label' => 'admin.booking.status.label',
                     'translation_domain' => 'cocorico_booking',
@@ -148,7 +139,7 @@ class BookingPayinRefundAdmin extends AbstractAdmin
                 array(),
                 ChoiceType::class,
                 array(
-                    'choices' => array_flip(BookingPayinRefund::$statusValues),
+                    'choices' => array_flip(BookingPayingRefund::$statusValues),
                     'label' => 'admin.booking.status.label',
                     'translation_domain' => 'cocorico_booking',
                 )

@@ -432,7 +432,7 @@ class CoreExtension extends \Twig_Extension implements \Twig_Extension_GlobalsIn
         $bookingBankWire = new \ReflectionClass("Cocorico\CoreBundle\Entity\BookingBankWire");
         $bookingBankWireConstants = $bookingBankWire->getConstants();
 
-        $bookingPayingRefund = new \ReflectionClass("Cocorico\CoreBundle\Entity\BookingPayinRefund");
+        $bookingPayingRefund = new \ReflectionClass("Cocorico\CoreBundle\Entity\BookingPayingRefund");
         $bookingPayingRefundConstants = $bookingPayingRefund->getConstants();
 
         return array(

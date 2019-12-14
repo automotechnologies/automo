@@ -154,7 +154,7 @@ class BookingController extends Controller
     public function editAction(Request $request, Booking $booking, $type)
     {
         $bookingHandler = $this->get('cocorico.form.handler.booking.asker.dashboard');
-        $bookingRefundManger = $this->get('cocorico.booking_payin_refund.manager');
+        $bookingRefundManger = $this->get('cocorico.booking_paying_refund.manager');
         $form = $this->createEditForm($booking, $type);
 
         $success = $bookingHandler->process($form);

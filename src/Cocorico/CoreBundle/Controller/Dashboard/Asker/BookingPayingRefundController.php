@@ -1,17 +1,8 @@
 <?php
 
-/*
- * This file is part of the Cocorico package.
- *
- * (c) Cocolabs SAS <contact@cocolabs.io>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Cocorico\CoreBundle\Controller\Dashboard\Asker;
 
-use Cocorico\CoreBundle\Entity\BookingPayinRefund;
+use Cocorico\CoreBundle\Entity\BookingPayingRefund;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -28,7 +19,7 @@ class BookingPayingRefundController extends Controller
 {
 
     /**
-     * Lists all booking payin refund.
+     * Lists all booking paying refund.
      *
      * @Route("/{page}", name="cocorico_dashboard_booking_paying_refund_asker", defaults={"page" = 1})
      * @Method("GET")
@@ -44,7 +35,7 @@ class BookingPayingRefundController extends Controller
         $bookingPayingRefunds = $bookingPayingRefundManager->findByAsker(
             $this->getUser()->getId(),
             $page,
-            array(BookingPayinRefund::STATUS_PAYED)
+            array(BookingPayingRefund::STATUS_PAYED)
         );
 
         return $this->render(
@@ -82,7 +73,7 @@ class BookingPayingRefundController extends Controller
             $bookingPayingRefund = $bookingPayingRefundManager->findOneByAsker(
                 $id,
                 $this->getUser()->getId(),
-                array(BookingPayinRefund::STATUS_PAYED)
+                array(BookingPayingRefund::STATUS_PAYED)
             );
         } catch (\Exception $e) {
             throw $this->createNotFoundException('Bill not found');

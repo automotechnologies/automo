@@ -12,13 +12,13 @@
 namespace Cocorico\CoreBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 
-class BookingPayinRefundRepository extends EntityRepository
+class BookingPayingRefundRepository extends EntityRepository
 {
 
     /**
-     *
-     * @return \Doctrine\ORM\QueryBuilder
+     * @return QueryBuilder
      */
     public function getFindQueryBuilder()
     {
@@ -35,7 +35,7 @@ class BookingPayinRefundRepository extends EntityRepository
      * @param int   $askerId
      * @param array $status
      *
-     * @return \Doctrine\ORM\QueryBuilder
+     * @return QueryBuilder
      */
     public function getFindByAskerQuery($askerId, $status = array())
     {
@@ -59,7 +59,7 @@ class BookingPayinRefundRepository extends EntityRepository
      * @param int   $askerId
      * @param array $status
      *
-     * @return \Doctrine\ORM\QueryBuilder
+     * @return QueryBuilder
      */
     public function getFindOneByAskerQuery($id, $askerId, $status = array())
     {

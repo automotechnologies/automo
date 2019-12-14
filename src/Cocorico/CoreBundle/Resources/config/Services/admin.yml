@@ -105,10 +105,10 @@ services:
             - [ setBookingBankWireManager, ["@cocorico.booking_bank_wire.manager"]]
             - [ setTimezone, ["%cocorico.time_zone%"]]
 
-    sonata.admin.booking_payin_refund:
-        class: Cocorico\CoreBundle\Admin\BookingPayinRefundAdmin
+    sonata.admin.booking_paying_refund:
+        class: Cocorico\CoreBundle\Admin\BookingPayingRefundAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Bookings", label: "Payin Refunds" }
+            - { name: sonata.admin, manager_type: orm, group: "Bookings", label: "Paying Refunds" }
         arguments:
             - ~
             - Cocorico\CoreBundle\Entity\BookingPayinRefund

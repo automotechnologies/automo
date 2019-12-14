@@ -1,22 +1,13 @@
 <?php
 
-/*
- * This file is part of the Cocorico package.
- *
- * (c) Cocolabs SAS <contact@cocolabs.io>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Cocorico\CoreBundle\Model\Manager;
 
 use Cocorico\CoreBundle\Entity\Booking;
 use Cocorico\CoreBundle\Entity\BookingBankWire;
-use Cocorico\CoreBundle\Entity\BookingPayinRefund;
+use Cocorico\CoreBundle\Entity\BookingPayingRefund;
 use Cocorico\CoreBundle\Entity\Listing;
 use Cocorico\CoreBundle\Mailer\TwigSwiftMailer;
-use Cocorico\CoreBundle\Repository\BookingPayinRefundRepository;
+use Cocorico\CoreBundle\Repository\BookingPayingRefundRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
@@ -167,8 +158,8 @@ class BookingPayingRefundManager extends BaseManager
             $amountTotal = $this->getFeeAndAmountDecimalToRefundToAsker($booking);
             $amountTotal = $amountTotal["refund_amount"];
         } elseif ($booking->getStatus() == Booking::STATUS_CANCELED_ASKER) {//Already canceled
-            if ($payinRefund = $booking->getPayinRefund()) {
-                $amountTotal = $payinRefund->getAmountDecimal();
+            if ($payingRefund = $booking->getPayingRefund()) {
+                $amountTotal = $payingRefund->getAmountDecimal();
             } else {
                 $amountTotal = 0;//Canceled while not payed
             }
@@ -181,15 +172,15 @@ class BookingPayingRefundManager extends BaseManager
 
 
     /**
-     * @param  BookingPayinRefund $bookingPayinRefund
+     * @param  BookingPayingRefund $bookingPayingRefund
      *
-     * @return BookingPayinRefund
+     * @return BookingPayingRefund
      */
-    public function save(BookingPayinRefund $bookingPayinRefund)
+    public function save(BookingPayingRefund $bookingPayingRefund)
     {
-        $this->persistAndFlush($bookingPayinRefund);
+        $this->persistAndFlush($bookingPayingRefund);
 
-        return $bookingPayinRefund;
+        return $bookingPayingRefund;
     }
 
 
@@ -203,11 +194,11 @@ class BookingPayingRefundManager extends BaseManager
 
     /**
      *
-     * @return BookingPayinRefundRepository
+     * @return BookingPayingRefundRepository
      */
     public function getRepository()
     {
-        return $this->em->getRepository('CocoricoCoreBundle:BookingPayinRefund');
+        return $this->em->getRepository(BookingPayingRefund::class);
     }
 
     /**

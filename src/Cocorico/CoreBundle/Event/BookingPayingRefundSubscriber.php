@@ -1,18 +1,9 @@
 <?php
 
-/*
- * This file is part of the Cocorico package.
- *
- * (c) Cocolabs SAS <contact@cocolabs.io>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Cocorico\CoreBundle\Event;
 
 use Cocorico\CoreBundle\Entity\Booking;
-use Cocorico\CoreBundle\Entity\BookingPayinRefund;
+use Cocorico\CoreBundle\Entity\BookingPayingRefund;
 use Cocorico\CoreBundle\Model\Manager\BookingPayingRefundManager;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -45,7 +36,7 @@ class BookingPayingRefundSubscriber implements EventSubscriberInterface
 
             //If there is something to refund to asker
             if ($feeAndAmountToRefund["refund_amount"]) { //$feeAndAmountToRefund["fee_to_collect_while_refund"] ||
-                $payingRefund = new BookingPayinRefund();
+                $payingRefund = new BookingPayingRefund();
                 $payingRefund->setBooking($booking);
                 $payingRefund->setAmount($feeAndAmountToRefund["refund_amount"]);
                 $payingRefund->setUser($booking->getUser());

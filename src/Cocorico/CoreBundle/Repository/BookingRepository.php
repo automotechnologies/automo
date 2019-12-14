@@ -31,7 +31,7 @@ class BookingRepository extends EntityRepository
             ->leftJoin('a.userFacebook', 'auf')
             ->leftJoin('b.listing', 'l')
             ->leftJoin('b.bankWire', 'bbw')
-            ->leftJoin('b.payinRefund', 'bpr')
+            ->leftJoin('b.payingRefund', 'bpr')
             ->leftJoin('b.thread', 'mt')
             ->leftJoin('l.translations', 't')
             ->leftJoin('l.user', 'o')//Offerer

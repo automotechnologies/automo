@@ -1,33 +1,24 @@
 <?php
 
-/*
- * This file is part of the Cocorico package.
- *
- * (c) Cocolabs SAS <contact@cocolabs.io>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Cocorico\CoreBundle\Entity;
 
-use Cocorico\CoreBundle\Model\BaseBookingPayinRefund;
+use Cocorico\CoreBundle\Model\BaseBookingPayingRefund;
 use Cocorico\UserBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 
 /**
- * BookingPayinRefund
+ * BookingPayingRefund
  *
- * @ORM\Entity(repositoryClass="Cocorico\CoreBundle\Repository\BookingPayinRefundRepository")
+ * @ORM\Entity(repositoryClass="Cocorico\CoreBundle\Repository\BookingPayingRefundRepository")
  *
  * @ORM\Table(name="booking_payin_refund",indexes={
  *    @ORM\Index(name="status_pr_idx", columns={"status"}),
  *    @ORM\Index(name="created_at_pr_idx", columns={"createdAt"})
  *  })
  */
-class BookingPayinRefund extends BaseBookingPayinRefund
+class BookingPayingRefund extends BaseBookingPayingRefund
 {
     use ORMBehaviors\Timestampable\Timestampable;
 
@@ -50,7 +41,7 @@ class BookingPayinRefund extends BaseBookingPayinRefund
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity="Cocorico\CoreBundle\Entity\Booking", inversedBy="payinRefund")
+     * @ORM\OneToOne(targetEntity="Cocorico\CoreBundle\Entity\Booking", inversedBy="payingRefund")
      * @ORM\JoinColumn(name="booking_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      *
      * @var Booking
@@ -60,6 +51,7 @@ class BookingPayinRefund extends BaseBookingPayinRefund
 
     public function __construct()
     {
+        parent::__construct();
     }
 
     /**

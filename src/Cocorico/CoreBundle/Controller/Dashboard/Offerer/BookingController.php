@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the Cocorico package.
- *
- * (c) Cocolabs SAS <contact@cocolabs.io>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Cocorico\CoreBundle\Controller\Dashboard\Offerer;
 
 use Cocorico\CoreBundle\Entity\Booking;
@@ -23,8 +14,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Booking Dashboard controller.
@@ -43,7 +34,7 @@ class BookingController extends Controller
      * @param  Request $request
      * @param  int     $page
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function indexAction(Request $request, $page)
     {
@@ -88,7 +79,7 @@ class BookingController extends Controller
      * @param Request $request
      * @param Booking $booking
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function showAction(Request $request, Booking $booking)
     {
@@ -126,20 +117,17 @@ class BookingController extends Controller
         $canBeAcceptedOrRefusedByOfferer = $this->get('cocorico.booking.manager')
             ->canBeAcceptedOrRefusedByOfferer($booking);
 
-        return $this->render(
-            'CocoricoCoreBundle:Dashboard/Booking:show.html.twig',
-            array(
-                'booking' => $booking,
-                'canBeAcceptedOrRefusedByOfferer' => $canBeAcceptedOrRefusedByOfferer,
-                'form' => $form->createView(),
-                'other_user' => $booking->getUser(),
-                'other_user_rating' => $booking->getUser()->getAverageAskerRating(),
-                'amount_total' => $amountTotal,
-                'vat_inclusion_text' => $this->get('cocorico.twig.core_extension')
-                    ->vatInclusionText($request->getLocale()),
-                'user_timezone' => $booking->getTimeZoneOfferer(),
-            )
-        );
+        return $this->render('CocoricoCoreBundle:Dashboard/Booking:show.html.twig', [
+            'booking' => $booking,
+            'canBeAcceptedOrRefusedByOfferer' => $canBeAcceptedOrRefusedByOfferer,
+            'form' => $form->createView(),
+            'other_user' => $booking->getUser(),
+            'other_user_rating' => $booking->getUser()->getAverageAskerRating(),
+            'amount_total' => $amountTotal,
+            'vat_inclusion_text' => $this->get('cocorico.twig.core_extension')
+                ->vatInclusionText($request->getLocale()),
+            'user_timezone' => $booking->getTimeZoneOfferer(),
+        ]);
     }
 
 
@@ -158,7 +146,7 @@ class BookingController extends Controller
      * @param Booking $booking
      * @param string  $type The edition type (accept or refuse)
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function editAction(Request $request, Booking $booking, $type)
     {

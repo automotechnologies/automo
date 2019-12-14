@@ -14,7 +14,6 @@ namespace Cocorico\CMSBundle\Model\Manager;
 use Cocorico\CMSBundle\Entity\Footer;
 use Cocorico\CMSBundle\Repository\FooterRepository;
 use Cocorico\CoreBundle\Utils\UriHasher;
-use Cocorico\SeoBundle\Entity\ContentTranslation;
 use Doctrine\ORM\EntityManager;
 
 class FooterManager
@@ -55,17 +54,6 @@ class FooterManager
         return $footer;
     }
 
-
-    /**
-     * @param $locale
-     * @return mixed|null
-     */
-    public function findByURL($locale)
-    {
-        $footers = $this->getRepository()->findByHash($locale);
-        return $footers;
-    }
-
     /**
      * @param $url
      * @return string
@@ -75,7 +63,7 @@ class FooterManager
         $uriHasher = new UriHasher(self::SECRET);
 
         //Remove these fields from search query string to display seo content independently of these fields
-        $qsFieldsToRemove = array(
+        $qsFieldsToRemove = [
             '["location"]["address"]',
             '["location"]["addressType"]',
             '["location"]["viewport"]',
@@ -90,7 +78,7 @@ class FooterManager
             '["price_range"]',
             '["characteristics"]',
             '["sort_by"]'
-        );
+        ];
 
         return $uriHasher->hash($url, true, $qsFieldsToRemove);
     }

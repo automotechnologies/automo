@@ -1,19 +1,10 @@
 <?php
 
-/*
- * This file is part of the Cocorico package.
- *
- * (c) Cocolabs SAS <contact@cocolabs.io>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Cocorico\UserBundle\Entity;
 
 use Cocorico\CoreBundle\Entity\Booking;
 use Cocorico\CoreBundle\Entity\BookingBankWire;
-use Cocorico\CoreBundle\Entity\BookingPayinRefund;
+use Cocorico\CoreBundle\Entity\BookingPayingRefund;
 use Cocorico\CoreBundle\Entity\Listing;
 use Cocorico\MessageBundle\Entity\Message;
 use Cocorico\ReviewBundle\Entity\Review;
@@ -32,8 +23,6 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
-
-//use Sonata\UserBundle\Entity\BaseUser;
 
 /**
  * User.
@@ -432,12 +421,12 @@ class User extends BaseUser implements ParticipantInterface
     private $bookingBankWires;
 
     /**
-     * @ORM\OneToMany(targetEntity="Cocorico\CoreBundle\Entity\BookingPayinRefund", mappedBy="user", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="Cocorico\CoreBundle\Entity\BookingPayingRefund", mappedBy="user", cascade={"persist", "remove"})
      * @ORM\OrderBy({"createdAt" = "desc"})
      *
-     * @var BookingPayinRefund[]
+     * @var BookingPayingRefund[]
      */
-    private $bookingPayinRefunds;
+    private $bookingPayingRefunds;
 
     /**
      * @ORM\OneToMany(targetEntity="Cocorico\UserBundle\Model\ListingAlertInterface", mappedBy="user", cascade={"persist", "remove"}, orphanRemoval=true)
@@ -477,7 +466,7 @@ class User extends BaseUser implements ParticipantInterface
         $this->reviewsTo = new ArrayCollection();
         $this->addresses = new ArrayCollection();
         $this->bookingBankWires = new ArrayCollection();
-        $this->bookingPayinRefunds = new ArrayCollection();
+        $this->bookingPayingRefunds = new ArrayCollection();
         $this->listingAlerts = new ArrayCollection();
         $this->bookingDepositRefundsAsAsker = new ArrayCollection();
         $this->bookingDepositRefundsAsOfferer = new ArrayCollection();
@@ -1423,23 +1412,23 @@ class User extends BaseUser implements ParticipantInterface
     }
 
     /**
-     * @return BookingPayinRefund[]
+     * @return BookingPayingRefund[]
      */
-    public function getBookingPayinRefunds()
+    public function getBookingPayingRefunds()
     {
-        return $this->bookingPayinRefunds;
+        return $this->bookingPayingRefunds;
     }
 
     /**
-     * @param ArrayCollection|BookingPayinRefund[] $bookingPayinRefunds
+     * @param ArrayCollection|BookingPayingRefund[] $bookingPayingRefunds
      */
-    public function setBookingPayinRefunds(ArrayCollection $bookingPayinRefunds)
+    public function setBookingPayingRefunds(ArrayCollection $bookingPayingRefunds)
     {
-        foreach ($bookingPayinRefunds as $bookingPayinRefund) {
-            $bookingPayinRefund->setUser($this);
+        foreach ($bookingPayingRefunds as $bookingPayingRefund) {
+            $bookingPayingRefund->setUser($this);
         }
 
-        $this->bookingPayinRefunds = $bookingPayinRefunds;
+        $this->bookingPayingRefunds = $bookingPayingRefunds;
     }
 
     /**

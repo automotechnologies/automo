@@ -1,34 +1,24 @@
 <?php
 
-/*
- * This file is part of the Cocorico package.
- *
- * (c) Cocolabs SAS <contact@cocolabs.io>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
-
 namespace Cocorico\CoreBundle\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * BaseBookingPayinRefund
+ * BaseBookingPayingRefund
  *
  *
  * @ORM\MappedSuperclass()
  *
  */
-abstract class BaseBookingPayinRefund
+abstract class BaseBookingPayingRefund
 {
     /* Status */
     const STATUS_PAYED = 1;
 
-    public static $statusValues = array(
+    public static $statusValues = [
         self::STATUS_PAYED => 'entity.booking.bank_wire.status.payed',
-    );
+    ];
 
     /**
      * @ORM\Column(name="status", type="smallint")
@@ -62,7 +52,7 @@ abstract class BaseBookingPayinRefund
      * Set status
      *
      * @param  integer $status
-     * @return BaseBookingPayinRefund
+     * @return BaseBookingPayingRefund
      */
     public function setStatus($status)
     {

@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the Cocorico package.
- *
- * (c) Cocolabs SAS <contact@cocolabs.io>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Cocorico\CoreBundle\Entity;
 
 use Cocorico\CoreBundle\Model\BaseBooking;
@@ -93,11 +84,11 @@ class Booking extends BaseBooking
     private $bankWire;
 
     /**
-     * @ORM\OneToOne(targetEntity="Cocorico\CoreBundle\Entity\BookingPayinRefund", mappedBy="booking", cascade={"remove"}, orphanRemoval=true)
+     * @ORM\OneToOne(targetEntity="Cocorico\CoreBundle\Entity\BookingPayingRefund", mappedBy="booking", cascade={"remove"}, orphanRemoval=true)
      *
-     * @var BookingPayinRefund
+     * @var BookingPayingRefund
      **/
-    private $payinRefund;
+    private $payingRefund;
 
     /**
      * @ORM\OneToMany(targetEntity="Cocorico\CoreBundle\Model\BookingOptionInterface", mappedBy="booking", cascade={"persist", "remove"}, orphanRemoval=true)
@@ -261,19 +252,19 @@ class Booking extends BaseBooking
     }
 
     /**
-     * @return BookingPayinRefund
+     * @return BookingPayingRefund
      */
-    public function getPayinRefund()
+    public function getPayingRefund()
     {
-        return $this->payinRefund;
+        return $this->payingRefund;
     }
 
     /**
-     * @param BookingPayinRefund $payinRefund
+     * @param BookingPayingRefund $payingRefund
      */
-    public function setPayinRefund($payinRefund)
+    public function setPayingRefund($payingRefund)
     {
-        $this->payinRefund = $payinRefund;
+        $this->payingRefund = $payingRefund;
     }
 
     /**
