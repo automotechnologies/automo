@@ -33,7 +33,7 @@ class BookingPayingRefund extends BaseBookingPayingRefund
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Cocorico\UserBundle\Entity\User", inversedBy="bookingPayinRefunds")
+     * @ORM\ManyToOne(targetEntity="Cocorico\UserBundle\Entity\User", inversedBy="bookingPayingRefunds")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      *
      * @var User

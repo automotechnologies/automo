@@ -41,7 +41,7 @@
                     {% set amount_fees = booking.amountFeeAsAskerDecimal | format_price(app.request.locale, 2) %}
 
                     {% set even = (cpt%2==0) ? '' : 'even' %}
-                    {% set is_payed = (booking_paying_refund.status == BookingPayinRefundConstants.STATUS_PAYED) ? true : false %}
+                    {% set is_payed = (booking_paying_refund.status == BookingPayingRefundConstants.STATUS_PAYED) ? true : false %}
 
                     <tr class="{{ even }}">
                         <td class="col1" data-label="{{ "booking.show.number.title"| trans }}">

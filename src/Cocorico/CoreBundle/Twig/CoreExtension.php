@@ -443,7 +443,7 @@ class CoreExtension extends \Twig_Extension implements \Twig_Extension_GlobalsIn
             'UserImageConstants' => $userImageConstants,
             'BookingConstants' => $bookingConstants,
             'BookingBankWireConstants' => $bookingBankWireConstants,
-            'BookingPayinRefundConstants' => $bookingPayingRefundConstants,
+            'BookingPayingRefundConstants' => $bookingPayingRefundConstants,
             'bookingStatusClass' => $bookingStatusClass,
             'timeUnit' => $this->timeUnit,
             'timeUnitIsDay' => $this->timeUnitIsDay,

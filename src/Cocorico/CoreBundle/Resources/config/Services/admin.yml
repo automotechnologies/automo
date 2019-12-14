@@ -111,7 +111,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Bookings", label: "Paying Refunds" }
         arguments:
             - ~
-            - Cocorico\CoreBundle\Entity\BookingPayinRefund
+            - Cocorico\CoreBundle\Entity\BookingPayingRefund
             - ~
         calls:
             - [ setTranslationDomain, [SonataAdminBundle]]

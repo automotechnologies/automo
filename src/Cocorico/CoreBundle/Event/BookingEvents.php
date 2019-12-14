@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the Cocorico package.
- *
- * (c) Cocolabs SAS <contact@cocolabs.io>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Cocorico\CoreBundle\Event;
 
 
@@ -52,7 +43,7 @@ class BookingEvents
      * The BOOKING_REFUND event occurs when a booking is canceled and has to be eventually refunded.
      *
      * This event allows you to refund the user.
-     * The event listener method receives a Cocorico\CoreBundle\Event\BookingPayinRefundEvent instance.
+     * The event listener method receives a Cocorico\CoreBundle\Event\BookingPayingRefundEvent instance.
      */
     const BOOKING_REFUND = 'cocorico.booking.refund';
 

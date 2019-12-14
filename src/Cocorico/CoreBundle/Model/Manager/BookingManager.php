@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the Cocorico package.
- *
- * (c) Cocolabs SAS <contact@cocolabs.io>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Cocorico\CoreBundle\Model\Manager;
 
 use Cocorico\CoreBundle\Document\ListingAvailability;
@@ -19,7 +10,7 @@ use Cocorico\CoreBundle\Event\BookingAmountEvent;
 use Cocorico\CoreBundle\Event\BookingAmountEvents;
 use Cocorico\CoreBundle\Event\BookingEvent;
 use Cocorico\CoreBundle\Event\BookingEvents;
-use Cocorico\CoreBundle\Event\BookingPayinRefundEvent;
+use Cocorico\CoreBundle\Event\BookingPayingRefundEvent;
 use Cocorico\CoreBundle\Event\BookingValidateEvent;
 use Cocorico\CoreBundle\Mailer\SendgridMailerValidateBookings;
 use Cocorico\CoreBundle\Mailer\TwigSwiftMailer;
@@ -1401,7 +1392,7 @@ class BookingManager extends BaseManager
             $cancelable = false;
 
             if ($booking->getStatus() == Booking::STATUS_PAYED) {
-                $event = new BookingPayinRefundEvent($booking);
+                $event = new BookingPayingRefundEvent($booking);
                 $this->dispatcher->dispatch(BookingEvents::BOOKING_REFUND, $event);
 
                 $booking = $event->getBooking();

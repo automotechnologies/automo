@@ -22,12 +22,12 @@ class BookingPayingRefundSubscriber implements EventSubscriberInterface
     /**
      * Refund booking amount to asker when it's canceled
      *
-     * @param BookingPayinRefundEvent  $event
+     * @param BookingPayingRefundEvent  $event
      * @param  string                  $eventName
      * @param EventDispatcherInterface $dispatcher
      * @throws \Exception
      */
-    public function onBookingRefund(BookingPayinRefundEvent $event, $eventName, EventDispatcherInterface $dispatcher)
+    public function onBookingRefund(BookingPayingRefundEvent $event, $eventName, EventDispatcherInterface $dispatcher)
     {
         $booking = $event->getBooking();
         if ($booking->getStatus() == Booking::STATUS_PAYED) {
