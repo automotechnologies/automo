@@ -50,21 +50,21 @@
         <source>/dashboard/offerer/booking/{page}</source>
         <target>/dashboard/offerer/booking/{page}</target>
       </trans-unit>
-      <trans-unit id="0502081151678dfcdba9268a860d3cd6c6df193a" resname="cocorico_dashboard_booking_payin_asker">
-        <source>/dashboard/asker/booking-payin/{page}</source>
-        <target>/dashboard/asker/booking-payin/{page}</target>
+      <trans-unit id="0502081151678dfcdba9268a860d3cd6c6df193a" resname="cocorico_dashboard_booking_paying_asker">
+        <source>/dashboard/asker/booking-paying/{page}</source>
+        <target>/dashboard/asker/booking-paying/{page}</target>
       </trans-unit>
-      <trans-unit id="d11a455af6cdac7476895e35352402ee9da820df" resname="cocorico_dashboard_booking_payin_refund_asker">
-        <source>/dashboard/asker/booking-payin-refund/{page}</source>
-        <target>/dashboard/asker/booking-payin-refund/{page}</target>
+      <trans-unit id="d11a455af6cdac7476895e35352402ee9da820df" resname="cocorico_dashboard_booking_paying_refund_asker">
+        <source>/dashboard/asker/booking-paying-refund/{page}</source>
+        <target>/dashboard/asker/booking-paying-refund/{page}</target>
       </trans-unit>
-      <trans-unit id="0e1352935a7292e5cee012659aec40dea594367a" resname="cocorico_dashboard_booking_payin_refund_show_bill_asker">
-        <source>/dashboard/asker/booking-payin-refund/{id}/show-bill</source>
-        <target>/dashboard/asker/booking-payin-refund/{id}/show-bill</target>
+      <trans-unit id="0e1352935a7292e5cee012659aec40dea594367a" resname="cocorico_dashboard_booking_paying_refund_show_bill_asker">
+        <source>/dashboard/asker/booking-paying-refund/{id}/show-bill</source>
+        <target>/dashboard/asker/booking-paying-refund/{id}/show-bill</target>
       </trans-unit>
-      <trans-unit id="492f83a4efb8238187cd9c9bff9fb67c6c0f5e46" resname="cocorico_dashboard_booking_payin_show_bill_asker">
-        <source>/dashboard/asker/booking-payin/{id}/show-bill</source>
-        <target>/dashboard/asker/booking-payin/{id}/show-bill</target>
+      <trans-unit id="492f83a4efb8238187cd9c9bff9fb67c6c0f5e46" resname="cocorico_dashboard_booking_paying_show_bill_asker">
+        <source>/dashboard/asker/booking-paying/{id}/show-bill</source>
+        <target>/dashboard/asker/booking-paying/{id}/show-bill</target>
       </trans-unit>
       <trans-unit id="4157d378f24784fba994d56c7c575de9a9987e22" resname="cocorico_dashboard_booking_show_asker">
         <source>/dashboard/asker/booking/{id}/show</source>

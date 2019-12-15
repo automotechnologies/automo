@@ -54,7 +54,7 @@ class BookingPayingRefundController extends Controller
 
 
     /**
-     * Show booking Payin Refund bill.
+     * Show booking Paying Refund bill.
      *
      * @Route("/{id}/show-bill", name="cocorico_dashboard_booking_paying_refund_show_bill_asker", requirements={"id" = "\d+"})
      * @Method("GET")
