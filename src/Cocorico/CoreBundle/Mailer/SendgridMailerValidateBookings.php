@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Cocorico\CoreBundle\Mailer;
-
 
 use Cocorico\CoreBundle\Entity\Booking;
 use Cocorico\CoreBundle\Entity\Listing;

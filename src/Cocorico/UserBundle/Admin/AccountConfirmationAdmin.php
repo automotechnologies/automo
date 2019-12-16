@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Cocorico\UserBundle\Admin;
 
 use Sonata\AdminBundle\Admin\AbstractAdmin;

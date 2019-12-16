@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Cocorico\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;

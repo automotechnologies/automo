@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Cocorico\CoreBundle\Command;
 
 use Doctrine\ORM\EntityManager;

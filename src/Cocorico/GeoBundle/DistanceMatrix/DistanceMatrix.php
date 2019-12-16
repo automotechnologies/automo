@@ -1,28 +1,9 @@
 <?php
 
-/*
- * This file is part of the Cocorico package and Ivory Google Map package.
- *
- * (c) Cocolabs SAS <contact@cocolabs.io> for modified work
- * (c) Eric GELOEN <geloen.eric@gmail.com> for Ivory Google Map package
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Cocorico\GeoBundle\DistanceMatrix;
-
 
 use GuzzleHttp\Client;
 
-/**
- * DistanceMatrix service
- * Require "guzzlehttp/guzzle"
- *
- * @author CocolabsSAS
- * @author GeLo <geloen.eric@gmail.com>
- * @author Tyler Sommer <sommertm@gmail.com>
- */
 class DistanceMatrix extends AbstractDistanceMatrixConstants
 {
     /**

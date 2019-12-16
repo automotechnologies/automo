@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Cocorico\CoreBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;

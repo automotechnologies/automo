@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Cocorico\UserBundle\Listener;
 
 use Cocorico\UserBundle\Entity\User;

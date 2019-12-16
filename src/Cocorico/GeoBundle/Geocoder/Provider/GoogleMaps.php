@@ -2,14 +2,6 @@
 
 declare(strict_types=1);
 
-/*
- * This file is part of the Geocoder package.
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @license    MIT License
- */
-
 namespace Cocorico\GeoBundle\Geocoder\Provider;
 
 use Geocoder\Collection;
@@ -23,10 +15,6 @@ use Geocoder\Query\GeocodeQuery;
 use Geocoder\Query\ReverseQuery;
 use Http\Client\HttpClient;
 
-/**
- * @author William Durand <william.durand1@gmail.com>
- * @author Cocolabs
- */
 class GoogleMaps extends AbstractHttpProvider implements ProviderInterface
 {
     /**

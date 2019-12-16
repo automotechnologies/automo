@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the Cocorico package.
- *
- * (c) Cocolabs SAS <contact@cocolabs.io>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Cocorico\CoreBundle\Twig;
 
 use Symfony\Bridge\Twig\NodeVisitor\TranslationDefaultDomainNodeVisitor;
@@ -22,16 +13,6 @@ use Twig\NodeVisitor\NodeVisitorInterface;
 use Twig\TokenParser\AbstractTokenParser;
 use Twig\TwigFilter;
 
-/**
- * Class TranslationExtension
- *
- * Override trans filter by adding suffix to translations to know if a text has been translated through web interface
- *
- * @package Cocorico\CoreBundle\Twig
- *
- * @author  Fabien Potencier <fabien@symfony.com>
- * @author  Cocolabs SAS <contact@cocolabs.io>
- */
 class TranslationExtension extends AbstractExtension
 {
     private $translator;

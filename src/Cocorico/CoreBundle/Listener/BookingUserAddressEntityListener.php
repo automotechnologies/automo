@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Cocorico\CoreBundle\Listener;
 
 use Cocorico\CoreBundle\Entity\BookingUserAddress;

@@ -2,14 +2,6 @@
 
 declare(strict_types=1);
 
-/*
- * This file is part of the Geocoder package.
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @license    MIT License
- */
-
 namespace Cocorico\GeoBundle\Geocoder;
 
 use Cocorico\GeoBundle\Geocoder\Provider\ProviderInterface;
@@ -19,12 +11,6 @@ use Geocoder\Model\Bounds;
 use Geocoder\Query\GeocodeQuery;
 use Geocoder\Query\ReverseQuery;
 
-/**
- * Add reverseAsJson
- *
- * @author Tobias Nyholm <tobias.nyholm@gmail.com>
- * @author Cocolabs
- */
 final class StatefulGeocoder implements Geocoder
 {
     /**

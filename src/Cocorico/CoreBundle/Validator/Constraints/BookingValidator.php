@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the Cocorico package.
- *
- * (c) Cocolabs SAS <contact@cocolabs.io>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Cocorico\CoreBundle\Validator\Constraints;
 
 use Cocorico\CoreBundle\Entity\Booking as BookingEntity;
@@ -19,7 +10,6 @@ use Symfony\Component\Intl\Intl;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Context\ExecutionContextInterface as Context;
-use Symfony\Component\Validator\ExecutionContextInterface;
 
 class BookingValidator extends ConstraintValidator
 {
