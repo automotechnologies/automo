@@ -125,12 +125,10 @@ class ListingController extends Controller
         $breadcrumbs = $this->get('cocorico.breadcrumbs_manager');
         $breadcrumbs->addListingShowItems($request, $listing);
 
-        return $this->render('CocoricoCoreBundle:Frontend/Listing:show.html.twig',
-            [
-                'listing' => $listing,
-                'reviews' => $reviews,
-            ]
-        );
+        return $this->render('CocoricoCoreBundle:Frontend/Listing:show.html.twig', [
+            'listing' => $listing,
+            'reviews' => $reviews,
+        ]);
     }
 
     /**

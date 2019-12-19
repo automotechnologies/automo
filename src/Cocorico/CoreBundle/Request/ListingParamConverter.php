@@ -5,7 +5,7 @@ namespace Cocorico\CoreBundle\Request;
 use Cocorico\CoreBundle\Event\ListingEvent;
 use Cocorico\CoreBundle\Event\ListingEvents;
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\NoResultException;
+use Doctrine\ORM\NonUniqueResultException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -68,9 +68,9 @@ class ListingParamConverter implements ParamConverterInterface
         $query = $event->getQueryBuilder()->getQuery();
 
         try {
-            $object = $query->getSingleResult();
+            $object = $query->getOneOrNullResult();
 //            $object = $this->em->getRepository("CocoricoCoreBundle:Listing")->findOneBySlug($slug, $locale);
-        } catch (NoResultException $e) {
+        } catch (NonUniqueResultException $e) {
             return null;
         }
 
