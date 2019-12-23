@@ -101,7 +101,8 @@
                     <div class="listing-holder row">
                         {% include '@CocoricoCore/Frontend/ListingResult/_result_listings.html.twig'  with {
                         'listings': listings,
-                        'nb_listings': nb_listings
+                        'nb_listings': nb_listings,
+                        'favourites': favourites
                         } only %}
                     </div>
                     {% include '@CocoricoCore/Frontend/Common/_pagination.html.twig' with {

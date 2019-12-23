@@ -11,7 +11,7 @@
     {% set user_image = listing_user.images|length ? listing_user.images[0].name : UserImageConstants.IMAGE_DEFAULT %}
 
     <article class="listing-post col-sm-6 col-xs-12" data-lid="{{ listing.id }}">
-        <a href="javascript:void(0)" id="favourite-{{ listing.id }}" class="favourit">
+        <a href="javascript:void(0)" id="favourite-{{ listing.id }}" class="favourit {% if listing.id in favourites %}active{% endif %}">
             <i class="icon-heart"></i>
             <span class="hidden">favourit</span>
         </a>

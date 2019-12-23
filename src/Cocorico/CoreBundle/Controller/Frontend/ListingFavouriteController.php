@@ -5,6 +5,7 @@ namespace Cocorico\CoreBundle\Controller\Frontend;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ListingFavouriteController extends ListingSearchController
 {
@@ -16,7 +17,7 @@ class ListingFavouriteController extends ListingSearchController
      * @Method("GET")
      *
      * @param  Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function indexFavouriteAction(Request $request)
     {
@@ -48,22 +49,20 @@ class ListingFavouriteController extends ListingSearchController
             $markers = $this->getMarkers($request, $results, $listings);
         }
 
-        return $this->render(
-            '@CocoricoCore/Frontend/ListingResult/result.html.twig',
-            array(
-                'form' => $form->createView(),
-                'listings' => $listings,
-                'nb_listings' => $nbListings,
-                'markers' => $markers['markers'],
-                'listing_search_request' => $listingSearchRequest,
-                'pagination' => array(
-                    'page' => $listingSearchRequest->getPage(),
-                    'pages_count' => ceil($nbListings / $listingSearchRequest->getMaxPerPage()),
-                    'route' => $request->get('_route'),
-                    'route_params' => $request->query->all()
-                )
-            )
-        );
+        return $this->render('@CocoricoCore/Frontend/ListingResult/result.html.twig', [
+            'form' => $form->createView(),
+            'listings' => $listings,
+            'nb_listings' => $nbListings,
+            'markers' => $markers['markers'],
+            'listing_search_request' => $listingSearchRequest,
+            'favourites' => $favourites,
+            'pagination' => [
+                'page' => $listingSearchRequest->getPage(),
+                'pages_count' => ceil($nbListings / $listingSearchRequest->getMaxPerPage()),
+                'route' => $request->get('_route'),
+                'route_params' => $request->query->all()
+            ]
+        ]);
 
     }
 
