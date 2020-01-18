@@ -37,6 +37,12 @@ class AlertImminentBookingsCommand extends ContainerAwareCommand
             ->setHelp("Usage php app/console cocorico:bookings:alertImminent");
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|void|null
+     * @throws \Exception
+     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $delay = $this->getContainer()->getParameter('cocorico.booking.alert_imminent_delay');

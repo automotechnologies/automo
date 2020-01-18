@@ -49,6 +49,11 @@ class AlertExpiringBookingsCommand extends ContainerAwareCommand
             ->setHelp("Usage php app/console cocorico:bookings:alertExpiring");
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|void|null
+     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $expirationDelay = $acceptationDelay = null;

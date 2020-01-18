@@ -23,6 +23,12 @@ class BlogDownloadCommand extends ContainerAwareCommand
             ->setHelp("Usage php app/console cocorico:blog:download");
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|void|null
+     * @throws \Psr\Cache\InvalidArgumentException
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $blogNews = $this->getContainer()->get('cache.app')->getItem('blog-news');

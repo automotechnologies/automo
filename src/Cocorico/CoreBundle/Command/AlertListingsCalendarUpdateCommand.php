@@ -24,6 +24,11 @@ class AlertListingsCalendarUpdateCommand extends ContainerAwareCommand
             ->setHelp("Usage php app/console cocorico:listings:alertUpdateCalendars");
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|void|null
+     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $result = $this->getContainer()->get('cocorico.listing.manager')->alertUpdateCalendars();

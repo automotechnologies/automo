@@ -20,6 +20,12 @@ class CurrencyCommand extends ContainerAwareCommand
             ->setDescription('Update DB currencies rates and generate JSON file. To execute daily around 5PM.');
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return bool|int|null
+     * @throws \Exception
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 

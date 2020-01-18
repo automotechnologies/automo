@@ -17,6 +17,11 @@ class LogoImageCommand extends ContainerAwareCommand
             ->setHelp("Usage php bin/console cocorico:logo-image");
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|void|null
+     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         /** @var EntityManager $em */

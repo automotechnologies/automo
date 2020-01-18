@@ -22,6 +22,12 @@ class InsertNewTranslationsCommand extends ContainerAwareCommand
             ->setHelp("Usage php app/console cocorico:db:insert-new-translations");
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|void|null
+     * @throws \Doctrine\DBAL\DBALException
+     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $newLocale = 'en';
