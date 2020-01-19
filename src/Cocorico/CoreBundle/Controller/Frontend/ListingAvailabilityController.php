@@ -45,7 +45,7 @@ class ListingAvailabilityController extends Controller
      * @return JsonResponse
      * @throws \Exception
      */
-    public function indexAction(Request $request, Listing $listing, $start, $end)
+    public function indexAction(Request $request, Listing $listing = null, $start, $end)
     {
         $timezone = $this->get('session')->get('timezone');
 

@@ -11,6 +11,8 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Core\Exception\AuthenticationCredentialsNotFoundException;
 
 /**
  * Handle Listing Form
@@ -27,6 +29,7 @@ class ListingFormHandler
      * @param AuthorizationChecker $securityAuthChecker
      * @param RequestStack         $requestStack
      * @param ListingManager       $listingManager
+     * @throws AuthenticationCredentialsNotFoundException
      */
     public function __construct(
         TokenStorage $securityTokenStorage,
@@ -45,7 +48,7 @@ class ListingFormHandler
 
     /**
      * @return Listing
-     *
+     * @throws AccessDeniedException
      */
     public function init()
     {
@@ -94,6 +97,7 @@ class ListingFormHandler
 
     /**
      * @param  Listing $listing
+     * @throws AccessDeniedException
      * @return Listing
      */
     private function addImages(Listing $listing)

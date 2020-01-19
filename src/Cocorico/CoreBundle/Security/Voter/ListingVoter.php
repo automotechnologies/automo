@@ -3,6 +3,7 @@
 namespace Cocorico\CoreBundle\Security\Voter;
 
 use Cocorico\CoreBundle\Entity\Listing;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -27,7 +28,16 @@ class ListingVoter extends Voter
      */
     public function supports($attribute, $subject)
     {
-        return ($subject instanceof Listing) && in_array($attribute, self::ATTRIBUTES);
+        if (!in_array($attribute, self::ATTRIBUTES)) {
+
+            return false;
+        }
+
+        if (!$subject instanceof Listing) {
+            throw new NotFoundHttpException();
+        }
+
+        return true;
     }
 
     /**
