@@ -80,6 +80,7 @@ class ListingSearchController extends Controller
         $event = new ListingSearchActionEvent($request);
         $this->get('event_dispatcher')->dispatch(ListingSearchEvents::LISTING_SEARCH_ACTION, $event);
         $extraViewParams = $event->getExtraViewParams();
+        $favourites = explode(',', $request->cookies->get('favourite'));
 
         return $this->render(
             $isXmlHttpRequest ?
@@ -98,6 +99,7 @@ class ListingSearchController extends Controller
                         'route' => $request->get('_route'),
                         'route_params' => $request->query->all()
                     ],
+                    'favourites' => $favourites,
                 ],
                 $extraViewParams
             )
