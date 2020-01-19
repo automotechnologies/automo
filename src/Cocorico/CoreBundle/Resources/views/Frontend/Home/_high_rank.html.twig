@@ -45,6 +45,7 @@
                                                             <!-- rating -->
                                                             {% if listing.averageRating %}
                                                                 {{ listing.averageRating | cocorico_star_rating }}
+                                                                <span class="home-comment-counter">({{ listing.commentCount }})</span>
                                                             {% endif %}
                                                             {% if  listing.certified %}
                                                                 <span class="certified">
