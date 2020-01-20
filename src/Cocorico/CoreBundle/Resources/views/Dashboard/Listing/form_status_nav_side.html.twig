@@ -39,8 +39,21 @@
                     }
             );
             var $statusSelectElt = $("#listing_status_status");
+            var statusVal = $statusSelectElt.val();
             $statusSelectElt.change(function (e) {
-                $(this).closest('form').submit();
+                if ($statusSelectElt.val() === '{{ ListingConstants.STATUS_DELETED }}') {
+                    if (confirm("{{ 'listing.confirm.delete'|trans }}")) {
+                        // Remove listing if its status id deleted
+                        $(this).closest('form').submit();
+                        window.location = '{{ path('cocorico_dashboard_listing') }}';
+                    } else {
+                        $statusSelectElt.val(statusVal);
+                        return false;
+                    }
+                }
+                else {
+                    $(this).closest('form').submit();
+                }
             });
 
             //Remove listing from list if its status is deleted
