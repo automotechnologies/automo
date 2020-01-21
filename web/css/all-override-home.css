@@ -58,17 +58,6 @@
     padding: 26px 5px 28px 75px;
 }
 
-.form-area .alert-warning {
-    padding: 26px 5px 28px 75px;
-}
-
-.form-area .alert-warning .ico.exclamation {
-    width: 41px;
-    height: 41px;
-    font-size: 34px;
-    line-height: 41px;
-}
-
 .ico.icon-success {
     background: #fff url('../images/icon_success.png') no-repeat 11px 12px;
 }
@@ -123,33 +112,15 @@
     width: 152px;
 }
 
-.form-category .form-holder .col.time .time-fields {
-    display: inline-block;
-    line-height: 36px;
-    height: 36px;
-    margin-top: 4px;
-}
-
-.form-category .form-holder .col.time .time-fields.col {
-    margin-top: 4px;
-    width: 99%;
-}
-
-.form-category .form-holder .col.time .time-fields .col {
-    margin-right: -6px;
-}
-
 .form-category .form-holder .col.time #time_range_start {
     margin-right: 10px;
 }
 
-.form-category .form-holder .col.time .time-fields select,
 .form-category .form-holder .col.time .nb-days select {
     display: inline-block;
     max-width: 70px;
 }
 
-.form-category .form-holder .col.time .time-fields .title,
 .form-category .form-holder .col.time .nb-days .title {
     display: inline-block;
     float: none;
@@ -158,87 +129,10 @@
     vertical-align: middle;
 }
 
-/** time picker */
-/** search form */
-.form-category .form-holder .col.time .time-fields .form-control {
-    width: 117px;
-}
-
-.form-category .form-holder .col.time .time-fields #datetimepicker3 {
-    width: 72%;
-    margin-left: 20px;
-    position: relative;
-    min-width: 103px;
-}
-
-.form-category .time-fields .add-on {
-    top: 43%;
-}
-
-/** time picker */
-/** global */
-.time-fields.timepicker-holder-ajax .add-on {
-    top: 4px;
-    right: -4px;
-    position: absolute;
-}
 
 .bootstrap-datetimepicker-widget table td.disabled,
 .bootstrap-datetimepicker-widget table td.disabled:hover {
     color: #ddd;
-}
-
-.time-fields .bootstrap-datetimepicker-widget.dropdown-menu {
-    width: 10em;
-}
-
-.time-fields .bootstrap-datetimepicker-widget table td span.glyphicon {
-    width: 24px;
-    height: 24px;
-    line-height: 24px;
-    margin: 0;
-    color: #c6ccd2;
-    float: none;
-}
-
-.time-fields .bootstrap-datetimepicker-widget .timepicker-hour,
-.time-fields .bootstrap-datetimepicker-widget .timepicker-minute,
-.time-fields .bootstrap-datetimepicker-widget .timepicker-second {
-    width: 40px;
-    font-weight: bold;
-    font-size: 1.2em;
-    margin: 0;
-    line-height: 40px;
-    height: 40px;
-}
-
-.time-fields .bootstrap-datetimepicker-widget table td {
-    height: 40px;
-    line-height: 40px;
-    width: 40px;
-}
-
-.time-fields span.glyphicon.glyphicon-chevron-up:after,
-.time-fields span.glyphicon.glyphicon-chevron-down:after {
-    display: block;
-    content: '\e805';
-    cursor: pointer;
-    text-align: center;
-    font: 16px/24px 'fontello';
-    color: #58595b;
-    font-weight: bold;
-}
-
-.time-fields span.glyphicon.glyphicon-chevron-down:after {
-    content: '\e806';
-    font: 16px/24px 'fontello';
-    font-weight: bold;
-}
-
-.time-fields .bootstrap-datetimepicker-widget td.hour,
-.time-fields .bootstrap-datetimepicker-widget td.minute {
-    width: 34px;
-    padding: 0;
 }
 
 .form-category .form-holder .col.time .flexibility {
@@ -255,17 +149,6 @@
     width: 60%;
 }
 
-.multiselect-container.dropdown-menu > .active > a,
-.multiselect-container .dropdown-menu > .active > a:hover,
-.multiselect-container .dropdown-menu > .active > a:focus {
-    color: #ffffff;
-    text-decoration: none;
-    outline: 0;
-    background-color: #afb8c0;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
 .error-page {
     height: 200px;
     text-align: center;
@@ -277,47 +160,6 @@
 .info-policy {
     float: right;
     margin: 9px;
-}
-
-/*similar listing css*/
-section.similar-ads .listing-post {
-    margin-bottom: 0;
-}
-
-section.similar-ads .rating {
-    margin-bottom: 0;
-}
-
-section.similar-ads .rating li {
-    font-size: 14px;
-    display: inline-block;
-}
-
-section.similar-ads .listing-post .time-price {
-    margin: 1px 0 4px 6px;
-    text-shadow: rgb(252, 247, 247) 1px 1px 1px;
-}
-
-section.similar-ads ul.rating.list-inline {
-    position: relative;
-}
-
-section.similar-ads .listing-post .price {
-    font-size: 14px;
-    padding-bottom: 8px;
-    display: inline-block;
-    margin: 0 0 -10px;
-    line-height: 15px;
-    text-shadow: none;
-}
-
-section.similar-ads .time-price p {
-    font-size: 10px;
-}
-
-section.similar-ads .alignleft img {
-    position: absolute;
-    width: auto;
 }
 
 /*end of similar listing css*/
@@ -341,35 +183,12 @@ img.loading {
     text-align: center;
 }
 
-/*
-images css for making it 4:3
-*/
-.vertical-slideset {
-    /*height: 450px !important;*/
-}
-
-.vertical-holder .vertical-slider .vertical-slideset .vertical-slide,
-.vertical-holder .vertical-slider .vertical-slideset .vertical-slide a {
-    width: 130px;
-    height: 104px;
-    position: relative;
-}
-
-.listing-box .frame .post-content .alignleft,
-.head .author-img .img-holder,
-.area .box .author-detail .author-img {
+.listing-box .frame .post-content .alignleft {
     width: 60px;
     height: 45px;
     position: relative;
 }
 
-#properties .listing-area .listing-holder .listing-post .listing-box .frame .post-info .img-holder {
-    width: 527px;
-    height: 395px;
-    position: relative;
-}
-
-.container .row .twocolumns .listing-area .listing-holder .listing-post .listing-box .frame .post-info .img-holder,
 .listing-area .listing-holder .listing-post .listing-box .frame .post-info .img-holder {
     width: 384px;
     height: 288px;
@@ -377,70 +196,8 @@ images css for making it 4:3
 }
 
 /** Price include / exclude text */
-.price sup {
-    line-height: 0;
-    text-transform: uppercase;
-}
-
 .listing-post .price {
     text-shadow: -1px 0 #999, 0 1px #999, 1px 0 #999, 0 -1px #999;
-}
-
-.reservation .price small {
-    font-size: 20px;
-}
-
-.listing-post .price small {
-    font-size: 9px;
-}
-
-.price-section .info.price {
-    font-size: 16px;
-    display: inline-block;
-    margin: 0 0 0 2px;
-    line-height: normal;
-}
-
-/** Price simulator*/
-.price-section strong.price {
-    margin: 20px 0;
-}
-
-.price-section .column + .column .price-info {
-    margin: 20px 0 0 0;
-}
-
-/** Booking new time mode */
-.timing li {
-    height: 25px;
-}
-
-.timing li:nth-child(n+4) {
-    margin-top: 10px;
-}
-
-.timing li:nth-child(2) {
-    text-align: left;
-}
-
-.timing li:nth-child(3n+0) {
-    text-align: right;
-}
-
-.timing li label {
-    width: 80px;
-    display: inline-block;
-    text-align: right;
-}
-
-.col.expiry input {
-    width: 49%;
-    display: inline-block;
-}
-
-/** Contact */
-.form-area .contact-info .code + .tooltip-btn {
-    right: auto;
 }
 
 /* new menu for cocorico*/
@@ -610,14 +367,6 @@ ul.dropdown-menu li a {
     cursor: pointer;
 }
 
-.collection-add-block {
-    margin: 10px 0 28px 0;
-}
-
-.form-area .field-row.time {
-    max-width: none;
-}
-
 ul.collection {
     padding: 0;
 }
@@ -626,41 +375,8 @@ ul.collection {
     margin-right: 10px;
 }
 
-/** Form payment */
-.form-payment .form-holder .col.cvv {
-    width: 33.1%;
-}
-
-.form-payment .form-holder .col.cvv .field-holder {
-    width: 50%;
-}
-
-.form-payment .form-holder .col.cvv .tooltip-button {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    margin-top: 0;
-}
-
-.payment a.btn.btn-primary {
-    line-height: 36px;
-}
-
-/** end Form payment */
-
 .btn.btn-default.multiselect-clear-filter {
     display: none;
-}
-
-.btns-area {
-    text-align: center;
-    padding: 20px 0;
-    max-width: 800px;
-}
-
-.btns-area .btn-primary {
-    width: 33%;
-    margin: 0 auto;
 }
 
 /* ------------------------------------------------------------ *\
@@ -686,111 +402,6 @@ ul.collection {
 .jcf-scrollbar-vertical .jcf-scrollbar-handle {
     background: #ababab;
     width: 9px;
-}
-
-/** Listing Options edition */
-.option-area {
-    margin: 0 0 21px;
-    border-radius: 5px;
-    padding: 11px 17px 18px;
-    border: #e6e6e6 solid 1px;
-}
-
-.option-area h2 {
-    font-size: 14px;
-    margin: 0 0 22px;
-}
-
-.option-area .listing-option-list {
-    border-radius: 5px;
-    padding: 17px 18px;
-    border: #e6e6e6 solid 1px;
-    margin-bottom: 20px;
-}
-
-.option-area .listing-option-list:nth-child(even) {
-    background-color: #f7f7f7;
-}
-
-.option-area .collection .pull-left:first-child {
-    width: 42%;
-    margin-right: 20px;
-}
-
-.option-area .collection .pull-left:first-child + .pull-left {
-    width: 54%;
-    border-radius: 5px;
-    padding: 22px 18px 7px;
-    border: #e6e6e6 solid 1px;
-    margin-top: 41px;
-    background-color: #fff;
-}
-
-.option-area .field-row .field-row {
-    width: 42%;
-    display: inline-block;
-    margin: 0 0 0;
-}
-
-.option-area .field-row .field-row:first-child {
-    width: 50%;
-    display: inline-block;
-    margin-right: 20px;
-}
-
-.form-area .tab-content .option-area .tab-content {
-    padding-bottom: 0;
-}
-
-.option-area .close {
-    right: auto;
-    top: auto;
-}
-
-.option-area .sign {
-    float: right;
-    display: inline-block;
-    font-size: 16px;
-    margin: 0 0 0 2px;
-    line-height: 36px;
-}
-
-.option-area .btn-block button[type=submit] {
-    margin: 0;
-    min-width: 220px;
-}
-
-.option-area textarea {
-    height: 110px;
-}
-
-/* ------------------------------------------------------------ *\
-	Voucher options
-\* ------------------------------------------------------------ */
-.voucher-block {
-    color: #58595b;
-    margin: 0 0 20px;
-    border-radius: 5px;
-    padding: 19px 19px 19px;
-    border: #eaebec solid 1px;
-}
-
-.voucher-block .row {
-    font-size: 18px;
-}
-
-.voucher-block .field-holder {
-    display: inline-block;
-    width: 50%;
-}
-
-.voucher-block .btn {
-    padding: 7px 14px 7px;
-}
-
-.voucher-block .col-md-5 {
-    line-height: 45px;
-    height: 45px;
 }
 
 .post-content.options {
@@ -821,45 +432,9 @@ ul.collection {
 
 /** End listing alerts **/
 
-.form-area .about-info .label {
-    max-width: 190px;
-}
-
-.form-area .about-info .language button[type="button"] {
-    margin: 10px 0 0 150px;
-    float: none;
-}
-
-.form-area .about-info .languages-block .language .label {
-    width: 150px;
-    max-width: 210px;
-    margin: 16px 0 0;
-}
-
-.form-area .about-info .from .label {
-    margin: 7px 11px 0 0;
-    width: 139px;
-}
-
 .newstyle {
     border: 0;
     margin: 15px 0;
-}
-
-.clear_input, .clear_input:hover {
-    text-decoration: none;
-    color: #c6ccd2;
-    transition: background 0.4s;
-    font-size: 20px;
-}
-
-.clear_input:hover {
-    color: #afb8c0;
-}
-
-.author-info a {
-    color: #808285;
-    text-decoration: none;
 }
 
 .high-rank-title, .section-title {
@@ -1009,10 +584,6 @@ ul.collection {
         width: auto;
     }
 
-    .form-category .form-holder .col.time .time-fields #datetimepicker3 {
-        margin-left: 0;
-    }
-
     .form-category .listing-alert {
         width: 100%;
         padding: 0 5px;
@@ -1043,51 +614,6 @@ ul.collection {
     text-transform: capitalize;
 }
 
-/* categories */
-.listing-categories .jcf-list .jcf-option:after {
-    content: '';
-}
-
-.listing-categories .jcf-list-box {
-    min-width: 270px;
-}
-
-.listing-categories .jcf-list .jcf-optgroup-caption, .listing-categories .jcf-list .jcf-option {
-    padding: 9px 38px 9px 19px;
-}
-
-.listing-categories .jcf-list-box {
-    border: 1px solid #e6e6e6;
-    border-radius: 5px;
-}
-
-.listing-categories .jcf-list-box .jcf-selected {
-    color: #ffffff;
-    background: #7a7a7a;
-}
-
-.listing-categories .jcf-list .jcf-option:hover {
-    cursor: pointer;
-    color: #000000;
-    background: #e6e6e6;
-}
-
-.listing-categories .jcf-list .jcf-disabled {
-    background: transparent !important;
-    color: #58595b !important;
-}
-
-.categories-list .close {
-    margin-bottom: 5px;
-}
-
-.categories-list .close {
-    position: static;
-    margin: 6px -11px 0 11px;
-    display: inline-block;
-    vertical-align: middle;
-}
-
 /** Search categories */
 .form-category .multiselect-container > li.multiselect-group label, .form-category .multiselect-container > li > a > label {
     padding-left: 10px;
@@ -1099,26 +625,6 @@ ul.collection {
 
 .form-category .multiselect-container > li > a input[type="checkbox"] {
     width: 0;
-}
-
-.form-category .form-holder {
-    display: inline-block;
-    vertical-align: top;
-    /*margin-bottom: 0;*/
-    border-radius: 4px 4px 0 0;
-    border: 1px solid #e8e8e8;
-    width: 100%;
-    max-width: 100%;
-}
-
-.form-category .sub-holder {
-    margin: -40px 0 20px 0;
-    padding: 20px 19px 10px;
-    border-radius: 0 0 4px 4px;
-    border-color: #e8e8e8;
-    border-style: solid;
-    border-width: 0 1px 1px 1px;
-    max-width: 100%;
 }
 
 /* ------------------------------------------------------------ *\
