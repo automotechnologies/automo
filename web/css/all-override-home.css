@@ -42,9 +42,6 @@
 #messaging .listing-detail .area .img-holder img,
 #properties .listing-area .listing-holder .listing-post .listing-box .frame .post-info .img-holder img,
 #sidebar .holder .similar-ads .listing-holder .post .alignleft .listing-post img,
-#messaging .postarea .posts-holder .post .post-area .img-holder img,
-#reservations .postarea .posts-holder .post .post-area .img-holder img,
-#comments .postarea .posts-holder .post .img-holder img,
 .container .row .twocolumns .listing-area .listing-holder .listing-post .listing-box .frame .post-info .img-holder img,
 .vertical-holder .vertical-slider .vertical-slideset .vertical-slide img,
 .listing-area .listing-holder .listing-post .listing-box .frame .post-info .img-holder img {
@@ -481,17 +478,6 @@ images css for making it 4:3
     position: relative;
 }
 
-#comments .postarea .posts-holder .post .img-holder,
-#comments .postarea .posts-holder .post .img-holder a,
-#reservations .postarea .posts-holder .post .post-area .img-holder,
-#reservations .postarea .posts-holder .post .post-area .img-holder a,
-#messaging .postarea .posts-holder .post .post-area .img-holder,
-#messaging .postarea .posts-holder .post .post-area .img-holder a {
-    width: 200px;
-    height: 150px;
-    position: relative;
-}
-
 #messaging .listing-detail .area .img-holder {
     width: 100px;
     height: 75px;
@@ -767,10 +753,6 @@ ul.dropdown-menu li a {
 
 ul.collection {
     padding: 0;
-}
-
-.postarea .booking-duration {
-    margin: 0;
 }
 
 #footer .by.credit {
@@ -1194,19 +1176,6 @@ ul.collection {
 
 .location-holder {
     margin-bottom: 10px;
-}
-
-.postarea.alt3 .rating {
-    margin: -6px 0 0 -4px;
-}
-
-.postarea.alt3 .textbox {
-    padding-top: 0;
-    margin-bottom: 6px;
-}
-
-.postarea .post-content {
-    min-height: 45px;
 }
 
 /** Duplication **/
