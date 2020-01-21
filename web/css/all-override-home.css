@@ -1453,22 +1453,6 @@ ul.collection {
 }
 
 @media screen and (max-width: 767px) {
-    #booking-new .price-area .timing li {
-        height: auto;
-    }
-
-    #booking-new .timing li label {
-        width: auto;
-    }
-
-    #booking-new .timing li:nth-child(3n+0) {
-        display: none;
-    }
-
-    #booking-new .total-reservation .list-inline li {
-        width: 100%;
-    }
-
     .form-category .col.categories,
     .form-category .form-holder .col.time,
     .form-category .form-holder .col.time .col,
