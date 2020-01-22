@@ -27,37 +27,6 @@
 }
 
 /*Overriding all.css*/
-
-/** Common/_flash.html.twig **/
-
-.alert-error-new {
-    background: #fababa;
-    border-color: #b82422;
-    color: #BB2D2B;
-    padding: 16px 5px 16px 75px;
-}
-
-.alert-warning-new {
-    background: #ffe9ad;
-    border-color: #fab418;
-    color: #C58705;
-    padding: 26px 5px 28px 75px;
-}
-
-.alert-success-new {
-    background: #E1EFBB;
-    border-color: #AEBC85;
-    color: #708A29;
-    padding: 16px 5px 16px 75px;
-}
-
-.alert-info-new {
-    background: #DDF1F3;
-    border-color: #0A8FA1;
-    color: #89C1CA;
-    padding: 26px 5px 28px 75px;
-}
-
 .ico.icon-success {
     background: #fff url('../images/icon_success.png') no-repeat 11px 12px;
 }
@@ -93,51 +62,6 @@
 
 .form-category .area {
     overflow: visible;
-}
-
-.form-category .form-holder .col.time .col.day-fields:first-child,
-.form-category .form-holder .col.time .col.day-fields.display-range:first-child,
-.form-category .form-holder .col.time .col.day-fields.display-duration .col:first-child {
-    width: 99%;
-}
-
-.form-category .form-holder .col.time .col.day-fields.display-duration,
-.form-category .form-holder .col.time .col.day-fields.nb-days {
-    width: 49%;
-}
-
-.form-category .form-holder .col.time .col.day-fields.display-duration .input-append.date {
-    position: relative;
-    padding: 0 35px 0 0;
-    width: 152px;
-}
-
-.form-category .form-holder .col.time #time_range_start {
-    margin-right: 10px;
-}
-
-.form-category .form-holder .col.time .nb-days select {
-    display: inline-block;
-    max-width: 70px;
-}
-
-.form-category .form-holder .col.time .nb-days .title {
-    display: inline-block;
-    float: none;
-    position: relative;
-    margin: 0;
-    vertical-align: middle;
-}
-
-
-.bootstrap-datetimepicker-widget table td.disabled,
-.bootstrap-datetimepicker-widget table td.disabled:hover {
-    color: #ddd;
-}
-
-.form-category .form-holder .col.time .flexibility {
-    width: 50%;
-    margin-top: 0;
 }
 
 .form-category .flexibility .input-append {
@@ -573,17 +497,6 @@ ul.collection {
 }
 
 @media screen and (max-width: 767px) {
-    .form-category .col.categories,
-    .form-category .form-holder .col.time,
-    .form-category .form-holder .col.time .col,
-    .form-category .form-holder .col.time .col:first-child,
-    .form-category .form-holder input.btn-default,
-    #search-container .range-area,
-    #search-container .selection-holder,
-    #search-container .selection-holder > .select-holder:first-child {
-        width: auto;
-    }
-
     .form-category .listing-alert {
         width: 100%;
         padding: 0 5px;
@@ -697,44 +610,6 @@ ul.collection {
 
 .feed-item-content p {
     text-align: right;
-}
-
-.feed-item-content a {
-    text-decoration: underline;
-    line-height: 2;
-    color: #fff;
-}
-
-.feed-item-content a:hover {
-    text-decoration: none;
-}
-
-.listing-detail .blog .head {
-    padding-bottom: 5px;
-}
-
-.feeds-holder .meta {
-    overflow: hidden;
-}
-
-.feeds-holder .meta time {
-    float: left;
-    text-align: left;
-}
-
-.feeds-holder .meta .rating {
-    float: right;
-    padding-right: 10px;
-}
-
-.feeds-holder .meta .list-inline > li {
-    padding-left: 0;
-    padding-right: 0;
-    color: #efd234;
-}
-
-.feeds-holder .author-name {
-    white-space: nowrap;
 }
 
 .feed-items-hover .feed-item-image {
@@ -856,16 +731,4 @@ ul.dropdown-menu ul.menu-sub-tabs li {
 
 .navbar-default .navbar-nav > li > .dropdown-menu li {
     font-size: 12px;
-}
-
-.rating-block {
-    display: inline-block;
-}
-
-.tips-section .home-comment-counter {
-    float: left;
-    margin-left: 10px;
-    line-height: 40px;
-    font-size: 16px;
-    text-shadow: -1px 0 #999, 0 1px #999, 1px 0 #999, 0 -1px #999;
 }
