@@ -31,7 +31,7 @@ abstract class BaseBooking
     const STATUS_CANCELED_ASKER = 6;
     const STATUS_PAYMENT_REFUSED = 8;
 
-    public static $statusValues = array(
+    public static $statusValues = [
         self::STATUS_DRAFT => 'entity.booking.status.draft',
         self::STATUS_NEW => 'entity.booking.status.new',
         self::STATUS_PAYED => 'entity.booking.status.payed',
@@ -39,9 +39,9 @@ abstract class BaseBooking
         self::STATUS_REFUSED => 'entity.booking.status.refused',
         self::STATUS_CANCELED_ASKER => 'entity.booking.status.canceled_asker',
         self::STATUS_PAYMENT_REFUSED => 'entity.booking.status.payment_refused'
-    );
+    ];
 
-    public static $visibleStatus = array(
+    public static $visibleStatus = [
         self::STATUS_NEW,
 //        self::STATUS_ACCEPTED => 'entity.booking.status.accepted',
         self::STATUS_PAYED,
@@ -50,44 +50,44 @@ abstract class BaseBooking
         self::STATUS_CANCELED_ASKER,
 //        self::STATUS_CANCELED_OFFERER,
         self::STATUS_PAYMENT_REFUSED
-    );
+    ];
 
     //Status relative to a valid transaction
-    public static $payedStatus = array(
+    public static $payedStatus = [
         self::STATUS_PAYED,
-    );
+    ];
 
     //Status for which booking can be created
-    public static $newableStatus = array(
+    public static $newableStatus = [
         self::STATUS_DRAFT
-    );
+    ];
 
     //Status for which booking can be canceled by asker
-    public static $cancelableStatus = array(
+    public static $cancelableStatus = [
         self::STATUS_NEW,
         self::STATUS_PAYED
-    );
+    ];
 
     //Status for which booking can be expired
-    public static $expirableStatus = array(
+    public static $expirableStatus = [
         self::STATUS_DRAFT,
         self::STATUS_NEW
-    );
+    ];
 
     //Status for which booking can be payed
-    public static $payableStatus = array(
+    public static $payableStatus = [
         self::STATUS_NEW
-    );
+    ];
 
     //Status for which booking can be refused
-    public static $refusableStatus = array(
+    public static $refusableStatus = [
         self::STATUS_NEW
-    );
+    ];
 
     //Status for which booking can be validated
-    public static $validatableStatus = array(
+    public static $validatableStatus = [
         self::STATUS_PAYED
-    );
+    ];
 
 
     /**
@@ -373,7 +373,7 @@ abstract class BaseBooking
      */
     public function getDateTimeRange()
     {
-        return new DateTimeRange($this->getDateRange(), array($this->getTimeRange()));
+        return new DateTimeRange($this->getDateRange(), [$this->getTimeRange()]);
     }
 
     /**

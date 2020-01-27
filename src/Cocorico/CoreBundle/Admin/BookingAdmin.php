@@ -29,10 +29,12 @@ class BookingAdmin extends AbstractAdmin
     protected $includeVat;
     protected $timezone;
 
-    protected $datagridValues = array(
+    protected $maxPageLinks = 5;
+
+    protected $datagridValues = [
         '_sort_order' => 'DESC',
         '_sort_by' => 'createdAt'
-    );
+    ];
 
     public function setLocales($locales)
     {
@@ -98,147 +100,147 @@ class BookingAdmin extends AbstractAdmin
             ->add(
                 'user',
                 'sonata_type_model',
-                array(
+                [
                     'query' => $askerQuery,
                     'disabled' => true,
-                    'label' => 'admin.booking.asker.label'
-                )
+                    'label' => 'admin.booking.asker.label',
+                ]
             )
             ->add(
                 'listing.user',
                 'sonata_type_model',
-                array(
+                [
                     'query' => $offererQuery,
                     'disabled' => true,
                     'label' => 'admin.booking.offerer.label',
-                )
+                ]
             )
             ->add(
                 'listing',
                 'sonata_type_model',
-                array(
+                [
                     'query' => $listingQuery,
                     'disabled' => true,
                     'label' => 'admin.listing.label',
-                )
+                ]
             )
             ->add(
                 'amountExcludingFees',
                 PriceType::class,
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking.amount_excl_fees.label',
                     'include_vat' => true,
-                    'scale' => 2
-                )
+                    'scale' => 2,
+                ]
             )
             ->add(
                 'amountFeeAsAsker',
                 PriceType::class,
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking.amount_fee_as_asker.label',
                     'include_vat' => true,
-                    'scale' => 2
-                )
+                    'scale' => 2,
+                ]
             )
             ->add(
                 'amountFeeAsOfferer',
                 PriceType::class,
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking.amount_fee_as_offerer.label',
                     'include_vat' => true,
-                    'scale' => 2
-                )
+                    'scale' => 2,
+                ]
             );
 
         $formMapper
             ->add(
                 'amountToPayByAsker',
                 PriceType::class,
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking.amount_to_pay_by_asker.label',
                     'include_vat' => true,
-                    'scale' => 2
-                )
+                    'scale' => 2,
+                ]
             )
             ->add(
                 'amountToPayToOfferer',
                 PriceType::class,
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking.amount_to_pay_to_offerer.label',
                     'include_vat' => true,
-                    'scale' => 2
-                )
+                    'scale' => 2,
+                ]
             )
             ->add(
                 'status',
                 ChoiceType::class,
-                array(
+                [
                     'choices' => array_flip(Booking::$statusValues),
                     'placeholder' => 'admin.booking.status.label',
                     'disabled' => true,
                     'label' => 'admin.booking.status.label',
                     'translation_domain' => 'cocorico_booking',
-                )
+                ]
             )
             ->add(
                 'listing.cancellationPolicy',
                 ChoiceType::class,
-                array(
+                [
                     'choices' => array_flip(Listing::$cancellationPolicyValues),
                     'placeholder' => 'admin.listing.cancellation_policy.label',
                     'disabled' => true,
                     'label' => 'admin.listing.cancellation_policy.label',
                     'translation_domain' => 'cocorico_listing',
-                )
+                ]
             )
             ->add(
                 'validated',
                 null,
-                array(
+                [
                     'label' => 'admin.booking.validated.label',
                     'disabled' => true,
-                )
+                ]
             )
             ->add(
                 'alertedExpiring',
                 null,
-                array(
+                [
                     'label' => 'admin.booking.alerted_expiring.label',
                     'required' => false,
                     'disabled' => true,
-                )
+                ]
             )
             ->add(
                 'alertedImminent',
                 null,
-                array(
+                [
                     'label' => 'admin.booking.alerted_imminent.label',
                     'required' => false,
                     'disabled' => true,
-                )
+                ]
             )
             ->add(
                 'start',
                 'date',
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking.start.label',
-                    'view_timezone' => $this->timezone
-                )
+                    'view_timezone' => $this->timezone,
+                ]
             )
             ->add(
                 'end',
                 'date',
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking.end.label',
-                    'view_timezone' => $this->timezone
-                )
+                    'view_timezone' => $this->timezone,
+                ]
             );
 
         if (!$this->timeUnitIsDay) {
@@ -246,36 +248,36 @@ class BookingAdmin extends AbstractAdmin
                 ->add(
                     'startTime',
                     'time',
-                    array(
+                    [
                         'disabled' => true,
                         'label' => 'admin.booking.start_time.label',
-                        'view_timezone' => $this->timezone
-                    )
+                        'view_timezone' => $this->timezone,
+                    ]
                 )
                 ->add(
                     'endTime',
                     'time',
-                    array(
+                    [
                         'disabled' => true,
                         'label' => 'admin.booking.end_time.label',
-                        'view_timezone' => $this->timezone
-                    )
+                        'view_timezone' => $this->timezone,
+                    ]
                 )
                 ->add(
                     'timeZoneAsker',
                     null,
-                    array(
+                    [
                         'disabled' => true,
                         'label' => 'admin.booking.timezone_asker.label',
-                    )
+                    ]
                 )
                 ->add(
                     'timeZoneOfferer',
                     null,
-                    array(
+                    [
                         'disabled' => true,
                         'label' => 'admin.booking.timezone_offerer.label',
-                    )
+                    ]
                 );
         }
 
@@ -283,56 +285,56 @@ class BookingAdmin extends AbstractAdmin
             ->add(
                 'newBookingAt',
                 null,
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking.new_booking_at.label',
-                    'view_timezone' => $this->timezone
-                )
+                    'view_timezone' => $this->timezone,
+                ]
             )
             ->add(
                 'payedBookingAt',
                 null,
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking.payed_booking_at.label',
-                    'view_timezone' => $this->timezone
-                )
+                    'view_timezone' => $this->timezone,
+                ]
             )
             ->add(
                 'refusedBookingAt',
                 null,
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking.refused_booking_at.label',
-                    'view_timezone' => $this->timezone
-                )
+                    'view_timezone' => $this->timezone,
+                ]
             )
             ->add(
                 'canceledAskerBookingAt',
                 null,
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking.canceled_asker_booking_at.label',
-                    'view_timezone' => $this->timezone
-                )
+                    'view_timezone' => $this->timezone,
+                ]
             )
             ->add(
                 'createdAt',
                 null,
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking.created_at.label',
-                    'view_timezone' => $this->timezone
-                )
+                    'view_timezone' => $this->timezone,
+                ]
             )
             ->add(
                 'updatedAt',
                 null,
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking.updated_at.label',
-                    'view_timezone' => $this->timezone
-                )
+                    'view_timezone' => $this->timezone,
+                ]
             )
             ->end();
 
@@ -342,11 +344,11 @@ class BookingAdmin extends AbstractAdmin
             ->add(
                 'userAddress',
                 'sonata_type_admin',
-                array(
+                [
                     'delete' => false,
                     'disabled' => true,
-                    'label' => false
-                )
+                    'label' => false,
+                ]
             )
             ->end()
         ;
@@ -361,38 +363,46 @@ class BookingAdmin extends AbstractAdmin
             ->add(
                 'status',
                 'doctrine_orm_string',
-                array(),
+                [],
                 ChoiceType::class,
-                array(
+                [
                     'choices' => array_flip(Booking::$statusValues),
                     'label' => 'admin.booking.status.label',
                     'translation_domain' => 'cocorico_booking',
-                )
+                ]
             )
             ->add(
                 'listing.id',
                 null,
-                array('label' => 'admin.booking.listing_id.label')
+                [
+                    'label' => 'admin.booking.listing_id.label',
+                ]
             )
             ->add(
                 'listing.translations.title',
                 'doctrine_orm_string',
-                array('label' => 'admin.booking.listing_title.label')
+                [
+                    'label' => 'admin.booking.listing_title.label',
+                ]
             )
             ->add(
                 'user.email',//todo: search by first name and last name
                 null,
-                array('label' => 'admin.booking.asker.label')
+                [
+                    'label' => 'admin.booking.asker.label',
+                ]
             )
             ->add(
                 'listing.user.email',//todo: search by first name and last name
                 null,
-                array('label' => 'admin.booking.offerer.label')
+                [
+                    'label' => 'admin.booking.offerer.label',
+                ]
             )
             ->add(
                 'expireAt',
                 'doctrine_orm_callback',
-                array(
+                [
                     'label' => 'admin.booking.expire_at.label',
                     'callback' => function ($queryBuilder, $alias, $field, $value) {
                         /** @var \DateTime $date */
@@ -406,20 +416,22 @@ class BookingAdmin extends AbstractAdmin
                         $queryBuilder
                             ->andWhere("$alias.status IN (:status)")
                             ->andWhere("DATE_FORMAT($alias.newBookingAt,'%Y-%m-%d') = :dateExpiring")
-                            ->setParameter('status', array(Booking::STATUS_NEW))
+                            ->setParameter('status', [Booking::STATUS_NEW])
                             ->setParameter('dateExpiring', $date->format('Y-m-d'));
 
                         return true;
                     },
                     'field_type' => 'sonata_type_date_picker',
-                    'field_options' => array('format' => 'dd/MM/yyyy'),
-                ),
+                    'field_options' => [
+                        'format' => 'dd/MM/yyyy',
+                    ],
+                ],
                 null
             )
             ->add(
                 'updatedAt',
                 'doctrine_orm_callback',
-                array(
+                [
                     'label' => 'admin.booking.updated_at.label',
                     'callback' => function ($queryBuilder, $alias, $field, $value) {
                         /** @var \DateTime $date */
@@ -435,39 +447,45 @@ class BookingAdmin extends AbstractAdmin
                         return true;
                     },
                     'field_type' => 'sonata_type_date_picker',
-                    'field_options' => array('format' => 'dd/MM/yyyy'),
-                ),
+                    'field_options' => [
+                        'format' => 'dd/MM/yyyy',
+                    ],
+                ],
                 null
             )
             ->add(
                 'amountMin',
                 'doctrine_orm_callback',
-                array(
-                    'callback' => array($this, 'getAmountMinFilter'),
+                [
+                    'callback' => [
+                        $this, 'getAmountMinFilter',
+                    ],
                     'field_type' => 'text',
                     'operator_type' => 'choice',
-                    'operator_options' => array(
-                        'choices' => array(
+                    'operator_options' => [
+                        'choices' => [
                             NumberType::TYPE_GREATER_THAN => '>=',
-                        )
-                    ),
-                    'label' => 'admin.booking.amount_min.label'
-                )
+                        ]
+                    ],
+                    'label' => 'admin.booking.amount_min.label',
+                ]
             )
             ->add(
                 'amountMax',
                 'doctrine_orm_callback',
-                array(
-                    'callback' => array($this, 'getAmountMaxFilter'),
+                [
+                    'callback' => [
+                        $this, 'getAmountMaxFilter',
+                    ],
                     'field_type' => 'text',
                     'operator_type' => 'choice',
-                    'operator_options' => array(
-                        'choices' => array(
+                    'operator_options' => [
+                        'choices' => [
                             NumberType::TYPE_LESS_EQUAL => '<=',
-                        )
-                    ),
-                    'label' => 'admin.booking.amount_max.label'
-                )
+                        ]
+                    ],
+                    'label' => 'admin.booking.amount_max.label',
+                ]
             )
         ;
     }
@@ -526,67 +544,68 @@ class BookingAdmin extends AbstractAdmin
             ->add(
                 'listing.id',
                 null,
-                array(
-                    'label' => 'admin.booking.listing_id.label'
-                )
+                [
+                    'label' => 'admin.booking.listing_id.label',
+                ]
             )
             ->add(
                 'statusText',
                 null,
-                array(
-                    'label' => 'admin.booking.status.label',
-                    'template' => 'CocoricoSonataAdminBundle::list_field_value_translated.html.twig',
-                    'data_trans' => 'cocorico_booking'
-                )
+                [
+                    'label'      => 'admin.booking.status.label',
+                    'template'   => 'CocoricoSonataAdminBundle::list_field_value_translated.html.twig',
+                    'data_trans' => 'cocorico_booking',
+                    'sortable'   => 'status',
+                ]
             )
             ->add(
                 'validated',
                 null,
-                array(
+                [
                     'label' => 'admin.booking.validated.label',
-                )
+                ]
             )
             ->add(
                 'user',
                 null,
-                array(
+                [
                     'label' => 'admin.booking.asker.label',
-                )
+                ]
             )
             ->add(
                 'listing.user',
                 null,
-                array(
+                [
                     'label' => 'admin.booking.offerer.label',
-                )
+                ]
             )
             ->add(
                 'listing',
                 null,
-                array(
-                    'label' => 'admin.listing.label'
-                )
+                [
+                    'label' => 'admin.listing.label',
+                ]
             )
             ->add(
                 'amountToPayByAskerDecimal',
                 null,
-                array(
+                [
                     'label' => 'admin.booking.amount_to_pay_by_asker.label',
-                )
+                ]
             )
             ->add(
                 'start',
                 'date',
-                array(
+                [
                     'label' => 'admin.booking.start.label',
-                )
+                ]
             )
             ->add(
                 'end',
                 'date',
-                array(
+                [
                     'label' => 'admin.booking.end.label',
-                )
+                ]
             );
 
         if (!$this->timeUnitIsDay) {
@@ -594,16 +613,16 @@ class BookingAdmin extends AbstractAdmin
                 ->add(
                     'startTime',
                     'time',
-                    array(
+                    [
                         'label' => 'admin.booking.start_time.label',
-                    )
+                    ]
                 )
                 ->add(
                     'endTime',
                     'time',
-                    array(
+                    [
                         'label' => 'admin.booking.end_time.label',
-                    )
+                    ]
                 );
         }
 
@@ -611,12 +630,12 @@ class BookingAdmin extends AbstractAdmin
             ->add(
                 'expiration',
                 null,
-                array(
+                [
                     'template' => 'CocoricoSonataAdminBundle::list_booking_expiration_date.html.twig',
                     'label' => 'admin.booking.expire_at.label',
                     'bookingExpirationDelay' => $this->bookingExpirationDelay,
                     'bookingAcceptationDelay' => $this->bookingAcceptationDelay,
-                )
+                ]
             );
 //            ->add(
 //                'updatedAt',
@@ -630,11 +649,11 @@ class BookingAdmin extends AbstractAdmin
         $listMapper->add(
             '_action',
             'actions',
-            array(
-                'actions' => array(
-                    'edit' => array(),
-                )
-            )
+            [
+                'actions' => [
+                    'edit' => [],
+                ],
+            ]
         );
     }
 
@@ -648,7 +667,7 @@ class BookingAdmin extends AbstractAdmin
 
     public function getExportFields()
     {
-        return array(
+        return [
             'Id' => 'id',
             'Listing Id' => 'listing.id',
             'Status' => 'statusText',
@@ -660,8 +679,8 @@ class BookingAdmin extends AbstractAdmin
             'Booking from' => 'start',
             'Booking to' => 'end',
             'Expire At' => 'endTime',
-            'Updated At' => 'updatedAt'
-        );
+            'Updated At' => 'updatedAt',
+        ];
     }
 
     public function getDataSourceIterator()

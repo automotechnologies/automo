@@ -24,11 +24,13 @@ class ListingAdmin extends AbstractAdmin
     protected $locales;
     protected $includeVat;
 
+    protected $maxPageLinks = 10;
+
     // setup the default sort column and order
-    protected $datagridValues = array(
+    protected $datagridValues = [
         '_sort_order' => 'DESC',
         '_sort_by' => 'createdAt'
-    );
+    ];
 
     public function setLocales($locales)
     {
@@ -60,17 +62,17 @@ class ListingAdmin extends AbstractAdmin
 
 
         //Translations fields
-        $titles = $descriptions = $rules = array();
+        $titles = $descriptions = $rules = [];
         foreach ($this->locales as $i => $locale) {
-            $titles[$locale] = array(
+            $titles[$locale] = [
                 'label' => 'Title'
-            );
-            $descriptions[$locale] = array(
+            ];
+            $descriptions[$locale] = [
                 'label' => 'Description'
-            );
-            $rules[$locale] = array(
+            ];
+            $rules[$locale] = [
                 'label' => 'Rules'
-            );
+            ];
         }
 
         $formMapper
@@ -78,17 +80,17 @@ class ListingAdmin extends AbstractAdmin
             ->add(
                 'status',
                 ChoiceType::class,
-                array(
+                [
                     'choices' => array_flip(Listing::$statusValues),
                     'placeholder' => 'admin.listing.status.label',
                     'translation_domain' => 'cocorico_listing',
                     'label' => 'admin.listing.status.label',
-                )
+                ]
             )
             ->add(
                 'adminNotation',
                 ChoiceType::class,
-                array(
+                [
                     'choices' => array_combine(
                         range(0, 10, 0.5),
                         array_map(
@@ -101,63 +103,63 @@ class ListingAdmin extends AbstractAdmin
                     'placeholder' => 'admin.listing.admin_notation.label',
                     'label' => 'admin.listing.admin_notation.label',
                     'required' => false,
-                )
+                ]
             )
             ->add(
                 'certified',
                 null,
-                array(
+                [
                     'label' => 'admin.listing.certified.label',
-                )
+                ]
             )
             ->add(
                 'translations',
                 TranslationsType::class,
-                array(
+                [
                     'locales' => $this->locales,
                     'required_locales' => $this->locales,
-                    'fields' => array(
-                        'title' => array(
+                    'fields' => [
+                        'title' => [
                             'field_type' => 'text',
                             'locale_options' => $titles,
-                        ),
-                        'description' => array(
+                        ],
+                        'description' => [
                             'field_type' => 'textarea',
                             'locale_options' => $descriptions,
-                        ),
-                        'rules' => array(
+                        ],
+                        'rules' => [
                             'field_type' => 'textarea',
                             'locale_options' => $rules,
                             'required' => false,
-                        ),
-                        'slug' => array(
-                            'display' => false
-                        )
-                    ),
+                        ],
+                        'slug' => [
+                            'display' => false,
+                        ]
+                    ],
                     'label' => 'Descriptions'
-                )
+                ]
             )
             ->add(
                 'user',
                 'sonata_type_model',
-                array(
+                [
                     'query' => $offererQuery,
                     'disabled' => true,
-                    'label' => 'admin.listing.user.label'
-                )
+                    'label' => 'admin.listing.user.label',
+                ]
             )
             ->add(
                 'listingListingCategories',
                 null,
-                array(
+                [
                     'disabled' => true,
-                    'label' => 'admin.listing.categories.label'
-                )
+                    'label' => 'admin.listing.categories.label',
+                ]
             )
             ->add(
                 'images',
                 CollectionType::class,
-                array(
+                [
                     'entry_type' => ListingImageType::class,
                     'by_reference' => false,
                     'required' => false,
@@ -165,18 +167,17 @@ class ListingAdmin extends AbstractAdmin
                     'prototype' => true,
                     'allow_add' => false,
                     'allow_delete' => false,
-
-                    'label' => 'admin.listing.images.label'
-                )
+                    'label' => 'admin.listing.images.label',
+                ]
             )
             ->add(
                 'price',
                 PriceType::class,
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.listing.price.label',
                     'include_vat' => $this->includeVat
-                )
+                ]
             );
 
 
@@ -184,37 +185,37 @@ class ListingAdmin extends AbstractAdmin
             ->add(
                 'cancellationPolicy',
                 ChoiceType::class,
-                array(
+                [
                     'choices' => array_flip(Listing::$cancellationPolicyValues),
                     'placeholder' => 'admin.listing.cancellation_policy.label',
                     'disabled' => true,
                     'label' => 'admin.listing.cancellation_policy.label',
                     'translation_domain' => 'cocorico_listing',
-                )
+                ]
             )
             ->add(
                 'location.completeAddress',
                 'text',
-                array(
+                [
                     'disabled' => true,
-                    'label' => 'admin.listing.location.label'
-                )
+                    'label' => 'admin.listing.location.label',
+                ]
             )
             ->add(
                 'createdAt',
                 null,
-                array(
+                [
                     'disabled' => true,
-                    'label' => 'admin.listing.created_at.label'
-                )
+                    'label' => 'admin.listing.created_at.label',
+                ]
             )
             ->add(
                 'updatedAt',
                 null,
-                array(
+                [
                     'disabled' => true,
-                    'label' => 'admin.listing.updated_at.label'
-                )
+                    'label' => 'admin.listing.updated_at.label',
+                ]
             )
 //            ->end()
 //            ->with('Characteristics')
@@ -236,44 +237,52 @@ class ListingAdmin extends AbstractAdmin
             ->add(
                 'fullName',
                 'doctrine_orm_callback',
-                array(
-                    'callback' => array($this, 'getFullNameFilter'),
+                [
+                    'callback' => [
+                        $this, 'getFullNameFilter',
+                    ],
                     'field_type' => 'text',
                     'operator_type' => 'hidden',
-                    'operator_options' => array(),
-                    'label' => 'admin.listing.offerer.label'
-                )
+                    'operator_options' => [],
+                    'label' => 'admin.listing.offerer.label',
+                ]
             )
             ->add(
                 'user.email',
                 null,
-                array('label' => 'admin.listing.user_email.label')
+                [
+                    'label' => 'admin.listing.user_email.label',
+                ]
             )
             ->add(
                 'user.phone',
                 null,
-                array('label' => 'admin.listing.user_phone.label')
+                [
+                    'label' => 'admin.listing.user_phone.label',
+                ]
             )
             ->add(
                 'listingListingCategories.category',
                 null,
-                array('label' => 'admin.listing.categories.label')
+                [
+                    'label' => 'admin.listing.categories.label',
+                ]
             )
             ->add(
                 'status',
                 'doctrine_orm_string',
-                array(),
+                [],
                 ChoiceType::class,
-                array(
+                [
                     'choices' => array_flip(Listing::$statusValues),
                     'translation_domain' => 'cocorico_listing',
                     'label' => 'admin.listing.status.label',
-                )
+                ]
             )
             ->add(
                 'createdAt',
                 'doctrine_orm_callback',
-                array(
+                [
                     'label' => 'admin.listing.created_at.label',
                     'callback' => function ($queryBuilder, $alias, $field, $value) {
                         /** @var \DateTime $date */
@@ -289,14 +298,16 @@ class ListingAdmin extends AbstractAdmin
                         return true;
                     },
                     'field_type' => 'sonata_type_date_picker',
-                    'field_options' => array('format' => 'dd/MM/yyyy'),
-                ),
+                    'field_options' => [
+                        'format' => 'dd/MM/yyyy',
+                    ],
+                ],
                 null
             )
             ->add(
                 'updatedAt',
                 'doctrine_orm_callback',
-                array(
+                [
                     'label' => 'admin.listing.updated_at.label',
                     'callback' => function ($queryBuilder, $alias, $field, $value) {
                         /** @var \DateTime $date */
@@ -312,49 +323,59 @@ class ListingAdmin extends AbstractAdmin
                         return true;
                     },
                     'field_type' => 'sonata_type_date_picker',
-                    'field_options' => array('format' => 'dd/MM/yyyy'),
-                ),
+                    'field_options' => [
+                        'format' => 'dd/MM/yyyy',
+                    ],
+                ],
                 null
             )
             ->add(
                 'priceMin',
                 'doctrine_orm_callback',
-                array(
-                    'callback' => array($this, 'getPriceMinFilter'),
+                [
+                    'callback' => [
+                        $this, 'getPriceMinFilter',
+                    ],
                     'field_type' => 'text',
                     'operator_type' => 'choice',
-                    'operator_options' => array(
-                        'choices' => array(
+                    'operator_options' => [
+                        'choices' => [
                             NumberType::TYPE_GREATER_EQUAL => '>=',
-                        ),
-                    ),
-                    'label' => 'admin.listing.price_min.label'
-                )
+                        ],
+                    ],
+                    'label' => 'admin.listing.price_min.label',
+                ]
             )
             ->add(
                 'priceMax',
                 'doctrine_orm_callback',
-                array(
-                    'callback' => array($this, 'getPriceMaxFilter'),
+                [
+                    'callback' => [
+                        $this, 'getPriceMaxFilter',
+                    ],
                     'field_type' => 'text',
                     'operator_type' => 'choice',
-                    'operator_options' => array(
-                        'choices' => array(
-                            NumberType::TYPE_LESS_EQUAL => '<='
-                        )
-                    ),
-                    'label' => 'admin.listing.price_max.label'
-                )
+                    'operator_options' => [
+                        'choices' => [
+                            NumberType::TYPE_LESS_EQUAL => '<=',
+                        ]
+                    ],
+                    'label' => 'admin.listing.price_max.label',
+                ]
             )
             ->add(
                 'location.coordinate.city',
                 null,
-                array('label' => 'admin.listing.city.label')
+                [
+                    'label' => 'admin.listing.city.label',
+                ]
             )
             ->add(
                 'location.coordinate.country',
                 null,
-                array('label' => 'admin.listing.country.label')
+                [
+                    'label' => 'admin.listing.country.label',
+                ]
             );
     }
 
@@ -411,52 +432,63 @@ class ListingAdmin extends AbstractAdmin
             ->add(
                 'statusText',
                 null,
-                array(
+                [
                     'label' => 'admin.listing.status.label',
                     'template' => 'CocoricoSonataAdminBundle::list_field_value_translated.html.twig',
-                    'data_trans' => 'cocorico_listing'
-                )
+                    'data_trans' => 'cocorico_listing',
+                    'sortable' => 'status',
+                ]
             )
             ->add(
                 'user',
                 null,
-                array('label' => 'admin.listing.user.label')
+                [
+                    'label' => 'admin.listing.user.label',
+                ]
             )
             ->add(
                 'user.email',
                 null,
-                array('label' => 'admin.listing.user_email.label')
+                [
+                    'label' => 'admin.listing.user_email.label',
+                ]
             )
             ->add(
                 'user.phone',
                 null,
-                array('label' => 'admin.listing.user_phone.label')
+                [
+                    'label' => 'admin.listing.user_phone.label',
+                ]
             )
             ->add(
                 'title',
                 null,
-                array('label' => 'admin.listing.title.label')
+                [
+                    'label' => 'admin.listing.title.label',
+                ]
             )
             ->add(
                 'priceDecimal',
                 null,
-                array(
+                [
                     'label' => 'admin.listing.price.label', //Price (€)',
-                )
+                ]
             )
             ->add(
                 'averageRating',
                 null,
-                array('label' => 'admin.listing.average_rating.label')
+                [
+                    'label' => 'admin.listing.average_rating.label',
+                ]
             );
 
         $listMapper
             ->add(
                 'updatedAt',
                 'date',
-                array(
+                [
                     'label' => 'admin.listing.updated_at.label',
-                )
+                ]
             );
 
         if ($this->isGranted('ROLE_ALLOWED_TO_SWITCH')) {
@@ -464,21 +496,21 @@ class ListingAdmin extends AbstractAdmin
                 ->add(
                     'impersonating',
                     'string',
-                    array(
+                    [
                         'template' => 'CocoricoSonataAdminBundle::impersonating.html.twig',
-                    )
+                    ]
                 );
         }
 
         $listMapper->add(
             '_action',
             'actions',
-            array(
-                'actions' => array(
+            [
+                'actions' => [
                     //'show' => array(),
-                    'edit' => array(),
-                )
-            )
+                    'edit' => [],
+                ]
+            ]
         );
     }
 
@@ -517,7 +549,7 @@ class ListingAdmin extends AbstractAdmin
 
     public function getExportFields()
     {
-        return array(
+        return [
             'Id' => 'id',
             'Status' => 'statusText',
             'Offerer' => 'user.fullname',
@@ -526,8 +558,8 @@ class ListingAdmin extends AbstractAdmin
             'Listing Title' => 'title',
             'Price' => 'priceDecimal',
             'Average Rating' => 'averageRating',
-            'Updated At' => 'updatedAt'
-        );
+            'Updated At' => 'updatedAt',
+        ];
     }
 
     public function getDataSourceIterator()
