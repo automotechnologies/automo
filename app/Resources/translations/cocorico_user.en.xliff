@@ -491,6 +491,10 @@
         <source>user.profile.subscribe-date.title</source>
         <target>Member since</target>
       </trans-unit>
+      <trans-unit id="8b14373c89f426fb1db4d41571f9ab2718134368" resname="user.register.success">
+          <source>user.register.success</source>
+          <target>User Registration Success</target>
+      </trans-unit>
       <trans-unit id="31e2cd9615198589f3489f7b13ce92bdc31c2ada" resname="user.request.h1">
         <source>user.request.h1</source>
         <target>Request new password</target>
