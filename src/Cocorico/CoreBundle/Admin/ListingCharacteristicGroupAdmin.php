@@ -18,10 +18,10 @@ class ListingCharacteristicGroupAdmin extends AbstractAdmin
     protected $locales;
 
     // setup the default sort column and order
-    protected $datagridValues = array(
+    protected $datagridValues = [
         '_sort_order' => 'ASC',
         '_sort_by' => 'id'
-    );
+    ];
 
     public function setLocales($locales)
     {
@@ -35,12 +35,14 @@ class ListingCharacteristicGroupAdmin extends AbstractAdmin
 //        $subject = $this->getSubject();
 
         //Translations fields
-        $titles = $descriptions = array();
+        $titles = $descriptions = [];
         foreach ($this->locales as $i => $locale) {
-            $titles[$locale] = array(
+            $titles[$locale] = [
                 'label' => 'Name',
-                'constraints' => array(new NotBlank())
-            );
+                'constraints' => [
+                    new NotBlank(),
+                ]
+            ];
         }
 
         $formMapper
@@ -48,20 +50,26 @@ class ListingCharacteristicGroupAdmin extends AbstractAdmin
             ->add(
                 'translations',
                 TranslationsType::class,
-                array(
+                [
                     'locales' => $this->locales,
                     'required_locales' => $this->locales,
-                    'fields' => array(
-                        'name' => array(
+                    'fields' => [
+                        'name' => [
                             'field_type' => 'text',
                             'locale_options' => $titles,
-                        ),
-                    ),
+                        ],
+                    ],
                     /** @Ignore */
                     //'label' => 'Descriptions'
-                )
+                ]
             )
-            ->add('position', null, array('label' => 'admin.listing_characteristic_group.position.label'))
+            ->add(
+                'position',
+                null,
+                [
+                    'label' => 'admin.listing_characteristic_group.position.label',
+                ]
+            )
             ->end();
     }
 
@@ -72,7 +80,9 @@ class ListingCharacteristicGroupAdmin extends AbstractAdmin
             ->add(
                 'translations.name',
                 null,
-                array('label' => 'admin.listing_characteristic_group.name.label')
+                [
+                    'label' => 'admin.listing_characteristic_group.name.label',
+                ]
             );
     }
 
@@ -84,30 +94,30 @@ class ListingCharacteristicGroupAdmin extends AbstractAdmin
             ->add(
                 'name',
                 null,
-                array(
+                [
                     'label' => 'admin.listing_characteristic_group.name.label',
-                )
+                ]
             );
 
 
         $listMapper->add(
             '_action',
             'actions',
-            array(
-                'actions' => array(
+            [
+                'actions' => [
                     //'show' => array(),
-                    'edit' => array(),
-                )
-            )
+                    'edit' => [],
+                ]
+            ]
         );
     }
 
     public function getExportFields()
     {
-        return array(
+        return [
             'Id' => 'id',
             'Name' => 'name',
-        );
+        ];
     }
 
     public function getDataSourceIterator()

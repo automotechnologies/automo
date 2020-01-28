@@ -21,10 +21,10 @@ class BookingPayingRefundAdmin extends AbstractAdmin
     protected $timeUnitIsDay;
     protected $timezone;
 
-    protected $datagridValues = array(
+    protected $datagridValues = [
         '_sort_order' => 'DESC',
         '_sort_by' => 'createdAt'
-    );
+    ];
 
     public function setLocales($locales)
     {
@@ -62,67 +62,67 @@ class BookingPayingRefundAdmin extends AbstractAdmin
             ->add(
                 'user',
                 'sonata_type_model',
-                array(
+                [
                     'query' => $askerQuery,
                     'disabled' => true,
-                    'label' => 'admin.booking.asker.label'
-                )
+                    'label' => 'admin.booking.asker.label',
+                ]
             )
             ->add(
                 'booking',
                 null,
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking.label',
-                )
+                ]
             )
             ->add(
                 'amount',
                 PriceType::class,
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking_payin_refund.amount.label',
                     'include_vat' => true,
                     'scale' => 2,
-                )
+                ]
             )
             ->add(
                 'status',
                 ChoiceType::class,
-                array(
+                [
                     'disabled' => true,
                     'choices' => array_flip(BookingPayingRefund::$statusValues),
                     'placeholder' => 'admin.booking.status.label',
                     'label' => 'admin.booking.status.label',
                     'translation_domain' => 'cocorico_booking',
-                )
+                ]
             )
             ->add(
                 'payedAt',
                 null,
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking_payin_refund.payed_at.label',
-                    'view_timezone' => $this->timezone
-                )
+                    'view_timezone' => $this->timezone,
+                ]
             )
             ->add(
                 'createdAt',
                 null,
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking.created_at.label',
-                    'view_timezone' => $this->timezone
-                )
+                    'view_timezone' => $this->timezone,
+                ]
             )
             ->add(
                 'updatedAt',
                 null,
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking.updated_at.label',
                     'view_timezone' => $this->timezone
-                )
+                ]
             )
             ->end();
 
@@ -136,28 +136,32 @@ class BookingPayingRefundAdmin extends AbstractAdmin
             ->add(
                 'status',
                 'doctrine_orm_string',
-                array(),
+                [],
                 ChoiceType::class,
-                array(
+                [
                     'choices' => array_flip(BookingPayingRefund::$statusValues),
                     'label' => 'admin.booking.status.label',
                     'translation_domain' => 'cocorico_booking',
-                )
+                ]
             )
             ->add(
                 'booking.id',
                 null,
-                array('label' => 'admin.booking_bank_wire.booking_id.label')
+                [
+                    'label' => 'admin.booking_bank_wire.booking_id.label',
+                ]
             )
             ->add(
                 'user.email',
                 null,
-                array('label' => 'admin.booking.asker.label')
+                [
+                    'label' => 'admin.booking.asker.label',
+                ]
             )
             ->add(
                 'createdAt',
                 'doctrine_orm_callback',
-                array(
+                [
                     'label' => 'admin.booking.created_at.label',
                     'callback' => function ($queryBuilder, $alias, $field, $value) {
                         /** @var \DateTime $date */
@@ -173,8 +177,10 @@ class BookingPayingRefundAdmin extends AbstractAdmin
                         return true;
                     },
                     'field_type' => 'sonata_type_date_picker',
-                    'field_options' => array('format' => 'dd/MM/yyyy'),
-                ),
+                    'field_options' => [
+                        'format' => 'dd/MM/yyyy',
+                    ],
+                ],
                 null
             );
     }
@@ -187,74 +193,74 @@ class BookingPayingRefundAdmin extends AbstractAdmin
             ->add(
                 'booking',
                 null,
-                array(
-                    'label' => 'admin.booking_bank_wire.booking.label'
-                )
+                [
+                    'label' => 'admin.booking_bank_wire.booking.label',
+                ]
             )
             ->add(
                 'statusText',
                 null,
-                array(
+                [
                     'label' => 'admin.booking.status.label',
                     'template' => 'CocoricoSonataAdminBundle::list_field_value_translated.html.twig',
-                    'data_trans' => 'cocorico_booking'
-                )
+                    'data_trans' => 'cocorico_booking',
+                ]
             )
             ->add(
                 'user',
                 null,
-                array(
+                [
                     'label' => 'admin.booking.asker.label',
-                )
+                ]
             )
             ->add(
                 'booking.listing',
                 null,
-                array(
-                    'label' => 'admin.listing.label'
-                )
+                [
+                    'label' => 'admin.listing.label',
+                ]
             )
             ->add(
                 'booking.start',
                 'date',
-                array(
+                [
                     'label' => 'admin.booking.start.label',
-                )
+                ]
             )
             ->add(
                 'booking.end',
                 'date',
-                array(
+                [
                     'label' => 'admin.booking.end.label',
-                )
+                ]
             )
             ->add(
                 'createdAt',
                 null,
-                array(
+                [
                     'label' => 'admin.booking.created_at.label',
-                )
+                ]
             )
             ->add(
                 'booking.amountToPayByAskerDecimal',
                 null,
-                array(
-                    'label' => 'admin.booking.amount.label'
-                )
+                [
+                    'label' => 'admin.booking.amount.label',
+                ]
             )
             ->add(
                 'amountDecimal',
                 null,
-                array(
-                    'label' => 'admin.booking_payin_refund.amount.label'
-                )
+                [
+                    'label' => 'admin.booking_payin_refund.amount.label',
+                ]
             )
             ->add(
                 'payedAt',
                 null,
-                array(
+                [
                     'label' => 'admin.booking_payin_refund.payed_at.label',
-                )
+                ]
             );
 
 
@@ -270,7 +276,7 @@ class BookingPayingRefundAdmin extends AbstractAdmin
 
     public function getExportFields()
     {
-        $fields = array(
+        $fields = [
             'Id' => 'id',
             'Booking' => 'booking',
             'Status' => 'statusText',
@@ -282,7 +288,7 @@ class BookingPayingRefundAdmin extends AbstractAdmin
             'Booking Amount Pay By Asker' => 'booking.amountToPayByAskerDecimal',
             'Amount' => 'amountDecimal',
             'Payed At' => 'payedAt'
-        );
+        ];
 
         return $fields;
     }

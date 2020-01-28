@@ -31,16 +31,20 @@ class ListingCategoryAdmin extends AbstractAdmin
 //        $subject = $this->getSubject();
 
         //Translations fields
-        $titles = $descriptions = array();
+        $titles = $descriptions = [];
         foreach ($this->locales as $i => $locale) {
-            $titles[$locale] = array(
+            $titles[$locale] = [
                 'label' => 'Name',
-                'constraints' => array(new NotBlank())
-            );
-            $descriptions[$locale] = array(
+                'constraints' => [
+                    new NotBlank(),
+                 ]
+            ];
+            $descriptions[$locale] = [
                 'label' => 'Description',
-                'constraints' => array(new NotBlank())
-            );
+                'constraints' => [
+                    new NotBlank(),
+                ]
+            ];
         }
 
         $formMapper
@@ -48,28 +52,28 @@ class ListingCategoryAdmin extends AbstractAdmin
             ->add(
                 'translations',
                 TranslationsType::class,
-                array(
+                [
                     'locales' => $this->locales,
                     'required_locales' => $this->locales,
-                    'fields' => array(
-                        'name' => array(
+                    'fields' => [
+                        'name' => [
                             'field_type' => 'text',
                             'locale_options' => $titles,
-                        ),
-                        'slug' => array(
+                        ],
+                        'slug' => [
                             'display' => false
-                        )
-                    ),
+                        ]
+                    ],
                     /** @Ignore */
                     'label' => 'Descriptions'
-                )
+                ]
             )
             ->add(
                 'parent',
                 null,
-                array(
-                    'label' => 'admin.listing_category.parent.label'
-                )
+                [
+                    'label' => 'admin.listing_category.parent.label',
+                ]
             );
 
         $formMapper
@@ -83,12 +87,16 @@ class ListingCategoryAdmin extends AbstractAdmin
             ->add(
                 'translations.name',
                 null,
-                array('label' => 'admin.listing_category.name.label')
+                [
+                    'label' => 'admin.listing_category.name.label',
+                ]
             )
             ->add(
                 'parent',
                 null,
-                array('label' => 'admin.listing_category.parent.label')
+                [
+                    'label' => 'admin.listing_category.parent.label',
+                ]
             );
     }
 
@@ -100,35 +108,37 @@ class ListingCategoryAdmin extends AbstractAdmin
             ->add(
                 'name',
                 null,
-                array(
+                [
                     'label' => 'admin.listing_category.name.label',
-                )
+                ]
             )
             ->addIdentifier(
                 'parent',
                 null,
-                array('label' => 'admin.listing_category.parent.label')
+                [
+                    'label' => 'admin.listing_category.parent.label',
+                ]
             );
 
         $listMapper->add(
             '_action',
             'actions',
-            array(
-                'actions' => array(
+            [
+                'actions' => [
                     //'show' => array(),
-                    'edit' => array(),
-                )
-            )
+                    'edit' => [],
+                ]
+            ]
         );
     }
 
     public function getExportFields()
     {
-        return array(
+        return [
             'Id' => 'id',
             'name' => 'name',
             'parent' => 'parent',
-        );
+        ];
     }
 
     public function createQuery($context = 'list')

@@ -27,10 +27,10 @@ class BookingBankWireAdmin extends AbstractAdmin
     protected $timezone;
 
     // setup the default sort column and order
-    protected $datagridValues = array(
+    protected $datagridValues = [
         '_sort_order' => 'DESC',
         '_sort_by' => 'createdAt'
-    );
+    ];
 
     public function setLocales($locales)
     {
@@ -80,41 +80,41 @@ class BookingBankWireAdmin extends AbstractAdmin
             ->add(
                 'user',
                 'sonata_type_model',
-                array(
+                [
                     'query' => $offererQuery,
                     'disabled' => true,
-                    'label' => 'admin.booking.offerer.label'
-                )
+                    'label' => 'admin.booking.offerer.label',
+                ]
             )
             ->add(
                 'booking',
                 null,
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking.label',
-                )
+                ]
             )->add(
                 'booking.status',
                 ChoiceType::class,
-                array(
+                [
                     'disabled' => true,
                     'choices' => array_flip(Booking::$statusValues),
                     'placeholder' => 'admin.booking.status.label',
                     'label' => 'admin.booking_bank_wire.booking.status.label',
                     'translation_domain' => 'cocorico_booking',
-                )
+                ]
             );
 
         $formMapper
             ->add(
                 'amount',
                 PriceType::class,
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking_bank_wire.amount.label',
                     'include_vat' => true,
                     'scale' => 2,
-                )
+                ]
             );
 
         $statusDisabled = true;
@@ -126,41 +126,41 @@ class BookingBankWireAdmin extends AbstractAdmin
             ->add(
                 'status',
                 ChoiceType::class,
-                array(
+                [
                     'choices' => array_flip(BookingBankWire::$statusValues),
                     'placeholder' => 'admin.booking.status.label',
                     'label' => 'admin.booking.status.label',
                     'translation_domain' => 'cocorico_booking',
                     'help' => 'admin.booking_bank_wire.status.help',
-                    'disabled' => $statusDisabled
-                )
+                    'disabled' => $statusDisabled,
+                ]
             )
             ->add(
                 'payedAt',
                 null,
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking_bank_wire.payed_at.label',
-                    'view_timezone' => $this->timezone
-                )
+                    'view_timezone' => $this->timezone,
+                ]
             )
             ->add(
                 'createdAt',
                 null,
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking.created_at.label',
-                    'view_timezone' => $this->timezone
-                )
+                    'view_timezone' => $this->timezone,
+                ]
             )
             ->add(
                 'updatedAt',
                 null,
-                array(
+                [
                     'disabled' => true,
                     'label' => 'admin.booking.updated_at.label',
-                    'view_timezone' => $this->timezone
-                )
+                    'view_timezone' => $this->timezone,
+                ]
             )
             ->end()
             ->end();
@@ -174,28 +174,32 @@ class BookingBankWireAdmin extends AbstractAdmin
             ->add(
                 'status',
                 'doctrine_orm_string',
-                array(),
+                [],
                 ChoiceType::class,
-                array(
+                [
                     'choices' => array_flip(BookingBankWire::$statusValues),
                     'label' => 'admin.booking.status.label',
                     'translation_domain' => 'cocorico_booking',
-                )
+                ]
             )
             ->add(
                 'booking.id',
                 null,
-                array('label' => 'admin.booking_bank_wire.booking_id.label')
+                [
+                    'label' => 'admin.booking_bank_wire.booking_id.label',
+                ]
             )
             ->add(
                 'user.email',
                 null,
-                array('label' => 'admin.booking.offerer.label')
+                [
+                    'label' => 'admin.booking.offerer.label',
+                ]
             )
             ->add(
                 'createdAt',
                 'doctrine_orm_callback',
-                array(
+                [
                     'label' => 'admin.booking.created_at.label',
                     'callback' => function ($queryBuilder, $alias, $field, $value) {
                         /** @var \DateTime $date */
@@ -211,8 +215,10 @@ class BookingBankWireAdmin extends AbstractAdmin
                         return true;
                     },
                     'field_type' => 'sonata_type_date_picker',
-                    'field_options' => array('format' => 'dd/MM/yyyy'),
-                ),
+                    'field_options' => [
+                        'format' => 'dd/MM/yyyy',
+                    ],
+                ],
                 null
             );
     }
@@ -225,83 +231,83 @@ class BookingBankWireAdmin extends AbstractAdmin
             ->add(
                 'statusText',
                 null,
-                array(
+                [
                     'label' => 'admin.booking_bank_wire.status.label',
                     'template' => 'CocoricoSonataAdminBundle::list_field_value_translated.html.twig',
-                    'data_trans' => 'cocorico_booking'
-                )
+                    'data_trans' => 'cocorico_booking',
+                ]
             )
             ->add(
                 'booking',
                 null,
-                array(
-                    'label' => 'admin.booking_bank_wire.booking.label'
-                )
+                [
+                    'label' => 'admin.booking_bank_wire.booking.label',
+                ]
             )
             ->add(
                 'booking.statusText',
                 null,
-                array(
+                [
                     'label' => 'admin.booking.status.label',
                     'template' => 'CocoricoSonataAdminBundle::list_field_value_translated.html.twig',
-                    'data_trans' => 'cocorico_booking'
-                )
+                    'data_trans' => 'cocorico_booking',
+                ]
             )
             ->add(
                 'user',
                 null,
-                array(
+                [
                     'label' => 'admin.booking.offerer.label',
-                )
+                ]
             )
             ->add(
                 'booking.listing',
                 null,
-                array(
-                    'label' => 'admin.listing.label'
-                )
+                [
+                    'label' => 'admin.listing.label',
+                ]
             )
             ->add(
                 'booking.start',
                 'date',
-                array(
+                [
                     'label' => 'admin.booking.start.label',
-                )
+                ]
             )
             ->add(
                 'booking.end',
                 'date',
-                array(
+                [
                     'label' => 'admin.booking.end.label',
-                )
+                ]
             )
             ->add(
                 'booking.amountToPayByAskerDecimal',
                 null,
-                array(
-                    'label' => 'admin.booking.amount.label'
-                )
+                [
+                    'label' => 'admin.booking.amount.label',
+                ]
             )
             ->add(
                 'amountDecimal',
                 null,
-                array(
+                [
                     /** @Ignore */
-                    'label' => 'admin.booking_bank_wire.amount.label'
-                )
+                    'label' => 'admin.booking_bank_wire.amount.label',
+                ]
             );
 
         $listMapper->add(
             '_action',
             'actions',
-            array(
-                'actions' => array(
-                    'edit' => array(),
-//                    'do_bank_wire' => array(
+            [
+                'actions' => [
+                    'edit' => [],
+//                    'do_bank_wire' => [
 //                        'template' => 'CocoricoMangoPayBundle::Admin/list_action_do_bank_wire.html.twig'
-//                    )
-                )
-            )
+//                    ]
+                ]
+            ]
         );
     }
 
@@ -315,7 +321,7 @@ class BookingBankWireAdmin extends AbstractAdmin
 
     public function getExportFields()
     {
-        $fields = array(
+        $fields = [
             'Id' => 'id',
             'Status' => 'statusText',
             'Booking' => 'booking',
@@ -326,7 +332,7 @@ class BookingBankWireAdmin extends AbstractAdmin
             'Booking End' => 'booking.end',
             'Booking Amount Pay To Offerer' => 'booking.amountToPayToOffererDecimal',
             'Amount' => 'amountDecimal',
-        );
+        ];
 
         return $fields;
     }

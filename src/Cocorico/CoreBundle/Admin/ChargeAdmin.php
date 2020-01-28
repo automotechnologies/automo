@@ -15,10 +15,10 @@ class ChargeAdmin extends AbstractAdmin
     protected $locales;
 
     // setup the default sort column and order
-    protected $datagridValues = array(
+    protected $datagridValues = [
         '_sort_order' => 'ASC',
         '_sort_by' => 'position'
-    );
+    ];
 
     public function setLocales($locales)
     {
@@ -125,11 +125,11 @@ class ChargeAdmin extends AbstractAdmin
         $listMapper->add(
             '_action',
             'actions',
-            array(
-                'actions' => array(
-                    'edit' => array(),
-                )
-            )
+            [
+                'actions' => [
+                    'edit' => [],
+                ]
+            ]
         );
     }
 

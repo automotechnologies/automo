@@ -24,35 +24,35 @@ class BookingUserAddressAdmin extends AbstractAdmin
             ->add(
                 'address',
                 'textarea',
-                array(
+                [
                     'label' => 'form.address.address',
                     'required' => false,
-                )
+                ]
             )
             ->add(
                 'city',
                 null,
-                array(
+                [
                     'label' => 'form.address.city',
                     'required' => false,
-                )
+                ]
             )
             ->add(
                 'zip',
                 null,
-                array(
+                [
                     'label' => 'form.address.zip',
                     'required' => false,
-                )
+                ]
             )
             ->add(
                 'country',
                 'country',
-                array(
+                [
                     'label' => 'form.address.country',
                     'required' => false,
-                    'preferred_choices' => array("GB", "FR", "ES", "DE", "IT", "CH", "US", "RU"),
-                )
+                    'preferred_choices' => ["GB", "FR", "ES", "DE", "IT", "CH", "US", "RU"],
+                ]
             )
             ->end();
     }
